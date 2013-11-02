@@ -1,4 +1,3 @@
-polly
-=====
+### polly
 
 Collection of CMake toolchain files
