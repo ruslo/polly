@@ -54,6 +54,7 @@ set(
     CACHE
     PATH
     "Install prefix from toolchain"
+    FORCE
 )
 
 if(_polly_check_old_install_prefix)
