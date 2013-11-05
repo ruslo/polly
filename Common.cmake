@@ -79,6 +79,7 @@ endif()
 
 # After POLLY_INSTALL_PREFIX set
 if(GITENV_ROOT)
+  set(GITENV_INSTALL_PREFIX "${POLLY_INSTALL_PREFIX}")
   message("GITENV_ROOT detected: ${GITENV_ROOT}")
   include("${GITENV_ROOT}/gitenv/paths.cmake")
 endif()
