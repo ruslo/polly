@@ -38,7 +38,7 @@ Used toolchain: toolchain-foo-name
 ```
 Second variable will be used to define `CMAKE_INSTALL_PREFIX`:
 ```cmake
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${CMAKE_INSTALL_PREFIX}")
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_PREFIX}")
 ```
 
 ## Toolchains
@@ -81,7 +81,13 @@ Additionally:
 |----------------------|------------------------|
 | iOS                  | ios                    |
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
-* *Note*: Xcode only
+* *Note*
+ * Xcode only
+ * It's not `iphoneos` or `iphonesimulator` toolchain, this toolchain designed to be used with
+[sugar_install_ios_library][1](or [sugar_install_library][2]) commands to create universal libraries.
+
+[1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
+[2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
 
 ## Usage
 
