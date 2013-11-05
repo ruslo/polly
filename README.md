@@ -90,5 +90,31 @@ Additionally:
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
 
 ## Usage
+Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
+```bash
+> cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/polly/Libstdcxx.cmake .
+Used toolchain: libstdc++
+-- The CXX compiler identification is Clang 5.0.0
+-- Check for working CXX compiler: /usr/bin/c++
+Used toolchain: libstdc++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+Used toolchain: libstdc++
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /.../_builds/make-debug
+```
+Take a look at make output, you must see `-stdlib=libstdc++` string:
+```
+> make VERBOSE=1
+/usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
+```
 
+*Note* that some typing time may be saved by defining `POLLY_ROOT` environment variable: `${POLLY_ROOT}/Libcxx.cmake`.
+See this [script][4] with [integration][5]
+
+[3]: http://www.cmake.org/Wiki/CMake_Cross_Compiling#The_toolchain_file
+[4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
+[5]: https://github.com/ruslo/configs
 ## Examples
