@@ -1,5 +1,7 @@
 ### polly
 
+[![Build Status](https://travis-ci.org/ruslo/polly.png?branch=master)](https://travis-ci.org/ruslo/polly)
+
 Collection of CMake toolchain files
 
 -----
