@@ -19,6 +19,7 @@ before_script:
     - cd gitenv
     - git submodule update --init llvm/libcxx sugar google/gtest
     - git submodule foreach 'git checkout master && git pull'
+    - (cd google/gtest && git checkout ruslo && git pull)
     # install custom libcxx
     - cd llvm/libcxx
     - mkdir _builds
