@@ -17,7 +17,7 @@ before_script:
     - export GITENV_ROOT=`pwd`/gitenv
     - export SUGAR_ROOT=`pwd`/sugar
     - cd gitenv
-    - git submodule update --init llvm/libcxx sugar gtest
+    - git submodule update --init llvm/libcxx sugar google/gtest
     - git submodule foreach 'git checkout master && git pull'
     # install custom libcxx
     - cd llvm/libcxx
