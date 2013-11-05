@@ -1,9 +1,9 @@
 language:
     - objective-c
-    
+
 compiler:
     - clang
-    
+
 before_install:
     - brew update
 
@@ -22,6 +22,6 @@ before_script:
     - (cd _builds/ && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 install)
     - (cd _builds/ && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 install)
     - ls _install/custom_libcxx/lib/*.a
-    
+
 script:
     - pwd
