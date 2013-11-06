@@ -7,7 +7,8 @@ Collection of CMake toolchain files
 -----
 
 Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
-It's more like `initial-cache` cmake option, but `initial-cache` is not fit because `PROJECT_SOURCE_DIR` is empty.
+It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
+(`PROJECT_SOURCE_DIR` and generator variable is empty).
 Each toolchain file set `CMAKE_INSTALL_PREFIX` variable to point to separate directory inside `PROJECT_SOURCE_DIR/_install`,
 so you can install targets simultaneously:
 ```
