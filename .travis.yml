@@ -15,8 +15,8 @@ before_script:
     - export POLLY_ROOT=`pwd`
     - git clone --depth=1 https://github.com/ruslo/gitenv
     - export GITENV_ROOT=`pwd`/gitenv
-    - export SUGAR_ROOT=`pwd`/sugar
     - cd gitenv
+    - export SUGAR_ROOT=`pwd`/sugar
     - git submodule update --init llvm/libcxx sugar google/gtest
     - git submodule foreach 'git checkout master && git pull'
     - (cd google/gtest && git checkout ruslo && git pull)
