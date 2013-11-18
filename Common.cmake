@@ -45,24 +45,6 @@ if(NOT PROJECT_SOURCE_DIR)
   message(FATAL_ERROR "PROJECT_SOURCE_DIR is empty")
 endif()
 
-set(_polly_check_old_install_prefix "${CMAKE_INSTALL_PREFIX}")
-
-# Need to be cache variable
-set(
-    CMAKE_INSTALL_PREFIX
-    "${PROJECT_SOURCE_DIR}/${POLLY_INSTALL_PREFIX}"
-    CACHE
-    PATH
-    "Install prefix from toolchain"
-    FORCE
-)
-
-if(_polly_check_old_install_prefix)
-  if(NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${_polly_check_old_install_prefix}")
-    message(FATAL_ERROR "CMAKE_INSTALL_PREFIX conflict")
-  endif()
-endif()
-
 # Add extra 'find' cmake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/find")
 
