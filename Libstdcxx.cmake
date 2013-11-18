@@ -2,7 +2,7 @@
 # All rights reserved.
 
 set(POLLY_TOOLCHAIN_NAME "libstdc++")
-set(POLLY_TOOLCHAIN_PREFIX "libstdcxx")
+set(POLLY_TOOLCHAIN_TAG "libstdcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
 

@@ -29,8 +29,8 @@ if(NOT POLLY_TOOLCHAIN_NAME)
   message(FATAL_ERROR "POLLY_TOOLCHAIN_NAME is empty")
 endif()
 
-if(NOT POLLY_TOOLCHAIN_PREFIX)
-  message(FATAL_ERROR "POLLY_TOOLCHAIN_PREFIX is empty")
+if(NOT POLLY_TOOLCHAIN_TAG)
+  message(FATAL_ERROR "POLLY_TOOLCHAIN_TAG is empty")
 endif()
 
 message("[polly] Used toolchain: ${POLLY_TOOLCHAIN_NAME}")

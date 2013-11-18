@@ -8,7 +8,7 @@ else()
 endif()
 
 set(POLLY_TOOLCHAIN_NAME "Custom libc++")
-set(POLLY_TOOLCHAIN_PREFIX "custom_libcxx")
+set(POLLY_TOOLCHAIN_TAG "custom_libcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
 

@@ -24,7 +24,7 @@ targets can coexist simultaneously:
                         - toolchain-C\
                         - ...
 ```
-Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_PREFIX`. First variable
+Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
 will be printed while processing file:
 ```
 Used toolchain: toolchain-foo-name
@@ -42,7 +42,7 @@ Used toolchain: toolchain-foo-name
 ```
 Second variable can be used to define `CMAKE_INSTALL_PREFIX`:
 ```cmake
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_PREFIX}")
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
 ```
 
 ## Toolchains
@@ -54,25 +54,25 @@ Additionally:
 * Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if it's not setted already)
 
 ### Default.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | Default              | default                |
 * No additional flags, just load `Common.cmake`
 
 ### Libcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | libc++               | libcxx                 |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
 ### Libstdcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | libstdc++            | libstdcxx              |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
 ### CustomLibcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | Custom libc++        | custom_libcxx          |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
@@ -80,7 +80,7 @@ Additionally:
 * Set variable `CUSTOM_LIBCXX_LIBRARY_LOCATION` to `TRUE`
 
 ### iOS.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | iOS                  | ios                    |
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
