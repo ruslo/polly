@@ -51,14 +51,13 @@ set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_PREFI
 
 Additionally:
 * Try to detect [gitenv](https://github.com/ruslo/gitenv), if detected load file `gitenv/paths.cmake`
-* Set variable `POLLY_INSTALL_PREFIX` to `_install/${POLLY_TOOLCHAIN_PREFIX}`
 * Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if it's not setted already)
 
 ### Default.cmake
 | POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
 |----------------------|------------------------|
 | Default              | default                |
-* No additional flags, just load `Common.cmake` 
+* No additional flags, just load `Common.cmake`
 
 ### Libcxx.cmake
 | POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
