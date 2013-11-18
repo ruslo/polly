@@ -4,3 +4,13 @@ CMakeFiles
 Makefile
 cmake_install.cmake
 install_manifest.txt
+
+# macos
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+
+# temp
+_builds
+*/_builds
+*/*/_builds
