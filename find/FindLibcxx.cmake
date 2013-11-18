@@ -24,7 +24,7 @@ if(Libcxx_FOUND)
   return()
 endif()
 
-message("Libcxx root: ${LIBCXX_ROOT}")
+message(STATUS "Libcxx root: ${LIBCXX_ROOT}")
 
 set(
     Libcxx_INCLUDE_DIRS
@@ -33,10 +33,10 @@ set(
 
 set(_find_libcxx_save_find_suffixes ${CMAKE_FIND_LIBRARY_SUFFIXES})
 if(Libcxx_USE_STATIC_LIBS)
-  message("Libcxx static libraries: ON")
+  message(STATUS "Libcxx static libraries: ON")
   set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_STATIC_LIBRARY_SUFFIX})
 else()
-  message("Libcxx static libraries: OFF")
+  message(STATUS "Libcxx static libraries: OFF")
   set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_SHARED_LIBRARY_SUFFIX})
 endif()
 

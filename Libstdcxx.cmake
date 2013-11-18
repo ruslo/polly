@@ -1,6 +1,12 @@
 # Copyright (c) 2013, Ruslan Baratov
 # All rights reserved.
 
+if(DEFINED POLLY_LIBSTDCXX_CMAKE)
+  return()
+else()
+  set(POLLY_LIBSTDCXX_CMAKE 1)
+endif()
+
 set(POLLY_TOOLCHAIN_NAME "libstdc++")
 set(POLLY_TOOLCHAIN_TAG "libstdcxx")
 
