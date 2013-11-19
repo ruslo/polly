@@ -26,10 +26,10 @@ if(NOT XCODE_VERSION)
   message(FATAL_ERROR "This toolchain is available only on Xcode")
 endif()
 
-set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS")
+set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS" FORCE)
 
 # Skip compiler check:
 #     http://cmake.org/Bug/view.php?id=12288
 #     http://code.google.com/p/ios-cmake/issues/detail?id=1
-set(CMAKE_CXX_COMPILER_WORKS TRUE)
-set(CMAKE_C_COMPILER_WORKS TRUE)
+set(CMAKE_CXX_COMPILER_WORKS TRUE CACHE BOOL "Skip compiler check" FORCE)
+set(CMAKE_C_COMPILER_WORKS TRUE CACHE BOOL "Skip compiler check" FORCE)
