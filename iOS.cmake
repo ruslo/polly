@@ -7,6 +7,16 @@ else()
   set(POLLY_IOS_CMAKE 1)
 endif()
 
+# Error while building using 'ExternalProject_Add':
+
+#CMake Error at /.../share/cmake/Modules/Platform/Darwin.cmake:211 (message):
+#  CMAKE_OSX_DEPLOYMENT_TARGET is '10.9' but CMAKE_OSX_SYSROOT:
+#   "iphoneos"
+#  is not set to a MacOSX SDK with a recognized version.  Either set
+#  CMAKE_OSX_SYSROOT to a valid SDK or set CMAKE_OSX_DEPLOYMENT_TARGET to
+#  empty.
+set(ENV{CMAKE_OSX_DEPLOYMENT_TARGET "" CACHE STRING "" FORCE)
+
 set(POLLY_TOOLCHAIN_NAME "iOS")
 set(POLLY_TOOLCHAIN_PREFIX "ios")
 
