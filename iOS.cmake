@@ -33,3 +33,24 @@ set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS" FORCE)
 #     http://code.google.com/p/ios-cmake/issues/detail?id=1
 set(CMAKE_CXX_COMPILER_WORKS TRUE CACHE BOOL "Skip compiler check" FORCE)
 set(CMAKE_C_COMPILER_WORKS TRUE CACHE BOOL "Skip compiler check" FORCE)
+
+# find 'iphoneos' and 'iphonesimulator' roots and version
+find_program(XCODE_SELECT_EXECUTABLE xcode-select)
+if(NOT XCODE_SELECT_EXECUTABLE)
+  message(FATAL_ERROR "xcode-select not found")
+endif()
+
+execute_process(
+    COMMAND
+    ${XCODE_SELECT_EXECUTABLE}
+    "-print-path"
+    OUTPUT_VARIABLE
+    XCODE_DEVELOPER_ROOT # /.../Xcode.app/Contents/Developer
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+find_program(XCODEBUILD_EXECUTABLE xcodebuild)
+if(NOT XCODEBUILD_EXECUTABLE)
+  message(FATAL_ERROR "xcodebuild not found")
+endif()
+
