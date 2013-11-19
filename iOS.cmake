@@ -40,6 +40,10 @@ if(NOT XCODE_SELECT_EXECUTABLE)
   message(FATAL_ERROR "xcode-select not found")
 endif()
 
+if(NOT IOS_ARCHS)
+  set(IOS_ARCHS armv7;armv7s)
+endif()
+
 execute_process(
     COMMAND
     ${XCODE_SELECT_EXECUTABLE}
