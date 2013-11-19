@@ -83,3 +83,6 @@ endif()
 if(NOT IOS_SDK_VERSION)
   message(FATAL_ERROR "iOS version not found, tested: [${IOS_SDK_VERSIONS}]")
 endif()
+
+# support for hunter (github.com/ruslo/hunter)
+set(HUNTER_CMAKE_GENERATOR Xcode)
