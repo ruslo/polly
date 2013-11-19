@@ -58,3 +58,28 @@ if(NOT XCODEBUILD_EXECUTABLE)
   message(FATAL_ERROR "xcodebuild not found")
 endif()
 
+# Order is important(!)
+# Set high priority to the last
+if(NOT IOS_SDK_VERSION)
+  set(IOS_SDK_VERSIONS 5.0 5.1 6.0 6.1 7.0)
+  foreach(x ${IOS_SDK_VERSIONS})
+    execute_process(
+        COMMAND
+        ${XCODEBUILD_EXECUTABLE}
+        -showsdks
+        -sdk
+        "iphoneos${x}"
+        RESULT_VARIABLE
+        IOS_SDK_VERSION_RESULT
+        OUTPUT_QUIET
+        ERROR_QUIET
+    )
+    if(${IOS_SDK_VERSION_RESULT} EQUAL 0)
+      set(IOS_SDK_VERSION ${x})
+    endif()
+  endforeach()
+endif()
+
+if(NOT IOS_SDK_VERSION)
+  message(FATAL_ERROR "iOS version not found, tested: [${IOS_SDK_VERSIONS}]")
+endif()
