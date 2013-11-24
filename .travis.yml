@@ -12,7 +12,7 @@ env:
     - EXAMPLE=02-library TOOLCHAIN=Libcxx
     - EXAMPLE=02-library TOOLCHAIN=Libstdcxx
     - EXAMPLE=02-library TOOLCHAIN=CustomLibcxx
-    - EXAMPLE=02-library TOOLCHAIN=iOS
+    - EXAMPLE=02-library GENERATOR=-GXcode TOOLCHAIN=iOS
 
 compiler:
     - clang
@@ -51,13 +51,13 @@ script:
     - mkdir _builds
     - cd _builds
     # release
-    - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ..
+    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
     - ctest -V .
     - cmake --build . -target install
     # debug
     - rm -rf *
-    - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ..
+    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ..
     - cmake --build .
     - ctest -V .
     - cmake --build . -target install
