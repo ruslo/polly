@@ -1,13 +1,17 @@
 ### polly
 
+[![Build Status](https://travis-ci.org/ruslo/polly.png?branch=master)](https://travis-ci.org/ruslo/polly)
+
 Collection of CMake toolchain files
 
 -----
 
 Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
-It's more like `initial-cache` cmake option, but `initial-cache` is not fit because `PROJECT_SOURCE_DIR` is empty.
-Each toolchain file set `CMAKE_INSTALL_PREFIX` variable to point to separate directory inside `PROJECT_SOURCE_DIR/_install`,
-so you can install targets simultaneously:
+It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
+(`PROJECT_SOURCE_DIR` and generator variable is empty).
+Each toolchain file set `POLLY_INSTALL_TAG` variable, which can be used for `CMAKE_INSTALL_PREFIX` modification.
+For example if `PROJECT_SOURCE_DIR/_install/POLLY_INSTALL_TAG` is used for install, then
+targets can coexist simultaneously:
 ```
  - Project\ -
             - CMakeLists.txt
@@ -20,7 +24,7 @@ so you can install targets simultaneously:
                         - toolchain-C\
                         - ...
 ```
-Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_PREFIX`. First variable
+Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
 will be printed while processing file:
 ```
 Used toolchain: toolchain-foo-name
@@ -36,9 +40,9 @@ Used toolchain: toolchain-foo-name
 -- Generating done
 -- Build files have been written to: ...
 ```
-Second variable will be used to define `CMAKE_INSTALL_PREFIX`:
+Second variable can be used to define `CMAKE_INSTALL_PREFIX`:
 ```cmake
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_PREFIX}")
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
 ```
 
 ## Toolchains
@@ -47,29 +51,28 @@ set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_PREFI
 
 Additionally:
 * Try to detect [gitenv](https://github.com/ruslo/gitenv), if detected load file `gitenv/paths.cmake`
-* Set variable `POLLY_INSTALL_PREFIX` to `_install/${POLLY_TOOLCHAIN_PREFIX}`
 * Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if it's not setted already)
 
 ### Default.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | Default              | default                |
-* No additional flags, just load `Common.cmake` 
+* No additional flags, just load `Common.cmake`
 
 ### Libcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | libc++               | libcxx                 |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
 ### Libstdcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | libstdc++            | libstdcxx              |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
 ### CustomLibcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | Custom libc++        | custom_libcxx          |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
@@ -77,7 +80,7 @@ Additionally:
 * Set variable `CUSTOM_LIBCXX_LIBRARY_LOCATION` to `TRUE`
 
 ### iOS.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_PREFIX |
+| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | iOS                  | ios                    |
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`

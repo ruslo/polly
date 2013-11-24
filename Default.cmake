@@ -8,6 +8,6 @@ else()
 endif()
 
 set(POLLY_TOOLCHAIN_NAME "Default")
-set(POLLY_TOOLCHAIN_PREFIX "default")
+set(POLLY_TOOLCHAIN_TAG "default")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")

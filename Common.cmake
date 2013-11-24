@@ -29,39 +29,13 @@ if(NOT POLLY_TOOLCHAIN_NAME)
   message(FATAL_ERROR "POLLY_TOOLCHAIN_NAME is empty")
 endif()
 
-if(NOT POLLY_TOOLCHAIN_PREFIX)
-  message(FATAL_ERROR "POLLY_TOOLCHAIN_PREFIX is empty")
+if(NOT POLLY_TOOLCHAIN_TAG)
+  message(FATAL_ERROR "POLLY_TOOLCHAIN_TAG is empty")
 endif()
 
-message("Used toolchain: ${POLLY_TOOLCHAIN_NAME}")
+message(STATUS "[polly] Used toolchain: ${POLLY_TOOLCHAIN_NAME}")
 
-# Set toolchain install prefix
-set(
-    POLLY_INSTALL_PREFIX
-    "_install/${POLLY_TOOLCHAIN_PREFIX}"
-)
-
-if(NOT PROJECT_SOURCE_DIR)
-  message(FATAL_ERROR "PROJECT_SOURCE_DIR is empty")
-endif()
-
-set(_polly_check_old_install_prefix "${CMAKE_INSTALL_PREFIX}")
-
-# Need to be cache variable
-set(
-    CMAKE_INSTALL_PREFIX
-    "${PROJECT_SOURCE_DIR}/${POLLY_INSTALL_PREFIX}"
-    CACHE
-    PATH
-    "Install prefix from toolchain"
-    FORCE
-)
-
-if(_polly_check_old_install_prefix)
-  if(NOT "${CMAKE_INSTALL_PREFIX}" STREQUAL "${_polly_check_old_install_prefix}")
-    message(FATAL_ERROR "CMAKE_INSTALL_PREFIX conflict")
-  endif()
-endif()
+set(HUNTER_INSTALL_TAG ${POLLY_TOOLCHAIN_TAG})
 
 # Add extra 'find' cmake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/find")
@@ -77,8 +51,7 @@ if(NOT CMAKE_DEBUG_POSTFIX)
   )
 endif()
 
-# After POLLY_INSTALL_PREFIX set
 if(GITENV_ROOT)
-  message("GITENV_ROOT detected: ${GITENV_ROOT}")
+  message(STATUS "[polly] GITENV_ROOT detected: ${GITENV_ROOT}")
   include("${GITENV_ROOT}/gitenv/paths.cmake")
 endif()
