@@ -14,7 +14,6 @@ before_install:
 install:
     - brew install cmake
     - brew install wget
-    - brew install python3
 
 before_script:
     - export POLLY_ROOT=`pwd`
@@ -24,3 +23,4 @@ script:
     - mkdir _builds
     - cd _builds
     - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake ..
+    - cmake --build .
