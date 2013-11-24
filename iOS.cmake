@@ -15,7 +15,7 @@ endif()
 #  is not set to a MacOSX SDK with a recognized version.  Either set
 #  CMAKE_OSX_SYSROOT to a valid SDK or set CMAKE_OSX_DEPLOYMENT_TARGET to
 #  empty.
-set(ENV{CMAKE_OSX_DEPLOYMENT_TARGET "" CACHE STRING "" FORCE)
+set(ENV{CMAKE_OSX_DEPLOYMENT_TARGET} "" CACHE STRING "" FORCE)
 
 set(POLLY_TOOLCHAIN_NAME "iOS")
 set(POLLY_TOOLCHAIN_TAG "ios")
