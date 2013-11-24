@@ -54,10 +54,10 @@ script:
     - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
     - ctest -V .
-    - cmake --build . -target install
+    - cmake --build . --target install
     # debug
     - rm -rf *
     - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ..
     - cmake --build .
     - ctest -V .
-    - cmake --build . -target install
+    - cmake --build . --target install
