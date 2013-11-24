@@ -8,6 +8,11 @@ env:
     - EXAMPLE=01-executable TOOLCHAIN=Libcxx
     - EXAMPLE=01-executable TOOLCHAIN=Libstdcxx
     - EXAMPLE=01-executable TOOLCHAIN=CustomLibcxx
+    - EXAMPLE=02-library TOOLCHAIN=Default
+    - EXAMPLE=02-library TOOLCHAIN=Libcxx
+    - EXAMPLE=02-library TOOLCHAIN=Libstdcxx
+    - EXAMPLE=02-library TOOLCHAIN=CustomLibcxx
+    - EXAMPLE=02-library TOOLCHAIN=iOS
 
 compiler:
     - clang
@@ -35,6 +40,11 @@ install:
     - make VERBOSE=1 install
     - ls -la ${LIBCXX_ROOT}/lib/*
     # -- end
+    # download sugar for 02-library example
+    - wget https://github.com/ruslo/sugar/archive/v1.0.0.tar.gz
+    - tar xf *.tar.gz
+    - export SUGAR_ROOT=`pwd`/sugar-*
+    # -- end
 
 script:
     - cd ${POLLY_ROOT}/examples/${EXAMPLE}
@@ -44,8 +54,10 @@ script:
     - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ..
     - cmake --build .
     - ctest -V .
+    - cmake --build . -target install
     # debug
     - rm -rf *
     - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ..
     - cmake --build .
     - ctest -V .
+    - cmake --build . -target install
