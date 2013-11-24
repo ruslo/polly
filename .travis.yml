@@ -43,7 +43,7 @@ install:
     # download sugar for 02-library example
     - wget https://github.com/ruslo/sugar/archive/v1.0.0.tar.gz
     - tar xf *.tar.gz
-    - export SUGAR_ROOT=`pwd`/sugar-*
+    - export SUGAR_ROOT=`pwd`/sugar-1.0.0
     # -- end
 
 script:
