@@ -35,6 +35,7 @@ endif()
 
 message(STATUS "[polly] Used toolchain: ${POLLY_TOOLCHAIN_NAME}")
 
+# support for hunter (github.com/ruslo/hunter)
 set(HUNTER_INSTALL_TAG ${POLLY_TOOLCHAIN_TAG})
 
 # Add extra 'find' cmake modules
