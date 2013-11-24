@@ -1,6 +1,10 @@
 language:
     - objective-c
 
+env:
+    - EXAMPLE=00-simple TOOLCHAIN=Libcxx
+    - EXAMPLE=00-simple TOOLCHAIN=Libstdcxx
+
 compiler:
     - clang
 
@@ -14,57 +18,9 @@ install:
 
 before_script:
     - export POLLY_ROOT=`pwd`
-    - git clone --depth=1 https://github.com/ruslo/gitenv
-    - export GITENV_ROOT=`pwd`/gitenv
-    - cd gitenv
-    - export SUGAR_ROOT=`pwd`/sugar
-    - git submodule update --init llvm/libcxx sugar google/gtest
-    - git submodule foreach 'git checkout master && git pull'
-    - (cd google/gtest && git checkout ruslo && git pull)
-    - (cd sugar && git checkout sugar_add_gtest && git pull)
-    # install custom libcxx
-    - cd llvm/libcxx
-    - mkdir _builds
-    - (cd _builds/ && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 install)
-    - (cd _builds/ && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 install)
-    - ls _install/custom_libcxx/lib/*.a
-    - cd ../..
-
-    # install custom gtest
-    - cd google/gtest
-    - mkdir _builds
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libcxx.cmake -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 install)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libcxx.cmake -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 install)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 install)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 install)
-    - (cd _builds && rm -rf * && cmake -G Xcode -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/iOS.cmake .. && xcodebuild -target install)
-    - ls _install/*/*.a
-    - cd ../..
-
-    # install ios-sim
-    - wget https://github.com/phonegap/ios-sim/archive/1.8.2.tar.gz
-    - tar -xvf 1.8.2.tar.gz
-    - cd ios-sim-1.8.2/
-    - xcodebuild -target ios-sim
-    - export PATH=`pwd`/build/Release:${PATH}
-    - which ios-sim
-    - ios-sim --version
 
 script:
-    # example 00-link-custom-libcxx
-    - cd ${POLLY_ROOT}/examples/00-link-custom-libcxx
-    - mkdir -p _builds/make-debug
-    - (cd _builds/make-debug && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DCMAKE_BUILD_TYPE=Debug -DLibcxx_USE_STATIC_LIBS=ON ../.. && make VERBOSE=1)
-    - mkdir -p _builds/make-release
-    - (cd _builds/make-release && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/CustomLibcxx.cmake -DCMAKE_BUILD_TYPE=Release -DLibcxx_USE_STATIC_LIBS=ON ../.. && make VERBOSE=1)
-    - mkdir -p _builds/make-default
-    - (cd _builds/make-default && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Default.cmake ../.. && make VERBOSE=1)
-
-    # example 01-gtest
-    - cd ${POLLY_ROOT}/examples/01-gtest
+    - cd ${POLLY_ROOT}/examples/${EXAMPLE}
     - mkdir _builds
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libcxx.cmake -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 && ctest)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libcxx.cmake -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 && ctest)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake -DCMAKE_BUILD_TYPE=Debug .. && make VERBOSE=1 && ctest)
-    - (cd _builds && rm -rf * && cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake -DCMAKE_BUILD_TYPE=Release .. && make VERBOSE=1 && ctest)
-    - (cd _builds && rm -rf * && cmake -G Xcode -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/iOS.cmake .. && xcodebuild && ctest)
+    - cd _builds
+    - cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake ..
