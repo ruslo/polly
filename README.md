@@ -9,9 +9,27 @@ Collection of CMake toolchain files
 Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
 It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
 (`PROJECT_SOURCE_DIR` and generator variable is empty).
-Each toolchain file set `POLLY_INSTALL_TAG` variable, which can be used for `CMAKE_INSTALL_PREFIX` modification.
-For example if `PROJECT_SOURCE_DIR/_install/POLLY_INSTALL_TAG` is used for install, then
-targets can coexist simultaneously:
+Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
+will be printed while processing file:
+```
+-- [polly] Used toolchain: toolchain-foo-name
+-- The CXX compiler identification is Clang 5.0.0
+-- Check for working CXX compiler: /usr/bin/c++
+-- [polly] Used toolchain: toolchain-foo-name
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- [polly] Used toolchain: toolchain-foo-name
+-- Detecting CXX compiler ABI info - done
+-- [polly] Used toolchain: toolchain-foo-name
+-- Configuring done
+-- Generating done
+-- Build files have been written to: ...
+```
+Second variable can be used to define `CMAKE_INSTALL_PREFIX`:
+```cmake
+set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
+```
+In this case targets can coexist simultaneously:
 ```
  - Project\ -
             - CMakeLists.txt
@@ -24,34 +42,16 @@ targets can coexist simultaneously:
                         - toolchain-C\
                         - ...
 ```
-Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
-will be printed while processing file:
-```
-Used toolchain: toolchain-foo-name
--- The CXX compiler identification is Clang 5.0.0
--- Check for working CXX compiler: /usr/bin/c++
-Used toolchain: toolchain-foo-name
--- Check for working CXX compiler: /usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
-Used toolchain: toolchain-foo-name
--- Detecting CXX compiler ABI info - done
-Used toolchain: toolchain-foo-name
--- Configuring done
--- Generating done
--- Build files have been written to: ...
-```
-Second variable can be used to define `CMAKE_INSTALL_PREFIX`:
-```cmake
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
-```
+
+
 
 ## Toolchains
 ### Common.cmake
 * This is common module which is used by all modules and is loaded after name and prefix variables defined
 
 Additionally:
-* Try to detect [gitenv](https://github.com/ruslo/gitenv), if detected load file `gitenv/paths.cmake`
-* Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if it's not setted already)
+* Set `HUNTER_INSTALL_TAG` for [hunter](https://github.com/ruslo/hunter) support
+* Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if not already set)
 
 ### Default.cmake
 | POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
@@ -84,10 +84,14 @@ Additionally:
 |----------------------|------------------------|
 | iOS                  | ios                    |
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
+* Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
+* Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path`
+* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set)
+* Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
 * *Note*
  * Xcode only
  * It's not `iphoneos` or `iphonesimulator` toolchain, this toolchain designed to be used with
-[sugar_install_ios_library][1](or [sugar_install_library][2]) commands to create universal libraries.
+[sugar_install_ios_library][1](or [sugar_install_library][2]) command to create universal libraries.
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
@@ -96,13 +100,13 @@ Additionally:
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
 > cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/polly/Libstdcxx.cmake .
-Used toolchain: libstdc++
+-- [polly] Used toolchain: libstdc++
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
-Used toolchain: libstdc++
+-- [polly] Used toolchain: libstdc++
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Detecting CXX compiler ABI info
-Used toolchain: libstdc++
+-- [polly] Used toolchain: libstdc++
 -- Detecting CXX compiler ABI info - done
 -- Configuring done
 -- Generating done
