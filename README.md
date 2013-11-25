@@ -78,6 +78,7 @@ Additionally:
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable `CUSTOM_LIBCXX_LIBRARY_LOCATION` to `TRUE`
+* See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
 ### iOS.cmake
 | POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
