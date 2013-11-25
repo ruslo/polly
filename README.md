@@ -125,3 +125,6 @@ See this [script][4] with [integration][5]
 [4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
 [5]: https://github.com/ruslo/configs
 ## Examples
+See [examples](https://github.com/ruslo/polly/tree/master/examples).
+Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
+agreements before start looking through examples (may explain a lot).
