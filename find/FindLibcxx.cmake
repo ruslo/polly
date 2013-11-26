@@ -14,6 +14,7 @@ if(NOT LIBCXX_ROOT)
 endif()
 
 include(polly_fatal_error)
+include(polly_status_print)
 
 if(NOT LIBCXX_ROOT)
   polly_fatal_error(
@@ -25,7 +26,7 @@ if(Libcxx_FOUND)
   return()
 endif()
 
-message(STATUS "Libcxx root: ${LIBCXX_ROOT}")
+polly_status_print("Libcxx root: ${LIBCXX_ROOT}")
 
 set(
     Libcxx_INCLUDE_DIRS
@@ -34,10 +35,10 @@ set(
 
 set(_find_libcxx_save_find_suffixes ${CMAKE_FIND_LIBRARY_SUFFIXES})
 if(Libcxx_USE_STATIC_LIBS)
-  message(STATUS "Libcxx static libraries: ON")
+  polly_status_print("Libcxx static libraries: ON")
   set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_STATIC_LIBRARY_SUFFIX})
 else()
-  message(STATUS "Libcxx static libraries: OFF")
+  polly_status_print("Libcxx static libraries: OFF")
   set(CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_SHARED_LIBRARY_SUFFIX})
 endif()
 
@@ -46,7 +47,7 @@ set(_find_libcxx_install_path "${LIBCXX_ROOT}/lib")
 if(CMAKE_DEBUG_POSTFIX)
   set(_find_libcxx_debug_name c++${CMAKE_DEBUG_POSTFIX})
 else()
-  message(WARNING "CMAKE_DEBUG_POSTFIX is empty, no Debug library variant")
+  polly_status_print("CMAKE_DEBUG_POSTFIX is empty, no Debug library variant")
   set(_find_libcxx_debug_name c++)
 endif()
 
