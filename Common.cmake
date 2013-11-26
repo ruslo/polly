@@ -7,6 +7,9 @@ else()
   set(POLLY_COMMON_CMAKE 1)
 endif()
 
+option(POLLY_STATUS_PRINT "Print process messages" ON)
+option(POLLY_STATUS_DEBUG "Print all process messages" OFF)
+
 # Add extra cmake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/find")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/utilities")
