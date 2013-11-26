@@ -7,7 +7,7 @@ else()
   set(POLLY_LIBSTDCXX_CMAKE 1)
 endif()
 
-set(POLLY_TOOLCHAIN_NAME "libstdc++")
+set(POLLY_TOOLCHAIN_NAME "GNU Standard C++ Library (libstdc++)")
 set(POLLY_TOOLCHAIN_TAG "libstdcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
