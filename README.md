@@ -17,15 +17,15 @@ Every toolchain defines two variables:
 [First](https://github.com/ruslo/polly/wiki/Used-variables#polly_toolchain_name)
 variable will be printed while processing file:
 ```
--- [polly] Used toolchain: toolchain-name
+-- [polly] Used toolchain: Name of toolchain A
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
--- [polly] Used toolchain: toolchain-name
+-- [polly] Used toolchain: Name of toolchain A
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Detecting CXX compiler ABI info
--- [polly] Used toolchain: toolchain-name
+-- [polly] Used toolchain: Name of toolchain A
 -- Detecting CXX compiler ABI info - done
--- [polly] Used toolchain: toolchain-name
+-- [polly] Used toolchain: Name of toolchain A
 -- Configuring done
 -- Generating done
 -- Build files have been written to: ...
