@@ -22,8 +22,10 @@ set(POLLY_TOOLCHAIN_TAG "ios")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
 
+include(polly_fatal_error)
+
 if(NOT XCODE_VERSION)
-  message(FATAL_ERROR "This toolchain is available only on Xcode")
+  polly_fatal_error("This toolchain is available only on Xcode")
 endif()
 
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS" FORCE)
@@ -37,7 +39,7 @@ set(CMAKE_C_COMPILER_WORKS TRUE CACHE BOOL "Skip compiler check" FORCE)
 # find 'iphoneos' and 'iphonesimulator' roots and version
 find_program(XCODE_SELECT_EXECUTABLE xcode-select)
 if(NOT XCODE_SELECT_EXECUTABLE)
-  message(FATAL_ERROR "xcode-select not found")
+  polly_fatal_error("xcode-select not found")
 endif()
 
 if(NOT IOS_ARCHS)
@@ -55,7 +57,7 @@ execute_process(
 
 find_program(XCODEBUILD_EXECUTABLE xcodebuild)
 if(NOT XCODEBUILD_EXECUTABLE)
-  message(FATAL_ERROR "xcodebuild not found")
+  polly_fatal_error("xcodebuild not found")
 endif()
 
 # Order is important(!)
@@ -81,7 +83,7 @@ if(NOT IOS_SDK_VERSION)
 endif()
 
 if(NOT IOS_SDK_VERSION)
-  message(FATAL_ERROR "iOS version not found, tested: [${IOS_SDK_VERSIONS}]")
+  polly_fatal_error("iOS version not found, tested: [${IOS_SDK_VERSIONS}]")
 endif()
 
 # support for hunter (github.com/ruslo/hunter)

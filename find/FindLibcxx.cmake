@@ -13,9 +13,10 @@ if(NOT LIBCXX_ROOT)
   set(LIBCXX_ROOT $ENV{LIBCXX_ROOT})
 endif()
 
+include(polly_fatal_error)
+
 if(NOT LIBCXX_ROOT)
-  message(
-      FATAL_ERROR
+  polly_fatal_error(
       "LIBCXX_ROOT not found. Please set cmake or environment variable"
   )
 endif()
@@ -58,8 +59,7 @@ find_library(
 )
 
 if(NOT Libcxx_LIBRARY_DEBUG)
-  message(
-      FATAL_ERROR
+  polly_fatal_error(
       "Libcxx library(debug): ${_find_libcxx_debug_name}, "
       "not found in: ${_find_libcxx_install_path}"
   )
@@ -74,8 +74,7 @@ find_library(
 )
 
 if(NOT Libcxx_LIBRARY_RELEASE)
-  message(
-      FATAL_ERROR
+  polly_fatal_error(
       "Libcxx library(release) not found in: ${_find_libcxx_install_path}"
   )
 endif()
@@ -93,7 +92,7 @@ set(CMAKE_FIND_LIBRARY_SUFFIXES ${_find_libcxx_save_find_suffixes})
 
 find_library(LibcxxAbi_LIBRARY c++abi)
 if(NOT LibcxxAbi_LIBRARY)
-  message(FATAL_ERROR "libc++abi not found")
+  polly_fatal_error("libc++abi not found")
 endif()
 
 set(Libcxx_LIBRARIES ${Libcxx_LIBRARY} ${LibcxxAbi_LIBRARY})
