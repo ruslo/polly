@@ -7,6 +7,10 @@ else()
   set(POLLY_COMMON_CMAKE 1)
 endif()
 
+# Add extra cmake modules
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/find")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/utilities")
+
 # All well-known variables must be CACHE type:
 #     http://www.cmake.org/pipermail/cmake/2012-January/048429.html
 
@@ -23,9 +27,6 @@ message(STATUS "[polly] Used toolchain: ${POLLY_TOOLCHAIN_NAME}")
 
 # support for hunter (github.com/ruslo/hunter)
 set(HUNTER_INSTALL_TAG ${POLLY_TOOLCHAIN_TAG})
-
-# Add extra 'find' cmake modules
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/find")
 
 # Other
 if(NOT CMAKE_DEBUG_POSTFIX)
