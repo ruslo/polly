@@ -9,8 +9,13 @@ Collection of CMake toolchain files
 Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
 It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
 (`PROJECT_SOURCE_DIR` and generator variable is empty).
-Every toolchain defines two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
-will be printed while processing file:
+
+Every toolchain defines two variables:
+* `POLLY_TOOLCHAIN_NAME`
+* `POLLY_TOOLCHAIN_TAG`
+
+[First](https://github.com/ruslo/polly/wiki/Used-variables#polly_toolchain_name)
+variable will be printed while processing file:
 ```
 -- [polly] Used toolchain: toolchain-name
 -- The CXX compiler identification is Clang 5.0.0
@@ -25,7 +30,8 @@ will be printed while processing file:
 -- Generating done
 -- Build files have been written to: ...
 ```
-Second variable can be used to define `CMAKE_INSTALL_PREFIX`:
+[Second](https://github.com/ruslo/polly/wiki/Used-variables#polly_toolchain_tag)
+variable *can* be used to define `CMAKE_INSTALL_PREFIX`:
 ```cmake
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
 ```
