@@ -9,18 +9,18 @@ Collection of CMake toolchain files
 Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
 It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
 (`PROJECT_SOURCE_DIR` and generator variable is empty).
-Every toolchain `Foo` define two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
+Every toolchain defines two variables: `POLLY_TOOLCHAIN_NAME` and `POLLY_TOOLCHAIN_TAG`. First variable
 will be printed while processing file:
 ```
--- [polly] Used toolchain: toolchain-foo-name
+-- [polly] Used toolchain: toolchain-name
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
--- [polly] Used toolchain: toolchain-foo-name
+-- [polly] Used toolchain: toolchain-name
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Detecting CXX compiler ABI info
--- [polly] Used toolchain: toolchain-foo-name
+-- [polly] Used toolchain: toolchain-name
 -- Detecting CXX compiler ABI info - done
--- [polly] Used toolchain: toolchain-foo-name
+-- [polly] Used toolchain: toolchain-name
 -- Configuring done
 -- Generating done
 -- Build files have been written to: ...
