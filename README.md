@@ -66,30 +66,30 @@ Additionally:
 * No additional flags, just load `Common.cmake`
 
 ### Libcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
-|----------------------|------------------------|
-| libc++               | libcxx                 |
+| POLLY_TOOLCHAIN_NAME               | POLLY_TOOLCHAIN_TAG |
+|------------------------------------|---------------------|
+| LLVM Standard C++ Library (libc++) | libcxx              |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
 ### Libstdcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
-|----------------------|------------------------|
-| libstdc++            | libstdcxx              |
+| POLLY_TOOLCHAIN_NAME                 | POLLY_TOOLCHAIN_TAG |
+|--------------------------------------|---------------------|
+| GNU Standard C++ Library (libstdc++) | libstdcxx           |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
 ### CustomLibcxx.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
-|----------------------|------------------------|
-| Custom libc++        | custom_libcxx          |
+| POLLY_TOOLCHAIN_NAME                      | POLLY_TOOLCHAIN_TAG |
+|-------------------------------------------|---------------------|
+| Custom LLVM Standard C++ Library (libc++) | custom_libcxx       |
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
 ### iOS.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
-|----------------------|------------------------|
-| iOS                  | ios                    |
+| POLLY_TOOLCHAIN_NAME                       | POLLY_TOOLCHAIN_TAG |
+|--------------------------------------------|---------------------|
+| iOS Universal (iphoneos + iphonesimulator) | ios                 |
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
 * Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path`
@@ -106,14 +106,14 @@ Additionally:
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
-> cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/polly/Libstdcxx.cmake .
--- [polly] Used toolchain: libstdc++
+> cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake .
+-- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
--- [polly] Used toolchain: libstdc++
+-- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Detecting CXX compiler ABI info
--- [polly] Used toolchain: libstdc++
+-- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
 -- Detecting CXX compiler ABI info - done
 -- Configuring done
 -- Generating done
@@ -136,3 +136,6 @@ See this [script][4] with [integration][5]
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
 Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
 agreements before start looking through examples (may explain a lot).
+Take a look at the [Travis](https://travis-ci.org/) config
+[file](https://github.com/ruslo/polly/blob/master/.travis.yml),
+it's quite self-explanatory.

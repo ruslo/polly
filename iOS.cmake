@@ -17,7 +17,7 @@ endif()
 #  empty.
 set(ENV{CMAKE_OSX_DEPLOYMENT_TARGET} "")
 
-set(POLLY_TOOLCHAIN_NAME "iOS")
+set(POLLY_TOOLCHAIN_NAME "iOS Universal (iphoneos + iphonesimulator)")
 set(POLLY_TOOLCHAIN_TAG "ios")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")

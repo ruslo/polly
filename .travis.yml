@@ -30,15 +30,20 @@ install:
     - cd custom_libcxx_lib
     - export LIBCXX_ROOT=`pwd`/Install
     - git clone http://llvm.org/git/libcxx .
-    - mkdir _builds
-    - cd _builds
     # release
-    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Release -DLIBCXX_ENABLE_ASSERTIONS=OFF ..
+    - mkdir -p _builds/make-release
+    - cd _builds/make-release
+    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Release -DLIBCXX_ENABLE_ASSERTIONS=OFF ../..
     - make VERBOSE=1 install
-    - rm -rf *
+    - cd ../..
     # debug
-    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEBUG_POSTFIX=d ..
+    - mkdir -p _builds/make-debug
+    - cd _builds/make-debug
+    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEBUG_POSTFIX=d ../..
     - make VERBOSE=1 install
+    - cd ../..
+    # test
+    - cd ..
     - ls -la ${LIBCXX_ROOT}/lib/*
     # -- end
     # download sugar for 02-library example
@@ -49,16 +54,19 @@ install:
 
 script:
     - cd ${POLLY_ROOT}/examples/${EXAMPLE}
-    - mkdir _builds
-    - cd _builds
     # release
-    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ..
+    - mkdir -p _builds/make-release
+    - cd _builds/make-release
+    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ../..
     - cmake --build .
     - ctest -V .
     - cmake --build . --target install
+    - cd ../..
     # debug
-    - rm -rf *
-    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ..
+    - mkdir -p _builds/make-debug
+    - cd _builds/make-debug
+    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ../..
     - cmake --build .
     - ctest -V .
     - cmake --build . --target install
+    - cd ../..

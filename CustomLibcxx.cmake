@@ -7,7 +7,7 @@ else()
   set(POLLY_CUSTOM_LIBCXX_CMAKE 1)
 endif()
 
-set(POLLY_TOOLCHAIN_NAME "Custom libc++")
+set(POLLY_TOOLCHAIN_NAME "Custom LLVM Standard C++ Library (libc++)")
 set(POLLY_TOOLCHAIN_TAG "custom_libcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
