@@ -58,7 +58,7 @@ In this case targets can coexist simultaneously:
 
 
 ## Toolchains
-### utilities/common.cmake
+### utilities/polly_common.cmake
 * This is common module which is used by all modules and is loaded after name and prefix variables defined
 
 Additionally:
@@ -67,7 +67,7 @@ Additionally:
 
 ### default
 * Name: `Default`
-* No additional flags, just load `common.cmake`
+* No additional flags, just load `polly_common.cmake`
 
 ### libcxx
 * Name: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
