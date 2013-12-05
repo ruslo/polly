@@ -65,10 +65,12 @@ Additionally:
 
 ### libcxx
 * Name: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
 ### clang_libstdcxx
 * Name: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
 ### clang32_libstdcxx
@@ -76,6 +78,7 @@ Additionally:
 
 ### custom_libcxx
 * Name: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
