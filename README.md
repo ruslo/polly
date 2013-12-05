@@ -88,6 +88,9 @@ Additionally:
 * Name: `gcc / c++11 support`
 * Set `CMAKE_C{XX}_COMPILER` to `gcc`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`
+ 
+### gcc48
+* Same as `gcc`, but with `gcc 4.8`. (See [usage](https://github.com/travis-ci-tester/travis-test-gcc-cxx-11))
 
 ### ios
 * Name: `iOS Universal (iphoneos + iphonesimulator)`
