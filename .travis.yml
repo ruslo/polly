@@ -2,17 +2,17 @@ language:
     - objective-c
 
 env:
-    - EXAMPLE=00-simple TOOLCHAIN=Libcxx
-    - EXAMPLE=00-simple TOOLCHAIN=Libstdcxx
-    - EXAMPLE=01-executable TOOLCHAIN=Default
-    - EXAMPLE=01-executable TOOLCHAIN=Libcxx
-    - EXAMPLE=01-executable TOOLCHAIN=Libstdcxx
-    - EXAMPLE=01-executable TOOLCHAIN=CustomLibcxx
-    - EXAMPLE=02-library TOOLCHAIN=Default
-    - EXAMPLE=02-library TOOLCHAIN=Libcxx
-    - EXAMPLE=02-library TOOLCHAIN=Libstdcxx
-    - EXAMPLE=02-library TOOLCHAIN=CustomLibcxx
-    - EXAMPLE=02-library GENERATOR=-GXcode TOOLCHAIN=iOS
+    - EXAMPLE=00-simple TOOLCHAIN=libcxx
+    - EXAMPLE=00-simple TOOLCHAIN=clang_libstdcxx
+    - EXAMPLE=01-executable TOOLCHAIN=default
+    - EXAMPLE=01-executable TOOLCHAIN=libcxx
+    - EXAMPLE=01-executable TOOLCHAIN=clang_libstdcxx
+    - EXAMPLE=01-executable TOOLCHAIN=custom_libcxx
+    - EXAMPLE=02-library TOOLCHAIN=default
+    - EXAMPLE=02-library TOOLCHAIN=libcxx
+    - EXAMPLE=02-library TOOLCHAIN=clang_libstdcxx
+    - EXAMPLE=02-library TOOLCHAIN=custom_libcxx
+    - EXAMPLE=02-library GENERATOR=-GXcode TOOLCHAIN=ios
 
 compiler:
     - clang

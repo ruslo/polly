@@ -7,26 +7,27 @@ else()
   set(POLLY_CUSTOM_LIBCXX_CMAKE 1)
 endif()
 
-set(POLLY_TOOLCHAIN_NAME "Custom LLVM Standard C++ Library (libc++)")
+set(
+    POLLY_TOOLCHAIN_NAME
+    "clang / Custom LLVM Standard C++ Library (libc++) / c++11 support"
+)
 set(POLLY_TOOLCHAIN_TAG "custom_libcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/common.cmake")
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -std=c++11 -stdlib=libc++ -nostdinc++" 
-    CACHE
-    STRING
-    "C++ compiler flags"
-)
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/clang.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/library/std/nolibs.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 
 # '-lSystem' needed to fix broken compiler report
 set(
     CMAKE_EXE_LINKER_FLAGS
-    "${CMAKE_EXE_LINKER_FLAGS} -nodefaultlibs -lSystem"
+    "${CMAKE_EXE_LINKER_FLAGS} -lSystem"
     CACHE
     STRING
     "C++ linker flags"
+    FORCE
 )
 
 set(CUSTOM_LIBCXX_LIBRARY_LOCATION TRUE)
