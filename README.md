@@ -71,6 +71,9 @@ Additionally:
 * Name: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
+### clang32_libstdcxx
+* Same as `clang_libstdcxx`, but with `clang 3.2`. (See [usage](https://github.com/travis-ci-tester/travis-test-clang-cxx-11))
+
 ### custom_libcxx
 * Name: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
