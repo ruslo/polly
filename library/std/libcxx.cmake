@@ -15,3 +15,13 @@ set(
     "C++ compiler flags"
     FORCE
 )
+
+# For Xcode
+set(
+    CMAKE_EXE_LINKER_FLAGS
+    "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++"
+    CACHE
+    STRING
+    "C++ linker flags"
+    FORCE
+)
