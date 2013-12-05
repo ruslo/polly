@@ -59,27 +59,27 @@ Additionally:
 * Set `HUNTER_INSTALL_TAG` for [hunter](https://github.com/ruslo/hunter) support
 * Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if not already set)
 
-### default.cmake
-* `POLLY_TOOLCHAIN_NAME`: `Default`
+### default
+* Name: `Default`
 * No additional flags, just load `common.cmake`
 
-### libcxx.cmake
-* `POLLY_TOOLCHAIN_NAME`: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
+### libcxx
+* Name: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
-### clang_libstdcxx.cmake
-* `POLLY_TOOLCHAIN_NAME`: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
+### clang_libstdcxx
+* Name: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
-### custom_libcxx.cmake
-* `POLLY_TOOLCHAIN_NAME`: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
+### custom_libcxx
+* Name: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
-### ios.cmake
-* `POLLY_TOOLCHAIN_NAME`: `iOS Universal (iphoneos + iphonesimulator)`
+### ios
+* Name: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
 * Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path`
