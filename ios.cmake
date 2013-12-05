@@ -12,7 +12,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 set(POLLY_TOOLCHAIN_NAME "iOS Universal (iphoneos + iphonesimulator)")
 set(POLLY_TOOLCHAIN_TAG "ios")
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/common.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include(polly_fatal_error)
 

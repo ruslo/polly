@@ -13,7 +13,7 @@ set(
 )
 set(POLLY_TOOLCHAIN_TAG "clang32_libstdcxx")
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/common.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/clang32.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/library/std/libstdcxx.cmake")
