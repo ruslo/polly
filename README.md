@@ -31,7 +31,7 @@ variable will be printed while processing file:
 -- Build files have been written to: ...
 ```
 [Second](https://github.com/ruslo/polly/wiki/Used-variables#polly_toolchain_tag)
-variable *can* be used to define `CMAKE_INSTALL_PREFIX`:
+variable coincide with toolchain file name and *can* be used to define `CMAKE_INSTALL_PREFIX`:
 ```cmake
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
 ```
@@ -52,44 +52,33 @@ In this case targets can coexist simultaneously:
 
 
 ## Toolchains
-### Common.cmake
+### utilities/common.cmake
 * This is common module which is used by all modules and is loaded after name and prefix variables defined
 
 Additionally:
 * Set `HUNTER_INSTALL_TAG` for [hunter](https://github.com/ruslo/hunter) support
 * Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if not already set)
 
-### Default.cmake
-| POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
-|----------------------|------------------------|
-| Default              | default                |
+### default.cmake
+* `POLLY_TOOLCHAIN_NAME`: `Default`
 * No additional flags, just load `Common.cmake`
 
-### Libcxx.cmake
-| POLLY_TOOLCHAIN_NAME               | POLLY_TOOLCHAIN_TAG |
-|------------------------------------|---------------------|
-| LLVM Standard C++ Library (libc++) | libcxx              |
+### libcxx.cmake
+* `POLLY_TOOLCHAIN_NAME`: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 
-### Libstdcxx.cmake
-| POLLY_TOOLCHAIN_NAME                 | POLLY_TOOLCHAIN_TAG |
-|--------------------------------------|---------------------|
-| GNU Standard C++ Library (libstdc++) | libstdcxx           |
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
+### clang_libstdcxx.cmake
+* `POLLY_TOOLCHAIN_NAME`: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
 
-### CustomLibcxx.cmake
-| POLLY_TOOLCHAIN_NAME                      | POLLY_TOOLCHAIN_TAG |
-|-------------------------------------------|---------------------|
-| Custom LLVM Standard C++ Library (libc++) | custom_libcxx       |
+### custom_libcxx.cmake
+* `POLLY_TOOLCHAIN_NAME`: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
-### iOS.cmake
-| POLLY_TOOLCHAIN_NAME                       | POLLY_TOOLCHAIN_TAG |
-|--------------------------------------------|---------------------|
-| iOS Universal (iphoneos + iphonesimulator) | ios                 |
+### ios.cmake
+* `POLLY_TOOLCHAIN_NAME`: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
 * Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path`
@@ -106,14 +95,14 @@ Additionally:
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
-> cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/Libstdcxx.cmake .
--- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
+> cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake .
+-- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
--- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
+-- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- Check for working CXX compiler: /usr/bin/c++ -- works
 -- Detecting CXX compiler ABI info
--- [polly] Used toolchain: GNU Standard C++ Library (libstdc++)
+-- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- Detecting CXX compiler ABI info - done
 -- Configuring done
 -- Generating done
@@ -125,7 +114,7 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
-*Note* that some typing time may be saved by defining `POLLY_ROOT` environment variable: `${POLLY_ROOT}/Libcxx.cmake`.
+*Note* that some typing time may be saved by defining `POLLY_ROOT` environment variable: `${POLLY_ROOT}/libcxx.cmake`.
 See this [script][4] with [integration][5]
 
 [3]: http://www.cmake.org/Wiki/CMake_Cross_Compiling#The_toolchain_file
