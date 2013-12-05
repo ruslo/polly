@@ -61,7 +61,7 @@ Additionally:
 
 ### default.cmake
 * `POLLY_TOOLCHAIN_NAME`: `Default`
-* No additional flags, just load `Common.cmake`
+* No additional flags, just load `common.cmake`
 
 ### libcxx.cmake
 * `POLLY_TOOLCHAIN_NAME`: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
@@ -69,6 +69,7 @@ Additionally:
 
 ### clang_libstdcxx.cmake
 * `POLLY_TOOLCHAIN_NAME`: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
 ### custom_libcxx.cmake
 * `POLLY_TOOLCHAIN_NAME`: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
