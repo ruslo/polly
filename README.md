@@ -81,6 +81,11 @@ Additionally:
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
+### gcc
+* Name: `gcc / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `gcc`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`
+
 ### ios
 * Name: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
