@@ -6,13 +6,14 @@ env:
     - EXAMPLE=00-simple TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=01-executable TOOLCHAIN=default
     - EXAMPLE=01-executable TOOLCHAIN=libcxx
+    - EXAMPLE=01-executable TOOLCHAIN=libcxx GENERATOR=-GXcode
     - EXAMPLE=01-executable TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=01-executable TOOLCHAIN=custom_libcxx
     - EXAMPLE=02-library TOOLCHAIN=default
     - EXAMPLE=02-library TOOLCHAIN=libcxx
     - EXAMPLE=02-library TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=02-library TOOLCHAIN=custom_libcxx
-    - EXAMPLE=02-library GENERATOR=-GXcode TOOLCHAIN=ios
+    - EXAMPLE=02-library TOOLCHAIN=ios GENERATOR=-GXcode
 
 compiler:
     - clang
