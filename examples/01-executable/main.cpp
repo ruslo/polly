@@ -1,3 +1,4 @@
+#include <cstdlib> // EXIT_SUCCESS
 #include <iostream> // std::cout
 
 int main() {
