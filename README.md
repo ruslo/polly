@@ -1,6 +1,12 @@
 ### polly
 
-[![Build Status](https://travis-ci.org/ruslo/polly.png?branch=master)](https://travis-ci.org/ruslo/polly)
+| mac                                        | linux                                            |
+|--------------------------------------------|--------------------------------------------------|
+| [![Build Status][link_master]][link_polly] | [![Build Status][link_travis_linux]][link_polly] |
+
+[link_master]: https://travis-ci.org/ruslo/polly.png?branch=master
+[link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=travis.linux
+[link_polly]: https://travis-ci.org/ruslo/polly
 
 Collection of CMake toolchain files
 
