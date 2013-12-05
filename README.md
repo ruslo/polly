@@ -79,9 +79,6 @@ Additionally:
 * Set `CMAKE_C{XX}_COMPILER` to `clang`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
 
-### clang32_libstdcxx
-* Same as `clang_libstdcxx`, but with `clang 3.2`. (See [usage](https://github.com/travis-ci-tester/travis-test-clang-cxx-11))
-
 ### custom_libcxx
 * Name: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
 * Set `CMAKE_C{XX}_COMPILER` to `clang`
@@ -94,7 +91,7 @@ Additionally:
 * Name: `gcc / c++11 support`
 * Set `CMAKE_C{XX}_COMPILER` to `gcc`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`
- 
+
 ### gcc48
 * Same as `gcc`, but with `gcc 4.8`. (See [usage](https://github.com/travis-ci-tester/travis-test-gcc-cxx-11))
 
