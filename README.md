@@ -52,7 +52,7 @@ In this case targets can coexist simultaneously:
 
 
 ## Toolchains
-### Common.cmake
+### utilities/common.cmake
 * This is common module which is used by all modules and is loaded after name and prefix variables defined
 
 Additionally:
@@ -63,7 +63,7 @@ Additionally:
 | POLLY_TOOLCHAIN_NAME | POLLY_TOOLCHAIN_TAG |
 |----------------------|------------------------|
 | Default              | default                |
-* No additional flags, just load `Common.cmake`
+* No additional flags, just load `common.cmake`
 
 ### Libcxx.cmake
 | POLLY_TOOLCHAIN_NAME               | POLLY_TOOLCHAIN_TAG |

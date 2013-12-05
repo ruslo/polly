@@ -10,7 +10,7 @@ endif()
 set(POLLY_TOOLCHAIN_NAME "Custom LLVM Standard C++ Library (libc++)")
 set(POLLY_TOOLCHAIN_TAG "custom_libcxx")
 
-include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/common.cmake")
 
 set(
     CMAKE_CXX_FLAGS

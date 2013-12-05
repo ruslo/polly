@@ -10,7 +10,7 @@ endif()
 set(POLLY_TOOLCHAIN_NAME "GNU Standard C++ Library (libstdc++)")
 set(POLLY_TOOLCHAIN_TAG "libstdcxx")
 
-include("${CMAKE_CURRENT_LIST_DIR}/Common.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/common.cmake")
 
 set(
     CMAKE_CXX_FLAGS
