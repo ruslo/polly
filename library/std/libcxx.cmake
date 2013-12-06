@@ -16,12 +16,20 @@ set(
     FORCE
 )
 
-# For Xcode
 set(
     CMAKE_EXE_LINKER_FLAGS
     "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++"
     CACHE
     STRING
     "C++ linker flags"
+    FORCE
+)
+
+set(
+    CMAKE_SHARED_LINKER_FLAGS
+    "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libc++"
+    CACHE
+    STRING
+    "Shared library linker flags"
     FORCE
 )
