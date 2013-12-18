@@ -99,8 +99,8 @@ Additionally:
 * Name: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
 * Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
-* Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path`
-* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set)
+* Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path` (e.g. `/Applications/Xcode.app/Contents/Developer/`)
+* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set) (e.g. `6.1`)
 * Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
 * *Note*
  * Xcode only
