@@ -101,6 +101,10 @@ Additionally:
 * Set `IOS_ARCHS` to `armv7;armv7s` (if not already set)
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path` (e.g. `/Applications/Xcode.app/Contents/Developer/`)
 * Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set) (e.g. `6.1`)
+* Set `IPHONESIMULATOR_ROOT`/`IPHONEOS_ROOT` (e.g.
+`/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer`)
+* Set `IPHONESIMULATOR_SDK_ROOT`/`IPHONEOS_SDK_ROOT` using `IPHONE*_ROOT` and `IOS_SDK_VERSION`
+(e.g. `/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/`)
 * Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
 * *Note*
  * Xcode only
