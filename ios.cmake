@@ -34,8 +34,12 @@ if(NOT XCODE_SELECT_EXECUTABLE)
   polly_fatal_error("xcode-select not found")
 endif()
 
-if(NOT IOS_ARCHS)
-  set(IOS_ARCHS armv7;armv7s;arm64)
+if(NOT IPHONEOS_ARCHS)
+  set(IPHONEOS_ARCHS armv7;armv7s;arm64)
+endif()
+
+if(NOT IPHONESIMULATOR_ARCHS)
+  set(IPHONESIMULATOR_ARCHS i386;x86_64)
 endif()
 
 execute_process(

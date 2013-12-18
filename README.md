@@ -98,7 +98,8 @@ Additionally:
 ### ios
 * Name: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
-* Set `IOS_ARCHS` to `armv7;armv7s;arm64` (if not already set)
+* Set `IPHONEOS_ARCHS` to `armv7;armv7s;arm64` (if not already set)
+* Set `IPHONESIMULATOR_ARCHS` to `i386;x86_64` (if not already set)
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path` (e.g. `/Applications/Xcode.app/Contents/Developer/`)
 * Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set) (e.g. `6.1`)
 * Set `IPHONESIMULATOR_ROOT`/`IPHONEOS_ROOT` (e.g.
