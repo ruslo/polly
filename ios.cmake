@@ -35,7 +35,7 @@ if(NOT XCODE_SELECT_EXECUTABLE)
 endif()
 
 if(NOT IOS_ARCHS)
-  set(IOS_ARCHS armv7;armv7s)
+  set(IOS_ARCHS armv7;armv7s;arm64)
 endif()
 
 execute_process(
