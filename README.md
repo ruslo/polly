@@ -98,10 +98,10 @@ Additionally:
 ### ios
 * Name: `iOS Universal (iphoneos + iphonesimulator)`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
-* Set `IPHONEOS_ARCHS` to `armv7;armv7s;arm64` (if not already set)
-* Set `IPHONESIMULATOR_ARCHS` to `i386;x86_64` (if not already set)
+* Set `IPHONEOS_ARCHS` to `armv7;armv7s;arm64`
+* Set `IPHONESIMULATOR_ARCHS` to `i386;x86_64`
 * Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path` (e.g. `/Applications/Xcode.app/Contents/Developer/`)
-* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (if not already set) (e.g. `6.1`)
+* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (e.g. `6.1`)
 * Set `IPHONESIMULATOR_ROOT`/`IPHONEOS_ROOT` (e.g.
 `/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer`)
 * Set `IPHONESIMULATOR_SDK_ROOT`/`IPHONEOS_SDK_ROOT` using `IPHONE*_ROOT` and `IOS_SDK_VERSION`
@@ -114,6 +114,9 @@ Additionally:
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
+
+### ios-i386-armv7
+* Same as `ios`, but limited to `i386` and `armv7` architectures
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:

@@ -1,16 +1,19 @@
 # Copyright (c) 2013, Ruslan Baratov
 # All rights reserved.
 
-if(DEFINED POLLY_IOS_CMAKE)
+if(DEFINED POLLY_IOS_I386_ARMV7_CMAKE)
   return()
 else()
-  set(POLLY_IOS_CMAKE 1)
+  set(POLLY_IOS_I386_ARMV7_CMAKE 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
 
-set(POLLY_TOOLCHAIN_NAME "iOS Universal (iphoneos + iphonesimulator)")
-set(POLLY_TOOLCHAIN_TAG "ios")
+set(
+    POLLY_TOOLCHAIN_NAME
+    "iOS Universal (iphoneos + iphonesimulator) / i386 / armv7"
+)
+set(POLLY_TOOLCHAIN_TAG "ios-i386-armv7")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
@@ -34,8 +37,8 @@ if(NOT XCODE_SELECT_EXECUTABLE)
   polly_fatal_error("xcode-select not found")
 endif()
 
-set(IPHONEOS_ARCHS armv7;armv7s;arm64)
-set(IPHONESIMULATOR_ARCHS i386;x86_64)
+set(IPHONEOS_ARCHS armv7)
+set(IPHONESIMULATOR_ARCHS i386)
 
 execute_process(
     COMMAND
