@@ -57,7 +57,7 @@ set(IOS_SDK_VERSIONS 5.0 5.1 6.0 6.1 7.0)
 foreach(x ${IOS_SDK_VERSIONS})
   execute_process(
       COMMAND
-      ${XCODEBUILD_EXECUTABLE}
+      "${XCODEBUILD_EXECUTABLE}"
       -showsdks
       -sdk
       "iphoneos${x}"

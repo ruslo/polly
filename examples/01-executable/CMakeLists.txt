@@ -12,10 +12,10 @@ if(CUSTOM_LIBCXX_LIBRARY_LOCATION)
   set(Libcxx_USE_STATIC_LIBS YES)
   find_package(Libcxx REQUIRED)
   target_link_libraries(simple ${Libcxx_LIBRARIES}) # libc++ and libc++abi
-  include_directories(${Libcxx_INCLUDE_DIRS})
+  include_directories("${Libcxx_INCLUDE_DIRS}")
 endif()
 
-install(TARGETS simple DESTINATION ${PROJECT_SOURCE_DIR}/Install)
+install(TARGETS simple DESTINATION "${PROJECT_SOURCE_DIR}/Install")
 
 enable_testing()
 add_test(testname simple)

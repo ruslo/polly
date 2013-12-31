@@ -10,4 +10,4 @@ message("tag: ${POLLY_TOOLCHAIN_TAG}")
 message("name: ${POLLY_TOOLCHAIN_NAME}")
 
 add_executable(simple "./main.cpp")
-install(TARGETS simple DESTINATION ${PROJECT_SOURCE_DIR}/Install)
+install(TARGETS simple DESTINATION "${PROJECT_SOURCE_DIR}/Install")

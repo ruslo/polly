@@ -55,7 +55,7 @@ find_library(
     Libcxx_LIBRARY_DEBUG
     ${_find_libcxx_debug_name}
     PATH
-    ${_find_libcxx_install_path}
+    "${_find_libcxx_install_path}"
     NO_DEFAULT_PATH
 )
 
@@ -70,7 +70,7 @@ find_library(
     Libcxx_LIBRARY_RELEASE
     c++
     PATH
-    ${_find_libcxx_install_path}
+    "${_find_libcxx_install_path}"
     NO_DEFAULT_PATH
 )
 
@@ -83,9 +83,9 @@ endif()
 set(
     Libcxx_LIBRARY
     debug
-    ${Libcxx_LIBRARY_DEBUG}
+    "${Libcxx_LIBRARY_DEBUG}"
     optimized
-    ${Libcxx_LIBRARY_RELEASE}
+    "${Libcxx_LIBRARY_RELEASE}"
 )
 
 # revert cmake suffixes
