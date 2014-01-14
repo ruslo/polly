@@ -19,3 +19,5 @@ include("${CMAKE_CURRENT_LIST_DIR}/compiler/clang.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/flags/sanitize_address.cmake")
+
+set(HUNTER_DISABLE_SHARED_LIBS YES)
