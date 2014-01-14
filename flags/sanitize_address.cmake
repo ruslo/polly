@@ -9,7 +9,16 @@ endif()
 
 set(
     CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -fsanitize=address"
+    "${CMAKE_CXX_FLAGS} -fsanitize=address -g"
+    CACHE
+    STRING
+    "C++ compiler flags"
+    FORCE
+)
+
+set(
+    CMAKE_CXX_FLAGS_RELEASE
+    "-O1"
     CACHE
     STRING
     "C++ compiler flags"
