@@ -140,6 +140,14 @@ Additionally:
 * http://clang.llvm.org/docs/LeakSanitizer.html
 * Linux
 
+### sanitize_memory
+* Name `Clang memory sanitizer / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=memory`, `-fsanitize-memory-track-origins`, `-g`
+* http://clang.llvm.org/docs/MemorySanitizer.html
+* Detect uninitialized reads
+* Linux
+
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
