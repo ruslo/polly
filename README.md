@@ -148,6 +148,14 @@ Additionally:
 * Detect uninitialized reads
 * Linux
 
+### sanitize_thread
+* Name `Clang thread sanitizer / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=thread`, `-fPIE`, `-pie`, `-g`
+* http://clang.llvm.org/docs/ThreadSanitizer.html
+* Detect data races
+* Linux
+
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
