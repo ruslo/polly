@@ -123,6 +123,15 @@ Additionally:
  * analyze file (and fail on some warnings) 
  * compile file and produce usable binaries
 
+### sanitize_address
+* Name `Clang address sanitizer / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=address`, `-g`
+* Set `CMAKE_CXX_FLAGS_RELEASE` to `-O1`
+* Set `HUNTER_DISABLE_SHARED_LIBS` to `YES`
+* http://clang.llvm.org/docs/AddressSanitizer.html
+* Linux, Mac
+
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
