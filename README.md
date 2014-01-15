@@ -112,11 +112,16 @@ Additionally:
  * It's not `iphoneos` or `iphonesimulator` toolchain, this toolchain designed to be used with
 [sugar_install_ios_library][1](or [sugar_install_library][2]) command to create universal libraries.
 
-[1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
-[2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
-
 ### ios-i386-armv7
 * Same as `ios`, but limited to `i386` and `armv7` architectures
+
+### analyze
+* Name `Clang static analyzer / c++11 support`
+* Set `CMAKE_CXX_COMPILER` to wrapper [script](https://github.com/ruslo/polly/blob/master/scripts/clang-analyze.sh)
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-w`
+* Note that for sake of easy integration script do double job:
+ * analyze file (and fail on some warnings) 
+ * compile file and produce usable binaries
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
@@ -143,10 +148,6 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 *Note* that some typing time may be saved by defining `POLLY_ROOT` environment variable: `${POLLY_ROOT}/libcxx.cmake`.
 See this [script][4] with [integration][5]
 
-[3]: http://www.cmake.org/Wiki/CMake_Cross_Compiling#The_toolchain_file
-[4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
-[5]: https://github.com/ruslo/configs
-[6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
 Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
@@ -154,3 +155,10 @@ agreements before start looking through examples (may explain a lot).
 Take a look at the [Travis](https://travis-ci.org/) config files:
 [mac](https://github.com/ruslo/polly/blob/master/.travis.yml) and [linux](https://github.com/ruslo/polly/blob/travis.linux/.travis.yml),
 it's quite self-explanatory.
+
+[1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
+[2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
+[3]: http://www.cmake.org/Wiki/CMake_Cross_Compiling#The_toolchain_file
+[4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
+[5]: https://github.com/ruslo/configs
+[6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
