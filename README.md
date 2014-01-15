@@ -129,8 +129,16 @@ Additionally:
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=address`, `-g`
 * Set `CMAKE_CXX_FLAGS_RELEASE` to `-O1`
 * Set `HUNTER_DISABLE_SHARED_LIBS` to `YES`
+* Check: out of bound, use after free, double free, invalid free
 * http://clang.llvm.org/docs/AddressSanitizer.html
 * Linux, Mac
+
+### sanitize_leak
+* Name `Clang memory leaks sanitizer / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `clang`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=leak`, `-g`
+* http://clang.llvm.org/docs/LeakSanitizer.html
+* Linux
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
