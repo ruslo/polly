@@ -28,7 +28,6 @@ before_install:
     - export POLLY_ROOT=`pwd`
 
 install:
-    - brew install cmake
     - brew install wget
     - brew install python3
     # install custom libcxx --
