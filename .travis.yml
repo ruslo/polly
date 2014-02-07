@@ -57,7 +57,7 @@ install:
     # -- end
 
 script:
-    - export XCODE_XCCONFIG_FILE=${POLLY_ROOT}/scripts/NoCodeSign.cmake
+    - export XCODE_XCCONFIG_FILE=${POLLY_ROOT}/scripts/NoCodeSign.xcconfig
     - cd ${POLLY_ROOT}/examples/${EXAMPLE}
     # release
     - mkdir -p _builds/make-release
