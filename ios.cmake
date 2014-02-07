@@ -11,7 +11,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 
 set(
     POLLY_TOOLCHAIN_NAME
-    "iOS Universal (iphoneos + iphonesimulator)
+    "iOS Universal (iphoneos + iphonesimulator) / c++11 support"
 )
 set(POLLY_TOOLCHAIN_TAG "ios")
 
@@ -129,3 +129,5 @@ endif()
 
 # support for hunter (github.com/ruslo/hunter)
 set(HUNTER_CMAKE_GENERATOR Xcode)
+
+include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
