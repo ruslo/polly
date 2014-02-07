@@ -13,7 +13,7 @@ env:
     - EXAMPLE=02-library TOOLCHAIN=libcxx
     - EXAMPLE=02-library TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=02-library TOOLCHAIN=custom_libcxx
-    - EXAMPLE=02-library TOOLCHAIN=ios GENERATOR=-GXcode
+    - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign GENERATOR=-GXcode
     - EXAMPLE=03-shared-link TOOLCHAIN=default
     - EXAMPLE=03-shared-link TOOLCHAIN=libcxx
     - EXAMPLE=03-shared-link TOOLCHAIN=libcxx GENERATOR=-GXcode
@@ -57,6 +57,7 @@ install:
     # -- end
 
 script:
+    - export XCODE_XCCONFIG_FILE=${POLLY_ROOT}/scripts/NoCodeSign.cmake
     - cd ${POLLY_ROOT}/examples/${EXAMPLE}
     # release
     - mkdir -p _builds/make-release
