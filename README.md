@@ -96,7 +96,12 @@ Additionally:
 * Same as `gcc`, but with `gcc 4.8`. (See [usage](https://github.com/travis-ci-tester/travis-test-gcc-cxx-11))
 
 ### ios
-* Name: `iOS Universal (iphoneos + iphonesimulator)`
+* Name: `iOS Universal (iphoneos + iphonesimulator) / c++11 support`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`
+* Defaults to fix [try_compile](http://www.cmake.org/cmake/help/v2.8.12/cmake.html#command:try_compile) command:
+ * Set `MACOSX_BUNDLE_GUI_IDENTIFIER` to `com.example`
+ * Set `CMAKE_MACOSX_BUNDLE` to `YES`
+ * Set `CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY` to `iPhone Developer`
 * Set `CMAKE_OSX_SYSROOT` to `iphoneos`
 * Set `IPHONEOS_ARCHS` to `armv7;armv7s;arm64`
 * Set `IPHONESIMULATOR_ARCHS` to `i386;x86_64`
@@ -110,10 +115,18 @@ Additionally:
 * *Note*
  * Xcode only
  * It's not `iphoneos` or `iphonesimulator` toolchain, this toolchain designed to be used with
-[sugar_install_ios_library][1](or [sugar_install_library][2]) command to create universal libraries.
+[patched](https://github.com/ruslo/CMake/releases) CMake version.
 
 ### ios-i386-armv7
+* Name: `iOS Universal (iphoneos + iphonesimulator) / i386 / armv7 / c++11 support`
 * Same as `ios`, but limited to `i386` and `armv7` architectures
+
+### ios-nocodesign
+* Name: `iOS Universal (iphoneos + iphonesimulator) / No code sign / c++11 support`
+* Same as `ios`, but without `CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY`
+* You need to define `XCODE_XCCONFIG_FILE` environment variable with path to
+`$POLLY_ROOT/scripts/NoCodeSign.xcconfig` file (do not forget `export`!)
+* Very helpful in server testing (no need to install developer sertificate)
 
 ### analyze
 * Name `Clang static analyzer / c++11 support`
