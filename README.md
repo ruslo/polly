@@ -55,7 +55,7 @@ In this case targets can coexist simultaneously:
                         - ...
 ```
 
-
+Implementation of this idea can be found in [hunter](http://www.github.com/ruslo/hunter) package manager.
 
 ## Toolchains
 ### utilities/polly_common.cmake
