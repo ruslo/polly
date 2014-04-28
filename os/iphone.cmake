@@ -36,7 +36,7 @@ endif()
 
 # Order is important(!)
 # Set high priority to the last
-set(IOS_SDK_VERSIONS 5.0 5.1 6.0 6.1 7.0)
+set(IOS_SDK_VERSIONS 5.0 5.1 6.0 6.1 7.0 7.1)
 foreach(x ${IOS_SDK_VERSIONS})
   execute_process(
       COMMAND
