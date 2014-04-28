@@ -29,6 +29,7 @@ before_install:
 
 install:
     - brew install python3
+    - brew install cmake
     # install custom libcxx --
     - mkdir custom_libcxx_lib
     - cd custom_libcxx_lib
@@ -57,6 +58,7 @@ install:
     # -- end
 
 script:
+    - which cmake
     - export XCODE_XCCONFIG_FILE=${POLLY_ROOT}/scripts/NoCodeSign.xcconfig
     - cd ${POLLY_ROOT}/examples/${EXAMPLE}
     # release
