@@ -108,7 +108,7 @@ Additionally:
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
 
 ### xcode
-* Name: `Xcode / Custom LLVM Standard C++ Library (libc++) / c++11 support`
+* Name: `Xcode / LLVM Standard C++ Library (libc++) / c++11 support`
 * Set `CMAKE_C{XX}_COMPILER` to `xcrun --find clang`
 * Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
 * Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
