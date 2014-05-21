@@ -6,7 +6,7 @@ env:
     - EXAMPLE=00-simple TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=01-executable TOOLCHAIN=default
     - EXAMPLE=01-executable TOOLCHAIN=libcxx
-    - EXAMPLE=01-executable TOOLCHAIN=libcxx GENERATOR=-GXcode
+    - EXAMPLE=01-executable TOOLCHAIN=xcode GENERATOR=-GXcode
     - EXAMPLE=01-executable TOOLCHAIN=clang_libstdcxx
     - EXAMPLE=01-executable TOOLCHAIN=custom_libcxx
     - EXAMPLE=02-library TOOLCHAIN=default
@@ -16,9 +16,8 @@ env:
     - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign GENERATOR=-GXcode
     - EXAMPLE=03-shared-link TOOLCHAIN=default
     - EXAMPLE=03-shared-link TOOLCHAIN=libcxx
-    - EXAMPLE=03-shared-link TOOLCHAIN=libcxx GENERATOR=-GXcode
+    - EXAMPLE=03-shared-link TOOLCHAIN=xcode GENERATOR=-GXcode
     - EXAMPLE=03-shared-link TOOLCHAIN=clang_libstdcxx
-    - EXAMPLE=03-shared-link TOOLCHAIN=clang_libstdcxx GENERATOR=-GXcode
 
 compiler:
     - clang
