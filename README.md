@@ -63,6 +63,7 @@ Implementation of this idea can be found in [hunter](http://www.github.com/ruslo
 * [libcxx](https://github.com/ruslo/polly#libcxx)
 * [clang_libstdcxx](https://github.com/ruslo/polly#clang_libstdcxx)
 * [custom_libcxx](https://github.com/ruslo/polly#custom_libcxx)
+* [xcode](https://github.com/ruslo/polly#xcode)
 * [gcc](https://github.com/ruslo/polly#gcc)
 * [gcc48](https://github.com/ruslo/polly#gcc48)
 * iOS
@@ -105,6 +106,15 @@ Additionally:
 * Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
 * Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
 * See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
+
+### xcode
+* Name: `Xcode / Custom LLVM Standard C++ Library (libc++) / c++11 support`
+* Set `CMAKE_C{XX}_COMPILER` to `xcrun --find clang`
+* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
+* Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
+* Note
+ * Xcode only
+ * Xcode ignores `CMAKE_C{XX}_COMPILER` variable (This is the reason why toolchain exists)
 
 ### gcc
 * Name: `gcc / c++11 support`
