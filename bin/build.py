@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description="Script for building")
 parser.add_argument(
     '--toolchain',
     choices=[
+        'default',
         'libcxx',
         'xcode',
         'clang_libstdcxx',
@@ -67,6 +68,8 @@ elif args.toolchain == 'xcode':
   tag = 'xcode'
 elif args.toolchain == 'clang_libstdcxx':
   toolchain = 'clang_libstdcxx'
+elif args.toolchain == 'default':
+  toolchain = 'default'
 elif args.toolchain == 'gcc48':
   toolchain = 'gcc48'
 elif args.toolchain == 'gcc':
