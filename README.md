@@ -229,7 +229,7 @@ Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
 agreements before start looking through examples (may explain a lot).
 Take a look at the [Travis](https://travis-ci.org/) config files:
 [mac](https://github.com/ruslo/polly/blob/master/.travis.yml) and [linux](https://github.com/ruslo/polly/blob/travis.linux/.travis.yml),
-it's quite self-explanatory.
+it's quite self-explanatory. Also see [table][7] of toolchains available for testing with travis-ci.
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
@@ -237,3 +237,4 @@ it's quite self-explanatory.
 [4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
 [5]: https://github.com/ruslo/configs
 [6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
+[7]: https://github.com/ruslo/polly/wiki/Travis-support-table
