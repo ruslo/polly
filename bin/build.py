@@ -96,12 +96,10 @@ def call(call_args):
           universal_newlines=True
       )
     else:
-      output = subprocess.check_output(
+      subprocess.check_call(
           call_args,
-          stderr=subprocess.STDOUT,
           universal_newlines=True
       )
-      print(output)
   except subprocess.CalledProcessError as error:
     print(error)
     print(error.output)
