@@ -48,9 +48,10 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-for x in args.fwd:
-  if not x.startswith('D'):
-    sys.exit("Expected that forward argument starts with `D`: {}".format(x))
+if args.fwd != None:
+  for x in args.fwd:
+    if not x.startswith('D'):
+      sys.exit("Expected that forward argument starts with `D`: {}".format(x))
 
 toolchain = ''
 generator = ''
@@ -152,8 +153,9 @@ if args.verbose:
 if args.install:
   generate_command.append(install_dir_option)
 
-for x in args.fwd:
-  generate_command.append("-{}".format(x))
+if args.fwd != None:
+  for x in args.fwd:
+    generate_command.append("-{}".format(x))
 
 call(generate_command)
 
@@ -174,10 +176,15 @@ if args.install:
 if not args.nobuild:
   call(build_command)
 
-if (toolchain == 'xcode') and args.open:
-  for file in os.listdir(build_dir):
-    if file.endswith(".xcodeproj"):
-      call(['open', os.path.join(build_dir, file)])
+if args.open:
+  if (args.toolchain == 'xcode'):
+    for file in os.listdir(build_dir):
+      if file.endswith(".xcodeproj"):
+        call(['open', os.path.join(build_dir, file)])
+  if (args.toolchain == 'vs2013x64') or (args.toolchain == 'vs2013'):
+    for file in os.listdir(build_dir):
+      if file.endswith(".sln"):
+        os.startfile(os.path.join(build_dir, file))
 
 if args.test:
   os.chdir(build_dir)
