@@ -38,6 +38,7 @@ parser.add_argument(
     '--open', action='store_true', help="Open generated project (for IDE)"
 )
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
+parser.add_argument('--install', action='store_true', help="Run install")
 
 args = parser.parse_args()
 
@@ -135,6 +136,15 @@ if toolchain_option:
 if args.verbose:
   generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 
+if args.install:
+  generate_command.append(
+      '-DCMAKE_INSTALL_PREFIX={}'.format(
+          os.path.join(cdir, '_install', args.toolchain)
+      )
+  )
+
+call(generate_command)
+
 build_command = [
     'cmake',
     '--build',
@@ -145,7 +155,9 @@ if args.config:
   build_command.append('--config')
   build_command.append(args.config)
 
-call(generate_command)
+if args.install:
+  build_command.append('--target')
+  build_command.append('install')
 
 if not args.nobuild:
   call(build_command)
