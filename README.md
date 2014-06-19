@@ -99,8 +99,14 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
-*Note* that some typing time may be saved by defining `POLLY_ROOT` environment variable: `${POLLY_ROOT}/libcxx.cmake`.
-See this [script][4] with [integration][5]
+## Usage (build.py)
+
+* [build.py][8] script can be used to build/test with `polly` toolchain, e.g.:
+ * build Debug Xcode project: `build.py --toolchain xcode --type Debug` (create directory `_builds/xcode`)
+ * build and test Release Makefile project with `libcxx`: `build.py --toolchain libcxx --type Release --test`
+(create directory `_builds/libcxx-Release`)
+
+*Note* script expected that `POLLY_ROOT` environment variable is set.
 
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
@@ -117,3 +123,4 @@ it's quite self-explanatory. Also see [table][7] of toolchains available for tes
 [5]: https://github.com/ruslo/configs
 [6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
 [7]: https://github.com/ruslo/polly/wiki/Travis-support-table
+[8]: https://github.com/ruslo/polly/blob/master/bin/build.py
