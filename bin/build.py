@@ -124,9 +124,12 @@ if toolchain:
 
 build_dir = os.path.join(cdir, '_builds', tag)
 build_dir_option = "-B{}".format(build_dir)
-
-
 shutil.rmtree(build_dir, ignore_errors=True)
+
+if args.install:
+  install_dir = os.path.join(cdir, '_install', args.toolchain)
+  install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
+  shutil.rmtree(install_dir, ignore_errors=True)
 
 generate_command = [
     'cmake',
@@ -147,11 +150,7 @@ if args.verbose:
   generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 
 if args.install:
-  generate_command.append(
-      '-DCMAKE_INSTALL_PREFIX={}'.format(
-          os.path.join(cdir, '_install', args.toolchain)
-      )
-  )
+  generate_command.append(install_dir_option)
 
 for x in args.fwd:
   generate_command.append("-{}".format(x))
