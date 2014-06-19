@@ -101,11 +101,13 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 
 ## Usage (build.py)
 
-* [build.py][8] script can be used to build/test with `polly` toolchain, e.g.:
+* [build.py][8] script can be used to build/test/install with `polly` toolchain, e.g.:
  * build Debug Xcode project:
    * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
  * build and test Release Makefile project with `libcxx`:
    * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
+ * install Debug Xcode project:
+   * `build.py --toolchain xcode --install` (`_builds/xcode`, `_install/xcode`)
 
 *Note* script expected that `POLLY_ROOT` environment variable is set.
 
