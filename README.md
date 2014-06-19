@@ -59,144 +59,23 @@ Implementation of this idea can be found in [hunter](http://www.github.com/ruslo
 
 ## Toolchains
 
-* [default](https://github.com/ruslo/polly#default)
-* [libcxx](https://github.com/ruslo/polly#libcxx)
-* [clang_libstdcxx](https://github.com/ruslo/polly#clang_libstdcxx)
-* [custom_libcxx](https://github.com/ruslo/polly#custom_libcxx)
-* [xcode](https://github.com/ruslo/polly#xcode)
-* [gcc](https://github.com/ruslo/polly#gcc)
-* [gcc48](https://github.com/ruslo/polly#gcc48)
+* [default](https://github.com/ruslo/polly/wiki/Toolchain-list#default)
+* [libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#libcxx)
+* [clang_libstdcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#clang_libstdcxx)
+* [custom_libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom_libcxx)
+* [xcode](https://github.com/ruslo/polly/wiki/Toolchain-list#xcode)
+* [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
+* [gcc48](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc48)
 * iOS
- * [ios](https://github.com/ruslo/polly#ios)
- * [ios-i386-armv7](https://github.com/ruslo/polly#ios-i386-armv7)
- * [ios-nocodesign](https://github.com/ruslo/polly#ios-nocodesign)
+ * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
+ * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
+ * [ios-nocodesign](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-nocodesign)
 * Clang tools
- * [analyze](https://github.com/ruslo/polly#analyze)
- * [sanitize_address](https://github.com/ruslo/polly#sanitize_address)
- * [sanitize_leak](https://github.com/ruslo/polly#sanitize_leak)
- * [sanitize_memory](https://github.com/ruslo/polly#sanitize_memory)
- * [sanitize_thread](https://github.com/ruslo/polly#sanitize_thread)
-
-## Toolchains
-### utilities/polly_common.cmake
-* This is common module which is used by all modules and is loaded after name and prefix variables defined
-
-Additionally:
-* Set `HUNTER_INSTALL_TAG` for [hunter](https://github.com/ruslo/hunter) support
-* Set variable `CMAKE_DEBUG_POSTFIX` to `d` (if not already set)
-
-### default
-* Name: `Default`
-* No additional flags, just load `polly_common.cmake`
-
-### libcxx
-* Name: `clang / LLVM Standard C++ Library (libc++) / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
-
-### clang_libstdcxx
-* Name: `clang / GNU Standard C++ Library (libstdc++) / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libstdc++`
-
-### custom_libcxx
-* Name: `clang / Custom LLVM Standard C++ Library (libc++) / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`, `-nostdinc++`
-* Add `CMAKE_EXE_LINKER_FLAGS`: `-nodefaultlibs`, `-lSystem`
-* Set variable [CUSTOM_LIBCXX_LIBRARY_LOCATION](https://github.com/ruslo/polly/wiki/Used-variables#custom_libcxx_library_location) to `TRUE`
-* See [wiki](https://github.com/ruslo/polly/wiki/Building-libcxx) for more info
-
-### xcode
-* Name: `Xcode / LLVM Standard C++ Library (libc++) / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `xcrun --find clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-stdlib=libc++`
-* Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
-* Note
- * Xcode only
- * Xcode ignores `CMAKE_C{XX}_COMPILER` variable (This is the reason why toolchain exists)
-
-### gcc
-* Name: `gcc / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `gcc`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`
-
-### gcc48
-* Same as `gcc`, but with `gcc 4.8`. (See [usage](https://github.com/travis-ci-tester/travis-test-gcc-cxx-11))
-
-### ios
-* Name: `iOS Universal (iphoneos + iphonesimulator) / c++11 support`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`
-* Defaults to fix [try_compile](http://www.cmake.org/cmake/help/v2.8.12/cmake.html#command:try_compile) command:
- * Set `MACOSX_BUNDLE_GUI_IDENTIFIER` to `com.example`
- * Set `CMAKE_MACOSX_BUNDLE` to `YES`
- * Set `CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY` to `iPhone Developer`
-* Set `CMAKE_OSX_SYSROOT` to `iphoneos`
-* Set `IPHONEOS_ARCHS` to `armv7;armv7s;arm64`
-* Set `IPHONESIMULATOR_ARCHS` to `i386;x86_64`
-* Set `XCODE_DEVELOPER_ROOT` to `xcode-select -print-path` (e.g. `/Applications/Xcode.app/Contents/Developer/`)
-* Try to detect highest ios version and save it to `IOS_SDK_VERSION` (e.g. `6.1`)
-* Set `IPHONESIMULATOR_ROOT`/`IPHONEOS_ROOT` (e.g.
-`/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer`)
-* Set `IPHONESIMULATOR_SDK_ROOT`/`IPHONEOS_SDK_ROOT` using `IPHONE*_ROOT` and `IOS_SDK_VERSION`
-(e.g. `/.../Xcode.app/.../iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/`)
-* Set `HUNTER_CMAKE_GENERATOR` to `Xcode` for [hunter](https://github.com/ruslo/hunter) support
-* *Note*
- * Xcode only
- * It's not `iphoneos` or `iphonesimulator` toolchain, this toolchain designed to be used with
-[patched](https://github.com/ruslo/CMake/releases) CMake version.
-
-### ios-i386-armv7
-* Name: `iOS Universal (iphoneos + iphonesimulator) / i386 / armv7 / c++11 support`
-* Same as `ios`, but limited to `i386` and `armv7` architectures
-
-### ios-nocodesign
-* Name: `iOS Universal (iphoneos + iphonesimulator) / No code sign / c++11 support`
-* Same as `ios`, but without `CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY`
-* You need to define `XCODE_XCCONFIG_FILE` environment variable with path to
-`$POLLY_ROOT/scripts/NoCodeSign.xcconfig` file (do not forget `export`!)
-* Very helpful in server testing (no need to install developer sertificate)
-
-### analyze
-* Name `Clang static analyzer / c++11 support`
-* Set `CMAKE_CXX_COMPILER` to wrapper [script](https://github.com/ruslo/polly/blob/master/scripts/clang-analyze.sh)
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-w`
-* Note that for sake of easy integration script do double job:
- * analyze file (and fail on some warnings) 
- * compile file and produce usable binaries
-
-### sanitize_address
-* Name `Clang address sanitizer / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=address`, `-g`
-* Set `CMAKE_CXX_FLAGS_RELEASE` to `-O1`
-* Set `HUNTER_DISABLE_SHARED_LIBS` to `YES`
-* Check: out of bound, use after free, double free, invalid free
-* http://clang.llvm.org/docs/AddressSanitizer.html
-* Linux, Mac
-
-### sanitize_leak
-* Name `Clang memory leaks sanitizer / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=leak`, `-g`
-* http://clang.llvm.org/docs/LeakSanitizer.html
-* Linux
-
-### sanitize_memory
-* Name `Clang memory sanitizer / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=memory`, `-fsanitize-memory-track-origins`, `-g`
-* http://clang.llvm.org/docs/MemorySanitizer.html
-* Detect uninitialized reads
-* Linux
-
-### sanitize_thread
-* Name `Clang thread sanitizer / c++11 support`
-* Set `CMAKE_C{XX}_COMPILER` to `clang`
-* Add `CMAKE_CXX_FLAGS`: `-std=c++11`, `-fsanitize=thread`, `-fPIE`, `-pie`, `-g`
-* http://clang.llvm.org/docs/ThreadSanitizer.html
-* Detect data races
-* Linux
+ * [analyze](https://github.com/ruslo/polly/wiki/Toolchain-list#analyze)
+ * [sanitize_address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_address)
+ * [sanitize_leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_leak)
+ * [sanitize_memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_memory)
+ * [sanitize_thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_thread)
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
