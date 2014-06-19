@@ -39,8 +39,17 @@ parser.add_argument(
 )
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
 parser.add_argument('--install', action='store_true', help="Run install")
+parser.add_argument(
+    '--fwd',
+    nargs='*',
+    help="Arguments to cmake without '-', like:\nDBOOST_ROOT=/some/path"
+)
 
 args = parser.parse_args()
+
+for x in args.fwd:
+  if not x.startswith('D'):
+    sys.exit("Expected that forward argument starts with `D`: {}".format(x))
 
 toolchain = ''
 generator = ''
@@ -142,6 +151,9 @@ if args.install:
           os.path.join(cdir, '_install', args.toolchain)
       )
   )
+
+for x in args.fwd:
+  generate_command.append("-{}".format(x))
 
 call(generate_command)
 
