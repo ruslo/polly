@@ -10,6 +10,9 @@ import shutil
 import subprocess
 import sys
 
+assert(sys.version_info.major == 3)
+assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
+
 parser = argparse.ArgumentParser(description="Script for building")
 parser.add_argument(
     '--toolchain',
@@ -41,6 +44,9 @@ parser.add_argument(
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
 parser.add_argument('--install', action='store_true', help="Run install")
 parser.add_argument(
+    '--clear', action='store_true', help="Remove build and install dirs"
+)
+parser.add_argument(
     '--fwd',
     nargs='*',
     help="Arguments to cmake without '-', like:\nDBOOST_ROOT=/some/path"
@@ -53,38 +59,47 @@ if args.fwd != None:
     if not x.startswith('D'):
       sys.exit("Expected that forward argument starts with `D`: {}".format(x))
 
-toolchain = ''
 generator = ''
 
-if args.config:
-  tag = "{}-{}".format(args.toolchain, args.config)
-else:
-  tag = args.toolchain
-
+"""Toolchain name"""
+polly_toolchain = 'default'
 if args.toolchain == 'libcxx':
-  toolchain = 'libcxx'
+  polly_toolchain = 'libcxx'
 elif args.toolchain == 'xcode':
-  toolchain = 'xcode'
-  generator = '-GXcode'
-  tag = 'xcode'
+  polly_toolchain = 'xcode'
 elif args.toolchain == 'clang_libstdcxx':
-  toolchain = 'clang_libstdcxx'
-elif args.toolchain == 'default':
-  toolchain = 'default'
+  polly_toolchain = 'clang_libstdcxx'
 elif args.toolchain == 'gcc48':
-  toolchain = 'gcc48'
+  polly_toolchain = 'gcc48'
 elif args.toolchain == 'gcc':
-  toolchain = 'gcc'
-elif args.toolchain == 'vs2013x64':
+  polly_toolchain = 'gcc'
+
+"""Build directory tag"""
+if args.config:
+  build_tag = "{}-{}".format(polly_toolchain, args.config)
+else:
+  build_tag = polly_toolchain
+
+"""Install directory tag"""
+install_tag = polly_toolchain
+
+if args.toolchain == 'vs2013x64':
   generator = '-GVisual Studio 12 2013 Win64'
-  tag = 'vs2013x64'
+  build_tag = 'vs2013x64'
+  install_tag = build_tag
 elif args.toolchain == 'vs2013':
   generator = '-GVisual Studio 12 2013'
-  tag = 'vs2013'
-else:
-  assert(False)
+  build_tag = 'vs2013'
+  install_tag = build_tag
+elif args.toolchain == 'xcode':
+  generator = '-GXcode'
+  build_tag = 'xcode'
+  install_tag = build_tag
 
 cdir = os.getcwd()
+
+# workaround for version less that 3.3
+DEVNULL = open(os.devnull, 'w')
 
 def call(call_args):
   try:
@@ -95,8 +110,8 @@ def call(call_args):
     if not args.verbose:
       subprocess.check_call(
           call_args,
-          stdout=subprocess.DEVNULL,
-          stderr=subprocess.DEVNULL,
+          stdout=DEVNULL,
+          stderr=DEVNULL,
           universal_newlines=True
       )
     else:
@@ -118,18 +133,20 @@ polly_root = os.getenv("POLLY_ROOT")
 if not polly_root:
   sys.exit("Environment variable `POLLY_ROOT` is empty")
 
-toolchain_option = ''
-if toolchain:
-  toolchain_path = os.path.join(polly_root, "{}.cmake".format(toolchain))
-  toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
+toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
+toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
-build_dir = os.path.join(cdir, '_builds', tag)
+build_dir = os.path.join(cdir, '_builds', build_tag)
 build_dir_option = "-B{}".format(build_dir)
-shutil.rmtree(build_dir, ignore_errors=True)
 
+install_dir = os.path.join(cdir, '_install', install_tag)
 if args.install:
-  install_dir = os.path.join(cdir, '_install', args.toolchain)
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
+
+if args.clear:
+  print("Remove build directory: {}".format(build_dir))
+  shutil.rmtree(build_dir, ignore_errors=True)
+  print("Remove install directory: {}".format(install_dir))
   shutil.rmtree(install_dir, ignore_errors=True)
 
 generate_command = [
