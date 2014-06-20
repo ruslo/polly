@@ -148,6 +148,7 @@ if args.clear:
   shutil.rmtree(build_dir, ignore_errors=True)
   print("Remove install directory: {}".format(install_dir))
   shutil.rmtree(install_dir, ignore_errors=True)
+  sys.exit()
 
 generate_command = [
     'cmake',
