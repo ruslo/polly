@@ -30,6 +30,7 @@ parser.add_argument(
         'sanitize_leak',
         'sanitize_memory',
         'sanitize_thread',
+        'cygwin',
     ],
     help="CMake generator/toolchain",
 )
