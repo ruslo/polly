@@ -24,7 +24,12 @@ parser.add_argument(
         'gcc48',
         'gcc',
         'vs2013x64',
-        'vs2013'
+        'vs2013',
+        'analyze',
+        'sanitize_address',
+        'sanitize_leak',
+        'sanitize_memory',
+        'sanitize_thread',
     ],
     help="CMake generator/toolchain",
 )
@@ -62,17 +67,16 @@ if args.fwd != None:
 generator = ''
 
 """Toolchain name"""
-polly_toolchain = 'default'
-if args.toolchain == 'libcxx':
-  polly_toolchain = 'libcxx'
-elif args.toolchain == 'xcode':
-  polly_toolchain = 'xcode'
-elif args.toolchain == 'clang_libstdcxx':
-  polly_toolchain = 'clang_libstdcxx'
-elif args.toolchain == 'gcc48':
-  polly_toolchain = 'gcc48'
-elif args.toolchain == 'gcc':
-  polly_toolchain = 'gcc'
+polly_toolchain = ''
+if args.toolchain:
+  polly_toolchain = args.toolchain
+else:
+  polly_toolchain = 'default'
+
+if args.toolchain == 'vs2013x64':
+  polly_toolchain = 'default'
+elif args.toolchain == 'vs2013':
+  polly_toolchain = 'default'
 
 """Build directory tag"""
 if args.config:
