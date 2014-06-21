@@ -70,31 +70,30 @@ else:
   polly_toolchain = 'default'
 
 if args.toolchain == 'vs2013x64':
-  polly_toolchain = 'default'
+  polly_toolchain = 'vs-12-2013-win64'
 elif args.toolchain == 'vs2013':
-  polly_toolchain = 'default'
+  polly_toolchain = 'vs-12-2013'
 
 """Build directory tag"""
-if args.config:
+multi_config_dir = False if args.toolchain == 'vs2013x64':
+  multi_config_dir = True
+elif args.toolchain == 'vs2013':
+  multi_config_dir = True
+elif args.toolchain == 'xcode':
+  multi_config_dir = True
+
+if args.config and not multi_config_dir:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
 else:
   build_tag = polly_toolchain
 
-"""Install directory tag"""
-install_tag = polly_toolchain
-
+"""Generator"""
 if args.toolchain == 'vs2013x64':
   generator = '-GVisual Studio 12 2013 Win64'
-  build_tag = 'vs2013x64'
-  install_tag = build_tag
 elif args.toolchain == 'vs2013':
   generator = '-GVisual Studio 12 2013'
-  build_tag = 'vs2013'
-  install_tag = build_tag
 elif args.toolchain == 'xcode':
   generator = '-GXcode'
-  build_tag = 'xcode'
-  install_tag = build_tag
 
 cdir = os.getcwd()
 
@@ -139,7 +138,7 @@ toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 build_dir = os.path.join(cdir, '_builds', build_tag)
 build_dir_option = "-B{}".format(build_dir)
 
-install_dir = os.path.join(cdir, '_install', install_tag)
+install_dir = os.path.join(cdir, '_install', polly_toolchain)
 if args.install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
