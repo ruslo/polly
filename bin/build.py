@@ -55,15 +55,10 @@ parser.add_argument(
 parser.add_argument(
     '--fwd',
     nargs='*',
-    help="Arguments to cmake without '-', like:\nDBOOST_ROOT=/some/path"
+    help="Arguments to cmake without '-D', like:\nBOOST_ROOT=/some/path"
 )
 
 args = parser.parse_args()
-
-if args.fwd != None:
-  for x in args.fwd:
-    if not x.startswith('D'):
-      sys.exit("Expected that forward argument starts with `D`: {}".format(x))
 
 generator = ''
 
@@ -178,7 +173,7 @@ if args.install:
 
 if args.fwd != None:
   for x in args.fwd:
-    generate_command.append("-{}".format(x))
+    generate_command.append("-D{}".format(x))
 
 call(generate_command)
 
