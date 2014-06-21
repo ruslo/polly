@@ -75,7 +75,8 @@ elif args.toolchain == 'vs2013':
   polly_toolchain = 'vs-12-2013'
 
 """Build directory tag"""
-multi_config_dir = False if args.toolchain == 'vs2013x64':
+multi_config_dir = False
+if args.toolchain == 'vs2013x64':
   multi_config_dir = True
 elif args.toolchain == 'vs2013':
   multi_config_dir = True
