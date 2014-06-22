@@ -59,6 +59,11 @@ parser.add_argument(
     nargs='*',
     help="Arguments to cmake without '-D', like:\nBOOST_ROOT=/some/path"
 )
+parser.add_argument(
+    '--iossim',
+    action='store_true',
+    help="Build for ios i386 simulator"
+)
 
 args = parser.parse_args()
 
@@ -196,6 +201,14 @@ if args.config:
 if args.install:
   build_command.append('--target')
   build_command.append('install')
+
+# NOTE: This must be the last `build_command` modification!
+if args.iossim:
+  build_command.append('--')
+  build_command.append('-arch')
+  build_command.append('i386')
+  build_command.append('-sdk')
+  build_command.append('iphonesimulator')
 
 if not args.nobuild:
   call(build_command)
