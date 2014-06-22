@@ -195,11 +195,11 @@ if not args.nobuild:
   call(build_command)
 
 if args.open:
-  if (args.toolchain == 'xcode'):
+  if (generator == '-GXcode'):
     for file in os.listdir(build_dir):
       if file.endswith(".xcodeproj"):
         call(['open', os.path.join(build_dir, file)])
-  if (args.toolchain == 'vs2013x64') or (args.toolchain == 'vs2013'):
+  if generator.startswith('-GVisual Studio'):
     for file in os.listdir(build_dir):
       if file.endswith(".sln"):
         os.startfile(os.path.join(build_dir, file))
