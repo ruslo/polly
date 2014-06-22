@@ -31,6 +31,8 @@ parser.add_argument(
         'sanitize_memory',
         'sanitize_thread',
         'cygwin',
+        'ios',
+        'ios-nocodesign',
     ],
     help="CMake generator/toolchain",
 )
@@ -94,6 +96,10 @@ if args.toolchain == 'vs2013x64':
 elif args.toolchain == 'vs2013':
   generator = '-GVisual Studio 12 2013'
 elif args.toolchain == 'xcode':
+  generator = '-GXcode'
+elif args.toolchain == 'ios':
+  generator = '-GXcode'
+elif args.toolchain == 'ios-nocodesign':
   generator = '-GXcode'
 
 cdir = os.getcwd()
