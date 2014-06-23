@@ -76,6 +76,10 @@ Implementation of this idea can be found in [hunter](http://www.github.com/ruslo
  * [sanitize_leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_leak)
  * [sanitize_memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_memory)
  * [sanitize_thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_thread)
+* Windows
+ * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
+ * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
+ * [cygwin](https://github.com/ruslo/polly/wiki/Toolchain-list#cygwin)
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
