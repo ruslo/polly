@@ -1,10 +1,10 @@
 # Copyright (c) 2014, Ruslan Baratov
 # All rights reserved.
 
-if(DEFINED POLLY_DEFAULT_CMAKE)
+if(DEFINED POLLY_VS_12_2013_CMAKE)
   return()
 else()
-  set(POLLY_DEFAULT_CMAKE 1)
+  set(POLLY_VS_12_2013_CMAKE 1)
 endif()
 
 # Compatible with default Hunter settings:
