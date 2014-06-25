@@ -233,7 +233,7 @@ if args.open:
   if generator.startswith('-GVisual Studio'):
     os.startfile(find_project(build_dir, ".sln"))
 
-if args.test:
+if args.test and not args.nobuild:
   os.chdir(build_dir)
   test_command = ['ctest']
   if args.config:
