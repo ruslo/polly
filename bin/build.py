@@ -213,15 +213,25 @@ if args.iossim:
 if not args.nobuild:
   call(build_command)
 
+def find_project(directory, extension):
+  for file in os.listdir(directory):
+    if file.endswith(extension):
+      project_path = os.path.join(directory, file)
+      if args.verbose:
+        print("Open project: {}".format(project_path))
+      return project_path
+  sys.exit(
+      "Project with extension `{}` not found in `{}`".format(
+          extension,
+          directory
+      )
+  )
+
 if args.open:
   if (generator == '-GXcode'):
-    for file in os.listdir(build_dir):
-      if file.endswith(".xcodeproj"):
-        call(['open', os.path.join(build_dir, file)])
+    call(['open', find_project(build_dir, ".xcodeproj")])
   if generator.startswith('-GVisual Studio'):
-    for file in os.listdir(build_dir):
-      if file.endswith(".sln"):
-        os.startfile(os.path.join(build_dir, file))
+    os.startfile(find_project(build_dir, ".sln"))
 
 if args.test:
   os.chdir(build_dir)
