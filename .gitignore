@@ -17,3 +17,6 @@ _builds
 
 # install directories
 */*/Install
+
+# python temps
+bin/detail/__pycache__
