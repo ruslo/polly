@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import detail.util
 
 assert(sys.version_info.major == 3)
 assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
@@ -34,6 +35,7 @@ parser.add_argument(
         'mingw',
         'ios',
         'ios-nocodesign',
+        'nmake-vs2013-x64'
     ],
     help="CMake generator/toolchain",
 )
@@ -109,6 +111,8 @@ elif args.toolchain == 'ios-nocodesign':
   generator = '-GXcode'
 elif args.toolchain == 'mingw':
   generator = '-GMinGW Makefiles'
+elif args.toolchain == 'nmake-vs2013-x64':
+  generator = '-GNMake Makefiles'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
@@ -129,6 +133,28 @@ if args.toolchain == 'mingw':
     )
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
+if args.toolchain == 'nmake-vs2013-x64':
+  vs_path = os.getenv('VS120COMNTOOLS')
+  if not vs_path:
+    sys.exit(
+        'Environment variable VS120COMNTOOLS is empty, '
+        'looks like Visual Studio 2013 is not installed'
+    )
+  vcvarsall_dir = os.path.join(vs_path, '..', '..', 'VC')
+  if not os.path.isdir(vcvarsall_dir):
+    sys.exit(
+        'Directory `{}` not exists '
+        '(VS120COMNTOOLS environment variable)'.format(vcvarsall_dir)
+    )
+  vcvarsall_path = os.path.join(vcvarsall_dir, 'vcvarsall.bat')
+  if not os.path.isfile(vcvarsall_path):
+    sys.exit(
+        'File vcvarsall.bat not found in directory '
+        '`{}` (VS120COMNTOOLS_ environment variable)'.format(vcvarsall_dir)
+    )
+  new_env = detail.util.get_environment_from_batch_command([vcvarsall_path, 'amd64'])
+  os.environ = new_env
+
 cdir = os.getcwd()
 
 # workaround for version less that 3.3
@@ -145,12 +171,14 @@ def call(call_args):
           call_args,
           stdout=DEVNULL,
           stderr=DEVNULL,
-          universal_newlines=True
+          universal_newlines=True,
+          env=os.environ
       )
     else:
       subprocess.check_call(
           call_args,
-          universal_newlines=True
+          universal_newlines=True,
+          env=os.environ
       )
   except subprocess.CalledProcessError as error:
     print(error)
