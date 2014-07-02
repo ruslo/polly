@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # Copyright (c) 2014, Ruslan Baratov
 # All rights reserved.
@@ -11,8 +11,7 @@ import subprocess
 import sys
 import detail.util
 
-assert(sys.version_info.major == 3)
-assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
+# Note: python 2.7 compatible (For jenkins plug-in)
 
 parser = argparse.ArgumentParser(description="Script for building")
 parser.add_argument(
