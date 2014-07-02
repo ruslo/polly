@@ -290,6 +290,7 @@ if args.test and not args.nobuild:
     test_command.append(args.config)
 
   if args.verbose:
+    print('Run tests')
     test_command.append('-VV')
 
   call(test_command)
