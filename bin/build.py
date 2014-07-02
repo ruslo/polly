@@ -183,9 +183,6 @@ def call(call_args):
     print(error)
     print(error.output)
     sys.exit(1)
-  except FileNotFoundError as error:
-    print(error)
-    sys.exit(1)
 
 call(['cmake', '--version'])
 
