@@ -8,19 +8,19 @@ import subprocess
 import sys
 
 def run():
-  toolchain = os.getenv('TOOLCHAIN')
+  toolchain = os.getenv('TLC')
   if not toolchain:
-    sys.exit('Environment variable TOOLCHAIN is empty')
+    sys.exit('Environment variable TLC is empty (TooLChain)')
 
-  build_type = os.getenv('BUILD_TYPE')
-  if not build_type:
-    sys.exit('Environment variable BUILD_TYPE is empty')
+  config = os.getenv('CFG')
+  if not config:
+    sys.exit('Environment variable CFG is empty (ConFiG)')
 
   build = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'build.py')
 
   print('Run script: {}'.format(build))
   print('Toolchain: {}'.format(toolchain))
-  print('Config: {}'.format(build_type))
+  print('Config: {}'.format(config))
 
   args = [
       sys.executable,
@@ -28,7 +28,7 @@ def run():
       '--toolchain',
       toolchain,
       '--config',
-      build_type,
+      config,
       '--verbose',
       '--test'
   ]
