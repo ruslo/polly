@@ -187,7 +187,13 @@ def call(call_args):
     print(error)
     sys.exit(1)
 
-call(['cmake', '--version'])
+if args.verbose:
+  if os.name == 'nt':
+    # Windows
+    call(['where', 'cmake'])
+  else:
+    call(['which', 'cmake'])
+  call(['cmake', '--version'])
 
 polly_root = os.getenv("POLLY_ROOT")
 if not polly_root:
