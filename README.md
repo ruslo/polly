@@ -80,6 +80,8 @@ Implementation of this idea can be found in [hunter](http://www.github.com/ruslo
  * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
  * [cygwin](https://github.com/ruslo/polly/wiki/Toolchain-list#cygwin)
+ * [mingw](https://github.com/ruslo/polly/wiki/Toolchain-list#mingw)
+ * [nmake-vs2013-x64](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs2013-x64)
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
