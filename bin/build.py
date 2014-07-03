@@ -207,7 +207,12 @@ build_dir = os.path.join(cdir, '_builds', build_tag)
 if os.name == 'nt':
   # Cut path for windows (doesn't really helps, but anyway...)
   import detail.win32
-  build_dir = detail.win32.get_short_path_name(build_dir)
+  new_build_dir = detail.win32.get_short_path_name(build_dir)
+  if new_build_dir:
+    if args.verbose:
+      print("Shortify `{}`".format(build_dir))
+      print("to `{}`".format(new_build_dir))
+    build_dir = new_build_dir
 
 build_dir_option = "-B{}".format(build_dir)
 
