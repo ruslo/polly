@@ -1,22 +1,5 @@
-from __future__ import print_function
 import sys
 import subprocess
-import itertools
-
-def validate_pair(ob):
-    try:
-        if not (len(ob) == 2):
-            print("Unexpected result:", ob, file=sys.stderr)
-            raise ValueError
-    except:
-        return False
-    return True
-
-def consume(iter):
-    try:
-        while True: next(iter)
-    except StopIteration:
-        pass
 
 def get_environment_from_batch_command(env_cmd, initial=None):
     """
