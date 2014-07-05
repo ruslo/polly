@@ -17,3 +17,5 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
+
+set(HUNTER_CMAKE_GENERATOR "MinGW Makefiles")
