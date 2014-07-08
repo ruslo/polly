@@ -244,6 +244,8 @@ if toolchain_option:
 
 if args.verbose:
   generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
+  generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
+  generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
 
 if args.install:
   generate_command.append(install_dir_option)
