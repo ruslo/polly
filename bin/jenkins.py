@@ -8,13 +8,13 @@ import subprocess
 import sys
 
 def run():
-  toolchain = os.getenv('TLC')
+  toolchain = os.getenv('TOOLCHAIN')
   if not toolchain:
-    sys.exit('Environment variable TLC is empty (TooLChain)')
+    sys.exit('Environment variable TOOLCHAIN is empty')
 
-  config = os.getenv('CFG')
+  config = os.getenv('CONFIG')
   if not config:
-    sys.exit('Environment variable CFG is empty (ConFiG)')
+    sys.exit('Environment variable CONFIG is empty')
 
   build = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'build.py')
 
