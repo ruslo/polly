@@ -123,7 +123,16 @@ Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
 agreements before start looking through examples (may explain a lot).
 Take a look at the [Travis](https://travis-ci.org/) config files:
 [mac](https://github.com/ruslo/polly/blob/master/.travis.yml) and [linux](https://github.com/ruslo/polly/blob/travis.linux/.travis.yml),
-it's quite self-explanatory. Also see [table][7] of toolchains available for testing with travis-ci.
+it's quite self-explanatory.
+
+## Links
+
+* [Hunter package manager](https://github.com/ruslo/hunter)
+* [Installation on Jenkins](https://github.com/ruslo/polly/wiki/Jenkins)
+* Travis example:
+[Mac OS X](https://travis-ci.org/forexample/hunter-simple/builds/28155372) and 
+[Linux](https://travis-ci.org/forexample/hunter-simple/builds/28154503)
+* [Table of toolchains available for Travis CI][7]
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
