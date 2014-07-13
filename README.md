@@ -1,5 +1,7 @@
 ### Polly
 
+Collection of CMake toolchain files and scripts
+
 | mac                                        | linux                                            |
 |--------------------------------------------|--------------------------------------------------|
 | [![Build Status][link_master]][link_polly] | [![Build Status][link_travis_linux]][link_polly] |
@@ -7,8 +9,6 @@
 [link_master]: https://travis-ci.org/ruslo/polly.png?branch=master
 [link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=travis.linux
 [link_polly]: https://travis-ci.org/ruslo/polly
-
-Collection of CMake toolchain files
 
 Every toolchain defines compiler/flags and two variables:
 * `POLLY_TOOLCHAIN_NAME`
@@ -99,17 +99,29 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
-## Usage (build.py)
+## build.py
 
-* [build.py][8] script can be used to build/test/install with `polly` toolchain, e.g.:
- * build Debug Xcode project:
-   * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
- * build and test Release Makefile project with `libcxx`:
-   * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
- * install Debug Xcode project:
-   * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
+This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that wrap cmake for you and automatically set:
+* build directory for your toolchain. E.g. `_builds/xcode`, `_builds/libcxx-Debug`, `_builds/nmake-Release`
+* local install directory. E.g. `_install/vs-12-2013-x64`, `_install/libcxx`
+* start an IDE project (Xcode, Visual Studio) if option `--open` passed
+* run `ctest` after the build done if option `--test` passed
 
-*Note* script expected that `POLLY_ROOT` environment variable is set.
+Example of usage (also see `build.py --help`):
+* build Debug Xcode project:
+  * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
+* build and test Release Makefile project with `libcxx`:
+  * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
+* install Debug Xcode project:
+  * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
+
+*Note*: script expected that `POLLY_ROOT` environment variable is set.
+
+## jenkins.py
+
+This is an experimental [script](https://github.com/ruslo/polly/wiki/Jenkins) to run
+matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins)
+for details.
 
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
