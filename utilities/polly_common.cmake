@@ -15,8 +15,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../find")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
 
 include(polly_fatal_error)
-include(polly_status_print)
 include(polly_status_debug)
+include(polly_status_print)
 
 # All well-known variables must be CACHE type:
 #     http://www.cmake.org/pipermail/cmake/2012-January/048429.html
@@ -31,6 +31,7 @@ if(NOT POLLY_TOOLCHAIN_TAG)
 endif()
 
 polly_status_print("Used toolchain: ${POLLY_TOOLCHAIN_NAME}")
+polly_status_debug("Used tag: ${POLLY_TOOLCHAIN_TAG}")
 
 # support for hunter (github.com/ruslo/hunter)
 set(HUNTER_INSTALL_TAG ${POLLY_TOOLCHAIN_TAG})
