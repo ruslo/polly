@@ -80,7 +80,7 @@ In this case targets can coexist simultaneously:
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
-> cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake .
+> cmake -H. -B_builds/clang_libstdcxx -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake -DCMAKE_VERBOSE_MAKEFILE=ON
 -- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
@@ -95,7 +95,7 @@ Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```
 Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 ```
-> make VERBOSE=1
+> cmake --build _builds/clang_libstdcxx
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
