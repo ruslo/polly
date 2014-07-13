@@ -1,4 +1,4 @@
-### polly
+### Polly
 
 | mac                                        | linux                                            |
 |--------------------------------------------|--------------------------------------------------|
@@ -10,13 +10,7 @@
 
 Collection of CMake toolchain files
 
------
-
-Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
-It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
-(`PROJECT_SOURCE_DIR` and generator variable is empty).
-
-Every toolchain defines two variables:
+Every toolchain defines compiler/flags and two variables:
 * `POLLY_TOOLCHAIN_NAME`
 * `POLLY_TOOLCHAIN_TAG`
 
@@ -55,7 +49,7 @@ In this case targets can coexist simultaneously:
                         - ...
 ```
 
-Implementation of this idea can be found in [hunter](http://www.github.com/ruslo/hunter) package manager.
+*Note*: This is a core idea of the tagged builds in [hunter](https://github.com/ruslo/hunter#tagged-builds) package manager.
 
 ## Toolchains
 
