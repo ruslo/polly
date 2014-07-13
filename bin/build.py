@@ -35,7 +35,8 @@ parser.add_argument(
         'mingw',
         'ios',
         'ios-nocodesign',
-        'nmake-vs2013-x64'
+        'nmake-vs2013-x64',
+        'nmake-vs2013'
     ],
     help="CMake generator/toolchain",
 )
@@ -113,6 +114,8 @@ elif args.toolchain == 'mingw':
   generator = '-GMinGW Makefiles'
 elif args.toolchain == 'nmake-vs2013-x64':
   generator = '-GNMake Makefiles'
+elif args.toolchain == 'nmake-vs2013':
+  generator = '-GNMake Makefiles'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
@@ -133,7 +136,7 @@ if args.toolchain == 'mingw':
     )
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
-if args.toolchain == 'nmake-vs2013-x64':
+def set_nmake_environment(arch):
   vs_path = os.getenv('VS120COMNTOOLS')
   if not vs_path:
     sys.exit(
@@ -152,8 +155,16 @@ if args.toolchain == 'nmake-vs2013-x64':
         'File vcvarsall.bat not found in directory '
         '`{}` (VS120COMNTOOLS_ environment variable)'.format(vcvarsall_dir)
     )
-  new_env = detail.util.get_environment_from_batch_command([vcvarsall_path, 'amd64'])
+  new_env = detail.util.get_environment_from_batch_command(
+      [vcvarsall_path, arch]
+  )
   os.environ = new_env
+
+if args.toolchain == 'nmake-vs2013-x64':
+  set_nmake_environment('amd64')
+
+if args.toolchain == 'nmake-vs2013':
+  set_nmake_environment('x86')
 
 cdir = os.getcwd()
 
