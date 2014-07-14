@@ -24,8 +24,8 @@ parser.add_argument(
         'clang_libstdcxx',
         'gcc48',
         'gcc',
-        'vs2013x64',
-        'vs2013',
+        'vs-12-2013-win64',
+        'vs-12-2013',
         'analyze',
         'sanitize_address',
         'sanitize_leak',
@@ -35,8 +35,8 @@ parser.add_argument(
         'mingw',
         'ios',
         'ios-nocodesign',
-        'nmake-vs2013-x64',
-        'nmake-vs2013'
+        'nmake-vs-12-2013-win64',
+        'nmake-vs-12-2013'
     ],
     help="CMake generator/toolchain",
 )
@@ -80,16 +80,11 @@ if args.toolchain:
 else:
   polly_toolchain = 'default'
 
-if args.toolchain == 'vs2013x64':
-  polly_toolchain = 'vs-12-2013-win64'
-elif args.toolchain == 'vs2013':
-  polly_toolchain = 'vs-12-2013'
-
 """Build directory tag"""
 multi_config_dir = False
-if args.toolchain == 'vs2013x64':
+if args.toolchain == 'vs-12-2013-win64':
   multi_config_dir = True
-elif args.toolchain == 'vs2013':
+elif args.toolchain == 'vs-12-2013':
   multi_config_dir = True
 elif args.toolchain == 'xcode':
   multi_config_dir = True
@@ -100,9 +95,9 @@ else:
   build_tag = polly_toolchain
 
 """Generator"""
-if args.toolchain == 'vs2013x64':
+if args.toolchain == 'vs-12-2013-win64':
   generator = '-GVisual Studio 12 2013 Win64'
-elif args.toolchain == 'vs2013':
+elif args.toolchain == 'vs-12-2013':
   generator = '-GVisual Studio 12 2013'
 elif args.toolchain == 'xcode':
   generator = '-GXcode'
@@ -112,9 +107,9 @@ elif args.toolchain == 'ios-nocodesign':
   generator = '-GXcode'
 elif args.toolchain == 'mingw':
   generator = '-GMinGW Makefiles'
-elif args.toolchain == 'nmake-vs2013-x64':
+elif args.toolchain == 'nmake-vs-12-2013-win64':
   generator = '-GNMake Makefiles'
-elif args.toolchain == 'nmake-vs2013':
+elif args.toolchain == 'nmake-vs-12-2013':
   generator = '-GNMake Makefiles'
 
 """Tune environment"""
@@ -160,10 +155,10 @@ def set_nmake_environment(arch):
   )
   os.environ = new_env
 
-if args.toolchain == 'nmake-vs2013-x64':
+if args.toolchain == 'nmake-vs-12-2013-win64':
   set_nmake_environment('amd64')
 
-if args.toolchain == 'nmake-vs2013':
+if args.toolchain == 'nmake-vs-12-2013':
   set_nmake_environment('x86')
 
 cdir = os.getcwd()
