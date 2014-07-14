@@ -1,4 +1,6 @@
-### polly
+### Polly
+
+Collection of CMake toolchain files and scripts
 
 | mac                                        | linux                                            |
 |--------------------------------------------|--------------------------------------------------|
@@ -8,15 +10,7 @@
 [link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=travis.linux
 [link_polly]: https://travis-ci.org/ruslo/polly
 
-Collection of CMake toolchain files
-
------
-
-Actually it's not a toolchain files, it's just files that included before first `CMakeLists.txt` and set some variables.
-It's more like `initial-cache` cmake option, but `initial-cache` is not fit because it's quite limited
-(`PROJECT_SOURCE_DIR` and generator variable is empty).
-
-Every toolchain defines two variables:
+Every toolchain defines compiler/flags and two variables:
 * `POLLY_TOOLCHAIN_NAME`
 * `POLLY_TOOLCHAIN_TAG`
 
@@ -55,7 +49,7 @@ In this case targets can coexist simultaneously:
                         - ...
 ```
 
-Implementation of this idea can be found in [hunter](http://www.github.com/ruslo/hunter) package manager.
+*Note*: This is a core idea of the tagged builds in [hunter](https://github.com/ruslo/hunter#tagged-builds) package manager.
 
 ## Toolchains
 
@@ -86,7 +80,7 @@ Implementation of this idea can be found in [hunter](http://www.github.com/ruslo
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
-> cmake -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake .
+> cmake -H. -B_builds/clang_libstdcxx -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake -DCMAKE_VERBOSE_MAKEFILE=ON
 -- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
@@ -101,21 +95,33 @@ Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```
 Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 ```
-> make VERBOSE=1
+> cmake --build _builds/clang_libstdcxx
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
-## Usage (build.py)
+## build.py
 
-* [build.py][8] script can be used to build/test/install with `polly` toolchain, e.g.:
- * build Debug Xcode project:
-   * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
- * build and test Release Makefile project with `libcxx`:
-   * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
- * install Debug Xcode project:
-   * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
+This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that wrap cmake for you and automatically set:
+* build directory for your toolchain. E.g. `_builds/xcode`, `_builds/libcxx-Debug`, `_builds/nmake-Release`
+* local install directory. E.g. `_install/vs-12-2013-x64`, `_install/libcxx`
+* start an IDE project (Xcode, Visual Studio) if option `--open` passed
+* run `ctest` after the build done if option `--test` passed
 
-*Note* script expected that `POLLY_ROOT` environment variable is set.
+Example of usage (also see `build.py --help`):
+* build Debug Xcode project:
+  * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
+* build and test Release Makefile project with `libcxx`:
+  * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
+* install Debug Xcode project:
+  * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
+
+*Note*: script expected that `POLLY_ROOT` environment variable is set.
+
+## jenkins.py
+
+This is an experimental [script](https://github.com/ruslo/polly/wiki/Jenkins) to run
+matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins)
+for details.
 
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
@@ -123,7 +129,16 @@ Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
 agreements before start looking through examples (may explain a lot).
 Take a look at the [Travis](https://travis-ci.org/) config files:
 [mac](https://github.com/ruslo/polly/blob/master/.travis.yml) and [linux](https://github.com/ruslo/polly/blob/travis.linux/.travis.yml),
-it's quite self-explanatory. Also see [table][7] of toolchains available for testing with travis-ci.
+it's quite self-explanatory.
+
+## Links
+
+* [Hunter package manager](https://github.com/ruslo/hunter)
+* [Installation on Jenkins](https://github.com/ruslo/polly/wiki/Jenkins)
+* Travis example:
+[Mac OS X](https://travis-ci.org/forexample/hunter-simple/builds/28155372) and 
+[Linux](https://travis-ci.org/forexample/hunter-simple/builds/28154503)
+* [Table of toolchains available for Travis CI][7]
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
