@@ -11,7 +11,6 @@ set(
     POLLY_TOOLCHAIN_NAME
     "Xcode / LLVM Standard C++ Library (libc++) / c++11 support"
 )
-set(POLLY_TOOLCHAIN_TAG "xcode")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 

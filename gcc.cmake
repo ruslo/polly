@@ -11,7 +11,6 @@ set(
     POLLY_TOOLCHAIN_NAME
     "gcc / c++11 support"
 )
-set(POLLY_TOOLCHAIN_TAG "gcc")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 

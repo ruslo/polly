@@ -8,7 +8,6 @@ else()
 endif()
 
 set(POLLY_TOOLCHAIN_NAME "NMake / Visual Studio 2013 / x64")
-set(POLLY_TOOLCHAIN_TAG "nmake-vs2013-x64")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/msvc-2013.cmake")

@@ -13,7 +13,6 @@ set(
     POLLY_TOOLCHAIN_NAME
     "iOS Universal (iphoneos + iphonesimulator) / c++11 support"
 )
-set(POLLY_TOOLCHAIN_TAG "ios")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 

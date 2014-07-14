@@ -11,7 +11,6 @@ set(
     POLLY_TOOLCHAIN_NAME
     "clang / LLVM Standard C++ Library (libc++) / c++11 support"
 )
-set(POLLY_TOOLCHAIN_TAG "libcxx")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 

@@ -11,7 +11,6 @@ set(
     POLLY_TOOLCHAIN_NAME
     "Clang thread sanitizer / c++11 support"
 )
-set(POLLY_TOOLCHAIN_TAG "sanitize_thread")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
