@@ -7,8 +7,9 @@ else()
   set(POLLY_GCC_CMAKE 1)
 endif()
 
-set(
-    POLLY_TOOLCHAIN_NAME
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
+
+polly_init(
     "gcc / c++11 support"
 )
 

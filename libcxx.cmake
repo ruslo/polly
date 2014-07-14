@@ -7,8 +7,9 @@ else()
   set(POLLY_CLANG_LIBCXX_CXX11_CMAKE 1)
 endif()
 
-set(
-    POLLY_TOOLCHAIN_NAME
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
+
+polly_init(
     "clang / LLVM Standard C++ Library (libc++) / c++11 support"
 )
 

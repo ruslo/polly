@@ -7,8 +7,9 @@ else()
   set(POLLY_SANITIZE_LEAK_CMAKE_ 1)
 endif()
 
-set(
-    POLLY_TOOLCHAIN_NAME
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
+
+polly_init(
     "Clang memory leaks sanitizer / c++11 support"
 )
 

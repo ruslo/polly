@@ -9,8 +9,9 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
 
-set(
-    POLLY_TOOLCHAIN_NAME
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
+
+polly_init(
     "iOS Universal (iphoneos + iphonesimulator) / i386 / armv7 / c++11 support"
 )
 
