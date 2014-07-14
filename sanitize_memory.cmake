@@ -11,6 +11,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
     "Clang memory sanitizer / c++11 support"
+    "Unix Makefiles"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")

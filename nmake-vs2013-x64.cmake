@@ -11,10 +11,9 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
     "NMake / Visual Studio 2013 / x64"
+    "NMake Makefiles"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/msvc-2013.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/arch/msvc-x64.cmake")
-
-set(HUNTER_CMAKE_GENERATOR "NMake Makefiles")

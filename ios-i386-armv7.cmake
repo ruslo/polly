@@ -13,6 +13,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
     "iOS Universal (iphoneos + iphonesimulator) / i386 / armv7 / c++11 support"
+    "Xcode"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
@@ -26,9 +27,6 @@ set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
 
 set(IPHONEOS_ARCHS armv7)
 set(IPHONESIMULATOR_ARCHS i386)
-
-# support for hunter (github.com/ruslo/hunter)
-set(HUNTER_CMAKE_GENERATOR Xcode)
 
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
