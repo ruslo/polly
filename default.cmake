@@ -7,6 +7,8 @@ else()
   set(POLLY_DEFAULT_CMAKE 1)
 endif()
 
+# Don't use polly_init (no generator expected)
 set(POLLY_TOOLCHAIN_NAME "Default")
+set(POLLY_TOOLCHAIN_TAG "Default")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
