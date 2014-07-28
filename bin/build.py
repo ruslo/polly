@@ -56,7 +56,9 @@ parser.add_argument(
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
 parser.add_argument('--install', action='store_true', help="Run install")
 parser.add_argument(
-    '--clear', action='store_true', help="Remove build and install dirs"
+    '--clear',
+    action='store_true',
+    help="Remove build and install dirs before build"
 )
 parser.add_argument(
     '--fwd',
@@ -231,7 +233,6 @@ if args.clear:
   shutil.rmtree(build_dir, ignore_errors=True)
   print("Remove install directory: {}".format(install_dir))
   shutil.rmtree(install_dir, ignore_errors=True)
-  sys.exit()
 
 generate_command = [
     'cmake',
