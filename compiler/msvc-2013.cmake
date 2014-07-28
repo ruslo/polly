@@ -7,4 +7,8 @@ else()
   set(POLLY_COMPILER_MSVC_2013_CMAKE_ 1)
 endif()
 
-set(HUNTER_MSVC_VCVARSALL "$ENV{VS120COMNTOOLS}/../../VC/vcvarsall.bat")
+get_filename_component(
+    HUNTER_MSVC_VCVARSALL
+    "$ENV{VS120COMNTOOLS}/../../VC/vcvarsall.bat"
+    ABSOLUTE
+)
