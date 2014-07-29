@@ -23,7 +23,6 @@ compiler:
     - clang
 
 before_install:
-    - brew update
     - export POLLY_ROOT=`pwd`
 
 install:
