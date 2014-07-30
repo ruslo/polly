@@ -211,7 +211,7 @@ if not polly_root:
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
-build_dir = os.path.join(cdir, '_builds', build_tag)
+build_dir = os.path.join(cdir, '_builds')
 if os.name == 'nt':
   # Cut path for windows (doesn't really helps, but anyway...)
   import detail.win32
@@ -221,6 +221,7 @@ if os.name == 'nt':
       print("Shortify `{}`".format(build_dir))
       print("to `{}`".format(new_build_dir))
     build_dir = new_build_dir
+build_dir = os.path.join(build_dir, build_tag)
 
 build_dir_option = "-B{}".format(build_dir)
 
