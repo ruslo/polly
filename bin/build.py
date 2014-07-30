@@ -313,7 +313,7 @@ if args.test and not args.nobuild:
   os.chdir(build_dir)
   test_command = ['ctest']
   if args.config:
-    test_command.append('--config')
+    test_command.append('-C')
     test_command.append(args.config)
 
   if args.verbose:
