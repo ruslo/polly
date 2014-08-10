@@ -46,6 +46,11 @@ parser.add_argument(
     help="CMake build type (Release, Debug, ...)",
 )
 
+parser.add_argument(
+    '--home',
+    help="Project home directory (directory with CMakeLists.txt)"
+)
+
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
 parser.add_argument(
     '--nobuild', action='store_true', help="Do not build (only generate)"
@@ -235,9 +240,13 @@ if args.clear:
   print("Remove install directory: {}".format(install_dir))
   shutil.rmtree(install_dir, ignore_errors=True)
 
+home = '.'
+if args.home:
+  home = args.home
+
 generate_command = [
     'cmake',
-    '-H.',
+    '-H{}'.format(home),
     build_dir_option
 ]
 
