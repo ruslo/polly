@@ -322,15 +322,14 @@ if args.open:
     sys.exit()
   print("Open skipped (not Xcode or Visual Studio)")
 
-if args.test and not args.nobuild:
-  os.chdir(build_dir)
-  test_command = ['ctest']
-  if args.config:
-    test_command.append('-C')
-    test_command.append(args.config)
-
-  if args.verbose:
-    print('Run tests')
-    test_command.append('-VV')
-
-  call(test_command)
+if not args.nobuild:
+  if args.test:
+    os.chdir(build_dir)
+    test_command = ['ctest']
+    if args.config:
+      test_command.append('-C')
+      test_command.append(args.config)
+    if args.verbose:
+      print('Run tests')
+      test_command.append('-VV')
+    call(test_command)
