@@ -52,6 +52,7 @@ parser.add_argument(
 )
 
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
+parser.add_argument('--pack', action='store_true', help="Run cpack after build")
 parser.add_argument(
     '--nobuild', action='store_true', help="Do not build (only generate)"
 )
@@ -333,3 +334,12 @@ if not args.nobuild:
       print('Run tests')
       test_command.append('-VV')
     call(test_command)
+  if args.pack:
+    os.chdir(build_dir)
+    pack_command = ['cpack']
+    if args.config:
+      pack_command.append('-C')
+      pack_command.append(args.config)
+    if os.name == 'nt':
+      pack_command.append('-GNSIS')
+    call(pack_command)
