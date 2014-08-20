@@ -271,7 +271,8 @@ if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
 
-call(generate_command)
+if not os.path.exists(os.path.join(build_dir, 'CMakeCache.txt')):
+  call(generate_command)
 
 build_command = [
     'cmake',
