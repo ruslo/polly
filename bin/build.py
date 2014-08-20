@@ -316,8 +316,11 @@ def find_project(directory, extension):
 if args.open:
   if (generator == '-GXcode'):
     call(['open', find_project(build_dir, ".xcodeproj")])
+    sys.exit()
   if generator.startswith('-GVisual Studio'):
     os.startfile(find_project(build_dir, ".sln"))
+    sys.exit()
+  print("Open skipped (not Xcode or Visual Studio)")
 
 if args.test and not args.nobuild:
   os.chdir(build_dir)
