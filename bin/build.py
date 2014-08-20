@@ -128,6 +128,8 @@ if os.name == 'nt':
 elif platform.system() == 'Linux':
   if platform.linux_distribution()[0] == 'Ubuntu':
     cpack_generator = 'DEB'
+elif platform.system() == 'Darwin':
+  cpack_generator = 'PackageMaker'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
