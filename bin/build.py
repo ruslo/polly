@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import detail.util
+import platform
 
 assert(sys.version_info.major == 3)
 assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
@@ -119,6 +120,14 @@ elif args.toolchain == 'nmake-vs-12-2013-win64':
   generator = '-GNMake Makefiles'
 elif args.toolchain == 'nmake-vs-12-2013':
   generator = '-GNMake Makefiles'
+
+"""CPack generator"""
+cpack_generator = ''
+if os.name == 'nt':
+  cpack_generator = 'NSIS'
+elif platform.system() == 'Linux':
+  if platform.linux_distribution()[0] == 'Ubuntu':
+    cpack_generator = 'DEB'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
@@ -268,6 +277,9 @@ if args.verbose:
 if args.install:
   generate_command.append(install_dir_option)
 
+if cpack_generator:
+  generate_command.append('-DCPACK_GENERATOR={}'.format(cpack_generator))
+
 if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
@@ -340,6 +352,8 @@ if not args.nobuild:
     if args.config:
       pack_command.append('-C')
       pack_command.append(args.config)
-    if os.name == 'nt':
-      pack_command.append('-GNSIS')
+    if args.verbose:
+      pack_command.append('--verbose')
+    if cpack_generator:
+      pack_command.append('-G{}'.format(cpack_generator))
     call(pack_command)
