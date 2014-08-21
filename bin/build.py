@@ -230,7 +230,7 @@ toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
 build_dir = os.path.join(cdir, '_builds')
-if os.name == 'nt':
+if os.name == 'nt' and args.toolchain != 'mingw':
   # Cut path for windows (doesn't really helps, but anyway...)
   import detail.win32
   new_build_dir = detail.win32.get_short_path_name(build_dir)
