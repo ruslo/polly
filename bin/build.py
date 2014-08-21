@@ -123,13 +123,14 @@ elif args.toolchain == 'nmake-vs-12-2013':
 
 """CPack generator"""
 cpack_generator = ''
-if os.name == 'nt':
-  cpack_generator = 'NSIS'
-elif platform.system() == 'Linux':
-  if platform.linux_distribution()[0] == 'Ubuntu':
-    cpack_generator = 'DEB'
-elif platform.system() == 'Darwin':
-  cpack_generator = 'PackageMaker'
+if args.pack:
+  if os.name == 'nt':
+    cpack_generator = 'NSIS'
+  elif platform.system() == 'Linux':
+    if platform.linux_distribution()[0] == 'Ubuntu':
+      cpack_generator = 'DEB'
+  elif platform.system() == 'Darwin':
+    cpack_generator = 'PackageMaker'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
