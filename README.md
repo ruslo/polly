@@ -55,6 +55,7 @@ In this case targets can coexist simultaneously:
 
 * [default](https://github.com/ruslo/polly/wiki/Toolchain-list#default)
 * [libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#libcxx)
+* [clang-lto](https://github.com/ruslo/polly/wiki/Toolchain-list#clang-lto)
 * [clang_libstdcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#clang_libstdcxx)
 * [custom_libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom_libcxx)
 * [xcode](https://github.com/ruslo/polly/wiki/Toolchain-list#xcode)
