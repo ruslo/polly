@@ -20,6 +20,7 @@ parser.add_argument(
     '--toolchain',
     choices=[
         'analyze',
+        'clang-lto',
         'clang_libstdcxx',
         'cygwin',
         'default',
