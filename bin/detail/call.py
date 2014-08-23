@@ -23,6 +23,10 @@ def call(call_args, verbose):
           env=os.environ
       )
     else:
+      oneline = ''
+      for i in call_args:
+        oneline += '"{}" '.format(i)
+      print("[{}]> {}".format(os.getcwd(), oneline))
       subprocess.check_call(
           call_args,
           universal_newlines=True,
