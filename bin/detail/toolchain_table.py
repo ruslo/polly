@@ -5,24 +5,59 @@ import os
 import platform
 
 class Toolchain:
-  def __init__(self, name, generator):
+  def __init__(self, name, generator, arch='', vs_version=''):
     self.name = name
     self.generator = generator
-    self.multiconfig = False
+    self.arch = arch
+    self.vs_version = vs_version
+    self.multiconfig = Toolchain.is_multiconfig(generator)
+    self.is_nmake = (self.generator == 'NMake Makefiles')
+    self.is_msvc = self.generator.startswith('Visual Studio')
+    self.verify()
+
+  def is_multiconfig(generator):
     if generator.startswith('Visual Studio'):
-      self.multiconfig = True
+      return True
     if generator == 'Xcode':
-      self.multiconfig = True
+      return True
+    return False
+
+  def verify(self):
+    if self.arch:
+      assert(self.is_nmake or self.is_msvc)
+      assert(self.arch == 'amd64' or self.arch == 'x86')
+
+    if self.is_nmake or self.is_msvc:
+      assert(self.vs_version)
+
+
 
 toolchain_table = [Toolchain('default', '')]
 
 if os.name == 'nt':
   toolchain_table += [
       Toolchain('mingw', 'MinGW Makefiles'),
-      Toolchain('nmake-vs-12-2013', 'NMake Makefiles'),
-      Toolchain('nmake-vs-12-2013-win64', 'NMake Makefiles'),
-      Toolchain('vs-12-2013', 'Visual Studio 12 2013'),
-      Toolchain('vs-12-2013-win64', 'Visual Studio 12 2013 Win64'),
+      Toolchain(
+          'nmake-vs-12-2013',
+          'NMake Makefiles',
+          arch='x86',
+          vs_version='12'
+      ),
+      Toolchain(
+          'nmake-vs-12-2013-win64',
+          'NMake Makefiles',
+          arch='amd64',
+          vs_version='12'
+      ),
+      Toolchain(
+          'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
+      ),
+      Toolchain(
+          'vs-12-2013-win64',
+          'Visual Studio 12 2013 Win64',
+          arch='amd64',
+          vs_version='12'
+      ),
   ]
 
 if platform.system().startswith('CYGWIN'):

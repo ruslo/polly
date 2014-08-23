@@ -5,14 +5,15 @@
 
 import argparse
 import os
-import re
 import shutil
-import subprocess
 import sys
-import detail.util
-import platform
 
+import detail.call
 import detail.cpack_generator
+import detail.get_nmake_environment
+import detail.open_project
+import detail.pack_command
+import detail.test_command
 import detail.toolchain_name
 import detail.toolchain_table
 import detail.verify_mingw_path
@@ -89,81 +90,25 @@ else:
   build_tag = polly_toolchain
 
 """Tune environment"""
-if args.toolchain == 'mingw':
+if toolchain_entry.name == 'mingw':
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
-def set_nmake_environment(arch):
-  vs_path = os.getenv('VS120COMNTOOLS')
-  if not vs_path:
-    sys.exit(
-        'Environment variable VS120COMNTOOLS is empty, '
-        'looks like Visual Studio 2013 is not installed'
-    )
-  vcvarsall_dir = os.path.join(vs_path, '..', '..', 'VC')
-  if not os.path.isdir(vcvarsall_dir):
-    sys.exit(
-        'Directory `{}` not exists '
-        '(VS120COMNTOOLS environment variable)'.format(vcvarsall_dir)
-    )
-  vcvarsall_path = os.path.join(vcvarsall_dir, 'vcvarsall.bat')
-  if not os.path.isfile(vcvarsall_path):
-    sys.exit(
-        'File vcvarsall.bat not found in directory '
-        '`{}` (VS120COMNTOOLS_ environment variable)'.format(vcvarsall_dir)
-    )
-  new_env = detail.util.get_environment_from_batch_command(
-      [vcvarsall_path, arch]
+if toolchain_entry.is_nmake:
+  os.environ = get_nmake_environment(
+      polly_toolchain.arch, polly_toolchain.vs_version
   )
-  os.environ = new_env
-
-if args.toolchain == 'nmake-vs-12-2013-win64':
-  set_nmake_environment('amd64')
-
-if args.toolchain == 'nmake-vs-12-2013':
-  set_nmake_environment('x86')
 
 cdir = os.getcwd()
-
-# workaround for version less that 3.3
-DEVNULL = open(os.devnull, 'w')
-
-def call(call_args):
-  try:
-    print('Execute command: [')
-    for i in call_args:
-      print('  `{}`'.format(i))
-    print(']')
-    if not args.verbose:
-      subprocess.check_call(
-          call_args,
-          stdout=DEVNULL,
-          stderr=DEVNULL,
-          universal_newlines=True,
-          env=os.environ
-      )
-    else:
-      subprocess.check_call(
-          call_args,
-          universal_newlines=True,
-          env=os.environ
-      )
-  except subprocess.CalledProcessError as error:
-    print(error)
-    print(error.output)
-    sys.exit(1)
-  except OSError as error:
-    print(error)
-    sys.exit(1)
 
 if args.verbose:
   if os.name == 'nt':
     # Windows
-    call(['where', 'cmake'])
+    detail.call.call(['where', 'cmake'], args.verbose)
   else:
-    call(['which', 'cmake'])
-  call(['cmake', '--version'])
+    detail.call.call(['which', 'cmake'], args.verbose)
+  detail.call.call(['cmake', '--version'], args.verbose)
 
 polly_root = os.getenv("POLLY_ROOT")
 if not polly_root:
@@ -172,18 +117,7 @@ if not polly_root:
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
-build_dir = os.path.join(cdir, '_builds')
-if os.name == 'nt' and args.toolchain != 'mingw':
-  # Cut path for windows (doesn't really helps, but anyway...)
-  import detail.win32
-  new_build_dir = detail.win32.get_short_path_name(build_dir)
-  if new_build_dir:
-    if args.verbose:
-      print("Shortify `{}`".format(build_dir))
-      print("to `{}`".format(new_build_dir))
-    build_dir = new_build_dir
-build_dir = os.path.join(build_dir, build_tag)
-
+build_dir = os.path.join(cdir, '_builds', build_tag)
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
@@ -231,7 +165,7 @@ if args.fwd != None:
     generate_command.append("-D{}".format(x))
 
 if not os.path.exists(os.path.join(build_dir, 'CMakeCache.txt')):
-  call(generate_command)
+  detail.call.call(generate_command, args.verbose)
 
 build_command = [
     'cmake',
@@ -256,50 +190,14 @@ if args.iossim:
   build_command.append('iphonesimulator')
 
 if not args.nobuild:
-  call(build_command)
-
-def find_project(directory, extension):
-  for file in os.listdir(directory):
-    if file.endswith(extension):
-      project_path = os.path.join(directory, file)
-      if args.verbose:
-        print("Open project: {}".format(project_path))
-      return project_path
-  sys.exit(
-      "Project with extension `{}` not found in `{}`".format(
-          extension,
-          directory
-      )
-  )
-
-if args.open:
-  if (toolchain_entry.generator == 'Xcode'):
-    call(['open', find_project(build_dir, ".xcodeproj")])
-    sys.exit()
-  if toolchain_entry.generator.startswith('Visual Studio'):
-    os.startfile(find_project(build_dir, ".sln"))
-    sys.exit()
-  print("Open skipped (not Xcode or Visual Studio)")
+  detail.call.call(build_command, args.verbose)
 
 if not args.nobuild:
+  os.chdir(build_dir)
   if args.test:
-    os.chdir(build_dir)
-    test_command = ['ctest']
-    if args.config:
-      test_command.append('-C')
-      test_command.append(args.config)
-    if args.verbose:
-      print('Run tests')
-      test_command.append('-VV')
-    call(test_command)
+    detail.test_command.run(build_dir, args.config, args.verbose)
   if args.pack:
-    os.chdir(build_dir)
-    pack_command = ['cpack']
-    if args.config:
-      pack_command.append('-C')
-      pack_command.append(args.config)
-    if args.verbose:
-      pack_command.append('--verbose')
-    if cpack_generator:
-      pack_command.append('-G{}'.format(cpack_generator))
-    call(pack_command)
+    detail.pack_command.run(args.config, args.verbose, cpack_generator)
+
+if args.open:
+  detail.open_project.open(toolchain_entry.generator, build_dir, args.verbose)
