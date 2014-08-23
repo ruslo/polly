@@ -8,6 +8,11 @@ class Toolchain:
   def __init__(self, name, generator):
     self.name = name
     self.generator = generator
+    self.multiconfig = False
+    if generator.startswith('Visual Studio'):
+      self.multiconfig = True
+    if generator == 'Xcode':
+      self.multiconfig = True
 
 toolchain_table = [Toolchain('default', '')]
 
@@ -49,3 +54,9 @@ if os.name == 'posix':
       Toolchain('libcxx', 'Unix Makefiles'),
       Toolchain('sanitize_address', 'Unix Makefiles'),
   ]
+
+def get_by_name(name):
+  for x in toolchain_table:
+    if name == x.name:
+      return x
+  sys.exit('Internal error: toolchain not found in toolchain table')

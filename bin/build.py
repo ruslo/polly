@@ -76,41 +76,14 @@ parser.add_argument(
 
 args = parser.parse_args()
 
-generator = ''
-
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
+toolchain_entry = detail.toolchain_table.get_by_name(polly_toolchain)
 
 """Build directory tag"""
-multi_config_dir = False
-if args.toolchain == 'vs-12-2013-win64':
-  multi_config_dir = True
-elif args.toolchain == 'vs-12-2013':
-  multi_config_dir = True
-elif args.toolchain == 'xcode':
-  multi_config_dir = True
-
-if args.config and not multi_config_dir:
+if args.config and not toolchain_entry.multiconfig:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
 else:
   build_tag = polly_toolchain
-
-"""Generator"""
-if args.toolchain == 'vs-12-2013-win64':
-  generator = '-GVisual Studio 12 2013 Win64'
-elif args.toolchain == 'vs-12-2013':
-  generator = '-GVisual Studio 12 2013'
-elif args.toolchain == 'xcode':
-  generator = '-GXcode'
-elif args.toolchain == 'ios':
-  generator = '-GXcode'
-elif args.toolchain == 'ios-nocodesign':
-  generator = '-GXcode'
-elif args.toolchain == 'mingw':
-  generator = '-GMinGW Makefiles'
-elif args.toolchain == 'nmake-vs-12-2013-win64':
-  generator = '-GNMake Makefiles'
-elif args.toolchain == 'nmake-vs-12-2013':
-  generator = '-GNMake Makefiles'
 
 """CPack generator"""
 cpack_generator = ''
@@ -257,8 +230,8 @@ generate_command = [
 if args.config:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
 
-if generator:
-  generate_command.append(generator)
+if toolchain_entry.generator:
+  generate_command.append('-G{}'.format(toolchain_entry.generator))
 
 if toolchain_option:
   generate_command.append(toolchain_option)
@@ -321,10 +294,10 @@ def find_project(directory, extension):
   )
 
 if args.open:
-  if (generator == '-GXcode'):
+  if (toolchain_entry.generator == 'Xcode'):
     call(['open', find_project(build_dir, ".xcodeproj")])
     sys.exit()
-  if generator.startswith('-GVisual Studio'):
+  if toolchain_entry.generator.startswith('Visual Studio'):
     os.startfile(find_project(build_dir, ".sln"))
     sys.exit()
   print("Open skipped (not Xcode or Visual Studio)")
