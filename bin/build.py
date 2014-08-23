@@ -15,6 +15,7 @@ import platform
 import detail.cpack_generator
 import detail.toolchain_name
 import detail.toolchain_table
+import detail.verify_mingw_path
 
 toolchain_table = detail.toolchain_table.toolchain_table
 
@@ -90,20 +91,7 @@ else:
 """Tune environment"""
 if args.toolchain == 'mingw':
   mingw_path = os.getenv("MINGW_PATH")
-  if not mingw_path:
-    sys.exit(
-        "Please set environment variable MINGW_PATH "
-        "to directory with mingw32-make.exe"
-    )
-  if not os.path.isdir(mingw_path):
-    sys.exit("MINGW_PATH({}) is not a directory".format(mingw_path))
-
-  mingw_make = os.path.join(mingw_path, 'mingw32-make.exe')
-  if not os.path.isfile(mingw_make):
-    sys.exit(
-        "File mingw32-make.exe not found in "
-        "directory `{}` (MINGW_PATH environment variable)".format(mingw_path)
-    )
+  detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
 def set_nmake_environment(arch):
