@@ -116,9 +116,13 @@ if not polly_root:
   sys.exit("Environment variable `POLLY_ROOT` is empty")
 
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
+if not os.path.exists(toolchain_path):
+  sys.exit("Toolchain file not found: {}".format(toolchain_path))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
 build_dir = os.path.join(cdir, '_builds', build_tag)
+if args.verbose:
+  print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
