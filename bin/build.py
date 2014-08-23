@@ -10,6 +10,7 @@ import sys
 
 import detail.call
 import detail.cpack_generator
+import detail.generate_command
 import detail.get_nmake_environment
 import detail.open_project
 import detail.pack_command
@@ -164,8 +165,7 @@ if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
 
-if not os.path.exists(os.path.join(build_dir, 'CMakeCache.txt')):
-  detail.call.call(generate_command, args.verbose)
+detail.generate_command.run(generate_command, build_dir, args.verbose)
 
 build_command = [
     'cmake',
