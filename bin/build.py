@@ -20,7 +20,18 @@ toolchain_table = detail.toolchain_table.toolchain_table
 assert(sys.version_info.major == 3)
 assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
 
-parser = argparse.ArgumentParser(description="Script for building")
+description="""
+Script for building. Available toolchains:\n
+"""
+
+for x in toolchain_table:
+  description += '  ' + x.name + '\n'
+
+parser = argparse.ArgumentParser(
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    description=description
+)
+
 parser.add_argument(
     '--toolchain',
     choices=[x.name for x in toolchain_table],
