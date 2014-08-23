@@ -141,7 +141,7 @@ generate_command = [
     build_dir_option
 ]
 
-if args.config:
+if args.config and not toolchain_entry.multiconfig:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
 
 if toolchain_entry.generator:
