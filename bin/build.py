@@ -12,6 +12,7 @@ import sys
 import detail.util
 import platform
 
+import detail.cpack_generator
 import detail.toolchain_name
 import detail.toolchain_table
 
@@ -78,23 +79,13 @@ args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
 toolchain_entry = detail.toolchain_table.get_by_name(polly_toolchain)
+cpack_generator = detail.cpack_generator.get(args.pack)
 
 """Build directory tag"""
 if args.config and not toolchain_entry.multiconfig:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
 else:
   build_tag = polly_toolchain
-
-"""CPack generator"""
-cpack_generator = ''
-if args.pack:
-  if os.name == 'nt':
-    cpack_generator = 'NSIS'
-  elif platform.system() == 'Linux':
-    if platform.linux_distribution()[0] == 'Ubuntu':
-      cpack_generator = 'DEB'
-  elif platform.system() == 'Darwin':
-    cpack_generator = 'PackageMaker'
 
 """Tune environment"""
 if args.toolchain == 'mingw':
