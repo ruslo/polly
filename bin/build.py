@@ -12,6 +12,8 @@ import sys
 import detail.util
 import platform
 
+import detail.toolchain_name
+
 assert(sys.version_info.major == 3)
 assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
 
@@ -83,12 +85,7 @@ args = parser.parse_args()
 
 generator = ''
 
-"""Toolchain name"""
-polly_toolchain = ''
-if args.toolchain:
-  polly_toolchain = args.toolchain
-else:
-  polly_toolchain = 'default'
+polly_toolchain = detail.toolchain_name.get(args.toolchain)
 
 """Build directory tag"""
 multi_config_dir = False
