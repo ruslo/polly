@@ -13,9 +13,10 @@ def run(generate_command, build_dir, verbose):
   saved_arguments_path = os.path.join(temp_dir, 'saved-arguments')
 
   generate_command_oneline = ' '.join(generate_command)
-  if not os.path.exists(os.path.join(build_dir, 'CMakeCache.txt')):
+  cache_file = os.path.join(build_dir, 'CMakeCache.txt')
+  if not os.path.exists(cache_file):
     open(saved_arguments_path, 'w').write(generate_command_oneline)
-    detail.call.call(generate_command, verbose)
+    detail.call.call(generate_command, verbose, cache_file=cache_file)
     return
 
   # No need to generate project, just check that arguments not changed
