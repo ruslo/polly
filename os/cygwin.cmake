@@ -7,11 +7,6 @@ else()
   set(POLLY_OS_CYGWIN_CMAKE_ 1)
 endif()
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -U__STRICT_ANSI__"
-    CACHE
-    STRING
-    "C++ compiler flags"
-    FORCE
-)
+include(polly_add_cache_flag)
+
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-U__STRICT_ANSI__")

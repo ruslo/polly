@@ -7,29 +7,8 @@ else()
   set(POLLY_LIBRARY_STD_LIBSTDCXX_CMAKE 1)
 endif()
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -stdlib=libstdc++"
-    CACHE
-    STRING
-    "C++ compiler flags"
-    FORCE
-)
+include(polly_add_cache_flag)
 
-set(
-    CMAKE_EXE_LINKER_FLAGS
-    "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libstdc++"
-    CACHE
-    STRING
-    "Executable linker flags"
-    FORCE
-)
-
-set(
-    CMAKE_SHARED_LINKER_FLAGS
-    "${CMAKE_SHARED_LINKER_FLAGS} -stdlib=libstdc++"
-    CACHE
-    STRING
-    "Shared library linker flags"
-    FORCE
-)
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-stdlib=libstdc++")
+polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "-stdlib=libstdc++")
+polly_add_cache_flag(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libstdc++")

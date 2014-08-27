@@ -7,20 +7,7 @@ else()
   set(POLLY_LIBRARY_STD_NOLIBS_CMAKE 1)
 endif()
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -nostdinc++"
-    CACHE
-    STRING
-    "C++ compiler flags"
-    FORCE
-)
+include(polly_add_cache_flag)
 
-set(
-    CMAKE_EXE_LINKER_FLAGS
-    "${CMAKE_EXE_LINKER_FLAGS} -nodefaultlibs"
-    CACHE
-    STRING
-    "C++ linker flags"
-    FORCE
-)
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-nostdinc++")
+polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "-nodefaultlibs")

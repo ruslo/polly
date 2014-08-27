@@ -7,11 +7,8 @@ else()
   set(POLLY_FLAGS_SANITIZE_THREAD_CMAKE_ 1)
 endif()
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -fsanitize=thread -fPIE -pie -g"
-    CACHE
-    STRING
-    "C++ compiler flags"
-    FORCE
-)
+include(polly_add_cache_flag)
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-fsanitize=thread")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-fPIE")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-pie")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-g")

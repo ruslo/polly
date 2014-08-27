@@ -7,11 +7,7 @@ else()
   set(POLLY_FLAGS_SANITIZE_MEMORY_CMAKE_ 1)
 endif()
 
-set(
-    CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -fsanitize=memory -fsanitize-memory-track-origins -g"
-    CACHE
-    STRING
-    "C++ compiler flags"
-    FORCE
-)
+include(polly_add_cache_flag)
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-fsanitize=memory")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-fsanitize-memory-track-origins")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-g")
