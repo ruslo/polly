@@ -7,10 +7,6 @@ else()
   set(POLLY_OS_IPHONE_CMAKE 1)
 endif()
 
-if(NOT XCODE_VERSION)
-  polly_fatal_error("This toolchain is available only on Xcode")
-endif()
-
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS" FORCE)
 set(CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphoneos;-iphonesimulator")
 
@@ -19,6 +15,12 @@ find_program(XCODE_SELECT_EXECUTABLE xcode-select)
 if(NOT XCODE_SELECT_EXECUTABLE)
   polly_fatal_error("xcode-select not found")
 endif()
+
+if(XCODE_VERSION VERSION_LESS "5.0.0")
+  polly_fatal_error("Works since Xcode 5.0.0 (current ver: ${XCODE_VERSION})")
+endif()
+
+polly_status_debug("Developer root (env): $ENV{DEVELOPER_DIR}")
 
 execute_process(
     COMMAND
@@ -29,33 +31,27 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
+polly_status_debug("Developer root: ${XCODE_DEVELOPER_ROOT}")
+
 find_program(XCODEBUILD_EXECUTABLE xcodebuild)
 if(NOT XCODEBUILD_EXECUTABLE)
   polly_fatal_error("xcodebuild not found")
 endif()
 
-# Order is important(!)
-# Set high priority to the last
-set(IOS_SDK_VERSIONS 5.0 5.1 6.0 6.1 7.0 7.1)
-foreach(x ${IOS_SDK_VERSIONS})
-  execute_process(
-      COMMAND
-      "${XCODEBUILD_EXECUTABLE}"
-      -showsdks
-      -sdk
-      "iphoneos${x}"
-      RESULT_VARIABLE
-      IOS_SDK_VERSION_RESULT
-      OUTPUT_QUIET
-      ERROR_QUIET
-  )
-  if(${IOS_SDK_VERSION_RESULT} EQUAL 0)
-    set(IOS_SDK_VERSION ${x})
-  endif()
-endforeach()
-
-if(NOT IOS_SDK_VERSION)
-  polly_fatal_error("iOS version not found, tested: [${IOS_SDK_VERSIONS}]")
+# Check version exists
+execute_process(
+    COMMAND
+    "${XCODEBUILD_EXECUTABLE}"
+    -showsdks
+    -sdk
+    "iphoneos${IOS_SDK_VERSION}"
+    RESULT_VARIABLE
+    IOS_SDK_VERSION_RESULT
+    OUTPUT_QUIET
+    ERROR_QUIET
+)
+if(NOT "${IOS_SDK_VERSION_RESULT}" EQUAL 0)
+  polly_fatal_error("iOS version `${IOS_SDK_VERSION}` not found (${IOS_SDK_VERSION_RESULT})")
 endif()
 
 # iPhone simulator root
