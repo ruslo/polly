@@ -60,7 +60,7 @@ In this case targets can coexist simultaneously:
 * [custom-libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom-libcxx)
 * [xcode](https://github.com/ruslo/polly/wiki/Toolchain-list#xcode)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
-* [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc48)
+* [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc-4-8)
 * iOS
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
