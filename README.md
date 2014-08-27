@@ -56,21 +56,21 @@ In this case targets can coexist simultaneously:
 * [default](https://github.com/ruslo/polly/wiki/Toolchain-list#default)
 * [libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#libcxx)
 * [clang-lto](https://github.com/ruslo/polly/wiki/Toolchain-list#clang-lto)
-* [clang_libstdcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#clang_libstdcxx)
-* [custom_libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom_libcxx)
+* [clang-libstdcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#clang-libstdcxx)
+* [custom-libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom-libcxx)
 * [xcode](https://github.com/ruslo/polly/wiki/Toolchain-list#xcode)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
-* [gcc48](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc48)
+* [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc48)
 * iOS
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
  * [ios-nocodesign](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-nocodesign)
 * Clang tools
  * [analyze](https://github.com/ruslo/polly/wiki/Toolchain-list#analyze)
- * [sanitize_address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_address)
- * [sanitize_leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_leak)
- * [sanitize_memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_memory)
- * [sanitize_thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize_thread)
+ * [sanitize-address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-address)
+ * [sanitize-leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-leak)
+ * [sanitize-memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-memory)
+ * [sanitize-thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-thread)
 * Windows
  * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
@@ -82,7 +82,7 @@ In this case targets can coexist simultaneously:
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
 ```bash
-> cmake -H. -B_builds/clang_libstdcxx -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang_libstdcxx.cmake -DCMAKE_VERBOSE_MAKEFILE=ON
+> cmake -H. -B_builds/clang-libstdcxx -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/clang-libstdcxx.cmake -DCMAKE_VERBOSE_MAKEFILE=ON
 -- [polly] Used toolchain: clang / GNU Standard C++ Library (libstdc++) / c++11 support
 -- The CXX compiler identification is Clang 5.0.0
 -- Check for working CXX compiler: /usr/bin/c++
@@ -108,6 +108,7 @@ This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that w
 * local install directory. E.g. `_install/vs-12-2013-x64`, `_install/libcxx`
 * start an IDE project (Xcode, Visual Studio) if option `--open` passed
 * run `ctest` after the build done if option `--test` passed
+* run `cpack` after the build done if option `--pack` passed
 
 Example of usage (also see `build.py --help`):
 * build Debug Xcode project:
