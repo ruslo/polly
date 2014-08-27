@@ -2,7 +2,9 @@
 # All rights reserved.
 
 import os
+import subprocess
 import sys
+
 import detail.call
 
 def find_project(directory, extension):
@@ -18,9 +20,20 @@ def find_project(directory, extension):
       )
   )
 
-def open(generator, build_dir, verbose):
+def open(generator, ios_version, build_dir, verbose):
   if (generator == 'Xcode'):
-    detail.call.call(['open', find_project(build_dir, ".xcodeproj")], verbose)
+    args = ['open']
+    dev_root = ''
+    if ios_version:
+      dev_root = detail.ios_dev_root.get(ios_version)
+    if not dev_root:
+      dev_root = subprocess.check_output(
+          ['xcode-select', '--print-path'], universal_newlines=True
+      ).split('\n')[0]
+    args.append('-a')
+    args.append(os.path.join(dev_root, '..', '..'))
+    args.append(find_project(build_dir, ".xcodeproj"))
+    detail.call.call(args, verbose)
   elif toolchain_entry.generator.is_msvc:
     os.startfile(find_project(build_dir, ".sln"))
   else:

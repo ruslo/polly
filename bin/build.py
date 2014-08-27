@@ -12,6 +12,7 @@ import detail.call
 import detail.cpack_generator
 import detail.generate_command
 import detail.get_nmake_environment
+import detail.ios_dev_root
 import detail.open_project
 import detail.pack_command
 import detail.test_command
@@ -100,6 +101,13 @@ if toolchain_entry.is_nmake:
   os.environ = get_nmake_environment(
       polly_toolchain.arch, polly_toolchain.vs_version
   )
+
+if toolchain_entry.ios_version:
+  ios_dev_root = detail.ios_dev_root.get(toolchain_entry.ios_version)
+  if ios_dev_root:
+    if args.verbose:
+      print("Set environment DEVELOPER_DIR to {}".format(ios_dev_root))
+    os.environ['DEVELOPER_DIR'] = ios_dev_root
 
 cdir = os.getcwd()
 
@@ -204,4 +212,9 @@ if not args.nobuild:
     detail.pack_command.run(args.config, args.verbose, cpack_generator)
 
 if args.open:
-  detail.open_project.open(toolchain_entry.generator, build_dir, args.verbose)
+  detail.open_project.open(
+      toolchain_entry.generator,
+      toolchain_entry.ios_version,
+      build_dir,
+      args.verbose
+  )

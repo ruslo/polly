@@ -5,11 +5,12 @@ import os
 import platform
 
 class Toolchain:
-  def __init__(self, name, generator, arch='', vs_version=''):
+  def __init__(self, name, generator, arch='', vs_version='', ios_version=''):
     self.name = name
     self.generator = generator
     self.arch = arch
     self.vs_version = vs_version
+    self.ios_version = ios_version
     self.multiconfig = Toolchain.is_multiconfig(generator)
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
@@ -30,7 +31,8 @@ class Toolchain:
     if self.is_nmake or self.is_msvc:
       assert(self.vs_version)
 
-
+    if self.ios_version:
+      assert(self.generator == 'Xcode')
 
 toolchain_table = [Toolchain('default', '')]
 
@@ -74,8 +76,10 @@ if platform.system() == 'Linux':
 
 if platform.system() == 'Darwin':
   toolchain_table += [
-      Toolchain('ios', 'Xcode'),
-      Toolchain('ios-nocodesign', 'Xcode'),
+      Toolchain('ios-8-0', 'Xcode', ios_version='8.0'),
+      Toolchain('ios-7-1', 'Xcode', ios_version='7.1'),
+      Toolchain('ios-7-0', 'Xcode', ios_version='7.0'),
+      Toolchain('ios-nocodesign', 'Xcode', ios_version='7.1'),
       Toolchain('xcode', 'Xcode'),
   ]
 
