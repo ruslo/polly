@@ -69,9 +69,9 @@ if platform.system().startswith('CYGWIN'):
 
 if platform.system() == 'Linux':
   toolchain_table += [
-      Toolchain('sanitize_leak', 'Unix Makefiles'),
-      Toolchain('sanitize_memory', 'Unix Makefiles'),
-      Toolchain('sanitize_thread', 'Unix Makefiles'),
+      Toolchain('sanitize-leak', 'Unix Makefiles'),
+      Toolchain('sanitize-memory', 'Unix Makefiles'),
+      Toolchain('sanitize-thread', 'Unix Makefiles'),
   ]
 
 if platform.system() == 'Darwin':
@@ -87,11 +87,11 @@ if os.name == 'posix':
   toolchain_table += [
       Toolchain('analyze', 'Unix Makefiles'),
       Toolchain('clang-lto', 'Unix Makefiles'),
-      Toolchain('clang_libstdcxx', 'Unix Makefiles'),
+      Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
-      Toolchain('gcc48', 'Unix Makefiles'),
+      Toolchain('gcc-4-8', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
-      Toolchain('sanitize_address', 'Unix Makefiles'),
+      Toolchain('sanitize-address', 'Unix Makefiles'),
   ]
 
 def get_by_name(name):
