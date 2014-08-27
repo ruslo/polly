@@ -27,6 +27,7 @@ set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
 
 set(IPHONEOS_ARCHS armv7)
 set(IPHONESIMULATOR_ARCHS i386)
+set(IOS_SDK_VERSION 7.1)
 
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
