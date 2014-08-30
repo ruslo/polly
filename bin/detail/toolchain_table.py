@@ -11,17 +11,11 @@ class Toolchain:
     self.arch = arch
     self.vs_version = vs_version
     self.ios_version = ios_version
-    self.multiconfig = Toolchain.is_multiconfig(generator)
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
+    self.is_xcode = (self.generator == 'Xcode')
+    self.multiconfig = (self.is_xcode or self.is_msvc)
     self.verify()
-
-  def is_multiconfig(generator):
-    if generator.startswith('Visual Studio'):
-      return True
-    if generator == 'Xcode':
-      return True
-    return False
 
   def verify(self):
     if self.arch:

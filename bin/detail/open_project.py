@@ -20,12 +20,12 @@ def find_project(directory, extension):
       )
   )
 
-def open(generator, ios_version, build_dir, verbose):
-  if (generator == 'Xcode'):
+def open(toolchain, build_dir, verbose):
+  if toolchain.is_xcode:
     args = ['open']
     dev_root = ''
-    if ios_version:
-      dev_root = detail.ios_dev_root.get(ios_version)
+    if toolchain.ios_version:
+      dev_root = detail.ios_dev_root.get(toolchain.ios_version)
     if not dev_root:
       dev_root = subprocess.check_output(
           ['xcode-select', '--print-path'], universal_newlines=True
@@ -34,7 +34,7 @@ def open(generator, ios_version, build_dir, verbose):
     args.append(os.path.join(dev_root, '..', '..'))
     args.append(find_project(build_dir, ".xcodeproj"))
     detail.call.call(args, verbose)
-  elif toolchain_entry.generator.is_msvc:
+  elif toolchain.is_msvc:
     os.startfile(find_project(build_dir, ".sln"))
   else:
     print("Open skipped (not Xcode or Visual Studio)")

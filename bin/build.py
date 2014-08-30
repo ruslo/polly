@@ -212,9 +212,4 @@ if not args.nobuild:
     detail.pack_command.run(args.config, args.verbose, cpack_generator)
 
 if args.open:
-  detail.open_project.open(
-      toolchain_entry.generator,
-      toolchain_entry.ios_version,
-      build_dir,
-      args.verbose
-  )
+  detail.open_project.open(toolchain_entry, build_dir, args.verbose)
