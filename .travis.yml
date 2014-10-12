@@ -64,5 +64,6 @@ install:
     # -- end
 
 script:
+    - export POLLY_ROOT="`pwd`"
     - which cmake
     - python3 ./examples/jenkins.py
