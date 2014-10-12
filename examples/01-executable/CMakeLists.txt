@@ -8,5 +8,9 @@ add_executable(simple "./main.cpp")
 
 install(TARGETS simple DESTINATION bin)
 
+string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
+
 enable_testing()
-add_test(SimpleTest simple)
+if(NOT is_ios)
+  add_test(SimpleTest simple)
+endif()

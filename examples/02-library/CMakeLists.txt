@@ -10,5 +10,9 @@ install(TARGETS foo DESTINATION lib)
 add_executable(simple "./main.cpp")
 target_link_libraries(simple foo)
 
+string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
+
 enable_testing()
-add_test(SimpleTest simple)
+if(NOT is_ios)
+  add_test(SimpleTest simple)
+endif()
