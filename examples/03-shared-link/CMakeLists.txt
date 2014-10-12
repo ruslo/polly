@@ -6,6 +6,9 @@ project(03-shared-link)
 
 string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
 if(is_ios)
+  # Phony install to allow running test `cmake --build _builds --target install`
+  install(FILES foo.cpp DESTINATION lib)
+
   message("Skip test (shared libraries disabled on iOS)")
   return()
 endif()
