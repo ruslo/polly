@@ -10,7 +10,7 @@ env:
     - EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Release
     - EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Debug
-    - EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Release
     - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
     - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
     - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Debug
@@ -25,7 +25,7 @@ env:
     - EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Release
     - EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Debug
-    - EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Release
     - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
     - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
     - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Debug
@@ -40,7 +40,7 @@ env:
     - EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Release
     - EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Debug
-    - EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Release
     - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
     - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
     - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Debug
