@@ -1,6 +1,7 @@
 # Copyright (c) 2014, Ruslan Baratov
 # All rights reserved.
 
+import os
 import sys
 
 def verify(mingw_path):
