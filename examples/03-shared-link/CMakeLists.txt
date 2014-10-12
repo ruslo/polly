@@ -4,6 +4,12 @@
 cmake_minimum_required(VERSION 2.8.8)
 project(03-shared-link)
 
+string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
+if(is_ios)
+  message("Skip test (shared libraries disabled on iOS)")
+  return()
+endif()
+
 add_library(foo SHARED foo.cpp)
 add_library(boo SHARED boo.cpp)
 
