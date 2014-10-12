@@ -2,76 +2,66 @@ language:
     - objective-c
 
 env:
-    - EXAMPLE=00-simple TOOLCHAIN=libcxx
-    - EXAMPLE=00-simple TOOLCHAIN=clang_libstdcxx
-    - EXAMPLE=01-executable TOOLCHAIN=default
-    - EXAMPLE=01-executable TOOLCHAIN=libcxx
-    - EXAMPLE=01-executable TOOLCHAIN=xcode GENERATOR=-GXcode
-    - EXAMPLE=01-executable TOOLCHAIN=clang_libstdcxx
-    - EXAMPLE=01-executable TOOLCHAIN=custom_libcxx
-    - EXAMPLE=02-library TOOLCHAIN=default
-    - EXAMPLE=02-library TOOLCHAIN=libcxx
-    - EXAMPLE=02-library TOOLCHAIN=clang_libstdcxx
-    - EXAMPLE=02-library TOOLCHAIN=custom_libcxx
-    - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign GENERATOR=-GXcode
-    - EXAMPLE=03-shared-link TOOLCHAIN=default
-    - EXAMPLE=03-shared-link TOOLCHAIN=libcxx
-    - EXAMPLE=03-shared-link TOOLCHAIN=xcode GENERATOR=-GXcode
-    - EXAMPLE=03-shared-link TOOLCHAIN=clang_libstdcxx
-
-compiler:
-    - clang
-
-before_install:
-    - export POLLY_ROOT=`pwd`
+    # 01
+    - EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Release
+    - EXAMPLE=01-executable TOOLCHAIN=libcxx CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=libcxx CONFIG=Release
+    - EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Release
+    - EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
+    - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Release
+    - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Debug
+    - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
+    # 02
+    - EXAMPLE=02-library TOOLCHAIN=default CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=default CONFIG=Release
+    - EXAMPLE=02-library TOOLCHAIN=libcxx CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=libcxx CONFIG=Release
+    - EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Release
+    - EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
+    - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Release
+    - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Debug
+    - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
+    # 03
+    - EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Release
+    - EXAMPLE=03-shared-link TOOLCHAIN=libcxx CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=libcxx CONFIG=Release
+    - EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Release
+    - EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Relese
+    - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
+    - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Release
+    - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Debug
+    - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
 
 install:
     - brew install python3
     - brew install cmake
-    # install custom libcxx --
-    - mkdir custom_libcxx_lib
-    - cd custom_libcxx_lib
-    - export LIBCXX_ROOT=`pwd`/Install
-    - git clone http://llvm.org/git/libcxx .
-    # release
-    - mkdir -p _builds/make-release
-    - cd _builds/make-release
-    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Release -DLIBCXX_ENABLE_ASSERTIONS=OFF ../..
-    - make VERBOSE=1 install
-    - cd ../..
-    # debug
-    - mkdir -p _builds/make-debug
-    - cd _builds/make-debug
-    - cmake -DCMAKE_INSTALL_PREFIX=${LIBCXX_ROOT} -DLIBCXX_ENABLE_SHARED=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEBUG_POSTFIX=d ../..
-    - make VERBOSE=1 install
-    - cd ../..
-    # test
+    # install cmake
+    - CMAKE_VERSION="3.0.2-ios-universal"
+    - wget "https://github.com/ruslo/CMake/archive/v${CMAKE_VERSION}.tar.gz"
+    - openssl sha1 "v${CMAKE_VERSION}.tar.gz"
+    - tar xf "v${CMAKE_VERSION}.tar.gz"
+    - cd "CMake-${CMAKE_VERSION}"
+    -   build.py --install --toolchain default --config Release --fwd "CMAKE_USE_SYSTEM_CURL=YES"
+    -   export PATH="`pwd`/_install/default/bin:${PATH}"
     - cd ..
-    - ls -la ${LIBCXX_ROOT}/lib/*
-    # -- end
-    # download sugar for 02-library example
-    - wget https://github.com/ruslo/sugar/archive/v1.0.0.tar.gz
-    - tar xf *.tar.gz
-    - export SUGAR_ROOT=`pwd`/sugar-1.0.0
     # -- end
 
 script:
     - which cmake
-    - export XCODE_XCCONFIG_FILE=${POLLY_ROOT}/scripts/NoCodeSign.xcconfig
-    - cd ${POLLY_ROOT}/examples/${EXAMPLE}
-    # release
-    - mkdir -p _builds/make-release
-    - cd _builds/make-release
-    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Release ../..
-    - cmake --build .
-    - ctest -V .
-    - cmake --build . --target install
-    - cd ../..
-    # debug
-    - mkdir -p _builds/make-debug
-    - cd _builds/make-debug
-    - cmake ${GENERATOR} -DCMAKE_TOOLCHAIN_FILE=${POLLY_ROOT}/${TOOLCHAIN}.cmake -DCMAKE_BUILD_TYPE=Debug ../..
-    - cmake --build .
-    - ctest -V .
-    - cmake --build . --target install
-    - cd ../..
+    - python3 ./examples/jenkins.py
