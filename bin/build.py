@@ -85,6 +85,10 @@ polly_toolchain = detail.toolchain_name.get(args.toolchain)
 toolchain_entry = detail.toolchain_table.get_by_name(polly_toolchain)
 cpack_generator = detail.cpack_generator.get(args.pack)
 
+polly_root = os.getenv("POLLY_ROOT")
+if not polly_root:
+  sys.exit("Environment variable `POLLY_ROOT` is empty")
+
 """Build directory tag"""
 if args.config and not toolchain_entry.multiconfig:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
@@ -109,6 +113,12 @@ if toolchain_entry.ios_version:
       print("Set environment DEVELOPER_DIR to {}".format(ios_dev_root))
     os.environ['DEVELOPER_DIR'] = ios_dev_root
 
+if toolchain_entry.name == 'ios-nocodesign':
+  xcconfig = os.path.join(polly_root, 'scripts', 'NoCodeSign.xcconfig')
+  if args.verbose:
+    print("Set environment XCODE_XCCONFIG_FILE to {}".format(xcconfig))
+  os.environ['XCODE_XCCONFIG_FILE'] = xcconfig
+
 cdir = os.getcwd()
 
 if args.verbose:
@@ -118,10 +128,6 @@ if args.verbose:
   else:
     detail.call.call(['which', 'cmake'], args.verbose)
   detail.call.call(['cmake', '--version'], args.verbose)
-
-polly_root = os.getenv("POLLY_ROOT")
-if not polly_root:
-  sys.exit("Environment variable `POLLY_ROOT` is empty")
 
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 if not os.path.exists(toolchain_path):
