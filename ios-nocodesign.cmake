@@ -56,7 +56,7 @@ endif()
 
 set(IPHONEOS_ARCHS armv7;armv7s;arm64)
 set(IPHONESIMULATOR_ARCHS i386;x86_64)
-set(IOS_SDK_VERSION 7.1)
+set(IOS_SDK_VERSION 8.0)
 
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
