@@ -102,8 +102,8 @@ if toolchain_entry.name == 'mingw':
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
 if toolchain_entry.is_nmake:
-  os.environ = get_nmake_environment(
-      polly_toolchain.arch, polly_toolchain.vs_version
+  os.environ = detail.get_nmake_environment.get(
+      toolchain_entry.arch, toolchain_entry.vs_version
   )
 
 if toolchain_entry.ios_version:
