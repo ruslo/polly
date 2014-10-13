@@ -7,7 +7,7 @@ Collection of CMake toolchain files and scripts
 | [![Build Status][link_master]][link_polly] | [![Build Status][link_travis_linux]][link_polly] |
 
 [link_master]: https://travis-ci.org/ruslo/polly.png?branch=master
-[link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=travis.linux
+[link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=linux
 [link_polly]: https://travis-ci.org/ruslo/polly
 
 Every toolchain defines compiler/flags and two variables:
