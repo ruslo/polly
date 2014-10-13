@@ -21,6 +21,9 @@ def run():
     sys.exit('Environment variable EXAMPLE is empty')
 
   path = os.path.dirname(os.path.realpath(__file__))
+  if not os.path.isabs(path):
+    path = os.path.abspath(path)
+
   build = os.path.join(path, '..', 'bin', 'build.py')
 
   project_home = os.path.join(path, example)
