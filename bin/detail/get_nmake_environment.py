@@ -3,6 +3,7 @@
 
 import detail.util
 import os
+import sys
 
 def get(arch, vs_version):
   vs_path_env = 'VS{}0COMNTOOLS'.format(vs_version)
