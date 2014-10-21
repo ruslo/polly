@@ -1,6 +1,6 @@
 ### Polly
 
-Collection of CMake toolchain files and scripts
+Collection of CMake toolchain files and scripts.
 
 | mac                                        | linux                                            |
 |--------------------------------------------|--------------------------------------------------|
@@ -31,7 +31,7 @@ variable will be printed while processing file:
 -- Build files have been written to: ...
 ```
 [Second](https://github.com/ruslo/polly/wiki/Used-variables#polly_toolchain_tag)
-variable coincide with toolchain file name and *can* be used to define `CMAKE_INSTALL_PREFIX`:
+variable coincide with toolchain file name and *can* be used to define `CMAKE_INSTALL_PREFIX` like:
 ```cmake
 set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/_install/${POLLY_TOOLCHAIN_TAG}")
 ```
@@ -118,13 +118,9 @@ Example of usage (also see `build.py --help`):
 * install Debug Xcode project:
   * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
 
-*Note*: script expected that `POLLY_ROOT` environment variable is set.
-
 ## jenkins.py
 
-This is an experimental [script](https://github.com/ruslo/polly/wiki/Jenkins) to run
-matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins)
-for details.
+[Script](https://github.com/ruslo/polly/wiki/Jenkins) read environment variables `CONFIG`/`TOOLCHAIN` and use them to start `build.py` script with `--test` argument. It can be useful for running matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins) for details.
 
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
