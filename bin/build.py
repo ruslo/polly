@@ -62,7 +62,9 @@ parser.add_argument(
     '--open', action='store_true', help="Open generated project (for IDE)"
 )
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
-parser.add_argument('--install', action='store_true', help="Run install")
+parser.add_argument(
+    '--install', action='store_true', help="Run install (local directory)"
+)
 parser.add_argument(
     '--clear',
     action='store_true',
