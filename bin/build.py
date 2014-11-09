@@ -145,10 +145,16 @@ if args.install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
 if args.clear:
-  print("Remove build directory: {}".format(build_dir))
-  shutil.rmtree(build_dir, ignore_errors=True)
-  print("Remove install directory: {}".format(install_dir))
-  shutil.rmtree(install_dir, ignore_errors=True)
+  if os.path.exists(build_dir):
+    print("Remove build directory: {}".format(build_dir))
+    shutil.rmtree(build_dir)
+  if os.path.exists(install_dir):
+    print("Remove install directory: {}".format(install_dir))
+    shutil.rmtree(install_dir)
+  if os.path.exists(build_dir):
+    sys.exit("Directory removing failed ({})".format(build_dir))
+  if os.path.exists(install_dir):
+    sys.exit("Directory removing failed ({})".format(install_dir))
 
 home = '.'
 if args.home:

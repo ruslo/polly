@@ -30,6 +30,7 @@ def run():
       '--config',
       config,
       '--verbose',
+      '--clear',
       '--test'
   ]
 
