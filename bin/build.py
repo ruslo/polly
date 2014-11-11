@@ -19,6 +19,7 @@ import detail.test_command
 import detail.toolchain_name
 import detail.toolchain_table
 import detail.verify_mingw_path
+import detail.verify_msys_path
 
 toolchain_table = detail.toolchain_table.toolchain_table
 
@@ -101,6 +102,11 @@ if toolchain_entry.name == 'mingw':
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
+
+if toolchain_entry.name == 'msys':
+  msys_path = os.getenv("MSYS_PATH")
+  detail.verify_msys_path.verify(msys_path)
+  os.environ['PATH'] = "{};{}".format(msys_path, os.getenv('PATH'))
 
 if toolchain_entry.is_nmake:
   os.environ = detail.get_nmake_environment.get(

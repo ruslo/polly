@@ -33,6 +33,7 @@ toolchain_table = [Toolchain('default', '')]
 if os.name == 'nt':
   toolchain_table += [
       Toolchain('mingw', 'MinGW Makefiles'),
+      Toolchain('msys', 'MSYS Makefiles'),
       Toolchain(
           'nmake-vs-12-2013',
           'NMake Makefiles',
