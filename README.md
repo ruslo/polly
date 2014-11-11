@@ -76,6 +76,7 @@ In this case targets can coexist simultaneously:
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
  * [cygwin](https://github.com/ruslo/polly/wiki/Toolchain-list#cygwin)
  * [mingw](https://github.com/ruslo/polly/wiki/Toolchain-list#mingw)
+ * [msys](https://github.com/ruslo/polly/wiki/Toolchain-list#msys)
  * [nmake-vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013-win64)
  * [nmake-vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013)
 
