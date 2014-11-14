@@ -52,7 +52,7 @@ install:
     - brew install python3
     - brew install cmake
     # install cmake
-    - CMAKE_VERSION="3.0.2-ios-universal"
+    - CMAKE_VERSION="3.1.0-rc2-ruslo"
     - wget "https://github.com/ruslo/CMake/archive/v${CMAKE_VERSION}.tar.gz"
     - openssl sha1 "v${CMAKE_VERSION}.tar.gz"
     - tar xf "v${CMAKE_VERSION}.tar.gz"
