@@ -74,6 +74,7 @@ In this case targets can coexist simultaneously:
 * Windows
  * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
+ * [vs-12-2013-xp](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-xp)
  * [cygwin](https://github.com/ruslo/polly/wiki/Toolchain-list#cygwin)
  * [mingw](https://github.com/ruslo/polly/wiki/Toolchain-list#mingw)
  * [msys](https://github.com/ruslo/polly/wiki/Toolchain-list#msys)
