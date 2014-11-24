@@ -11,7 +11,8 @@ class Toolchain:
       generator,
       arch='',
       vs_version='',
-      ios_version=''
+      ios_version='',
+      xp=False
   ):
     self.name = name
     self.generator = generator
@@ -20,6 +21,7 @@ class Toolchain:
     self.ios_version = ios_version
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
+    self.xp = xp
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)
     self.verify()
@@ -34,6 +36,9 @@ class Toolchain:
 
     if self.ios_version:
       assert(self.generator == 'Xcode')
+
+    if self.xp:
+      assert(self.vs_version)
 
 toolchain_table = [Toolchain('default', '')]
 
@@ -55,6 +60,13 @@ if os.name == 'nt':
       ),
       Toolchain(
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
+      ),
+      Toolchain(
+          'vs-12-2013-xp',
+          'Visual Studio 12 2013',
+          arch='x86',
+          vs_version='12',
+          xp=True
       ),
       Toolchain(
           'vs-12-2013-win64',

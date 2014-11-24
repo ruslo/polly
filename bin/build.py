@@ -178,6 +178,10 @@ if args.config and not toolchain_entry.multiconfig:
 if toolchain_entry.generator:
   generate_command.append('-G{}'.format(toolchain_entry.generator))
 
+if toolchain_entry.xp:
+  toolset = 'v{}0_xp'.format(toolchain_entry.vs_version)
+  generate_command.append('-T{}'.format(toolset))
+
 if toolchain_option:
   generate_command.append(toolchain_option)
 
