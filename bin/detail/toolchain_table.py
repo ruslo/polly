@@ -5,7 +5,14 @@ import os
 import platform
 
 class Toolchain:
-  def __init__(self, name, generator, arch='', vs_version='', ios_version=''):
+  def __init__(
+      self,
+      name,
+      generator,
+      arch='',
+      vs_version='',
+      ios_version=''
+  ):
     self.name = name
     self.generator = generator
     self.arch = arch
