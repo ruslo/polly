@@ -62,6 +62,9 @@ if os.name == 'nt':
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
       ),
       Toolchain(
+          'vs-8-2005', 'Visual Studio 8 2005', arch='x86', vs_version='8'
+      ),
+      Toolchain(
           'vs-12-2013-xp',
           'Visual Studio 12 2013',
           arch='x86',
