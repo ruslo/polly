@@ -31,7 +31,7 @@ polly_status_debug("Developer root: ${XCODE_DEVELOPER_ROOT}")
 
 set(
     CMAKE_OSX_SYSROOT
-    "${XCODE_DEVELOPER_ROOT}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${CMAKE_OSX_DEPLOYMENT_TARGET}.sdk"
+    "${XCODE_DEVELOPER_ROOT}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
     CACHE STRING "System root for OSX" FORCE
 )
 

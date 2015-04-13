@@ -35,6 +35,7 @@ execute_process(
 set(CMAKE_C_COMPILER ${CMAKE_C_COMPILER} CACHE STRING "C compiler" FORCE)
 set(CMAKE_CXX_COMPILER ${CMAKE_CXX_COMPILER} CACHE STRING "C++ compiler" FORCE)
 
+set(OSX_SDK_VERSION "10.9")
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "OS X Deployment target" FORCE)
 
 include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
