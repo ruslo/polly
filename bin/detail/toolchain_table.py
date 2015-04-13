@@ -107,6 +107,7 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-8', 'Xcode', osx_version='10.8'),
       Toolchain('osx-10-9', 'Xcode', osx_version='10.9'),
       Toolchain('osx-10-10', 'Xcode', osx_version='10.10'),
+      Toolchain('osx-10-10-dep-10-7', 'Xcode', osx_version='10.10'),
   ]
 
 if os.name == 'posix':
