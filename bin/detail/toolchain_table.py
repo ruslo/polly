@@ -12,6 +12,7 @@ class Toolchain:
       arch='',
       vs_version='',
       ios_version='',
+      osx_version='',
       xp=False
   ):
     self.name = name
@@ -19,6 +20,7 @@ class Toolchain:
     self.arch = arch
     self.vs_version = vs_version
     self.ios_version = ios_version
+    self.osx_version = osx_version
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
     self.xp = xp
@@ -34,7 +36,7 @@ class Toolchain:
     if self.is_nmake or self.is_msvc:
       assert(self.vs_version)
 
-    if self.ios_version:
+    if self.ios_version or self.osx_version:
       assert(self.generator == 'Xcode')
 
     if self.xp:
@@ -100,6 +102,10 @@ if platform.system() == 'Darwin':
       Toolchain('ios-7-0', 'Xcode', ios_version='7.0'),
       Toolchain('ios-nocodesign', 'Xcode', ios_version='7.1'),
       Toolchain('xcode', 'Xcode'),
+      Toolchain('osx-10-7', 'Xcode', osx_version='10.7'),
+      Toolchain('osx-10-8', 'Xcode', osx_version='10.8'),
+      Toolchain('osx-10-9', 'Xcode', osx_version='10.9'),
+      Toolchain('osx-10-10', 'Xcode', osx_version='10.10'),
   ]
 
 if os.name == 'posix':

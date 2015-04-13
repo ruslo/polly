@@ -13,6 +13,7 @@ import detail.cpack_generator
 import detail.generate_command
 import detail.get_nmake_environment
 import detail.ios_dev_root
+import detail.osx_dev_root
 import detail.open_project
 import detail.pack_command
 import detail.test_command
@@ -125,6 +126,13 @@ if toolchain_entry.name == 'ios-nocodesign':
   if args.verbose:
     print("Set environment XCODE_XCCONFIG_FILE to {}".format(xcconfig))
   os.environ['XCODE_XCCONFIG_FILE'] = xcconfig
+
+if toolchain_entry.osx_version:
+  osx_dev_root = detail.osx_dev_root.get(toolchain_entry.osx_version)
+  if osx_dev_root:
+    if args.verbose:
+      print("Set environment DEVELOPER_DIR to {}".format(osx_dev_root))
+    os.environ['DEVELOPER_DIR'] = osx_dev_root
 
 cdir = os.getcwd()
 
