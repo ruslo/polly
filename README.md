@@ -59,6 +59,7 @@ In this case targets can coexist simultaneously:
 * [clang-libstdcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#clang-libstdcxx)
 * [custom-libcxx](https://github.com/ruslo/polly/wiki/Toolchain-list#custom-libcxx)
 * [xcode](https://github.com/ruslo/polly/wiki/Toolchain-list#xcode)
+* [osx-*](https://github.com/ruslo/polly/wiki/Toolchain-list#osx-a-b)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
 * [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc-4-8)
 * iOS
