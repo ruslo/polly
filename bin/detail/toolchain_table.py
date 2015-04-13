@@ -23,6 +23,7 @@ class Toolchain:
     self.osx_version = osx_version
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
+    self.is_make = self.generator.endswith('Makefiles')
     self.xp = xp
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)

@@ -83,6 +83,12 @@ parser.add_argument(
     help="Build for ios i386 simulator"
 )
 
+parser.add_argument(
+    '--jobs',
+    type=int,
+    help="Number of concurrent build operations"
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -225,12 +231,21 @@ if args.install:
   build_command.append('install')
 
 # NOTE: This must be the last `build_command` modification!
+build_command.append('--')
+
 if args.iossim:
-  build_command.append('--')
   build_command.append('-arch')
   build_command.append('i386')
   build_command.append('-sdk')
   build_command.append('iphonesimulator')
+
+if args.jobs:
+  if toolchain_entry.is_xcode:
+    build_command.append('-jobs')
+    build_command.append('{}'.format(args.jobs))
+  elif toolchain_entry.is_make:
+    build_command.append('-j')
+    build_command.append('{}'.format(args.jobs))
 
 if not args.nobuild:
   detail.call.call(build_command, args.verbose)
