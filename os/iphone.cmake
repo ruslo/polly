@@ -105,3 +105,7 @@ if(NOT EXISTS ${IPHONEOS_SDK_ROOT})
       "IOS_SDK_VERSION: ${IOS_SDK_VERSION}\n"
   )
 endif()
+
+# Emulate OpenCV toolchain --
+set(IOS YES)
+# -- end
