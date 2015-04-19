@@ -243,7 +243,7 @@ if args.jobs:
   if toolchain_entry.is_xcode:
     build_command.append('-jobs')
     build_command.append('{}'.format(args.jobs))
-  elif toolchain_entry.is_make:
+  elif toolchain_entry.is_make and not toolchain_entry.is_nmake:
     build_command.append('-j')
     build_command.append('{}'.format(args.jobs))
 
