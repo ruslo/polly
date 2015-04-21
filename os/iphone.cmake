@@ -109,3 +109,19 @@ endif()
 # Emulate OpenCV toolchain --
 set(IOS YES)
 # -- end
+
+# Set iPhoneOS architectures
+set(archs "")
+foreach(arch ${IPHONEOS_ARCHS})
+  set(archs "${archs} ${arch}")
+endforeach()
+set(CMAKE_XCODE_ATTRIBUTE_ARCHS[sdk=iphoneos*] "${archs}")
+set(CMAKE_XCODE_ATTRIBUTE_VALID_ARCHS[sdk=iphoneos*] "${archs}")
+
+# Set iPhoneSimulator architectures
+set(archs "")
+foreach(arch ${IPHONESIMULATOR_ARCHS})
+  set(archs "${archs} ${arch}")
+endforeach()
+set(CMAKE_XCODE_ATTRIBUTE_ARCHS[sdk=iphonesimulator*] "${archs}")
+set(CMAKE_XCODE_ATTRIBUTE_VALID_ARCHS[sdk=iphonesimulator*] "${archs}")
