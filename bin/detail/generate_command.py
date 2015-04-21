@@ -6,17 +6,16 @@ import sys
 
 import detail.call
 
-def run(generate_command, build_dir, verbose):
-  temp_dir = os.path.join(build_dir, '_3rdParty', 'build.py')
-  if not os.path.exists(temp_dir):
-    os.makedirs(temp_dir)
-  saved_arguments_path = os.path.join(temp_dir, 'saved-arguments')
+def run(generate_command, build_dir, polly_temp_dir, logging):
+  if not os.path.exists(polly_temp_dir):
+    os.makedirs(polly_temp_dir)
+  saved_arguments_path = os.path.join(polly_temp_dir, 'saved-arguments')
 
   generate_command_oneline = ' '.join(generate_command)
   cache_file = os.path.join(build_dir, 'CMakeCache.txt')
   if not os.path.exists(cache_file):
     open(saved_arguments_path, 'w').write(generate_command_oneline)
-    detail.call.call(generate_command, verbose, cache_file=cache_file)
+    detail.call.call(generate_command, logging, cache_file=cache_file)
     return
 
   # No need to generate project, just check that arguments not changed

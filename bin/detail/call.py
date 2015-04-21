@@ -1,43 +1,70 @@
-# Copyright (c) 2014, Ruslan Baratov
+# Copyright (c) 2014-2015, Ruslan Baratov
 # All rights reserved.
+
+# Adapted to python3 version of: http://stackoverflow.com/questions/4984428
 
 import os
 import subprocess
 import sys
+import threading
 
-# workaround for version less that 3.3
-DEVNULL = open(os.devnull, 'w')
+def tee(infile, *files):
+  """Print `infile` to `files` in a separate thread."""
+  def fanout(infile, *files):
+    for line in iter(infile.readline, b''):
+      for f in files:
+        f.write(line.decode('utf-8'))
+    infile.close()
+  t = threading.Thread(target=fanout, args=(infile,)+files)
+  t.daemon = True
+  t.start()
+  return t
 
-def call(call_args, verbose, cache_file=''):
-  try:
-    print('Execute command: [')
-    for i in call_args:
-      print('  `{}`'.format(i))
-    print(']')
-    if not verbose:
-      subprocess.check_call(
-          call_args,
-          stdout=DEVNULL,
-          stderr=DEVNULL,
-          universal_newlines=True,
-          env=os.environ
-      )
-    else:
-      oneline = ''
-      for i in call_args:
-        oneline += '"{}" '.format(i)
-      print("[{}]> {}".format(os.getcwd(), oneline))
-      subprocess.check_call(
-          call_args,
-          universal_newlines=True,
-          env=os.environ
-      )
-  except subprocess.CalledProcessError as error:
-    if cache_file:
-      os.unlink(cache_file)
-    print(error)
-    print(error.output)
-    sys.exit(1)
-  except OSError as error:
-    print(error)
-    sys.exit(1)
+def teed_call(cmd_args, logging):
+  p = subprocess.Popen(
+      cmd_args,
+      stdout=subprocess.PIPE,
+      stderr=subprocess.PIPE,
+      env=os.environ,
+      bufsize=0
+  )
+  threads = []
+
+  if logging.verbose:
+    threads.append(tee(p.stdout, logging.log_file, sys.stdout))
+    threads.append(tee(p.stderr, logging.log_file, sys.stderr))
+  else:
+    threads.append(tee(p.stdout, logging.log_file))
+    threads.append(tee(p.stderr, logging.log_file))
+
+  for t in threads:
+    t.join() # wait for IO completion
+
+  return p.wait()
+
+def call(call_args, logging, cache_file=''):
+  pretty = 'Execute command: [\n'
+  for i in call_args:
+    pretty += '  `{}`\n'.format(i)
+  pretty += ']\n'
+  print(pretty)
+  logging.log_file.write(pretty)
+
+  # print one line version
+  oneline = ''
+  for i in call_args:
+    oneline += '"{}" '.format(i)
+  oneline = "[{}]> {}\n".format(os.getcwd(), oneline)
+  if logging.verbose:
+    print(oneline)
+  logging.log_file.write(oneline)
+
+  x = teed_call(call_args, logging)
+  if x == 0:
+    return
+  if cache_file:
+    os.unlink(cache_file)
+  print('Command exit with status "{}": {}'.format(x, oneline))
+  print('Log: {}'.format(logging.log_path))
+  print('*** FAILED ***')
+  sys.exit(1)

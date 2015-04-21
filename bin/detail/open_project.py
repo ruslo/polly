@@ -20,7 +20,7 @@ def find_project(directory, extension):
       )
   )
 
-def open(toolchain, build_dir, verbose):
+def open(toolchain, build_dir, logging):
   if toolchain.is_xcode:
     args = ['open']
     dev_root = ''
@@ -33,7 +33,7 @@ def open(toolchain, build_dir, verbose):
     args.append('-a')
     args.append(os.path.join(dev_root, '..', '..'))
     args.append(find_project(build_dir, ".xcodeproj"))
-    detail.call.call(args, verbose)
+    detail.call.call(args, logging)
   elif toolchain.is_msvc:
     os.startfile(find_project(build_dir, ".sln"))
   else:
