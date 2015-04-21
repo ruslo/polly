@@ -142,14 +142,6 @@ if toolchain_entry.osx_version:
 
 cdir = os.getcwd()
 
-if args.verbose:
-  if os.name == 'nt':
-    # Windows
-    detail.call.call(['where', 'cmake'], args.verbose)
-  else:
-    detail.call.call(['which', 'cmake'], args.verbose)
-  detail.call.call(['cmake', '--version'], args.verbose)
-
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 if not os.path.exists(toolchain_path):
   sys.exit("Toolchain file not found: {}".format(toolchain_path))
@@ -175,6 +167,14 @@ if args.clear:
     sys.exit("Directory removing failed ({})".format(build_dir))
   if os.path.exists(install_dir):
     sys.exit("Directory removing failed ({})".format(install_dir))
+
+if args.verbose:
+  if os.name == 'nt':
+    # Windows
+    detail.call.call(['where', 'cmake'], args.verbose)
+  else:
+    detail.call.call(['which', 'cmake'], args.verbose)
+  detail.call.call(['cmake', '--version'], args.verbose)
 
 home = '.'
 if args.home:
