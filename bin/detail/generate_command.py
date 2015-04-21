@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Ruslan Baratov
+# Copyright (c) 2014-2015, Ruslan Baratov
 # All rights reserved.
 
 import os
@@ -11,7 +11,19 @@ def run(generate_command, build_dir, polly_temp_dir, logging):
     os.makedirs(polly_temp_dir)
   saved_arguments_path = os.path.join(polly_temp_dir, 'saved-arguments')
 
-  generate_command_oneline = ' '.join(generate_command)
+  saved_generate_command = []
+  for x in generate_command:
+    if x.startswith('-DCMAKE_VERBOSE_MAKEFILE='):
+      continue
+    if x.startswith('-DPOLLY_STATUS_DEBUG='):
+      continue
+    if x.startswith('-DHUNTER_STATUS_DEBUG='):
+      continue
+    if x.startswith('-DCMAKE_INSTALL_PREFIX='):
+      continue
+    saved_generate_command.append(x)
+
+  generate_command_oneline = ' '.join(saved_generate_command)
   cache_file = os.path.join(build_dir, 'CMakeCache.txt')
   if not os.path.exists(cache_file):
     open(saved_arguments_path, 'w').write(generate_command_oneline)
