@@ -62,7 +62,7 @@ def call(call_args, logging, cache_file=''):
   x = teed_call(call_args, logging)
   if x == 0:
     return
-  if cache_file:
+  if os.path.exists(cache_file):
     os.unlink(cache_file)
   print('Command exit with status "{}": {}'.format(x, oneline))
   print('Log: {}'.format(logging.log_path))
