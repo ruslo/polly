@@ -1067,6 +1067,7 @@ if( BUILD_WITH_ANDROID_NDK )
    set( __libstl                "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++" )
   endif()
   set( ANDROID_STL_INCLUDE_DIRS "${__libstl}/include" "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/include" "${__libstl}/include/backward" )
+	set( ANDROID_STL_LIB_DIR "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}")
   if( EXISTS "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/libgnustl_static.a" )
    set( __libstl                "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/libgnustl_static.a" )
   else()
@@ -1417,6 +1418,10 @@ endif()
 
 if( ANDROID_RELRO )
  set( ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS} -Wl,-z,relro -Wl,-z,now" )
+endif()
+
+if( ANDROID_STL STREQUAL "gnustl_static" )
+	set(ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS} -L${ANDROID_STL_LIB_DIR} -lgnustl_static")
 endif()
 
 if( ANDROID_COMPILER_IS_CLANG )
