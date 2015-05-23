@@ -1143,6 +1143,7 @@ if( NOT CMAKE_C_COMPILER )
   endif()
  endif()
  set( CMAKE_ASM_COMPILER "${ANDROID_TOOLCHAIN_ROOT}/bin/${ANDROID_TOOLCHAIN_MACHINE_NAME}-gcc${TOOL_OS_SUFFIX}"     CACHE PATH "assembler" )
+ set( CMAKE_C_PREPROCESSOR "${ANDROID_TOOLCHAIN_ROOT}/bin/${ANDROID_TOOLCHAIN_MACHINE_NAME}-gcc${TOOL_OS_SUFFIX}"     CACHE PATH "preprocessor" )
  set( CMAKE_STRIP        "${ANDROID_TOOLCHAIN_ROOT}/bin/${ANDROID_TOOLCHAIN_MACHINE_NAME}-strip${TOOL_OS_SUFFIX}"   CACHE PATH "strip" )
  set( CMAKE_AR           "${ANDROID_TOOLCHAIN_ROOT}/bin/${ANDROID_TOOLCHAIN_MACHINE_NAME}-ar${TOOL_OS_SUFFIX}"      CACHE PATH "archive" )
  set( CMAKE_LINKER       "${ANDROID_TOOLCHAIN_ROOT}/bin/${ANDROID_TOOLCHAIN_MACHINE_NAME}-ld${TOOL_OS_SUFFIX}"      CACHE PATH "linker" )
@@ -1165,8 +1166,8 @@ if( APPLE )
 endif()
 
 # Force set compilers because standard identification works badly for us
-include( CMakeForceCompiler )
-CMAKE_FORCE_C_COMPILER( "${CMAKE_C_COMPILER}" GNU )
+#include( CMakeForceCompiler ) AWP: I've disabled this to work with hunter
+#CMAKE_FORCE_C_COMPILER( "${CMAKE_C_COMPILER}" GNU ) AWP: I've disabled this to work with hunter
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_C_COMPILER_ID Clang )
 endif()
@@ -1178,7 +1179,8 @@ else()
 endif()
 set( CMAKE_C_HAS_ISYSROOT 1 )
 set( CMAKE_C_COMPILER_ABI ELF )
-CMAKE_FORCE_CXX_COMPILER( "${CMAKE_CXX_COMPILER}" GNU )
+set( CMAKE_C_SOURCE_FILE_EXTENSIONS c)
+#CMAKE_FORCE_CXX_COMPILER( "${CMAKE_CXX_COMPILER}" GNU ) AWP: I've disabled this to work with hunter
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_CXX_COMPILER_ID Clang)
 endif()
