@@ -1067,7 +1067,7 @@ if( BUILD_WITH_ANDROID_NDK )
    set( __libstl                "${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++" )
   endif()
   set( ANDROID_STL_INCLUDE_DIRS "${__libstl}/include" "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/include" "${__libstl}/include/backward" )
-	set( ANDROID_STL_LIB_DIR "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}")
+  set( ANDROID_STL_LIB_DIR "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}")
   if( EXISTS "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/libgnustl_static.a" )
    set( __libstl                "${__libstl}/libs/${ANDROID_NDK_ABI_NAME}/libgnustl_static.a" )
   else()
@@ -1421,7 +1421,7 @@ if( ANDROID_RELRO )
 endif()
 
 if( ANDROID_STL STREQUAL "gnustl_static" )
-	set(ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS} -L${ANDROID_STL_LIB_DIR} -lgnustl_static")
+  set(ANDROID_LINKER_FLAGS "${ANDROID_LINKER_FLAGS} -L${ANDROID_STL_LIB_DIR} -lgnustl_static")
 endif()
 
 if( ANDROID_COMPILER_IS_CLANG )
@@ -1430,6 +1430,10 @@ if( ANDROID_COMPILER_IS_CLANG )
   set( ANDROID_CXX_FLAGS "-gcc-toolchain ${ANDROID_TOOLCHAIN_ROOT} ${ANDROID_CXX_FLAGS}" )
  endif()
 endif()
+
+foreach(x ${ANDROID_STL_INCLUDE_DIRS})
+  set(ANDROID_CXX_FLAGS "${ANDROID_CXX_FLAGS} -I${x}")
+endforeach(x)
 
 # cache flags
 set( CMAKE_CXX_FLAGS           ""                        CACHE STRING "c++ flags" )
@@ -1447,6 +1451,8 @@ set( ANDROID_CXX_FLAGS         "${ANDROID_CXX_FLAGS}"         CACHE INTERNAL "An
 set( ANDROID_CXX_FLAGS_RELEASE "${ANDROID_CXX_FLAGS_RELEASE}" CACHE INTERNAL "Android specific c/c++ Release flags" )
 set( ANDROID_CXX_FLAGS_DEBUG   "${ANDROID_CXX_FLAGS_DEBUG}"   CACHE INTERNAL "Android specific c/c++ Debug flags" )
 set( ANDROID_LINKER_FLAGS      "${ANDROID_LINKER_FLAGS}"      CACHE INTERNAL "Android specific c/c++ linker flags" )
+
+set( CMAKE_ANDROID_API         "${ANDROID_API_LEVEL}"         CACHE INTERNAL "Android API Level")
 
 # finish flags
 set( CMAKE_CXX_FLAGS           "${ANDROID_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" )
