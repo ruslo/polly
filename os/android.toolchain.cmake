@@ -1169,6 +1169,10 @@ endif()
 # Force set compilers because standard identification works badly for us
 #include( CMakeForceCompiler ) AWP: I've disabled this to work with hunter
 #CMAKE_FORCE_C_COMPILER( "${CMAKE_C_COMPILER}" GNU ) AWP: I've disabled this to work with hunter
+set(CMAKE_C_COMPILER_ID_RUN TRUE)
+set(CMAKE_C_COMPILER_ID GNU)
+set(CMAKE_COMPILER_IS_GNUCC 1) # AWP: Set old compiler ID variable, as per CMake 3.2 Modules/CMakeForceCompiler.cmake
+
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_C_COMPILER_ID Clang )
 endif()
@@ -1182,6 +1186,10 @@ set( CMAKE_C_HAS_ISYSROOT 1 )
 set( CMAKE_C_COMPILER_ABI ELF )
 set( CMAKE_C_SOURCE_FILE_EXTENSIONS c)
 #CMAKE_FORCE_CXX_COMPILER( "${CMAKE_CXX_COMPILER}" GNU ) AWP: I've disabled this to work with hunter
+set(CMAKE_CXX_COMPILER_ID_RUN TRUE)
+set(CMAKE_CXX_COMPILER_ID GNU)
+set(CMAKE_COMPILER_IS_GNUCXX 1) # AWP: Set old compiler ID variable, as per CMake 3.2 Modules/CMakeForceCompiler.cmake
+
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_CXX_COMPILER_ID Clang)
 endif()
@@ -1452,7 +1460,7 @@ set( ANDROID_CXX_FLAGS_RELEASE "${ANDROID_CXX_FLAGS_RELEASE}" CACHE INTERNAL "An
 set( ANDROID_CXX_FLAGS_DEBUG   "${ANDROID_CXX_FLAGS_DEBUG}"   CACHE INTERNAL "Android specific c/c++ Debug flags" )
 set( ANDROID_LINKER_FLAGS      "${ANDROID_LINKER_FLAGS}"      CACHE INTERNAL "Android specific c/c++ linker flags" )
 
-set( CMAKE_ANDROID_API         "${ANDROID_API_LEVEL}"         CACHE INTERNAL "Android API Level")
+set( CMAKE_ANDROID_API         "${ANDROID_NATIVE_API_LEVEL}"  CACHE INTERNAL "Android API Level")
 
 # finish flags
 set( CMAKE_CXX_FLAGS           "${ANDROID_CXX_FLAGS} ${CMAKE_CXX_FLAGS}" )
