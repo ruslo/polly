@@ -19,4 +19,5 @@ include(polly_fatal_error)
 
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake") # before toolchain!
 
+option(ANDROID_FORCE_COMPILERS "" OFF)
 include("${CMAKE_CURRENT_LIST_DIR}/os/android.toolchain.cmake")
