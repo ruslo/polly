@@ -62,6 +62,8 @@ In this case targets can coexist simultaneously:
 * [osx-*](https://github.com/ruslo/polly/wiki/Toolchain-list#osx-a-b)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
 * [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc-4-8)
+* Android
+ * [android-ndk-*](https://github.com/ruslo/polly/wiki/Toolchain-list#android-ndk-xxx)
 * iOS
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
