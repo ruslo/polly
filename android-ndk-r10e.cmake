@@ -11,13 +11,13 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
-polly_init("Android NDK r10e / c++11 support" "Unix Makefiles")
+set(ANDROID_NDK_VERSION "r10e")
+polly_init(
+    "Android NDK ${ANDROID_NDK_VERSION} / c++11 support" "Unix Makefiles"
+)
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-include(polly_fatal_error)
-
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake") # before toolchain!
 
-option(ANDROID_FORCE_COMPILERS "" OFF)
-include("${CMAKE_CURRENT_LIST_DIR}/os/android.toolchain.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/os/android.cmake")

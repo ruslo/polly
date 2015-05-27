@@ -8,7 +8,6 @@ import os
 import shutil
 import sys
 
-import detail.android_ndk_path
 import detail.call
 import detail.cpack_generator
 import detail.generate_command
@@ -203,11 +202,6 @@ if toolchain_entry.xp:
 
 if toolchain_option:
   generate_command.append(toolchain_option)
-
-if toolchain_entry.android_ndk_version:
-  ndk_path = detail.android_ndk_path.get(toolchain_entry.android_ndk_version)
-  if ndk_path:
-    generate_command.append('-DANDROID_NDK={}'.format(ndk_path))
 
 generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
