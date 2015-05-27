@@ -13,7 +13,8 @@ class Toolchain:
       vs_version='',
       ios_version='',
       osx_version='',
-      xp=False
+      xp=False,
+      android_ndk_version=''
   ):
     self.name = name
     self.generator = generator
@@ -25,6 +26,7 @@ class Toolchain:
     self.is_msvc = self.generator.startswith('Visual Studio')
     self.is_make = self.generator.endswith('Makefiles')
     self.xp = xp
+    self.android_ndk_version = android_ndk_version
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)
     self.verify()
@@ -43,7 +45,12 @@ class Toolchain:
     if self.xp:
       assert(self.vs_version)
 
-toolchain_table = [Toolchain('default', '')]
+toolchain_table = [
+    Toolchain('default', ''),
+    Toolchain(
+        'android-ndk-r10e', 'Unix Makefiles', android_ndk_version='r10e'
+    )
+]
 
 if os.name == 'nt':
   toolchain_table += [
