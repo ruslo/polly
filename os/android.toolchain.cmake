@@ -195,6 +195,8 @@ if( CMAKE_TOOLCHAIN_FILE )
  # touch toolchain variable to suppress "unused variable" warning
 endif()
 
+option(ANDROID_FORCE_COMPILERS "Force C/C++ compiler" ON)
+
 # inherit settings in recursive loads
 get_property( _CMAKE_IN_TRY_COMPILE GLOBAL PROPERTY IN_TRY_COMPILE )
 if( _CMAKE_IN_TRY_COMPILE )
@@ -336,11 +338,11 @@ endmacro()
 
 
 # fight against cygwin
-set( ANDROID_FORBID_SYGWIN TRUE CACHE BOOL "Prevent cmake from working under cygwin and using cygwin tools")
-mark_as_advanced( ANDROID_FORBID_SYGWIN )
-if( ANDROID_FORBID_SYGWIN )
+set( ANDROID_FORBID_CYGWIN TRUE CACHE BOOL "Prevent cmake from working under cygwin and using cygwin tools")
+mark_as_advanced( ANDROID_FORBID_CYGWIN )
+if( ANDROID_FORBID_CYGWIN )
  if( CYGWIN )
-  message( FATAL_ERROR "Android NDK and android-cmake toolchain are not welcome Cygwin. It is unlikely that this cmake toolchain will work under cygwin. But if you want to try then you can set cmake variable ANDROID_FORBID_SYGWIN to FALSE and rerun cmake." )
+  message( FATAL_ERROR "Android NDK and android-cmake toolchain are not welcome Cygwin. It is unlikely that this cmake toolchain will work under cygwin. But if you want to try then you can set cmake variable ANDROID_FORBID_CYGWIN to FALSE and rerun cmake." )
  endif()
 
  if( CMAKE_HOST_WIN32 )
@@ -1123,9 +1125,13 @@ if( APPLE )
  mark_as_advanced( CMAKE_INSTALL_NAME_TOOL )
 endif()
 
-# Force set compilers because standard identification works badly for us
-include( CMakeForceCompiler )
-CMAKE_FORCE_C_COMPILER( "${CMAKE_C_COMPILER}" GNU )
+if(ANDROID_FORCE_COMPILERS)
+  # Force set compilers because standard identification works badly for us
+  include( CMakeForceCompiler )
+  CMAKE_FORCE_C_COMPILER( "${CMAKE_C_COMPILER}" GNU )
+  CMAKE_FORCE_CXX_COMPILER( "${CMAKE_CXX_COMPILER}" GNU )
+endif()
+
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_C_COMPILER_ID Clang )
 endif()
@@ -1137,7 +1143,6 @@ else()
 endif()
 set( CMAKE_C_HAS_ISYSROOT 1 )
 set( CMAKE_C_COMPILER_ABI ELF )
-CMAKE_FORCE_CXX_COMPILER( "${CMAKE_CXX_COMPILER}" GNU )
 if( ANDROID_COMPILER_IS_CLANG )
  set( CMAKE_CXX_COMPILER_ID Clang)
 endif()
@@ -1578,7 +1583,7 @@ endmacro()
 # export toolchain settings for the try_compile() command
 if( NOT _CMAKE_IN_TRY_COMPILE )
  set( __toolchain_config "")
- foreach( __var NDK_CCACHE  LIBRARY_OUTPUT_PATH_ROOT  ANDROID_FORBID_SYGWIN
+ foreach( __var NDK_CCACHE  LIBRARY_OUTPUT_PATH_ROOT  ANDROID_FORBID_CYGWIN
                 ANDROID_NDK_HOST_X64
                 ANDROID_NDK
                 ANDROID_NDK_LAYOUT
@@ -1629,7 +1634,7 @@ endif()
 #   ANDROID_ABI : "armeabi-v7a" (default), "armeabi", "armeabi-v7a with NEON", "armeabi-v7a with VFPV3", "armeabi-v6 with VFP", "x86", "mips", "arm64-v8a", "x86_64", "mips64"
 #   ANDROID_NATIVE_API_LEVEL : 3,4,5,8,9,14,15,16,17,18,19,21 (depends on NDK version)
 #   ANDROID_STL : gnustl_static/gnustl_shared/stlport_static/stlport_shared/gabi++_static/gabi++_shared/system_re/system/none
-#   ANDROID_FORBID_SYGWIN : ON/OFF
+#   ANDROID_FORBID_CYGWIN : ON/OFF
 #   ANDROID_NO_UNDEFINED : ON/OFF
 #   ANDROID_SO_UNDEFINED : OFF/ON  (default depends on NDK version)
 #   ANDROID_FUNCTION_LEVEL_LINKING : ON/OFF
