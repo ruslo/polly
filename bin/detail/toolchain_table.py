@@ -45,9 +45,8 @@ class Toolchain:
 
 toolchain_table = [
     Toolchain('default', ''),
-    Toolchain(
-        'android-ndk-r10e', 'Unix Makefiles'
-    )
+    Toolchain('android-ndk-r10e', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21', 'Unix Makefiles'),
 ]
 
 if os.name == 'nt':
