@@ -40,3 +40,14 @@ if(NOT _is_equal)
       "  ANDROID_NATIVE_API_LEVEL: ${ANDROID_NATIVE_API_LEVEL}"
   )
 endif()
+
+# Support for Android-Apk: https://github.com/hunter-packages/android-apk
+set(
+    CMAKE_GDBSERVER
+    "${ANDROID_NDK}/prebuilt/android-${ANDROID_ARCH_NAME}/gdbserver/gdbserver"
+)
+if(NOT EXISTS "${CMAKE_GDBSERVER}")
+  polly_fatal_error(
+      "gdbserver not found. Expected location: ${CMAKE_GDBSERVER}"
+  )
+endif()
