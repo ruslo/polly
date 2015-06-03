@@ -20,6 +20,10 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include(polly_fatal_error)
 
+# There is no way to change compiler for Xcode generator so there is no sense
+# to set CMAKE_C_COMPILER/CMAKE_CXX_COMPILER variables here. If you know
+# how to change default compiler that Xcode use please let me know :)
+
 # Fix try_compile
 set(MACOSX_BUNDLE_GUI_IDENTIFIER com.example)
 set(CMAKE_MACOSX_BUNDLE YES)

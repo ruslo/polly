@@ -1,4 +1,4 @@
-# Copyright (c) 2014, Ruslan Baratov
+# Copyright (c) 2014-2015, Ruslan Baratov
 # All rights reserved.
 
 if(DEFINED POLLY_XCODE_CMAKE_)
@@ -16,24 +16,9 @@ polly_init(
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-execute_process(
-    COMMAND
-    xcrun --find clang
-    OUTPUT_VARIABLE
-    CMAKE_C_COMPILER
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-execute_process(
-    COMMAND
-    xcrun --find clang++
-    OUTPUT_VARIABLE
-    CMAKE_CXX_COMPILER
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
-
-set(CMAKE_C_COMPILER ${CMAKE_C_COMPILER} CACHE STRING "C compiler" FORCE)
-set(CMAKE_CXX_COMPILER ${CMAKE_CXX_COMPILER} CACHE STRING "C++ compiler" FORCE)
+# There is no way to change compiler for Xcode generator so there is no sense
+# to set CMAKE_C_COMPILER/CMAKE_CXX_COMPILER variables here. If you know
+# how to change default compiler that Xcode use please let me know :)
 
 include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
