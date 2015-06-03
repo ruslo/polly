@@ -122,6 +122,7 @@ if os.name == 'posix':
       Toolchain('gcc-pic', 'Unix Makefiles'),
       Toolchain('gcc-4-8', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
+      Toolchain('libcxx-omp', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
   ]
 
