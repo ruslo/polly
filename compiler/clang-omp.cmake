@@ -1,10 +1,10 @@
 # Copyright (c) 2013, Ruslan Baratov
 # All rights reserved.
 
-if(DEFINED POLLY_COMPILER_CLANG_CMAKE)
+if(DEFINED POLLY_COMPILER_CLANG_OMP_CMAKE)
   return()
 else()
-  set(POLLY_COMPILER_CLANG_CMAKE 1)
+  set(POLLY_COMPILER_CLANG_OMP_CMAKE 1)
 endif()
 
 include(polly_fatal_error)
