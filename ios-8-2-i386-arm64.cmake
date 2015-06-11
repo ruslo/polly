@@ -11,18 +11,19 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
+set(IOS_SDK_VERSION 8.2)
+set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "iOS 8.2 Universal (iphoneos + iphonesimulator) / i386 / arm64 / c++11 support"
+    "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
+${POLLY_XCODE_COMPILER} / \
+i386 / arm64 / \
+c++11 support"
     "Xcode"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include(polly_fatal_error)
-
-# There is no way to change compiler for Xcode generator so there is no sense
-# to set CMAKE_C_COMPILER/CMAKE_CXX_COMPILER variables here. If you know
-# how to change default compiler that Xcode use please let me know :)
 
 # Fix try_compile
 set(MACOSX_BUNDLE_GUI_IDENTIFIER com.example)
@@ -31,7 +32,7 @@ set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
 
 set(IPHONEOS_ARCHS arm64)
 set(IPHONESIMULATOR_ARCHS i386)
-set(IOS_SDK_VERSION 8.2)
 
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
