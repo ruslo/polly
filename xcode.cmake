@@ -9,16 +9,15 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
+set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "Xcode / LLVM Standard C++ Library (libc++) / c++11 support"
+    "Xcode / ${POLLY_XCODE_COMPILER} / \
+LLVM Standard C++ Library (libc++) / c++11 support"
     "Xcode"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-# There is no way to change compiler for Xcode generator so there is no sense
-# to set CMAKE_C_COMPILER/CMAKE_CXX_COMPILER variables here. If you know
-# how to change default compiler that Xcode use please let me know :)
-
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
