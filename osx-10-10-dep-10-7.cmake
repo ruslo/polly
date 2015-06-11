@@ -9,18 +9,19 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
+set(OSX_SDK_VERSION "10.10")
+set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "Xcode (OS X 10.10 | Deployment 10.7) / LLVM Standard C++ Library (libc++) / c++11 support"
+    "Xcode (OS X ${OSX_SDK_VERSION} | Deployment 10.7) / \
+${POLLY_XCODE_COMPILER} / \
+LLVM Standard C++ Library (libc++) / c++11 support"
     "Xcode"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-# There is no way to change compiler for Xcode generator so there is no sense
-# to set CMAKE_C_COMPILER/CMAKE_CXX_COMPILER variables here. If you know
-# how to change default compiler that Xcode use please let me know :)
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 
-set(OSX_SDK_VERSION "10.10")
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.7" CACHE STRING "OS X Deployment target" FORCE)
 
 include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
