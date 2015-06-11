@@ -45,7 +45,7 @@ class Toolchain:
 
 toolchain_table = [
     Toolchain('default', ''),
-    Toolchain('android-ndk-r10e-api-21-arm64-v8a-neon', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21-arm64-v8a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-x86', 'Unix Makefiles'),
