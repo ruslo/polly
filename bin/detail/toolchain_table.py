@@ -45,6 +45,8 @@ class Toolchain:
 
 toolchain_table = [
     Toolchain('default', ''),
+    Toolchain('android-ndk-r10e-api-21-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-x86', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles'),
@@ -127,6 +129,7 @@ if os.name == 'posix':
       Toolchain('gcc-pic', 'Unix Makefiles'),
       Toolchain('gcc-4-8', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
+      Toolchain('libcxx-omp', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
   ]
 
