@@ -113,6 +113,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-7-0', 'Xcode', ios_version='7.0'),
       Toolchain('ios-nocodesign', 'Xcode', ios_version='7.1'),
       Toolchain('xcode', 'Xcode'),
+      Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('osx-10-7', 'Xcode', osx_version='10.7'),
       Toolchain('osx-10-8', 'Xcode', osx_version='10.8'),
       Toolchain('osx-10-9', 'Xcode', osx_version='10.9'),
