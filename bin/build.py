@@ -150,7 +150,8 @@ print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-if args.install:
+local_install = args.install
+if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
 if args.clear:
@@ -207,7 +208,7 @@ generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
 generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
 
-if args.install:
+if local_install:
   generate_command.append(install_dir_option)
 
 if cpack_generator:
@@ -231,7 +232,7 @@ if args.config:
   build_command.append('--config')
   build_command.append(args.config)
 
-if args.install:
+if local_install:
   build_command.append('--target')
   build_command.append('install')
 
