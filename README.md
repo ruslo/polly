@@ -114,6 +114,7 @@ This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that w
 * start an IDE project (Xcode, Visual Studio) if option `--open` passed
 * run `ctest` after the build done if option `--test` passed
 * run `cpack` after the build done if option `--pack` passed
+* create `OS X`/`iOS` framework if option `--framework` passed (can be used for broken iOS framework creation on CMake)
 
 Example of usage (also see `build.py --help`):
 * build Debug Xcode project:
