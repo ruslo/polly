@@ -38,7 +38,7 @@ def run(install_dir, framework_dir, logging):
 
   shutil.copy(libs[0], os.path.join(lib_dir, framework_name))
 
-  incl_dir = os.path.join(install_dir, 'include')
+  incl_dir = os.path.join(install_dir, 'include', framework_name)
   for root, dirs, files in os.walk(incl_dir):
     for d in dirs:
       d_rel = os.path.relpath(os.path.join(root, d), incl_dir)
