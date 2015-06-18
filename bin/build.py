@@ -5,11 +5,13 @@
 
 import argparse
 import os
+import platform
 import shutil
 import sys
 
 import detail.call
 import detail.cpack_generator
+import detail.create_framework
 import detail.generate_command
 import detail.get_nmake_environment
 import detail.ios_dev_root
@@ -67,6 +69,9 @@ parser.add_argument(
 parser.add_argument('--verbose', action='store_true', help="Verbose output")
 parser.add_argument(
     '--install', action='store_true', help="Run install (local directory)"
+)
+parser.add_argument(
+    '--framework', action='store_true', help="Create framework"
 )
 parser.add_argument(
     '--clear',
@@ -150,9 +155,13 @@ print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-local_install = args.install
+local_install = args.install or args.framework
 if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
+
+if args.framework and platform.system() != 'Darwin':
+  sys.exit('Framework creation only for Mac OS X')
+framework_dir = os.path.join(cdir, '_framework', polly_toolchain)
 
 if args.clear:
   if os.path.exists(build_dir):
@@ -161,10 +170,15 @@ if args.clear:
   if os.path.exists(install_dir):
     print("Remove install directory: {}".format(install_dir))
     shutil.rmtree(install_dir)
+  if os.path.exists(framework_dir):
+    print("Remove framework directory: {}".format(framework_dir))
+    shutil.rmtree(framework_dir)
   if os.path.exists(build_dir):
     sys.exit("Directory removing failed ({})".format(build_dir))
   if os.path.exists(install_dir):
     sys.exit("Directory removing failed ({})".format(install_dir))
+  if os.path.exists(framework_dir):
+    sys.exit("Directory removing failed ({})".format(framework_dir))
 
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
@@ -255,6 +269,8 @@ if args.jobs:
 
 if not args.nobuild:
   detail.call.call(build_command, logging)
+  if args.framework:
+    detail.create_framework.run(install_dir, framework_dir, logging)
 
 if not args.nobuild:
   os.chdir(build_dir)
