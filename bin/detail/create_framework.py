@@ -9,6 +9,13 @@ import re
 import shutil
 import sys
 
+def get_framework_name(lib_name):
+  if re.match(r'^lib.*\.a$', lib_name):
+    return re.sub(r'^lib(.*)\.a$', r'\1', lib_name)
+  if re.match(r'^lib.*\.dylib$', lib_name):
+    return re.sub(r'^lib(.*)\.dylib$', r'\1', lib_name)
+  sys.exit('Incorrect library name `{}`. Expected format lib*.a or lib*.dylib')
+
 def run(install_dir, framework_dir, logging):
   libs = glob.glob(os.path.join(install_dir, 'lib', '*'))
   if len(libs) != 1:
@@ -16,13 +23,7 @@ def run(install_dir, framework_dir, logging):
 
   lib_name = os.path.basename(libs[0])
 
-  framework_name = re.sub(r'^lib(.*)\.a$', r'\1', lib_name)
-
-  check_lib_path = os.path.join(
-      install_dir, 'lib', 'lib{}.a'.format(framework_name)
-  )
-  if not os.path.exists(check_lib_path):
-    sys.exit('Incorrect library name: {}'.format(lib_name))
+  framework_name = get_framework_name(lib_name)
 
   framework_dir = os.path.join(
       framework_dir, '{}.framework'.format(framework_name)
