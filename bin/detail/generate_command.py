@@ -1,6 +1,7 @@
 # Copyright (c) 2014-2015, Ruslan Baratov
 # All rights reserved.
 
+import difflib
 import os
 import sys
 
@@ -32,6 +33,5 @@ def run(generate_command, build_dir, polly_temp_dir, reconfig, logging):
         " by adding '--clear' (works 100%)\n"
         "  * Run configure again by adding '--reconfigure'"
         " (you must understand how CMake cache variables works/updated)\n\n"
-        "  Expected: {}\n\n"
-        "  Current: {}\n\n".format(expected, generate_command_oneline)
+        "{}".format("\n".join(difflib.ndiff([expected], [generate_command_oneline])))
     )
