@@ -79,6 +79,11 @@ parser.add_argument(
     help="Remove build and install dirs before build"
 )
 parser.add_argument(
+    '--reconfig',
+    action='store_true',
+    help="Run configure even if CMakeCache.txt exists. Used to add new args."
+)
+parser.add_argument(
     '--fwd',
     nargs='*',
     help="Arguments to cmake without '-D', like:\nBOOST_ROOT=/some/path"
@@ -233,7 +238,7 @@ if args.fwd != None:
     generate_command.append("-D{}".format(x))
 
 detail.generate_command.run(
-    generate_command, build_dir, polly_temp_dir, logging
+    generate_command, build_dir, polly_temp_dir, args.reconfig, logging
 )
 
 build_command = [
