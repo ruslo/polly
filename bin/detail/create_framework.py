@@ -17,9 +17,17 @@ def get_framework_name(lib_name):
   sys.exit('Incorrect library name `{}`. Expected format lib*.a or lib*.dylib')
 
 def run(install_dir, framework_dir, logging):
-  libs = glob.glob(os.path.join(install_dir, 'lib', '*'))
+  libs_path = os.path.join(install_dir, 'lib')
+  libs = glob.glob(os.path.join(libs_path, '*'))
+
+  if len(libs) == 0:
+    sys.exit('No libs found in directory: {}'.format(libs_path))
+
   if len(libs) != 1:
-    sys.exit('Expected only one lib in directory _install/lib')
+    sys.exit(
+        'Expected only one lib in directory: {}'.format(libs_path) +
+        '\nBut found: {}'.format(libs)
+    )
 
   lib_name = os.path.basename(libs[0])
 
