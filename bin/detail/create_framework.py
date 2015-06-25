@@ -46,7 +46,16 @@ def run(install_dir, framework_dir, logging):
   os.makedirs(lib_dir)
   os.makedirs(headers_dir)
 
-  shutil.copy(libs[0], os.path.join(lib_dir, framework_name))
+  framework_lib = os.path.join(lib_dir, framework_name)
+  shutil.copy(libs[0], framework_lib)
+  if libs[0].endswith('.dylib'):
+    cmd = [
+        'install_name_tool',
+        '-id',
+        '@rpath/{}.framework/{}'.format(framework_name, framework_name),
+        framework_lib
+    ]
+    detail.call.call(cmd, logging)
 
   incl_dir = os.path.join(install_dir, 'include', framework_name)
   for root, dirs, files in os.walk(incl_dir):
