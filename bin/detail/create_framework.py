@@ -16,7 +16,7 @@ def get_framework_name(lib_name):
     return re.sub(r'^lib(.*)\.dylib$', r'\1', lib_name)
   sys.exit('Incorrect library name `{}`. Expected format lib*.a or lib*.dylib')
 
-def run(install_dir, framework_dir, logging):
+def run(install_dir, framework_dir, ios, polly_root, logging):
   libs_path = os.path.join(install_dir, 'lib')
   libs = glob.glob(os.path.join(libs_path, '*'))
   try: 
@@ -43,8 +43,12 @@ def run(install_dir, framework_dir, logging):
   if os.path.exists(framework_dir):
     shutil.rmtree(framework_dir)
 
-  lib_dir = os.path.join(framework_dir, 'Versions', 'A')
-  headers_dir = os.path.join(framework_dir, 'Versions', 'A', 'Headers')
+  if ios:
+    lib_dir = os.path.join(framework_dir)
+    headers_dir = os.path.join(framework_dir, 'Headers')
+  else:
+    lib_dir = os.path.join(framework_dir, 'Versions', 'A')
+    headers_dir = os.path.join(framework_dir, 'Versions', 'A', 'Headers')
 
   os.makedirs(lib_dir)
   os.makedirs(headers_dir)
@@ -71,22 +75,32 @@ def run(install_dir, framework_dir, logging):
       f_rel = os.path.relpath(os.path.join(root, f), incl_dir)
       shutil.copy(os.path.join(root, f), os.path.join(headers_dir, f_rel))
 
-  link = ['ln', '-sfh', 'A', os.path.join(framework_dir, 'Versions', 'Current')]
-  detail.call.call(link, logging)
+  if not ios:
+    link = ['ln', '-sfh', 'A', os.path.join(framework_dir, 'Versions', 'Current')]
+    detail.call.call(link, logging)
 
-  link = [
-      'ln',
-      '-sfh',
-      os.path.join('Versions', 'Current', framework_name),
-      os.path.join(framework_dir, framework_name)
-  ]
-  detail.call.call(link, logging)
+    link = [
+        'ln',
+        '-sfh',
+        os.path.join('Versions', 'Current', framework_name),
+        os.path.join(framework_dir, framework_name)
+    ]
+    detail.call.call(link, logging)
 
-  link = [
-      'ln',
-      '-sfh',
-      os.path.join('Versions', 'Current', 'Headers'),
-      os.path.join(framework_dir, 'Headers')
-  ]
-  detail.call.call(link, logging)
+    link = [
+        'ln',
+        '-sfh',
+        os.path.join('Versions', 'Current', 'Headers'),
+        os.path.join(framework_dir, 'Headers')
+    ]
+    detail.call.call(link, logging)
+  else:
+    shutil.copy(
+        os.path.join(polly_root, 'scripts', 'Info.plist'),
+        framework_dir
+    )
+    sign_cmd = [
+        'codesign', '--force', '--sign', 'iPhone Developer', framework_dir
+    ]
+    detail.call.call(sign_cmd, logging)
   print('Framework created: {}'.format(framework_dir))

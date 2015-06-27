@@ -275,7 +275,13 @@ if args.jobs:
 if not args.nobuild:
   detail.call.call(build_command, logging)
   if args.framework:
-    detail.create_framework.run(install_dir, framework_dir, logging)
+    detail.create_framework.run(
+        install_dir,
+        framework_dir,
+        toolchain_entry.ios_version,
+        polly_root,
+        logging
+    )
 
 if not args.nobuild:
   os.chdir(build_dir)
