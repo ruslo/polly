@@ -19,7 +19,10 @@ def get_framework_name(lib_name):
 def run(install_dir, framework_dir, logging):
   libs_path = os.path.join(install_dir, 'lib')
   libs = glob.glob(os.path.join(libs_path, '*'))
-  libs.remove(os.path.join(libs_path, 'cmake'))
+  try: 
+    libs.remove(os.path.join(libs_path, 'cmake'))
+  except ValueError:
+    pass 
 
   if len(libs) == 0:
     sys.exit('No libs found in directory: {}'.format(libs_path))
