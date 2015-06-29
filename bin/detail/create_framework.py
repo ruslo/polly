@@ -16,6 +16,13 @@ def get_framework_name(lib_name):
     return re.sub(r'^lib(.*)\.dylib$', r'\1', lib_name)
   sys.exit('Incorrect library name `{}`. Expected format lib*.a or lib*.dylib')
 
+def get_libname_soversion(libs):
+  name_len = min([len(x) for x in libs])
+  for x in libs:
+    if (len(x) == name_len) and os.path.islink(x):
+      return x
+  sys.exit('Unexpected version/soversion format: {}'.format(libs))
+
 def run(install_dir, framework_dir, ios, polly_root, logging):
   libs_path = os.path.join(install_dir, 'lib')
   libs = glob.glob(os.path.join(libs_path, '*'))
@@ -27,13 +34,19 @@ def run(install_dir, framework_dir, ios, polly_root, logging):
   if len(libs) == 0:
     sys.exit('No libs found in directory: {}'.format(libs_path))
 
-  if len(libs) != 1:
+  if len(libs) == 3:
+    # SOVERSION install:
+    #   1) lib<name>.dylib (symlink)
+    #   2) lib<name>.N.dylib (symlink)
+    #   3) lib<name>.N.M.dylib (real file)
+    lib_name = os.path.basename(get_libname_soversion(libs))
+  elif len(libs) == 1:
+    lib_name = os.path.basename(libs[0])
+  else:
     sys.exit(
         'Expected only one lib in directory: {}'.format(libs_path) +
         '\nBut found: {}'.format(libs)
     )
-
-  lib_name = os.path.basename(libs[0])
 
   framework_name = get_framework_name(lib_name)
 
