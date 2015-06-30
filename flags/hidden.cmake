@@ -11,3 +11,7 @@ include(polly_add_cache_flag)
 
 polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility=hidden")
 polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility-inlines-hidden")
+
+# There is no macro to detect this flags on toolchain calculation so we must
+# mark this toolchain explicitly.
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "hidden")
