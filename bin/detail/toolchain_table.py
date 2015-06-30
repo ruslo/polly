@@ -114,6 +114,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-8-2', 'Xcode', ios_version='8.2'),
       Toolchain('ios-8-2-i386-arm64', 'Xcode', ios_version='8.2'),
       Toolchain('ios-8-2-arm64', 'Xcode', ios_version='8.2'),
+      Toolchain('ios-8-2-arm64-hid', 'Xcode', ios_version='8.2'),
       Toolchain('ios-8-2-cxx98', 'Xcode', ios_version='8.2'),
       Toolchain('ios-8-1', 'Xcode', ios_version='8.1'),
       Toolchain('ios-8-0', 'Xcode', ios_version='8.0'),
