@@ -268,6 +268,8 @@ if args.jobs:
   elif toolchain_entry.is_make and not toolchain_entry.is_nmake:
     build_command.append('-j')
     build_command.append('{}'.format(args.jobs))
+  elif toolchain_entry.is_msvc:
+    build_command.append('/maxcpucount:{}'.format(args.jobs))
 
 if not args.nobuild:
   detail.call.call(build_command, logging)
