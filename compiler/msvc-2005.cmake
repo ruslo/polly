@@ -12,5 +12,3 @@ get_filename_component(
     "$ENV{VS80COMNTOOLS}/../../VC/vcvarsall.bat"
     ABSOLUTE
 )
-
-include("${CMAKE_CURRENT_LIST_DIR}/../flags/msvc-parallel.cmake")

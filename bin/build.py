@@ -207,9 +207,6 @@ generate_command = [
     build_dir_option
 ]
 
-if toolchain_entry.vs_version and args.jobs:
-  generate_command.append("-DPOLLY_PARALLEL=YES")
-
 if args.config and not toolchain_entry.multiconfig:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
 
