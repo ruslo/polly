@@ -42,7 +42,7 @@ def teed_call(cmd_args, logging):
 
   return p.wait()
 
-def call(call_args, logging, cache_file=''):
+def call(call_args, logging, cache_file='', ignore=False):
   pretty = 'Execute command: [\n'
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
@@ -60,7 +60,7 @@ def call(call_args, logging, cache_file=''):
   logging.log_file.write(oneline)
 
   x = teed_call(call_args, logging)
-  if x == 0:
+  if x == 0 or ignore:
     return
   if os.path.exists(cache_file):
     os.unlink(cache_file)
