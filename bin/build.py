@@ -74,6 +74,11 @@ parser.add_argument(
     '--framework', action='store_true', help="Create framework"
 )
 parser.add_argument(
+    '--framework-device',
+    action='store_true',
+    help="Create framework for device (exclude simulator architectures)"
+)
+parser.add_argument(
     '--clear',
     action='store_true',
     help="Remove build and install dirs before build"
@@ -160,11 +165,11 @@ print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-local_install = args.install or args.framework
+local_install = args.install or args.framework or args.framework_device
 if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
-if args.framework and platform.system() != 'Darwin':
+if (args.framework or args.framework_device) and platform.system() != 'Darwin':
   sys.exit('Framework creation only for Mac OS X')
 framework_dir = os.path.join(cdir, '_framework', polly_toolchain)
 
@@ -273,12 +278,13 @@ if args.jobs:
 
 if not args.nobuild:
   detail.call.call(build_command, logging)
-  if args.framework:
+  if args.framework or args.framework_device:
     detail.create_framework.run(
         install_dir,
         framework_dir,
         toolchain_entry.ios_version,
         polly_root,
+        args.framework_device,
         logging
     )
 
