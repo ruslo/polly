@@ -6,7 +6,6 @@
 #
 #  Variables:
 #   CROSS_COMPILE_TOOLCHAIN_PATH=/path/to/toolchain/bin
-#     
 #   CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-unknown-linux-gnueabihf
 #   CROSS_COMPILE_SYSROOT=/path/to/sysroot [optional]
 # ------------------------------------------------------------------------------
@@ -32,7 +31,7 @@ if (_has_sysroot)
 endif()
 
 # The (...)_PREFIX variable name refers to the Cross Compiler Triplet
-#set(TOOLCHAIN_PATH_AND_PREFIX ${CROSS_COMPILE_PATH}/${CROSS_COMPILE_TOOLCHAIN_TRIPLET})
+set(TOOLCHAIN_PATH_AND_PREFIX ${CROSS_COMPILE_TOOLCHAIN_PATH}/${CROSS_COMPILE_TOOLCHAIN_PREFIX})
 set(CMAKE_C_COMPILER     "${TOOLCHAIN_PATH_AND_PREFIX}-gcc"     CACHE PATH "C compiler" )
 set(CMAKE_CXX_COMPILER   "${TOOLCHAIN_PATH_AND_PREFIX}-g++"     CACHE PATH "C++ compiler" )
 set(CMAKE_ASM_COMPILER   "${TOOLCHAIN_PATH_AND_PREFIX}-as"      CACHE PATH "Assembler" )
@@ -49,24 +48,3 @@ set(CMAKE_NM             "${TOOLCHAIN_PATH_AND_PREFIX}-nm"      CACHE PATH "nm" 
 set(CMAKE_OBJCOPY        "${TOOLCHAIN_PATH_AND_PREFIX}-objcopy" CACHE PATH "objcopy" )
 set(CMAKE_OBJDUMP        "${TOOLCHAIN_PATH_AND_PREFIX}-objdump" CACHE PATH "objdump" )
 set(CMAKE_RANLIB         "${TOOLCHAIN_PATH_AND_PREFIX}-ranlib"  CACHE PATH "ranlib" )
-
-#set( CMAKE_C_PLATFORM_ID Linux )
-#set( CMAKE_C_COMPILER_ID GNU)
-#set( CMAKE_C_SIZEOF_DATA_PTR 4 )
-#set( CMAKE_C_HAS_ISYSROOT 1 )
-#set( CMAKE_C_COMPILER_ABI ELF )
-#set( CMAKE_CXX_COMPILER_ID GNU)
-#set( CMAKE_CXX_PLATFORM_ID Linux)
-#set( CMAKE_CXX_SIZEOF_DATA_PTR 4)
-#set( CMAKE_CXX_HAS_ISYSROOT 1)
-#set( CMAKE_CXX_COMPILER_ABI ELF)
-#set( CMAKE_CXX_SOURCE_FILE_EXTENSIONS cc cp cxx cpp CPP c++ C )
-## force ASM compiler (required for CMake < 2.8.5)
-#set( CMAKE_ASM_COMPILER_ID_RUN TRUE )
-#set( CMAKE_ASM_COMPILER_ID GNU )
-#set( CMAKE_ASM_COMPILER_WORKS TRUE )
-#set( CMAKE_ASM_COMPILER_FORCED TRUE )
-#set( CMAKE_COMPILER_IS_GNUASM 1)
-#set( CMAKE_ASM_SOURCE_FILE_EXTENSIONS s S asm )
-
-

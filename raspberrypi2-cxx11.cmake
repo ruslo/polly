@@ -9,9 +9,8 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
-
-include(polly_fatal_error)
-include(polly_add_cache_flag)
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_fatal_error.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_add_cache_flag.cmake")
 
 polly_init(
 	"RaspberryPi 2 Cross Compile / C++11"
