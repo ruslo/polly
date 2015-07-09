@@ -23,18 +23,18 @@ endif()
 string(COMPARE EQUAL
     "${CROSS_COMPILE_TOOLCHAIN_PATH}"
     ""
-    _is_empty_cross_compile_toolchain_path
+    _is_empty
 )
-if(_is_empty_cross_compile_toolchain_path)
+if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set. Set it to the absolute path of the \"bin\" directory for the toolchain")
 endif()
 
 string(COMPARE EQUAL
     "${CROSS_COMPILE_TOOLCHAIN_PREFIX}"
     ""
-    _is_empty_cross_compile_toolchain_prefix
+    _is_empty
 )
-if(_is_empty_cross_compile_toolchain_prefix)
+if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set. Set it to the triplet of the toolchain")
 endif()
 
@@ -45,11 +45,11 @@ if (_has_sysroot)
   set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
   polly_add_cache_flag(
       CMAKE_C_FLAGS
-      "${CMAKE_C_FLAGS} ${SYSROOT_COMPILE_FLAG}"
+      "${SYSROOT_COMPILE_FLAG}"
   )
   polly_add_cache_flag(
       CMAKE_CXX_FLAGS
-      "${CMAKE_CXX_FLAGS} ${SYSROOT_COMPILE_FLAG}"
+      "${SYSROOT_COMPILE_FLAG}"
   )
 endif()
 
