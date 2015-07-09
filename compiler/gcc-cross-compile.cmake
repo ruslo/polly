@@ -21,8 +21,8 @@ if( CMAKE_TOOLCHAIN_FILE )
 endif()
 
 string(COMPARE EQUAL
-    "${CROSS_COMPILE_TOOLCHAIN_PATH}" 
-    "" 
+    "${CROSS_COMPILE_TOOLCHAIN_PATH}"
+    ""
     _is_empty_cross_compile_toolchain_path
 )
 if(_is_empty_cross_compile_toolchain_path)
@@ -30,8 +30,8 @@ if(_is_empty_cross_compile_toolchain_path)
 endif()
 
 string(COMPARE EQUAL
-    "${CROSS_COMPILE_TOOLCHAIN_PREFIX}" 
-    "" 
+    "${CROSS_COMPILE_TOOLCHAIN_PREFIX}"
+    ""
     _is_empty_cross_compile_toolchain_prefix
 )
 if(_is_empty_cross_compile_toolchain_prefix)
@@ -44,11 +44,11 @@ string(COMPARE NOTEQUAL "${CROSS_COMPILE_SYSROOT}" "" _has_sysroot)
 if (_has_sysroot)
   set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
   polly_add_cache_flag(
-      CMAKE_C_FLAGS   
+      CMAKE_C_FLAGS
       "${CMAKE_C_FLAGS} ${SYSROOT_COMPILE_FLAG}"
   )
   polly_add_cache_flag(
-      CMAKE_CXX_FLAGS 
+      CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} ${SYSROOT_COMPILE_FLAG}"
   )
 endif()
