@@ -13,12 +13,12 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_fatal_error.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_add_cache_flag.cmake")
 
 polly_init(
-	"RaspberryPi 2 Cross Compile / C++11"
+    "RaspberryPi 2 Cross Compile / C++11"
     "Unix Makefiles"
 )
 set(RAPSBERRYPI2_COMPILE_FLAGS 
-		"-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
-		CACHE STRING "RaspberryPi 2 Compile Flags"
+    "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
+    CACHE STRING "RaspberryPi 2 Compile Flags"
 )
 
 # We shouldn't try to hardcore the path, since the cross compiler for the Mac
@@ -37,7 +37,7 @@ set(CROSS_COMPILE_TOOLCHAIN_PREFIX
 
 # The sysroot is sometimes optional, as it could be hardcoded into the compiler
 set(CROSS_COMPILE_SYSROOT
- 		"$ENV{RASPBERRYPI_CROSS_COMPILE_SYSROOT}" 
+    "$ENV{RASPBERRYPI_CROSS_COMPILE_SYSROOT}" 
     CACHE PATH "RaspberryPi sysroot"
 )
 
