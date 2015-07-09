@@ -50,3 +50,5 @@ include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile.cmake")
 
 polly_add_cache_flag(CMAKE_C_FLAGS ${RAPSBERRYPI2_COMPILE_FLAGS})
 polly_add_cache_flag(CMAKE_CXX_FLAGS ${RAPSBERRYPI2_COMPILE_FLAGS})
+polly_add_cache_flag(CMAKE_SYSTEM_NAME "Linux")
+polly_add_cache_flag(CMAKE_SYSTEM_PROCESSOR "armv7-a")
