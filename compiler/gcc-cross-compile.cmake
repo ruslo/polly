@@ -26,7 +26,7 @@ string(COMPARE EQUAL
     _is_empty_cross_compile_toolchain_path
 )
 if(_is_empty_cross_compile_toolchain_path)
-  poly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set. Set it to the absolute path of the \"bin\" directory for the toolchain")
+  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set. Set it to the absolute path of the \"bin\" directory for the toolchain")
 endif()
 
 string(COMPARE EQUAL
@@ -35,7 +35,7 @@ string(COMPARE EQUAL
     _is_empty_cross_compile_toolchain_prefix
 )
 if(_is_empty_cross_compile_toolchain_prefix)
-  poly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set. Set it to the triplet of the toolchain")
+  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set. Set it to the triplet of the toolchain")
 endif()
 
 

@@ -7,10 +7,13 @@ else()
   set(POLLY_RASPBERRYPI2_CXX11_CMAKE 1)
 endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
+#Maybe this line should be in polly_init and not in polly_common?
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/utilities")
+
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_fatal_error.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_add_cache_flag.cmake")
+include(polly_clear_environment_variables)
+include(polly_fatal_error)
+include(polly_add_cache_flag)
 
 polly_init(
     "RaspberryPi 2 Cross Compile / C++11"
