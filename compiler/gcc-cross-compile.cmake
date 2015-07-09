@@ -10,8 +10,6 @@
 #   CROSS_COMPILE_SYSROOT=/path/to/sysroot [optional]
 # ------------------------------------------------------------------------------
 
-cmake_minimum_required( VERSION 2.8 )
-
 if(DEFINED POLLY_COMPILER_GCC_CROSS_COMPILE)
   return()
 else()
@@ -22,12 +20,37 @@ if( CMAKE_TOOLCHAIN_FILE )
   # touch toolchain variable to suppress "unused variable" warning
 endif()
 
+string(COMPARE EQUAL
+    "${CROSS_COMPILE_TOOLCHAIN_PATH}" 
+    "" 
+    _is_empty_cross_compile_toolchain_path
+)
+if(_is_empty_cross_compile_toolchain_path)
+  poly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set. Set it to the absolute path of the \"bin\" directory for the toolchain")
+endif()
+
+string(COMPARE EQUAL
+    "${CROSS_COMPILE_TOOLCHAIN_PREFIX}" 
+    "" 
+    _is_empty_cross_compile_toolchain_prefix
+)
+if(_is_empty_cross_compile_toolchain_prefix)
+  poly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set. Set it to the triplet of the toolchain")
+endif()
+
+
 #Check for if sysroot exists, optional, since it could be hardcoded in the compiler
 string(COMPARE NOTEQUAL "${CROSS_COMPILE_SYSROOT}" "" _has_sysroot)
 if (_has_sysroot)
   set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
-  set(CMAKE_C_FLAGS        "${CMAKE_C_FLAGS} ${SYSROOT_COMPILE_FLAG}")
-  set(CMAKE_CXX_FLAGS      "${CMAKE_CXX_FLAGS} ${SYSROOT_COMPILE_FLAG}")
+  polly_add_cache_flag(
+      CMAKE_C_FLAGS   
+      "${CMAKE_C_FLAGS} ${SYSROOT_COMPILE_FLAG}"
+  )
+  polly_add_cache_flag(
+      CMAKE_CXX_FLAGS 
+      "${CMAKE_CXX_FLAGS} ${SYSROOT_COMPILE_FLAG}"
+  )
 endif()
 
 # The (...)_PREFIX variable name refers to the Cross Compiler Triplet
