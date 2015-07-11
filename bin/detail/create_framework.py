@@ -108,10 +108,14 @@ def run(install_dir, framework_dir, ios, polly_root, device, logging):
     ]
     detail.call.call(link, logging)
   else:
+    framework_plist = os.path.join(framework_dir, 'Info.plist')
     shutil.copy(
         os.path.join(polly_root, 'scripts', 'Info.plist'),
-        framework_dir
+        framework_plist
     )
+    plist_text = open(framework_plist).read()
+    plist_text = re.sub(r'__MINIMUM_OS_VERSION__', ios, plist_text)
+    open(framework_plist, 'w').write(plist_text)
     if device:
       detail.call.call(
           ['lipo', '-remove', 'i386', '-output', framework_lib, framework_lib],
