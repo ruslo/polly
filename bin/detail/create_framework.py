@@ -115,6 +115,7 @@ def run(install_dir, framework_dir, ios, polly_root, device, logging):
     )
     plist_text = open(framework_plist).read()
     plist_text = re.sub(r'__MINIMUM_OS_VERSION__', ios, plist_text)
+    plist_text = re.sub(r'__BUNDLE_EXECUTABLE__', framework_name, plist_text)
     open(framework_plist, 'w').write(plist_text)
     if device:
       detail.call.call(
