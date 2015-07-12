@@ -7,18 +7,64 @@ else()
   set(POLLY_RASPBERRYPI2_CXX11_CMAKE 1)
 endif()
 
-#Maybe this line should be in polly_init and not in polly_common?
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/utilities")
-
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
-include(polly_clear_environment_variables)
-include(polly_fatal_error)
-include(polly_add_cache_flag)
 
 polly_init(
     "RaspberryPi 2 Cross Compile / C++11"
     "Unix Makefiles"
 )
+
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
+include(polly_clear_environment_variables)
+include(polly_fatal_error)
+include(polly_add_cache_flag)
+
+set(_rpi_error_msg) #if empty, then no errors!
+string(COMPARE EQUAL
+    "$ENV{RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH}"
+    ""
+    _is_empty
+)
+if(_is_empty)
+  set(_rpi_error_msg
+      "${_rpi_error_msg}\nRASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH environment variable not set. Set it to the absolute path of the \"bin\" directory for the toolchain"
+  )
+endif()
+
+string(COMPARE EQUAL
+    "$ENV{RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX}"
+    ""
+    _is_empty
+)
+if(_is_empty)
+  set(_rpi_error_msg
+      "${_rpi_error_msg}\nRASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX environment variable not set. Set it to the triplet of the toolchain (ex: arm-linux-gnueabihf)"
+  )
+endif()
+
+string(COMPARE EQUAL
+    "$ENV{RASPBERRYPI_CROSS_COMPILE_SYSROOT}"
+    ""
+    _is_empty
+)
+if(_is_empty)
+  set(_rpi_error_msg
+    "${_rpi_error_msg}\nRASPBERRYPI_CROSS_COMPILE_SYSROOT environment variable not set. Set it to the sysroot to be used"
+  )
+endif()
+
+string(COMPARE NOTEQUAL
+    "${_rpi_error_msg}"
+    ""
+    _has_errors
+)
+if(_has_errors)
+  polly_fatal_error(
+      "RaspberyPi Toolchain configuration failed:" 
+      ${_rpi_error_msg}
+  )
+endif()
+
 set(RAPSBERRYPI2_COMPILE_FLAGS
     "-mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard"
     CACHE STRING "RaspberryPi 2 Compile Flags"
@@ -38,13 +84,12 @@ set(CROSS_COMPILE_TOOLCHAIN_PREFIX
     CACHE STRING "RaspberryPi Toolchain Prefix"
 )
 
-# The sysroot is sometimes optional, as it could be hardcoded into the compiler
+# The sysroot for the cross compile 
 set(CROSS_COMPILE_SYSROOT
     "$ENV{RASPBERRYPI_CROSS_COMPILE_SYSROOT}"
     CACHE PATH "RaspberryPi sysroot"
 )
 
-include(polly_common)
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile.cmake")
 

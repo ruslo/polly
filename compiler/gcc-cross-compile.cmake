@@ -7,7 +7,7 @@
 #  Variables:
 #   CROSS_COMPILE_TOOLCHAIN_PATH=/path/to/toolchain/bin
 #   CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-unknown-linux-gnueabihf
-#   CROSS_COMPILE_SYSROOT=/path/to/sysroot [optional]
+#   CROSS_COMPILE_SYSROOT=/path/to/sysroot
 # ------------------------------------------------------------------------------
 
 if(DEFINED POLLY_COMPILER_GCC_CROSS_COMPILE)
@@ -26,7 +26,7 @@ string(COMPARE EQUAL
     _is_empty
 )
 if(_is_empty)
-  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set. Set it to the absolute path of the \"bin\" directory for the toolchain")
+  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PATH not set.")
 endif()
 
 string(COMPARE EQUAL
@@ -35,23 +35,27 @@ string(COMPARE EQUAL
     _is_empty
 )
 if(_is_empty)
-  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set. Set it to the triplet of the toolchain")
+  polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set.")
 endif()
 
-
-#Check for if sysroot exists, optional, since it could be hardcoded in the compiler
-string(COMPARE NOTEQUAL "${CROSS_COMPILE_SYSROOT}" "" _has_sysroot)
-if (_has_sysroot)
-  set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
-  polly_add_cache_flag(
-      CMAKE_C_FLAGS
-      "${SYSROOT_COMPILE_FLAG}"
-  )
-  polly_add_cache_flag(
-      CMAKE_CXX_FLAGS
-      "${SYSROOT_COMPILE_FLAG}"
-  )
+string(COMPARE EQUAL
+    "${CROSS_COMPILE_SYSROOT}"
+    ""
+    _is_empty
+)
+if(_is_empty)
+  polly_fatal_error("CROSS_COMPILE_SYSROOT not set.")
 endif()
+
+set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
+polly_add_cache_flag(
+    CMAKE_C_FLAGS
+    "${SYSROOT_COMPILE_FLAG}"
+)
+polly_add_cache_flag(
+    CMAKE_CXX_FLAGS
+    "${SYSROOT_COMPILE_FLAG}"
+)
 
 # The (...)_PREFIX variable name refers to the Cross Compiler Triplet
 set(TOOLCHAIN_PATH_AND_PREFIX ${CROSS_COMPILE_TOOLCHAIN_PATH}/${CROSS_COMPILE_TOOLCHAIN_PREFIX})
