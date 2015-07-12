@@ -60,7 +60,7 @@ string(COMPARE NOTEQUAL
 )
 if(_has_errors)
   polly_fatal_error(
-      "RaspberyPi Toolchain configuration failed:" 
+      "RaspberyPi Toolchain configuration failed:"
       ${_rpi_error_msg}
   )
 endif()
@@ -84,7 +84,7 @@ set(CROSS_COMPILE_TOOLCHAIN_PREFIX
     CACHE STRING "RaspberryPi Toolchain Prefix"
 )
 
-# The sysroot for the cross compile 
+# The sysroot for the cross compile
 set(CROSS_COMPILE_SYSROOT
     "$ENV{RASPBERRYPI_CROSS_COMPILE_SYSROOT}"
     CACHE PATH "RaspberryPi sysroot"
