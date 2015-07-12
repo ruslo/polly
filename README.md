@@ -68,6 +68,8 @@ In this case targets can coexist simultaneously:
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
  * [ios-nocodesign](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-nocodesign)
+* Raspberry Pi
+ * [raspberrypi2-cxx11](https://github.com/ruslo/polly/wiki/Toolchain-list#raspberrypi2-cxx11)
 * Clang tools
  * [analyze](https://github.com/ruslo/polly/wiki/Toolchain-list#analyze)
  * [sanitize-address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-address)
