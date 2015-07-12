@@ -55,7 +55,8 @@ toolchain_table = [
     Toolchain('android-ndk-r10e-api-21-arm64-v8a-gcc-49', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-arm64-v8a-clang-35', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-x86', 'Unix Makefiles'),
-    Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles')
+    Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
 
 if os.name == 'nt':
