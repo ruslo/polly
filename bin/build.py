@@ -20,6 +20,7 @@ import detail.open_project
 import detail.osx_dev_root
 import detail.pack_command
 import detail.test_command
+import detail.timer
 import detail.toolchain_name
 import detail.toolchain_table
 import detail.verify_mingw_path
@@ -239,9 +240,13 @@ if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
 
+timer = detail.timer.Timer()
+
+timer.start('Generate')
 detail.generate_command.run(
     generate_command, build_dir, polly_temp_dir, args.reconfig, logging
 )
+timer.stop()
 
 build_command = [
     'cmake',
@@ -277,8 +282,12 @@ if args.jobs:
     build_command.append('/maxcpucount:{}'.format(args.jobs))
 
 if not args.nobuild:
+  timer.start('Build')
   detail.call.call(build_command, logging)
+  timer.stop()
+
   if args.framework or args.framework_device:
+    timer.start('Framework creation')
     detail.create_framework.run(
         install_dir,
         framework_dir,
@@ -287,16 +296,25 @@ if not args.nobuild:
         args.framework_device,
         logging
     )
+    timer.stop()
 
 if not args.nobuild:
   os.chdir(build_dir)
   if args.test:
+    timer.start('Test')
     detail.test_command.run(build_dir, args.config, logging)
+    timer.stop()
   if args.pack:
+    timer.start('Pack')
     detail.pack_command.run(args.config, logging, cpack_generator)
+    timer.stop()
 
 if args.open:
   detail.open_project.open(toolchain_entry, build_dir, logging)
 
+print('-')
 print('Log saved: {}'.format(logging.log_path))
+print('-')
+timer.result()
+print('-')
 print('SUCCESS')
