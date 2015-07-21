@@ -60,6 +60,8 @@ parser.add_argument(
 )
 
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
+parser.add_argument('--test_xml', help="Save ctest output to xml")
+
 parser.add_argument('--pack', action='store_true', help="Run cpack after build")
 parser.add_argument(
     '--nobuild', action='store_true', help="Do not build (only generate)"
