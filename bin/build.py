@@ -60,6 +60,8 @@ parser.add_argument(
 )
 
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
+parser.add_argument('--test-xml', help="Save ctest output to xml")
+
 parser.add_argument('--pack', action='store_true', help="Run cpack after build")
 parser.add_argument(
     '--nobuild', action='store_true', help="Do not build (only generate)"
@@ -300,9 +302,9 @@ if not args.nobuild:
 
 if not args.nobuild:
   os.chdir(build_dir)
-  if args.test:
+  if args.test or args.test_xml:
     timer.start('Test')
-    detail.test_command.run(build_dir, args.config, logging)
+    detail.test_command.run(build_dir, args.config, logging, args.test_xml)
     timer.stop()
   if args.pack:
     timer.start('Pack')
