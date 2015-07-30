@@ -82,6 +82,9 @@ parser.add_argument(
     help="Create framework for device (exclude simulator architectures)"
 )
 parser.add_argument(
+    '--strip', action='store_true', help="Run strip/install cmake targets"
+)
+parser.add_argument(
     '--clear',
     action='store_true',
     help="Remove build and install dirs before build"
@@ -169,6 +172,15 @@ build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
 local_install = args.install or args.framework or args.framework_device
+
+if args.strip:
+  if not toolchain_entry.is_make:
+    sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
+  if not args.install: # strip will always imply --install 
+    local_install = True 
+
+strip_install = args.strip
+
 if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
@@ -262,7 +274,10 @@ if args.config:
 
 if local_install:
   build_command.append('--target')
-  build_command.append('install')
+  if strip_install:
+    build_command.append('install/strip')
+  else:
+    build_command.append('install')
 
 # NOTE: This must be the last `build_command` modification!
 build_command.append('--')
