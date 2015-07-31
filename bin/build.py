@@ -85,6 +85,14 @@ parser.add_argument(
     '--strip', action='store_true', help="Run strip/install cmake targets"
 )
 parser.add_argument(
+    '--identity', 
+    help="Specify code signing identity for --framework"
+)
+parser.add_argument(
+    '--plist', 
+    help="User specified Info.plist file for --framework"
+)
+parser.add_argument(
     '--clear',
     action='store_true',
     help="Remove build and install dirs before build"
@@ -311,7 +319,9 @@ if not args.nobuild:
         toolchain_entry.ios_version,
         polly_root,
         args.framework_device,
-        logging
+        logging,
+        args.plist,
+        args.identity
     )
     timer.stop()
 
