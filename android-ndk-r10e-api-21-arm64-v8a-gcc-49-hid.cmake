@@ -2,10 +2,10 @@
 # Copyright (c) 2015, David Hirvonen
 # All rights reserved.
 
-if(DEFINED POLLY_ANDROID_NDK_R10E_API_21_ARM64_V8A_GCC_49_CMAKE_)
+if(DEFINED POLLY_ANDROID_NDK_R10E_API_21_ARM64_V8A_GCC_49_HID_CMAKE_)
   return()
 else()
-  set(POLLY_ANDROID_NDK_R10E_API_21_ARM64_V8A_GCC_49_CMAKE_ 1)
+  set(POLLY_ANDROID_NDK_R10E_API_21_ARM64_V8A_GCC_49_HID_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")

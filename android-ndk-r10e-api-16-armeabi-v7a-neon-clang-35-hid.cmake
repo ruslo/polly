@@ -15,7 +15,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 set(ANDROID_NDK_VERSION "r10e")
 set(ANDROID_NATIVE_API_LEVEL "16")
 set(ANDROID_ABI "armeabi-v7a with NEON")
-set(ANDROIR_TOOLCHAIN_NAME "arm-linux-androideabi-clang3.5")
+set(ANDROID_TOOLCHAIN_NAME "arm-linux-androideabi-clang3.5")
 
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
