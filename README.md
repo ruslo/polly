@@ -85,6 +85,8 @@ In this case targets can coexist simultaneously:
  * [msys](https://github.com/ruslo/polly/wiki/Toolchain-list#msys)
  * [nmake-vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013-win64)
  * [nmake-vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013)
+* Cross compiling
+ * [linux-gcc-x64](https://github.com/ruslo/polly/wiki/Toolchain-list#linux-gcc-x64)
 
 ## Usage
 Just define [CMAKE_TOOLCHAIN_FILE][3] variable:
