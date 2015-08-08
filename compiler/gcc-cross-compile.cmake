@@ -16,6 +16,8 @@ else()
   set(POLLY_COMPILER_GCC_CROSS_COMPILE TRUE)
 endif()
 
+include(polly_add_cache_flag)
+
 if( CMAKE_TOOLCHAIN_FILE )
   # touch toolchain variable to suppress "unused variable" warning
 endif()
@@ -47,15 +49,21 @@ if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_SYSROOT not set.")
 endif()
 
-set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
-polly_add_cache_flag(
-    CMAKE_C_FLAGS
-    "${SYSROOT_COMPILE_FLAG}"
-)
-polly_add_cache_flag(
-    CMAKE_CXX_FLAGS
-    "${SYSROOT_COMPILE_FLAG}"
-)
+if(POLLY_SKIP_SYSROOT)
+  # Do not modify CMAKE_{C,CXX}_FLAGS
+  # Workaround for x86_64-pc-linux-gcc error:
+  #   "this linker was not configured to use sysroots"
+else()
+  set(SYSROOT_COMPILE_FLAG "--sysroot=${CROSS_COMPILE_SYSROOT}")
+  polly_add_cache_flag(
+      CMAKE_C_FLAGS
+      "${SYSROOT_COMPILE_FLAG}"
+  )
+  polly_add_cache_flag(
+      CMAKE_CXX_FLAGS
+      "${SYSROOT_COMPILE_FLAG}"
+  )
+endif()
 
 # The (...)_PREFIX variable name refers to the Cross Compiler Triplet
 set(TOOLCHAIN_PATH_AND_PREFIX ${CROSS_COMPILE_TOOLCHAIN_PATH}/${CROSS_COMPILE_TOOLCHAIN_PREFIX})
