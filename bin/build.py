@@ -62,7 +62,13 @@ parser.add_argument(
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
 parser.add_argument('--test-xml', help="Save ctest output to xml")
 
-parser.add_argument('--pack', action='store_true', help="Run cpack after build")
+parser.add_argument(
+    '--pack',
+    choices=detail.cpack_generator.available_generators,
+    nargs='?',
+    const=detail.cpack_generator.default(),
+    help="Run cpack after build"
+)
 parser.add_argument(
     '--nobuild', action='store_true', help="Do not build (only generate)"
 )
@@ -123,7 +129,7 @@ args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
 toolchain_entry = detail.toolchain_table.get_by_name(polly_toolchain)
-cpack_generator = detail.cpack_generator.get(args.pack)
+cpack_generator = args.pack
 
 polly_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
 polly_root = os.path.realpath(polly_root)

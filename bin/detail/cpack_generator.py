@@ -4,14 +4,51 @@
 import os
 import platform
 
-def get(cpack):
-  if not cpack:
-    return ''
+available_generators = [
+    '7Z',
+    'IFW',
+    'NSIS',
+    'NSIS64',
+    'STGZ',
+    'TBZ2',
+    'TGZ',
+    'TXZ',
+    'TZ',
+    'ZIP',
+]
+
+if platform.system() == 'Darwin':
+  available_generators += [
+      'Bundle',
+      'DragNDrop',
+      'OSXX11',
+      'PackageMaker',
+  ]
+
+if platform.system().startswith('CYGWIN'):
+  available_generators += [
+      'CygwinBinary',
+      'CygwinSource',
+      'DEB',
+      'RPM',
+  ]
+
+if platform.system() == 'Linux':
+  available_generators += [
+      'DEB',
+      'RPM',
+  ]
+
+if os.name == 'nt':
+  available_generators += [
+      'WIX'
+  ]
+
+def default():
   if os.name == 'nt':
     return 'NSIS'
   if platform.system() == 'Darwin':
     return 'PackageMaker'
   if platform.system() == 'Linux':
-    if platform.linux_distribution()[0] == 'Ubuntu':
-      cpack_generator = 'DEB'
-  return ''
+    return 'DEB'
+  return 'TGZ'
