@@ -5,9 +5,14 @@ import datetime
 import sys
 import time
 
+perf_counter_available = (sys.version_info.minor >= 3)
+
 class Job:
   def __init__(self, job_name):
-    self.start = time.perf_counter()
+    if perf_counter_available:
+      self.start = time.perf_counter()
+    else:
+      self.start = 0
     self.job_name = job_name
     self.stopped = False
 
@@ -15,7 +20,10 @@ class Job:
     if self.stopped:
       sys.exit('Already stopped')
     self.stopped = True
-    self.total = time.perf_counter() - self.start
+    if perf_counter_available:
+      self.total = time.perf_counter() - self.start
+    else:
+      self.total = 0
 
   def result(self):
     if not self.stopped:
@@ -43,6 +51,9 @@ class Timer:
     self.jobs[-1].stop()
 
   def result(self):
+    if not perf_counter_available:
+      print('timer.perf_counter is not available (update to python 3.3+)')
+      return
     for i in self.jobs:
       i.result()
     print('-')
