@@ -13,7 +13,12 @@ def tee(infile, *files):
   def fanout(infile, *files):
     for line in iter(infile.readline, b''):
       for f in files:
-        f.write(line.decode('utf-8'))
+        s = line.decode('utf-8')
+        s = s.replace('\r', '')
+        s = s.replace('\t', '  ')
+        s = s.rstrip() # strip spaces and EOL
+        s += '\n' # append stripped EOL back
+        f.write(s)
     infile.close()
   t = threading.Thread(target=fanout, args=(infile,)+files)
   t.daemon = True
@@ -53,8 +58,8 @@ def call(call_args, logging, cache_file='', ignore=False):
   # print one line version
   oneline = ''
   for i in call_args:
-    oneline += '"{}" '.format(i)
-  oneline = "[{}]> {}\n".format(os.getcwd(), oneline)
+    oneline += ' "{}"'.format(i)
+  oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
   if logging.verbose:
     print(oneline)
   logging.log_file.write(oneline)
