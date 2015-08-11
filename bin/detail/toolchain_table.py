@@ -149,6 +149,7 @@ if os.name == 'posix':
       Toolchain('gcc-gold', 'Unix Makefiles'),
       Toolchain('gcc-pic', 'Unix Makefiles'),
       Toolchain('gcc-4-8', 'Unix Makefiles'),
+      Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
       Toolchain('libcxx-hid', 'Unix Makefiles'),
       Toolchain('libcxx-omp', 'Unix Makefiles'),
