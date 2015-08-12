@@ -148,7 +148,7 @@ it's quite self-explanatory.
 [Mac OS X](https://travis-ci.org/forexample/hunter-simple/builds/28155372) and 
 [Linux](https://travis-ci.org/forexample/hunter-simple/builds/28154503)
 * [Table of toolchains available for Travis CI][7]
-* [Travis => GitHub deploy example](https://github.com/forexample/github-binary-release)
+* [Travis, AppVeyor => GitHub deploy example](https://github.com/forexample/github-binary-release)
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
 [2]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_library
