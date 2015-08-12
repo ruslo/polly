@@ -31,6 +31,12 @@ toolchain_table = detail.toolchain_table.toolchain_table
 assert(sys.version_info.major == 3)
 assert(sys.version_info.minor >= 2) # Current cygwin version is 3.2.3
 
+print(
+    'Python version: {}.{}'.format(
+        sys.version_info.major, sys.version_info.minor
+     )
+)
+
 description="""
 Script for building. Available toolchains:\n
 """
