@@ -97,11 +97,11 @@ parser.add_argument(
     '--strip', action='store_true', help="Run strip/install cmake targets"
 )
 parser.add_argument(
-    '--identity', 
+    '--identity',
     help="Specify code signing identity for --framework"
 )
 parser.add_argument(
-    '--plist', 
+    '--plist',
     help="User specified Info.plist file for --framework"
 )
 parser.add_argument(
@@ -196,8 +196,8 @@ local_install = args.install or args.framework or args.framework_device
 if args.strip:
   if not toolchain_entry.is_make:
     sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
-  if not args.install: # strip will always imply --install 
-    local_install = True 
+  if not args.install: # strip will always imply --install
+    local_install = True
 
 strip_install = args.strip
 
