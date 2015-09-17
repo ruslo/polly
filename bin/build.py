@@ -131,6 +131,11 @@ parser.add_argument(
     help="Number of concurrent build operations"
 )
 
+parser.add_argument(
+    '--target',
+    help="Target to build for the 'cmake --build' command"
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -298,6 +303,8 @@ if local_install:
     build_command.append('install/strip')
   else:
     build_command.append('install')
+elif args.target:
+  build_command += ['--target', args.target]
 
 # NOTE: This must be the last `build_command` modification!
 build_command.append('--')
