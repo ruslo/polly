@@ -173,7 +173,7 @@ if toolchain_entry.ios_version:
     print("Set environment DEVELOPER_DIR to {}".format(ios_dev_root))
     os.environ['DEVELOPER_DIR'] = ios_dev_root
 
-if toolchain_entry.name == 'ios-nocodesign':
+if toolchain_entry.nocodesign:
   xcconfig = os.path.join(polly_root, 'scripts', 'NoCodeSign.xcconfig')
   print("Set environment XCODE_XCCONFIG_FILE to {}".format(xcconfig))
   os.environ['XCODE_XCCONFIG_FILE'] = xcconfig

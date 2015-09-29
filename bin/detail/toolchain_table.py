@@ -14,6 +14,7 @@ class Toolchain:
       ios_version='',
       osx_version='',
       xp=False,
+      nocodesign=False,
   ):
     self.name = name
     self.generator = generator
@@ -27,6 +28,7 @@ class Toolchain:
     self.xp = xp
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)
+    self.nocodesign = nocodesign
     self.verify()
 
   def verify(self):
@@ -143,7 +145,9 @@ if platform.system() == 'Darwin':
       Toolchain('ios-8-0', 'Xcode', ios_version='8.0'),
       Toolchain('ios-7-1', 'Xcode', ios_version='7.1'),
       Toolchain('ios-7-0', 'Xcode', ios_version='7.0'),
-      Toolchain('ios-nocodesign', 'Xcode', ios_version='8.1'),
+      Toolchain('ios-nocodesign', 'Xcode', ios_version='8.1', nocodesign=True),
+      Toolchain('ios-nocodesign-arm64', 'Xcode', ios_version='8.1', nocodesign=True),
+      Toolchain('ios-nocodesign-armv7', 'Xcode', ios_version='8.1', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('osx-10-7', 'Xcode', osx_version='10.7'),
