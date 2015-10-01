@@ -150,6 +150,12 @@ parser.add_argument(
         ' (note that full log is still available in log.txt)'
 )
 
+parser.add_argument(
+    '--tail',
+    type=PositiveInt,
+    help='Print last N lines if build failed'
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -247,7 +253,9 @@ if args.clear:
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(polly_temp_dir, args.verbose, args.discard)
+logging = detail.logging.Logging(
+    polly_temp_dir, args.verbose, args.discard, args.tail
+)
 
 if os.name == 'nt':
   # Windows

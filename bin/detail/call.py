@@ -79,7 +79,9 @@ def call(call_args, logging, cache_file='', ignore=False):
     return
   if os.path.exists(cache_file):
     os.unlink(cache_file)
+  logging.log_file.close()
   print('Command exit with status "{}": {}'.format(x, oneline))
   print('Log: {}'.format(logging.log_path))
+  logging.print_last_lines()
   print('*** FAILED ***')
   sys.exit(1)
