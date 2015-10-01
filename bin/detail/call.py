@@ -8,11 +8,13 @@ import subprocess
 import sys
 import threading
 
-def tee(infile, *files):
+def tee(infile, log_file, console=None):
   """Print `infile` to `files` in a separate thread."""
-  def fanout(infile, *files):
+  def fanout():
     for line in iter(infile.readline, b''):
-      for f in files:
+      for f in [log_file, console]:
+        if f is None:
+          continue
         s = line.decode('utf-8')
         s = s.replace('\r', '')
         s = s.replace('\t', '  ')
@@ -20,7 +22,7 @@ def tee(infile, *files):
         s += '\n' # append stripped EOL back
         f.write(s)
     infile.close()
-  t = threading.Thread(target=fanout, args=(infile,)+files)
+  t = threading.Thread(target=fanout)
   t.daemon = True
   t.start()
   return t
