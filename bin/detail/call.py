@@ -8,19 +8,27 @@ import subprocess
 import sys
 import threading
 
-def tee(infile, log_file, console=None):
+def tee(infile, discard, log_file, console=None):
   """Print `infile` to `files` in a separate thread."""
   def fanout():
+    discard_counter = 0
     for line in iter(infile.readline, b''):
-      for f in [log_file, console]:
-        if f is None:
-          continue
-        s = line.decode('utf-8')
-        s = s.replace('\r', '')
-        s = s.replace('\t', '  ')
-        s = s.rstrip() # strip spaces and EOL
-        s += '\n' # append stripped EOL back
-        f.write(s)
+      s = line.decode('utf-8')
+      s = s.replace('\r', '')
+      s = s.replace('\t', '  ')
+      s = s.rstrip() # strip spaces and EOL
+      s += '\n' # append stripped EOL back
+      log_file.write(s)
+      if console is None:
+        continue
+      if discard is None:
+        console.write(s)
+        continue
+      if discard_counter == 0:
+        console.write(s)
+      discard_counter += 1
+      if discard_counter == discard:
+        discard_counter = 0
     infile.close()
   t = threading.Thread(target=fanout)
   t.daemon = True
@@ -38,11 +46,11 @@ def teed_call(cmd_args, logging):
   threads = []
 
   if logging.verbose:
-    threads.append(tee(p.stdout, logging.log_file, sys.stdout))
-    threads.append(tee(p.stderr, logging.log_file, sys.stderr))
+    threads.append(tee(p.stdout, logging.discard, logging.log_file, sys.stdout))
+    threads.append(tee(p.stderr, logging.discard, logging.log_file, sys.stderr))
   else:
-    threads.append(tee(p.stdout, logging.log_file))
-    threads.append(tee(p.stderr, logging.log_file))
+    threads.append(tee(p.stdout, logging.discard, logging.log_file))
+    threads.append(tee(p.stderr, logging.discard, logging.log_file))
 
   for t in threads:
     t.join() # wait for IO completion

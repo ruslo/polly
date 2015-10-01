@@ -136,6 +136,20 @@ parser.add_argument(
     help="Target to build for the 'cmake --build' command"
 )
 
+def PositiveInt(string):
+  value = int(string)
+  if value > 0:
+    return value
+  m = 'Should be greater that zero: {}'.format(string)
+  raise argparse.ArgumentTypeError(m)
+
+parser.add_argument(
+    '--discard',
+    type=PositiveInt,
+    help='Option to reduce output. Discard every N lines of execution messages'
+        ' (note that full log is still available in log.txt)'
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -233,7 +247,7 @@ if args.clear:
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(polly_temp_dir, args.verbose)
+logging = detail.logging.Logging(polly_temp_dir, args.verbose, args.discard)
 
 if os.name == 'nt':
   # Windows
