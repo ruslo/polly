@@ -125,3 +125,6 @@ foreach(arch ${IPHONESIMULATOR_ARCHS})
 endforeach()
 set(CMAKE_XCODE_ATTRIBUTE_ARCHS[sdk=iphonesimulator*] "${archs}")
 set(CMAKE_XCODE_ATTRIBUTE_VALID_ARCHS[sdk=iphonesimulator*] "${archs}")
+
+# Introduced in iOS 9.0
+set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE NO)
