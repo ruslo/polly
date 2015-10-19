@@ -349,7 +349,7 @@ if args.jobs:
 
 if not args.nobuild:
   timer.start('Build')
-  detail.call.call(build_command, logging)
+  detail.call.call(build_command, logging, sleep=1)
   timer.stop()
 
   if args.framework or args.framework_device:

@@ -7,6 +7,7 @@ import os
 import subprocess
 import sys
 import threading
+import time
 
 def tee(infile, discard, log_file, console=None):
   """Print `infile` to `files` in a separate thread."""
@@ -57,7 +58,7 @@ def teed_call(cmd_args, logging):
 
   return p.wait()
 
-def call(call_args, logging, cache_file='', ignore=False):
+def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   pretty = 'Execute command: [\n'
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
@@ -76,6 +77,7 @@ def call(call_args, logging, cache_file='', ignore=False):
 
   x = teed_call(call_args, logging)
   if x == 0 or ignore:
+    time.sleep(sleep)
     return
   if os.path.exists(cache_file):
     os.unlink(cache_file)

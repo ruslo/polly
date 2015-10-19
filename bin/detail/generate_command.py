@@ -18,7 +18,7 @@ def run(generate_command, build_dir, polly_temp_dir, reconfig, logging):
   )
 
   if reconfig or not os.path.exists(saved_arguments_path):
-    detail.call.call(generate_command, logging, cache_file=cache_file)
+    detail.call.call(generate_command, logging, cache_file=cache_file, sleep=1)
     open(saved_arguments_path, 'w').write(generate_command_oneline)
     return
 
