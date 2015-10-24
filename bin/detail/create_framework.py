@@ -2,6 +2,7 @@
 # All rights reserved.
 
 import detail.call
+import detail.rmtree
 
 import glob
 import os
@@ -53,8 +54,7 @@ def run(install_dir, framework_dir, ios, polly_root, device, logging, plist=None
   framework_dir = os.path.join(
       framework_dir, '{}.framework'.format(framework_name)
   )
-  if os.path.exists(framework_dir):
-    shutil.rmtree(framework_dir)
+  detail.rmtree.rmtree(framework_dir)
 
   if ios:
     lib_dir = os.path.join(framework_dir)

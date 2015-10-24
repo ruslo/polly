@@ -19,6 +19,7 @@ import detail.logging
 import detail.open_project
 import detail.osx_dev_root
 import detail.pack_command
+import detail.rmtree
 import detail.test_command
 import detail.timer
 import detail.toolchain_name
@@ -234,21 +235,9 @@ if (args.framework or args.framework_device) and platform.system() != 'Darwin':
 framework_dir = os.path.join(cdir, '_framework', polly_toolchain)
 
 if args.clear:
-  if os.path.exists(build_dir):
-    print("Remove build directory: {}".format(build_dir))
-    shutil.rmtree(build_dir)
-  if os.path.exists(install_dir):
-    print("Remove install directory: {}".format(install_dir))
-    shutil.rmtree(install_dir)
-  if os.path.exists(framework_dir):
-    print("Remove framework directory: {}".format(framework_dir))
-    shutil.rmtree(framework_dir)
-  if os.path.exists(build_dir):
-    sys.exit("Directory removing failed ({})".format(build_dir))
-  if os.path.exists(install_dir):
-    sys.exit("Directory removing failed ({})".format(install_dir))
-  if os.path.exists(framework_dir):
-    sys.exit("Directory removing failed ({})".format(framework_dir))
+  detail.rmtree.rmtree(build_dir)
+  detail.rmtree.rmtree(install_dir)
+  detail.rmtree.rmtree(framework_dir)
 
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
