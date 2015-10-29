@@ -242,9 +242,7 @@ if args.clear:
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(
-    polly_temp_dir, args.verbose, args.discard, args.tail
-)
+logging = detail.logging.Logging(cdir, args.verbose, args.discard, args.tail)
 
 if os.name == 'nt':
   # Windows
