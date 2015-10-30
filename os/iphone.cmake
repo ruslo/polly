@@ -106,6 +106,19 @@ if(NOT EXISTS ${IPHONEOS_SDK_ROOT})
   )
 endif()
 
+string(COMPARE EQUAL "${IOS_DEPLOYMENT_SDK_VERSION}" "" _is_empty)
+if(_is_empty)
+  set(
+      CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET
+      "${IOS_SDK_VERSION}"
+  )
+else()
+  set(
+      CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET
+      "${IOS_DEPLOYMENT_SDK_VERSION}"
+  )
+endif()
+
 # Emulate OpenCV toolchain --
 set(IOS YES)
 # -- end
