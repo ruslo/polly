@@ -1,10 +1,10 @@
-# Copyright (c) 2014, Ruslan Baratov
+# Copyright (c) 2014, Ruslan Baratov & Luca Martini
 # All rights reserved.
 
-if(DEFINED POLLY_IOS_NOCODESIGN_CMAKE)
+if(DEFINED POLLY_IOS_NOCODESIGN_9_1_CMAKE)
   return()
 else()
-  set(POLLY_IOS_NOCODESIGN_CMAKE 1)
+  set(POLLY_IOS_NOCODESIGN_9_1_CMAKE 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
