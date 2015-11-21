@@ -20,6 +20,7 @@ import detail.open_project
 import detail.osx_dev_root
 import detail.pack_command
 import detail.rmtree
+import detail.target
 import detail.test_command
 import detail.timer
 import detail.toolchain_name
@@ -219,15 +220,19 @@ build_dir_option = "-B{}".format(build_dir)
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
 local_install = args.install or args.framework or args.framework_device
 
-if args.strip:
-  if not toolchain_entry.is_make:
-    sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
-  if not args.install: # strip will always imply --install
-    local_install = True
+target = detail.target.Target()
 
-strip_install = args.strip
+target.add(condition=local_install, name='install')
+target.add(condition=args.strip, name='install/strip')
+target.add(condition=args.target, name=args.target)
 
-if local_install:
+# After 'target.add'
+if args.strip and not toolchain_entry.is_make:
+  sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
+
+add_install_prefix = local_install or args.strip
+
+if add_install_prefix:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
 if (args.framework or args.framework_device) and platform.system() != 'Darwin':
@@ -278,7 +283,7 @@ generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
 generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
 
-if local_install:
+if add_install_prefix:
   generate_command.append(install_dir_option)
 
 if cpack_generator:
@@ -306,14 +311,7 @@ if args.config:
   build_command.append('--config')
   build_command.append(args.config)
 
-if local_install:
-  build_command.append('--target')
-  if strip_install:
-    build_command.append('install/strip')
-  else:
-    build_command.append('install')
-elif args.target:
-  build_command += ['--target', args.target]
+build_command += target.args()
 
 # NOTE: This must be the last `build_command` modification!
 build_command.append('--')
