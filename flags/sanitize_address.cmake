@@ -14,7 +14,7 @@ polly_add_cache_flag(CMAKE_CXX_FLAGS "-g")
 
 set(
     CMAKE_CXX_FLAGS_RELEASE
-    "-O1"
+    "-O1 -DNDEBUG"
     CACHE
     STRING
     "C++ compiler flags"
@@ -26,7 +26,7 @@ polly_add_cache_flag(CMAKE_C_FLAGS "-g")
 
 set(
     CMAKE_C_FLAGS_RELEASE
-    "-O1"
+    "-O1 -DNDEBUG"
     CACHE
     STRING
     "C compiler flags"
