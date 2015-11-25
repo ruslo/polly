@@ -17,6 +17,8 @@ polly_init(
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/disable_warnings.cmake")
 
-set(CMAKE_CXX_COMPILER "${CMAKE_CURRENT_LIST_DIR}/scripts/clang-analyze.sh")
+set(CMAKE_CXX_COMPILER "${CMAKE_CURRENT_LIST_DIR}/scripts/clangxx-analyze.sh")
+set(CMAKE_C_COMPILER "${CMAKE_CURRENT_LIST_DIR}/scripts/clang-analyze.sh")
+
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "analyze")

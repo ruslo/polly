@@ -17,7 +17,7 @@ do
     # messages from analyzer. '-w' should not be a part of toolchain flags
     # since Hunter toolchain-id calculated using '#pragma message' output which
     # is implemented as a warning message (hence will be suppressed by '-w')
-    clang --analyze -w "$@" -o "${temp_bin}" 2> "${temp_out}"
+    clang++ --analyze -w "$@" -o "${temp_bin}" 2> "${temp_out}"
 
     RESULT=0
     [ "$?" == 0 ] || RESULT=1
@@ -35,4 +35,4 @@ do
 done
 
 # compile real code
-clang "$@"
+clang++ "$@"
