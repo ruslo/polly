@@ -13,7 +13,11 @@ do
     temp_bin="`mktemp /tmp/polly-clang-analyze.bin.XXXXX`"
 
     # analyze
-    clang++ --analyze "$@" -o "${temp_bin}" 2> "${temp_out}"
+    # -w : ignore regular compiler warnings so 'temp_out' only contains
+    # messages from analyzer. '-w' should not be a part of toolchain flags
+    # since Hunter toolchain-id calculated using '#pragma message' output which
+    # is implemented as a warning message (hence will be suppressed by '-w')
+    clang++ --analyze -w "$@" -o "${temp_bin}" 2> "${temp_out}"
 
     RESULT=0
     [ "$?" == 0 ] || RESULT=1
