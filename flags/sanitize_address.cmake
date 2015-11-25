@@ -8,6 +8,7 @@ else()
 endif()
 
 include(polly_add_cache_flag)
+
 polly_add_cache_flag(CMAKE_CXX_FLAGS "-fsanitize=address")
 polly_add_cache_flag(CMAKE_CXX_FLAGS "-g")
 
@@ -17,5 +18,17 @@ set(
     CACHE
     STRING
     "C++ compiler flags"
+    FORCE
+)
+
+polly_add_cache_flag(CMAKE_C_FLAGS "-fsanitize=address")
+polly_add_cache_flag(CMAKE_C_FLAGS "-g")
+
+set(
+    CMAKE_C_FLAGS_RELEASE
+    "-O1"
+    CACHE
+    STRING
+    "C compiler flags"
     FORCE
 )
