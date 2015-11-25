@@ -13,7 +13,7 @@ do
     temp_bin="`mktemp /tmp/polly-clang-analyze.bin.XXXXX`"
 
     # analyze
-    clang --analyze "$@" -o "${temp_bin}" 2> "${temp_out}"
+    clang++ --analyze "$@" -o "${temp_bin}" 2> "${temp_out}"
 
     RESULT=0
     [ "$?" == 0 ] || RESULT=1
@@ -31,4 +31,4 @@ do
 done
 
 # compile real code
-clang "$@"
+clang++ "$@"
