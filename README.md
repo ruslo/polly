@@ -140,6 +140,10 @@ Take a look at the [Travis](https://travis-ci.org/) config files:
 [mac](https://github.com/ruslo/polly/blob/master/.travis.yml) and [linux](https://github.com/ruslo/polly/blob/linux/.travis.yml),
 it's quite self-explanatory.
 
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md).
+
 ## Links
 
 * [Hunter package manager](https://github.com/ruslo/hunter)
