@@ -1,4 +1,5 @@
 # Copyright (c) 2014, Ruslan Baratov & Luca Martini
+# Copyright (c) 2014, Michele Caini
 # All rights reserved.
 
 import os
@@ -65,6 +66,8 @@ toolchain_table = [
     Toolchain('android-ndk-r10e-api-21-x86', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-x86-64', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-x86-64-hid', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21-mips', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21-mips64', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
 
