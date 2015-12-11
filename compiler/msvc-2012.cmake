@@ -12,3 +12,6 @@ get_filename_component(
     "$ENV{VS110COMNTOOLS}/../../VC/vcvarsall.bat"
     ABSOLUTE
 )
+
+set(HUNTER_MSVC_YEAR 2012)
+set(HUNTER_MSVC_VERSION 11)
