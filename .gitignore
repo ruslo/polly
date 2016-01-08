@@ -22,3 +22,11 @@ _builds
 # python temps
 bin/detail/__pycache__
 *.pyc
+
+# QtCreator
+*.files
+*.config
+*.creator
+*.creator.user
+*.files
+*.includes
