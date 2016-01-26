@@ -26,6 +26,7 @@ class Toolchain:
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
     self.is_make = self.generator.endswith('Makefiles')
+    self.is_ninja = (self.generator == 'Ninja')
     self.xp = xp
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)
@@ -34,7 +35,7 @@ class Toolchain:
 
   def verify(self):
     if self.arch:
-      assert(self.is_nmake or self.is_msvc)
+      assert(self.is_nmake or self.is_msvc or self.is_ninja)
       assert(self.arch == 'amd64' or self.arch == 'x86')
 
     if self.is_nmake or self.is_msvc:
