@@ -160,5 +160,5 @@ See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md
 [4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
 [5]: https://github.com/ruslo/configs
 [6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
-[7]: https://github.com/ruslo/polly/wiki/Travis-support-table
+[7]: https://github.com/ruslo/polly/wiki/Travis-CI-AppVeyor-support-table
 [8]: https://github.com/ruslo/polly/blob/master/bin/build.py
