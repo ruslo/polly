@@ -151,7 +151,7 @@ See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md
 * Travis example:
 [Mac OS X](https://travis-ci.org/forexample/hunter-simple/builds/28155372) and 
 [Linux](https://travis-ci.org/forexample/hunter-simple/builds/28154503)
-* [Table of toolchains available for Travis CI][7]
+* [Table of toolchains available for Travis CI/AppVeyor][7]
 * [Travis, AppVeyor => GitHub deploy example](https://github.com/forexample/github-binary-release)
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
