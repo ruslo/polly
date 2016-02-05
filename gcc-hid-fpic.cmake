@@ -1,4 +1,5 @@
 # Copyright (c) 2015, Ruslan Baratov
+# Copyright (c) 2016, David Hirvonen
 # All rights reserved.
 
 if(DEFINED POLLY_GCC_HID_FPIC_CMAKE_)
