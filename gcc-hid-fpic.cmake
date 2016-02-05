@@ -15,8 +15,6 @@ polly_init(
     "Unix Makefiles"
     )
 
-set(CMAKE_POSITION_INDEPENDENT_CODE YES)
-
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc.cmake")

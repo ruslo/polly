@@ -7,8 +7,6 @@ else()
   set(POLLY_CLANG_LIBCXX_CXX11_HID_FPIC 1)
 endif()
 
-set(CMAKE_POSITION_INDEPENDENT_CODE YES)
-
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
