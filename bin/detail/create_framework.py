@@ -77,6 +77,7 @@ def run(install_dir, framework_dir, ios, polly_root, device, logging, plist=None
     ]
     detail.call.call(cmd, logging)
 
+  header_found = False
   incl_dir = os.path.join(install_dir, 'include', framework_name)
   for root, dirs, files in os.walk(incl_dir):
     for d in dirs:
@@ -85,8 +86,12 @@ def run(install_dir, framework_dir, ios, polly_root, device, logging, plist=None
       if not os.path.exists(x):
         os.makedirs(x)
     for f in files:
+      header_found = True
       f_rel = os.path.relpath(os.path.join(root, f), incl_dir)
       shutil.copy(os.path.join(root, f), os.path.join(headers_dir, f_rel))
+
+  if not header_found:
+    print('Warning: no headers found for framework (dir: {})'.format(incl_dir))
 
   if not ios:
     link = ['ln', '-sfh', 'A', os.path.join(framework_dir, 'Versions', 'Current')]
