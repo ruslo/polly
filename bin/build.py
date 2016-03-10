@@ -88,6 +88,16 @@ parser.add_argument(
     '--install', action='store_true', help="Run install (local directory)"
 )
 parser.add_argument(
+    '--ios-multiarch',
+    action='store_true',
+    help="Build multi-architecture binary (effectively add CMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO)"
+)
+parser.add_argument(
+    '--ios-combined',
+    action='store_true',
+    help="Combine iOS simulator and device libraries on install (effectively add CMAKE_IOS_INSTALL_COMBINED=YES)"
+)
+parser.add_argument(
     '--framework', action='store_true', help="Create framework"
 )
 parser.add_argument(
@@ -283,6 +293,12 @@ if toolchain_option:
 generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
 generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
+
+if args.ios_multiarch:
+    generate_command.append('-DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO')
+
+if args.ios_combined:
+    generate_command.append('-DCMAKE_IOS_INSTALL_COMBINED=YES')
 
 if add_install_prefix:
   generate_command.append(install_dir_option)
