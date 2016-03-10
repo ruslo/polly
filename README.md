@@ -128,10 +128,6 @@ Example of usage (also see `build.py --help`):
 * install Debug Xcode project:
   * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
 
-## jenkins.py
-
-[Script](https://github.com/ruslo/polly/wiki/Jenkins) read environment variables `CONFIG`/`TOOLCHAIN` and use them to start `build.py` script with `--test` argument. It can be useful for running matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins) for details.
-
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
 Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
