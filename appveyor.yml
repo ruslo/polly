@@ -336,7 +336,7 @@ install:
   - cmd: python --version
 
   # Install dependencies (CMake, Ninja)
-  - cmd: set POLLY_SOURCE_DIR=%cd
+  - cmd: set POLLY_SOURCE_DIR=%cd%
   - cmd: python %POLLY_SOURCE_DIR%\bin\install-ci-dependencies.py
 
   # Tune locations
