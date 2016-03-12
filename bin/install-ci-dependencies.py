@@ -68,7 +68,8 @@ class FileToDownload:
     with open(self.local_path, 'wb') as f:
       for chunk in r.iter_content(chunk_size=16*1024):
         if chunk:
-          print('.', end='', flush=True)
+          print('.', end='')
+          sys.stdout.flush() # flush=True not available for Python 3.2
           f.write(chunk)
     print('')
 
