@@ -331,9 +331,10 @@ environment:
 
 install:
   # Python 3
-  - cmd: set PATH=C:\Python34-x64;%PATH%
-  - cmd: where python
-  - cmd: python --version
+  - cmd: set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
+
+  # Install Python package 'requests'
+  - cmd: pip install requests
 
   # Install dependencies (CMake, Ninja)
   - cmd: set POLLY_SOURCE_DIR=%cd%
@@ -342,8 +343,6 @@ install:
   # Tune locations
   - cmd: set PATH=%cd%\_ci\cmake\bin;%PATH%
   - cmd: set PATH=%cd%\_ci\ninja;%PATH%
-  - cmd: where cmake
-  - cmd: cmake --version
 
   # Remove entry with sh.exe from PATH to fix error with MinGW toolchain
   # (For MinGW make to work correctly sh.exe must NOT be in your path)
@@ -354,12 +353,5 @@ install:
   # * http://www.appveyor.com/docs/installed-software#qt
   - cmd: set MINGW_PATH=C:\Qt\Tools\mingw492_32\bin
 
-build_script: |
-  cmd: python %POLLY_SOURCE_DIR%\bin\build.py
-      --home examples/%EXAMPLE%
-      --toolchain %TOOLCHAIN%
-      --config %CONFIG%
-      --verbose
-      --clear
-      --install
-      --test
+build_script:
+  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test

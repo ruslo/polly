@@ -260,8 +260,6 @@ install:
 
   # Tune locations
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
-  - which cmake
-  - cmake --version
 
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
