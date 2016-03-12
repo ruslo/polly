@@ -2,13 +2,15 @@
 
 Collection of CMake toolchain files and scripts.
 
-| mac                                        | linux                                            |
-|--------------------------------------------|--------------------------------------------------|
-| [![Build Status][link_master]][link_polly] | [![Build Status][link_travis_linux]][link_polly] |
+| Linux/OSX                                       | Windows                                             |
+|-------------------------------------------------|-----------------------------------------------------|
+| [![Build Status][travis_status]][travis_builds] | [![Build Status][appveyor_status]][appveyor_builds] |
 
-[link_master]: https://travis-ci.org/ruslo/polly.png?branch=master
-[link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=linux
-[link_polly]: https://travis-ci.org/ruslo/polly
+[travis_status]: https://travis-ci.org/ruslo/polly.svg?branch=master
+[travis_builds]: https://travis-ci.org/ruslo/polly/builds
+
+[appveyor_status]: https://ci.appveyor.com/api/projects/status/8x6thwc05mhvdxmo?svg=true
+[appveyor_builds]: https://ci.appveyor.com/project/ruslo/polly/history
 
 Every toolchain defines compiler/flags and two variables:
 * `POLLY_TOOLCHAIN_NAME`
