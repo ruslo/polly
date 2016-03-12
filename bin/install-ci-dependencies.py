@@ -85,7 +85,8 @@ class FileToDownload:
       os.chmod(self.local_path, os.stat(self.local_path).st_mode | stat.S_IEXEC)
       last_cwd = os.getcwd()
       os.chdir(self.unpack_dir)
-      subprocess.check_call(android_archive_local, stdout=subprocess.DEVNULL)
+      devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
+      subprocess.check_call(android_archive_local, stdout=devnull)
       os.chdir(last_cwd)
     else:
       sys.exit('Unknown archive format')
