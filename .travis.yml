@@ -260,12 +260,5 @@ install:
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
 
-script: |
-    python3 "${POLLY_SOURCE_DIR}/bin/build.py"
-        --home examples/${EXAMPLE}
-        --toolchain ${TOOLCHAIN}
-        --config ${CONFIG}
-        --verbose
-        --clear
-        --install
-        --test
+script:
+  - python3 "${POLLY_SOURCE_DIR}/bin/build.py" --home examples/${EXAMPLE} --toolchain ${TOOLCHAIN} --config ${CONFIG} --verbose --clear --install --test
