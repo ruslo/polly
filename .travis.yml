@@ -1,6 +1,7 @@
 # OSX/Linux (https://github.com/travis-ci-tester/toolchain-table)
 
-language: cpp
+language:
+  - cpp
 
 os:
   - linux
