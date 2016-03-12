@@ -243,6 +243,9 @@ matrix:
       env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Debug
 
 install:
+  # Info about OS
+  - uname -a
+
   # Install Python 3
   - if [[ "`uname`" == "Darwin" ]]; then brew install python3; fi
   - which python3
