@@ -49,6 +49,8 @@ env:
   - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
@@ -77,6 +79,8 @@ env:
   - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
@@ -105,6 +109,8 @@ env:
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
@@ -194,13 +200,25 @@ matrix:
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Release
     - os: osx
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+    - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Debug
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Release
     - os: osx
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+    - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Debug
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Release
+    - os: osx
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Release
 
     # https://github.com/travis-ci-tester/travis-test-mac-clang-address-sanitizer
     - os: osx
