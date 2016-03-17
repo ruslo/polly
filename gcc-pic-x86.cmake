@@ -20,4 +20,5 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/flags/fpic.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/c_cxx-x86.cmake")
