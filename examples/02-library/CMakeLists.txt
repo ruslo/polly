@@ -1,4 +1,4 @@
-# Copyright (c) 2013, Ruslan Baratov
+# Copyright (c) 2013-2016, Ruslan Baratov
 # All rights reserved.
 
 cmake_minimum_required(VERSION 2.8.8)
@@ -10,9 +10,11 @@ install(TARGETS foo DESTINATION lib)
 add_executable(simple "./main.cpp")
 target_link_libraries(simple foo)
 
-string(COMPARE EQUAL "${CMAKE_OSX_SYSROOT}" "iphoneos" is_ios)
-
 enable_testing()
-if(NOT is_ios)
-  add_test(SimpleTest simple)
+if(IOS)
+  add_test(NAME SimpleTest COMMAND "${CMAKE_COMMAND}" -E echo "Skip iOS test")
+elseif(ANDROID)
+  add_test(NAME SimpleTest COMMAND "${CMAKE_COMMAND}" -E echo "Skip Android test")
+else()
+  add_test(NAME SimpleTest COMMAND simple)
 endif()

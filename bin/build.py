@@ -88,6 +88,16 @@ parser.add_argument(
     '--install', action='store_true', help="Run install (local directory)"
 )
 parser.add_argument(
+    '--ios-multiarch',
+    action='store_true',
+    help="Build multi-architecture binary (effectively add CMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO)"
+)
+parser.add_argument(
+    '--ios-combined',
+    action='store_true',
+    help="Combine iOS simulator and device libraries on install (effectively add CMAKE_IOS_INSTALL_COMBINED=YES)"
+)
+parser.add_argument(
     '--framework', action='store_true', help="Create framework"
 )
 parser.add_argument(
@@ -184,7 +194,8 @@ if toolchain_entry.name == 'msys':
   detail.verify_msys_path.verify(msys_path)
   os.environ['PATH'] = "{};{}".format(msys_path, os.getenv('PATH'))
 
-if toolchain_entry.is_nmake:
+vs_ninja = toolchain_entry.is_ninja and toolchain_entry.vs_version
+if toolchain_entry.is_nmake or vs_ninja:
   os.environ = detail.get_nmake_environment.get(
       toolchain_entry.arch, toolchain_entry.vs_version
   )
@@ -282,6 +293,12 @@ if toolchain_option:
 generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
 generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
+
+if args.ios_multiarch:
+    generate_command.append('-DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO')
+
+if args.ios_combined:
+    generate_command.append('-DCMAKE_IOS_INSTALL_COMBINED=YES')
 
 if add_install_prefix:
   generate_command.append(install_dir_option)

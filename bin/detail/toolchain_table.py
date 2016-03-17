@@ -26,6 +26,7 @@ class Toolchain:
     self.is_nmake = (self.generator == 'NMake Makefiles')
     self.is_msvc = self.generator.startswith('Visual Studio')
     self.is_make = self.generator.endswith('Makefiles')
+    self.is_ninja = (self.generator == 'Ninja')
     self.xp = xp
     self.is_xcode = (self.generator == 'Xcode')
     self.multiconfig = (self.is_xcode or self.is_msvc)
@@ -34,7 +35,7 @@ class Toolchain:
 
   def verify(self):
     if self.arch:
-      assert(self.is_nmake or self.is_msvc)
+      assert(self.is_nmake or self.is_msvc or self.is_ninja)
       assert(self.arch == 'amd64' or self.arch == 'x86')
 
     if self.is_nmake or self.is_msvc:
@@ -84,6 +85,12 @@ if os.name == 'nt':
       Toolchain(
           'nmake-vs-12-2013-win64',
           'NMake Makefiles',
+          arch='amd64',
+          vs_version='12'
+      ),
+      Toolchain(
+          'ninja-vs-12-2013-win64',
+          'Ninja',
           arch='amd64',
           vs_version='12'
       ),
@@ -168,6 +175,9 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-9-1', 'Xcode', ios_version='9.1', nocodesign=True),
       Toolchain('ios-nocodesign-9-1-arm64', 'Xcode', ios_version='9.1', nocodesign=True),
       Toolchain('ios-nocodesign-9-1-armv7', 'Xcode', ios_version='9.1', nocodesign=True),
+      Toolchain('ios-nocodesign-9-2', 'Xcode', ios_version='9.2', nocodesign=True),
+      Toolchain('ios-nocodesign-9-2-arm64', 'Xcode', ios_version='9.2', nocodesign=True),
+      Toolchain('ios-nocodesign-9-2-armv7', 'Xcode', ios_version='9.2', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('osx-10-7', 'Xcode', osx_version='10.7'),
@@ -186,12 +196,15 @@ if os.name == 'posix':
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
+      Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
       Toolchain('gcc-gold', 'Unix Makefiles'),
       Toolchain('gcc-pic', 'Unix Makefiles'),
       Toolchain('gcc-4-8', 'Unix Makefiles'),
+      Toolchain('gcc-4-8-pic', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
       Toolchain('libcxx-hid', 'Unix Makefiles'),
+      Toolchain('libcxx-hid-fpic', 'Unix Makefiles'),
       Toolchain('libcxx-omp', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
   ]

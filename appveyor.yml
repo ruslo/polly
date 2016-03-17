@@ -1,0 +1,357 @@
+# Windows (https://github.com/travis-ci-tester/toolchain-table)
+
+environment:
+  matrix:
+    #### 01-executable ####
+    ###
+    - TOOLCHAIN: "default"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "default"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
+    #### 02-library ####
+    ###
+    - TOOLCHAIN: "default"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "default"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    #### 03-shared-link ####
+    ###
+    - TOOLCHAIN: "default"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "default"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-10-2010"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-11-2012"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-win64"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-xp"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-9-2008"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "mingw"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
+install:
+  # Python 3
+  - cmd: set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
+
+  # Install Python package 'requests'
+  - cmd: pip install requests
+
+  # Install dependencies (CMake, Ninja)
+  - cmd: set POLLY_SOURCE_DIR=%cd%
+  - cmd: python %POLLY_SOURCE_DIR%\bin\install-ci-dependencies.py
+
+  # Tune locations
+  - cmd: set PATH=%cd%\_ci\cmake\bin;%PATH%
+  - cmd: set PATH=%cd%\_ci\ninja;%PATH%
+
+  # Remove entry with sh.exe from PATH to fix error with MinGW toolchain
+  # (For MinGW make to work correctly sh.exe must NOT be in your path)
+  # * http://stackoverflow.com/a/3870338/2288008
+  - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
+
+  # Use MinGW from Qt tools because version is higher
+  # * http://www.appveyor.com/docs/installed-software#qt
+  - cmd: set MINGW_PATH=C:\Qt\Tools\mingw492_32\bin
+
+build_script:
+  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test

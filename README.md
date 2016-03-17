@@ -2,13 +2,15 @@
 
 Collection of CMake toolchain files and scripts.
 
-| mac                                        | linux                                            |
-|--------------------------------------------|--------------------------------------------------|
-| [![Build Status][link_master]][link_polly] | [![Build Status][link_travis_linux]][link_polly] |
+| Linux/OSX                                       | Windows                                             |
+|-------------------------------------------------|-----------------------------------------------------|
+| [![Build Status][travis_status]][travis_builds] | [![Build Status][appveyor_status]][appveyor_builds] |
 
-[link_master]: https://travis-ci.org/ruslo/polly.png?branch=master
-[link_travis_linux]: https://travis-ci.org/ruslo/polly.png?branch=linux
-[link_polly]: https://travis-ci.org/ruslo/polly
+[travis_status]: https://travis-ci.org/ruslo/polly.svg?branch=master
+[travis_builds]: https://travis-ci.org/ruslo/polly/builds
+
+[appveyor_status]: https://ci.appveyor.com/api/projects/status/8x6thwc05mhvdxmo?svg=true
+[appveyor_builds]: https://ci.appveyor.com/project/ruslo/polly/history
 
 Every toolchain defines compiler/flags and two variables:
 * `POLLY_TOOLCHAIN_NAME`
@@ -128,10 +130,6 @@ Example of usage (also see `build.py --help`):
 * install Debug Xcode project:
   * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
 
-## jenkins.py
-
-[Script](https://github.com/ruslo/polly/wiki/Jenkins) read environment variables `CONFIG`/`TOOLCHAIN` and use them to start `build.py` script with `--test` argument. It can be useful for running matrix builds on [jenkins server](http://jenkins-ci.org). Read [wiki](https://github.com/ruslo/polly/wiki/Jenkins) for details.
-
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
 Please [read](https://github.com/ruslo/0/wiki/CMake) coding style and
@@ -151,7 +149,7 @@ See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md
 * Travis example:
 [Mac OS X](https://travis-ci.org/forexample/hunter-simple/builds/28155372) and 
 [Linux](https://travis-ci.org/forexample/hunter-simple/builds/28154503)
-* [Table of toolchains available for Travis CI][7]
+* [Table of toolchains available for Travis CI/AppVeyor][7]
 * [Travis, AppVeyor => GitHub deploy example](https://github.com/forexample/github-binary-release)
 
 [1]: https://github.com/ruslo/sugar/tree/master/cmake/core#sugar_install_ios_library
@@ -160,5 +158,5 @@ See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md
 [4]: https://github.com/ruslo/gitenv/blob/master/gitenv/paths.sh
 [5]: https://github.com/ruslo/configs
 [6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
-[7]: https://github.com/ruslo/polly/wiki/Travis-support-table
+[7]: https://github.com/ruslo/polly/wiki/Travis-CI-AppVeyor-support-table
 [8]: https://github.com/ruslo/polly/blob/master/bin/build.py

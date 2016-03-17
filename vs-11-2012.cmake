@@ -15,5 +15,3 @@ polly_init(
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/compiler/msvc-2012.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/arch/msvc-x86.cmake")
