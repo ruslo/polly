@@ -14,16 +14,18 @@ class Logging:
     if not os.path.exists(log_dir):
       os.makedirs(log_dir)
 
-    for i in range(1000):
-      try_name = 'log-{}.txt'.format(i)
-      try_path = os.path.join(log_dir, try_name)
-      if not os.path.exists(try_path):
-        self.log_path = try_path
-        break
-    else:
-      sys.exit(
-          'Please clean-up your logs in directory: {}'.format(log_dir)
-      )
+    self.log_path = os.path.join(log_dir, 'log.txt')
+    if os.path.exists(self.log_path):
+      for i in range(1000):
+        try_name = 'log-{}.txt'.format(i)
+        try_path = os.path.join(log_dir, try_name)
+        if not os.path.exists(try_path):
+          os.renames(self.log_path, try_path)
+          break
+      else:
+        sys.exit(
+            'Please clean-up your logs in directory: {}'.format(log_dir)
+        )
 
     self.log_file = open(self.log_path, 'w')
 
