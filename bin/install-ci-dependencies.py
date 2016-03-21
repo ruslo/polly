@@ -13,6 +13,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import time
 import zipfile
 
 print(
@@ -59,8 +60,20 @@ class FileToDownload:
       print('  {} (expected)'.format(self.sha1))
       return False
 
-  # http://stackoverflow.com/a/16696317/2288008
   def real_file_download(self):
+    max_retry = 3
+    for i in range(max_retry):
+      try:
+        self.real_file_download_once()
+        print('Done')
+        return
+      except Exception as exc:
+        print('Exception catched ({}), retry... ({} of {})'.format(exc, i+1, max_retry))
+        time.sleep(60)
+    sys.exit('Download failed')
+
+  # http://stackoverflow.com/a/16696317/2288008
+  def real_file_download_once(self):
     print('Downloading:\n  {}\n  -> {}'.format(self.url, self.local_path))
     r = requests.get(self.url, stream=True)
     if not r.ok:
@@ -69,7 +82,6 @@ class FileToDownload:
       for chunk in r.iter_content(chunk_size=16*1024):
         if chunk:
           f.write(chunk)
-    print('')
 
   def unpack(self):
     print('Unpacking {}'.format(self.local_path))
