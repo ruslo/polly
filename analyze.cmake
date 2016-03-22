@@ -22,3 +22,5 @@ set(CMAKE_CXX_COMPILER "${CMAKE_CURRENT_LIST_DIR}/scripts/clangxx-analyze.sh")
 set(CMAKE_C_COMPILER "${CMAKE_CURRENT_LIST_DIR}/scripts/clang-analyze.sh")
 
 list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "analyze")
+
+include("${CMAKE_CURRENT_LIST_DIR}/os/osx.cmake")
