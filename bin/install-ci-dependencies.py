@@ -13,6 +13,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import time
 import zipfile
 
 print(
@@ -59,8 +60,20 @@ class FileToDownload:
       print('  {} (expected)'.format(self.sha1))
       return False
 
-  # http://stackoverflow.com/a/16696317/2288008
   def real_file_download(self):
+    max_retry = 3
+    for i in range(max_retry):
+      try:
+        self.real_file_download_once()
+        print('Done')
+        return
+      except Exception as exc:
+        print('Exception catched ({}), retry... ({} of {})'.format(exc, i+1, max_retry))
+        time.sleep(60)
+    sys.exit('Download failed')
+
+  # http://stackoverflow.com/a/16696317/2288008
+  def real_file_download_once(self):
     print('Downloading:\n  {}\n  -> {}'.format(self.url, self.local_path))
     r = requests.get(self.url, stream=True)
     if not r.ok:
@@ -69,7 +82,6 @@ class FileToDownload:
       for chunk in r.iter_content(chunk_size=16*1024):
         if chunk:
           f.write(chunk)
-    print('')
 
   def unpack(self):
     print('Unpacking {}'.format(self.local_path))
@@ -109,7 +121,10 @@ if not os.path.exists(ci_dir):
   os.mkdir(ci_dir)
 
 cmake_archive_local = os.path.join(ci_dir, 'cmake-version.archive')
-android_archive_local = os.path.join(ci_dir, 'android.bin')
+if os.getenv('TRAVIS'):
+  android_archive_local = os.path.join(ci_dir, 'android.tar.gz')
+else:
+  android_archive_local = os.path.join(ci_dir, 'android.bin')
 ninja_archive_local = os.path.join(ci_dir, 'ninja.zip')
 
 expected_files = [
@@ -155,23 +170,23 @@ elif platform.system() == 'Windows':
 else:
   sys.exit('Unknown system: {}'.format(platform.system()))
 
-if is_android:
+def get_android_url():
+  if os.getenv('TRAVIS'):
+    if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+      if platform.system() == 'Linux':
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'
+      if platform.system() == 'Darwin':
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
   if platform.system() == 'Darwin':
-    android = FileToDownload(
-        'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin',
-        'b57c2b9213251180dcab794352bfc9a241bf2557',
-        android_archive_local,
-        ci_dir
-    )
+    return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
   elif platform.system() == 'Linux':
-    android = FileToDownload(
-        'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin',
-        'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
-        android_archive_local,
-        ci_dir
-    )
+    return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
   else:
     sys.exit('Android supported only for Linux and OSX')
+
+if is_android:
+  url, sha1 = get_android_url()
+  FileToDownload(url, sha1, android_archive_local, ci_dir)
 
 if is_ninja:
   ninja = FileToDownload(
