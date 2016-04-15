@@ -146,24 +146,25 @@ ninja_dir = os.path.join(ci_dir, 'ninja')
 
 ### Downloading files
 
+# https://cmake.org/download/
 if platform.system() == 'Darwin':
   cmake = FileToDownload(
-      'https://cmake.org/files/v3.5/cmake-3.5.0-Darwin-x86_64.tar.gz',
-      'a63e4c4db2a329b7979ad4bdef23dd3f0c8c163b',
+      'https://cmake.org/files/v3.5/cmake-3.5.2-Darwin-x86_64.tar.gz',
+      '3013b2f00d43da6dc38cbcbd21190874a55b3455',
       cmake_archive_local,
       ci_dir
   )
 elif platform.system() == 'Linux':
   cmake = FileToDownload(
-      'https://cmake.org/files/v3.5/cmake-3.5.0-Linux-x86_64.tar.gz',
-      'a815251c29efa8f0614250745cb299890973e42b',
+      'https://cmake.org/files/v3.5/cmake-3.5.2-Linux-x86_64.tar.gz',
+      'f85232bd67929c1789bdd2e842a3f3e55c502e4a',
       cmake_archive_local,
       ci_dir
   )
 elif platform.system() == 'Windows':
   cmake = FileToDownload(
-      'https://cmake.org/files/v3.5/cmake-3.5.0-win32-x86.zip',
-      'ed4e1939d246374b0bae724a1a4200fd60e7efe8',
+      'https://cmake.org/files/v3.5/cmake-3.5.2-win32-x86.zip',
+      '743bab5d9c82f0b88b418384026804ed986a50c5',
       cmake_archive_local,
       ci_dir
   )
