@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-/usr/bin/env python3 `dirname $0`/polly.py "$@"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+/usr/bin/env python3 $DIR/polly.py "$@"

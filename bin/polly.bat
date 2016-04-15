@@ -1,1 +1,1 @@
-python3 %~dp0\\polly.py %*
+python %~dp0\\polly.py %*
