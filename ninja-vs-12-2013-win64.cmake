@@ -15,3 +15,5 @@ polly_init(
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
+
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/cl.cmake")
