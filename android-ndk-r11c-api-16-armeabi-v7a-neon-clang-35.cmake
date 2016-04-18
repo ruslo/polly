@@ -1,5 +1,4 @@
-# Copyright (c) 2015, Ruslan Baratov
-# Copyright (c) 2015, David Hirvonen
+# Copyright (c) 2016, Michele Caini
 # All rights reserved.
 
 if(DEFINED POLLY_ANDROID_NDK_R11C_API_16_ARMEABI_V7A_NEON_CLANG_35_CMAKE_)
