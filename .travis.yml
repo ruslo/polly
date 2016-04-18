@@ -55,6 +55,8 @@ env:
   - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=sanitize-address CONFIG=Release
@@ -85,6 +87,8 @@ env:
   - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=sanitize-address CONFIG=Release
@@ -115,6 +119,8 @@ env:
   - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=sanitize-address CONFIG=Release
@@ -281,6 +287,7 @@ install:
 
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
+  - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
 
 script:
   - python3 "${POLLY_SOURCE_DIR}/bin/build.py" --home examples/${EXAMPLE} --toolchain ${TOOLCHAIN} --config ${CONFIG} --verbose --clear --install --test
