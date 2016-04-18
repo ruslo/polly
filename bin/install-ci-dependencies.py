@@ -173,17 +173,29 @@ else:
 
 def get_android_url():
   if os.getenv('TRAVIS'):
+    if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+      if platform.system() == 'Linux':
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'      if platform.system() == 'Darwin':
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
     if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
       if platform.system() == 'Linux':
         return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', 'b90d03d11cc1c5770e7851924a60e9819b578960'
       if platform.system() == 'Darwin':
         return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '07f2425fa99377a678949314330ec7e5ebc597f8'
-  if platform.system() == 'Darwin':
-    return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
-  elif platform.system() == 'Linux':
-    return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
-  else:
-    sys.exit('Android supported only for Linux and OSX')
+  if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Darwin':
+      return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
+    elif platform.system() == 'Linux':
+      return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
+    else:
+      sys.exit('Android supported only for Linux and OSX')
+  if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Darwin':
+      return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
+    elif platform.system() == 'Linux':
+      return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+    else:
+      sys.exit('Android supported only for Linux and OSX')
 
 if is_android:
   url, sha1 = get_android_url()
