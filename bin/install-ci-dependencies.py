@@ -188,7 +188,8 @@ def get_android_url():
   if os.getenv('TRAVIS'):
     if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
       if platform.system() == 'Linux':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'      if platform.system() == 'Darwin':
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'
+      if platform.system() == 'Darwin':
         return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
     if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
       if platform.system() == 'Linux':
