@@ -172,12 +172,17 @@ else:
   sys.exit('Unknown system: {}'.format(platform.system()))
 
 def get_android_full_version_url():
-  if platform.system() == 'Darwin':
-    return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
-  elif platform.system() == 'Linux':
-    return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
-  else:
-    sys.exit('Android supported only for Linux and OSX')
+  if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Darwin':
+      return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
+    elif platform.system() == 'Linux':
+      return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
+  if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Darwin':
+      return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
+    elif platform.system() == 'Linux':
+      return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+  sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
   if os.getenv('TRAVIS'):
