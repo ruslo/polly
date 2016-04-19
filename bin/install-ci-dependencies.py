@@ -193,9 +193,9 @@ def get_android_url():
         return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
     if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
       if platform.system() == 'Linux':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', 'b90d03d11cc1c5770e7851924a60e9819b578960'
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '2e0da01961e0031bfd7d8db6ce4a15372bd8c3e8'
       if platform.system() == 'Darwin':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '07f2425fa99377a678949314330ec7e5ebc597f8'
+        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '664b3c8104142de2af16f887c19d1b2e618725cb'
   return get_android_full_version_url()
 
 if is_android:
