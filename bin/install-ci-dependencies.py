@@ -85,23 +85,23 @@ class FileToDownload:
 
   def unpack(self):
     print('Unpacking {}'.format(self.local_path))
+    last_cwd = os.getcwd()
+    os.chdir(self.unpack_dir)
     if self.url.endswith('.tar.gz'):
       tar_archive = tarfile.open(self.local_path)
       tar_archive.extractall(path=self.unpack_dir)
       tar_archive.close()
     elif self.url.endswith('.zip'):
-      zip_archive = zipfile.ZipFile(self.local_path)
-      zip_archive.extractall(path=self.unpack_dir)
-      zip_archive.close()
+      # Can't use ZipFile module because permissions will be lost, see bug:
+      # * https://bugs.python.org/issue15795
+      subprocess.check_call(['unzip', self.local_path])
     elif self.url.endswith('.bin'):
       os.chmod(self.local_path, os.stat(self.local_path).st_mode | stat.S_IEXEC)
-      last_cwd = os.getcwd()
-      os.chdir(self.unpack_dir)
       devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
       subprocess.check_call(self.local_path, stdout=devnull)
-      os.chdir(last_cwd)
     else:
       sys.exit('Unknown archive format')
+    os.chdir(last_cwd)
 
 ### Parse toolchain name
 
