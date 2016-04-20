@@ -138,6 +138,25 @@ def get_android_url():
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '664b3c8104142de2af16f887c19d1b2e618725cb'
   return get_android_full_version_url()
 
+def get_cmake_url():
+  if platform.system() == 'Darwin':
+    return (
+        'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Darwin-x86_64.tar.gz',
+        '3013b2f00d43da6dc38cbcbd21190874a55b3455'
+    )
+  elif platform.system() == 'Linux':
+    return (
+        'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Linux-x86_64.tar.gz',
+        'f85232bd67929c1789bdd2e842a3f3e55c502e4a'
+    )
+  elif platform.system() == 'Windows':
+    return (
+        'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-win32-x86.zip',
+        '743bab5d9c82f0b88b418384026804ed986a50c5'
+    )
+  else:
+    sys.exit('Unknown system: {}'.format(platform.system()))
+
 is_android = toolchain.startswith('android-')
 is_ninja = toolchain.startswith('ninja-')
 
@@ -148,7 +167,10 @@ ci_dir = os.path.join(os.getcwd(), '_ci')
 if not os.path.exists(ci_dir):
   os.mkdir(ci_dir)
 
-cmake_archive_local = os.path.join(ci_dir, 'cmake-version.archive')
+cmake_url, cmake_sha1 = get_cmake_url()
+cmake_archive_local = cmake_url.split('/')[-1]
+cmake_archive_local = os.path.join(ci_dir, cmake_archive_local)
+
 ninja_archive_local = os.path.join(ci_dir, 'ninja.zip')
 
 if is_android:
@@ -156,6 +178,7 @@ if is_android:
   android_archive_local = url.split('/')[-1]
 else:
   android_archive_local = 'android.bin'
+android_archive_local = os.path.join(ci_dir, android_archive_local)
 
 expected_files = [
     cmake_archive_local, android_archive_local, ninja_archive_local
@@ -177,29 +200,8 @@ ninja_dir = os.path.join(ci_dir, 'ninja')
 ### Downloading files
 
 # https://cmake.org/download/
-if platform.system() == 'Darwin':
-  cmake = FileToDownload(
-      'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Darwin-x86_64.tar.gz',
-      '3013b2f00d43da6dc38cbcbd21190874a55b3455',
-      cmake_archive_local,
-      ci_dir
-  )
-elif platform.system() == 'Linux':
-  cmake = FileToDownload(
-      'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Linux-x86_64.tar.gz',
-      'f85232bd67929c1789bdd2e842a3f3e55c502e4a',
-      cmake_archive_local,
-      ci_dir
-  )
-elif platform.system() == 'Windows':
-  cmake = FileToDownload(
-      'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-win32-x86.zip',
-      '743bab5d9c82f0b88b418384026804ed986a50c5',
-      cmake_archive_local,
-      ci_dir
-  )
-else:
-  sys.exit('Unknown system: {}'.format(platform.system()))
+
+FileToDownload(cmake_url, cmake_sha1, cmake_archive_local, ci_dir)
 
 if is_android:
   url, sha1 = get_android_url()
