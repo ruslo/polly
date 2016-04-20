@@ -149,11 +149,13 @@ if not os.path.exists(ci_dir):
   os.mkdir(ci_dir)
 
 cmake_archive_local = os.path.join(ci_dir, 'cmake-version.archive')
-if os.getenv('TRAVIS'):
-  android_archive_local = os.path.join(ci_dir, 'android.tar.gz')
-else:
-  android_archive_local = os.path.join(ci_dir, 'android.bin')
 ninja_archive_local = os.path.join(ci_dir, 'ninja.zip')
+
+if is_android:
+  url, sha1 = get_android_url()
+  android_archive_local = url.split('/')[-1]
+else:
+  android_archive_local = 'android.bin'
 
 expected_files = [
     cmake_archive_local, android_archive_local, ninja_archive_local
