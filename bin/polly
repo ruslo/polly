@@ -1,5 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+from os.path import realpath, dirname, join
+from sys import argv
 
-/usr/bin/env python3 $DIR/polly.py "$@"
+polly_py = join(dirname(realpath(argv[0])), 'polly.py')
+exec(open(polly_py, 'r').read())
