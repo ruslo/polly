@@ -98,7 +98,7 @@ class FileToDownload:
       last_cwd = os.getcwd()
       os.chdir(self.unpack_dir)
       devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
-      subprocess.check_call(android_archive_local, stdout=devnull)
+      subprocess.check_call(self.local_path, stdout=devnull)
       os.chdir(last_cwd)
     else:
       sys.exit('Unknown archive format')
@@ -172,30 +172,31 @@ else:
   sys.exit('Unknown system: {}'.format(platform.system()))
 
 def get_android_full_version_url():
-  if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+  if toolchain.startswith('android-ndk-r10e-'):
     if platform.system() == 'Darwin':
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
-    elif platform.system() == 'Linux':
+    if platform.system() == 'Linux':
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
-  if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
+  if toolchain.startswith('android-ndk-r11c-'):
     if platform.system() == 'Darwin':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
-    elif platform.system() == 'Linux':
+    if platform.system() == 'Linux':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
-  if os.getenv('TRAVIS'):
-    if os.getenv('TOOLCHAIN') == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
-      if platform.system() == 'Linux':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'
-      if platform.system() == 'Darwin':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
-    if os.getenv('TOOLCHAIN') == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
-      if platform.system() == 'Linux':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '2e0da01961e0031bfd7d8db6ce4a15372bd8c3e8'
-      if platform.system() == 'Darwin':
-        return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '664b3c8104142de2af16f887c19d1b2e618725cb'
+  if not os.getenv('TRAVIS'):
+    return get_android_full_version_url()
+  if toolchain == 'android-ndk-r10e-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '847177799b0fe4f7480f910bbf1815c3e3fed0da'
+    if platform.system() == 'Darwin':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.0/android-ndk-r10e-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', 'e568e9a8f562e7d1bc06f93e6f7cc7f44df3ded2'
+  if toolchain == 'android-ndk-r11c-api-19-armeabi-v7a-neon':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '2e0da01961e0031bfd7d8db6ce4a15372bd8c3e8'
+    if platform.system() == 'Darwin':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '664b3c8104142de2af16f887c19d1b2e618725cb'
   return get_android_full_version_url()
 
 if is_android:
