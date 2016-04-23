@@ -143,6 +143,7 @@ if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios-9-2', 'Xcode', ios_version='9.2'),
       Toolchain('ios-9-2-arm64', 'Xcode', ios_version='9.2'),
+      Toolchain('ios-9-2-hid', 'Xcode', ios_version='9.2'),
       Toolchain('ios-9-2-armv7', 'Xcode', ios_version='9.2'),
       Toolchain('ios-9-1-armv7', 'Xcode', ios_version='9.1'),
       Toolchain('ios-9-1-arm64', 'Xcode', ios_version='9.1'),
