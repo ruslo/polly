@@ -49,10 +49,14 @@ env:
   - EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=01-executable TOOLCHAIN=sanitize-address CONFIG=Release
@@ -77,10 +81,14 @@ env:
   - EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=02-library TOOLCHAIN=sanitize-address CONFIG=Release
@@ -105,10 +113,14 @@ env:
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Debug
+  - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+  - EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
+  - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+  - EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
   - EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Debug
   - EXAMPLE=03-shared-link TOOLCHAIN=sanitize-address CONFIG=Release
@@ -194,13 +206,25 @@ matrix:
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Release
     - os: osx
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+    - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Debug
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Release
     - os: osx
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+    - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Debug
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Release
+    - os: osx
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+    - os: osx
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Release
 
     # https://github.com/travis-ci-tester/travis-test-mac-clang-address-sanitizer
     - os: osx
@@ -247,12 +271,12 @@ install:
   - uname -a
 
   # Install Python 3
-  - if [[ "`uname`" == "Darwin" ]]; then brew install python3; fi
+  - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew install python3; fi
 
   # Install Python package 'requests'
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
-  - if [[ "`uname`" == "Linux" ]]; then easy_install3 --user requests; fi
+  - if [[ "`uname`" == "Linux" ]]; then travis_retry easy_install3 --user requests; fi
 
   # Install dependencies (CMake, Android NDK)
   - POLLY_SOURCE_DIR="`pwd`"
@@ -263,6 +287,7 @@ install:
 
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
+  - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
 
 script:
   - python3 "${POLLY_SOURCE_DIR}/bin/build.py" --home examples/${EXAMPLE} --toolchain ${TOOLCHAIN} --config ${CONFIG} --verbose --clear --install --test
