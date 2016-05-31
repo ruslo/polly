@@ -193,6 +193,12 @@ matrix:
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign CONFIG=Release
     - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+    - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+    - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
@@ -236,6 +242,12 @@ matrix:
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign CONFIG=Release
     - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+    - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+    - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
@@ -278,6 +290,12 @@ matrix:
       env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Debug
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign CONFIG=Release
+    - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+    - os: osx
+      osx_image: xcode7.3
+      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
