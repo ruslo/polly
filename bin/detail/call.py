@@ -63,8 +63,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
   pretty += ']\n'
-  if logging.verbosity == 'full':
-    print(pretty)
+  print(pretty)
   logging.log_file.write(pretty)
 
   # print one line version
@@ -72,7 +71,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   for i in call_args:
     oneline += ' "{}"'.format(i)
   oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
-  if logging.verbosity == 'full':
+  if logging.verbosity != 'silent':
     print(oneline)
   logging.log_file.write(oneline)
 
