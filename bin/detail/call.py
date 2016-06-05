@@ -46,7 +46,7 @@ def teed_call(cmd_args, logging):
   )
   threads = []
 
-  if logging.verbose:
+  if logging.verbosity != 'silent':
     threads.append(tee(p.stdout, logging.discard, logging.log_file, sys.stdout))
     threads.append(tee(p.stderr, logging.discard, logging.log_file, sys.stderr))
   else:
@@ -63,7 +63,8 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
   pretty += ']\n'
-  print(pretty)
+  if logging.verbosity == 'full':
+    print(pretty)
   logging.log_file.write(pretty)
 
   # print one line version
@@ -71,7 +72,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   for i in call_args:
     oneline += ' "{}"'.format(i)
   oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
-  if logging.verbose:
+  if logging.verbosity == 'full':
     print(oneline)
   logging.log_file.write(oneline)
 

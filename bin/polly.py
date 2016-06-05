@@ -83,7 +83,14 @@ parser.add_argument(
 parser.add_argument(
     '--open', action='store_true', help="Open generated project (for IDE)"
 )
-parser.add_argument('--verbose', action='store_true', help="Verbose output")
+
+verbosity_group=parser.add_mutually_exclusive_group()
+verbosity_group.add_argument(
+    '--verbosity-level', dest='verbosity', help="Verbosity level",
+    choices=['silent', 'normal', 'full'], default='normal'
+)
+verbosity_group.add_argument('--verbose', action='store_true', help="Full verbose output")
+
 parser.add_argument(
     '--install', action='store_true', help="Run install (local directory)"
 )
@@ -255,10 +262,14 @@ if args.clear:
   detail.rmtree.rmtree(install_dir)
   detail.rmtree.rmtree(framework_dir)
 
+# --verbose flag triggers full verbosity level
+if args.verbose:
+    args.verbosity='full'
+
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(cdir, args.verbose, args.discard, args.tail)
+logging = detail.logging.Logging(cdir, args.verbosity, args.discard, args.tail)
 
 if os.name == 'nt':
   # Windows
@@ -290,7 +301,8 @@ if toolchain_entry.xp:
 if toolchain_option:
   generate_command.append(toolchain_option)
 
-generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
+if args.verbosity == 'full':
+    generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
 generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
 generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
 
