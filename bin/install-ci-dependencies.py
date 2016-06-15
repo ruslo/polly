@@ -141,8 +141,8 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Darwin-x86_64.tar.gz',
-        '3013b2f00d43da6dc38cbcbd21190874a55b3455'
+        'https://github.com/ruslo/CMake/releases/download/v3.6.20160614-p1/cmake-3.6.20160614-Darwin-x86_64.tar.gz',
+        '77e94de8b97ae09d181e44c43529bbf2106c7739'
     )
   elif platform.system() == 'Linux':
     return (
