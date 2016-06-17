@@ -9,5 +9,5 @@ endif()
 
 include(polly_add_cache_flag)
 
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-m32")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-m32 -march=native")
 polly_add_cache_flag(CMAKE_C_FLAGS "-m32 -march=native")
