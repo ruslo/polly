@@ -111,6 +111,15 @@ environment:
       EXAMPLE: 01-executable
       CONFIG: Debug
 
+    ###
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 01-executable
+      CONFIG: Debug
+
     #### 02-library ####
     ###
     - TOOLCHAIN: "default"
@@ -217,6 +226,15 @@ environment:
       CONFIG: Release
 
     - TOOLCHAIN: "mingw"
+      EXAMPLE: 02-library
+      CONFIG: Debug
+
+    ###
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "msys"
       EXAMPLE: 02-library
       CONFIG: Debug
 
@@ -329,6 +347,15 @@ environment:
       EXAMPLE: 03-shared-link
       CONFIG: Debug
 
+    ###
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
+
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 03-shared-link
+      CONFIG: Debug
+
 install:
   # Python 3
   - cmd: set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
@@ -352,6 +379,9 @@ install:
   # Use MinGW from Qt tools because version is higher
   # * http://www.appveyor.com/docs/installed-software#qt
   - cmd: set MINGW_PATH=C:\Qt\Tools\mingw492_32\bin
+
+  # MSYS2 location
+  - cmd: set MSYS_PATH=C:\msys64\usr\bin
 
 build_script:
   - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test
