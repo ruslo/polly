@@ -309,8 +309,8 @@ if toolchain_option:
 
 if args.verbosity == 'full':
     generate_command.append('-DCMAKE_VERBOSE_MAKEFILE=ON')
-generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
-generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
+    generate_command.append('-DPOLLY_STATUS_DEBUG=ON')
+    generate_command.append('-DHUNTER_STATUS_DEBUG=ON')
 
 if args.ios_multiarch:
     generate_command.append('-DCMAKE_XCODE_ATTRIBUTE_ONLY_ACTIVE_ARCH=NO')
