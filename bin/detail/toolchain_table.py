@@ -147,6 +147,12 @@ if os.name == 'nt':
           arch='amd64',
           vs_version='12'
       ),
+      Toolchain(
+          'vs-14-2015-win64',
+          'Visual Studio 14 2015 Win64',
+          arch='amd64',
+          vs_version='14'
+      ),
   ]
 
 if platform.system().startswith('CYGWIN'):
