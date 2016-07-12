@@ -70,6 +70,8 @@ toolchain_table = [
     Toolchain('android-ndk-r10e-api-21-mips', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-mips64', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-8-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-16-armeabi', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-16-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-16-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-16-armeabi-v7a-neon-clang-35', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-16-armeabi-v7a-neon-clang-35-hid', 'Unix Makefiles'),
@@ -115,6 +117,12 @@ if os.name == 'nt':
           vs_version='12'
       ),
       Toolchain(
+          'ninja-vs-14-2015-win64',
+          'Ninja',
+          arch='amd64',
+          vs_version='14'
+      ),
+      Toolchain(
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
       ),
       Toolchain(
@@ -145,6 +153,12 @@ if os.name == 'nt':
           arch='amd64',
           vs_version='12'
       ),
+      Toolchain(
+          'vs-14-2015-win64',
+          'Visual Studio 14 2015 Win64',
+          arch='amd64',
+          vs_version='14'
+      ),
   ]
 
 if platform.system().startswith('CYGWIN'):
@@ -164,6 +178,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-9-3', 'Xcode', ios_version='9.3'),
       Toolchain('ios-9-3-arm64', 'Xcode', ios_version='9.3'),
       Toolchain('ios-9-3-armv7', 'Xcode', ios_version='9.3'),
+      Toolchain('ios-9-3-wo-armv7s', 'Xcode', ios_version='9.3'),
       Toolchain('ios-9-2', 'Xcode', ios_version='9.2'),
       Toolchain('ios-9-2-arm64', 'Xcode', ios_version='9.2'),
       Toolchain('ios-9-2-hid', 'Xcode', ios_version='9.2'),
@@ -206,6 +221,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-9-3', 'Xcode', ios_version='9.3', nocodesign=True),
       Toolchain('ios-nocodesign-9-3-arm64', 'Xcode', ios_version='9.3', nocodesign=True),
       Toolchain('ios-nocodesign-9-3-armv7', 'Xcode', ios_version='9.3', nocodesign=True),
+      Toolchain('ios-nocodesign-9-3-wo-armv7s', 'Xcode', ios_version='9.3', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('osx-10-7', 'Xcode', osx_version='10.7'),

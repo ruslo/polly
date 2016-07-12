@@ -141,8 +141,8 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.5.2/cmake-3.5.2-Darwin-x86_64.tar.gz',
-        '3013b2f00d43da6dc38cbcbd21190874a55b3455'
+        'https://github.com/ruslo/CMake/releases/download/v3.6.20160614-p1/cmake-3.6.20160614-Darwin-x86_64.tar.gz',
+        '77e94de8b97ae09d181e44c43529bbf2106c7739'
     )
   elif platform.system() == 'Linux':
     return (
@@ -209,8 +209,8 @@ if is_android:
 
 if is_ninja:
   ninja = FileToDownload(
-      'https://github.com/ninja-build/ninja/releases/download/v1.6.0/ninja-win.zip',
-      'e01093f6533818425f8efb0843ced7dcaabea3b2',
+      'https://github.com/ninja-build/ninja/releases/download/v1.7.1/ninja-win.zip',
+      '38c5b4192f845b953f26fa6aae7d2c9e7078f2f1',
       ninja_archive_local,
       ci_dir
   )
