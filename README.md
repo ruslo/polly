@@ -53,6 +53,10 @@ In this case targets can coexist simultaneously:
 
 *Note*: This is a core idea of the tagged builds in [hunter](https://github.com/ruslo/hunter#tagged-builds) package manager.
 
+## New documentation
+
+* http://polly.readthedocs.io
+
 ## Toolchains
 
 * [default](https://github.com/ruslo/polly/wiki/Toolchain-list#default)
