@@ -1,0 +1,3 @@
+[submodule "docs/rtfd-css"]
+  path = docs/rtfd-css
+  url = https://github.com/ruslo/rtfd-css
