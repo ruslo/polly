@@ -159,6 +159,30 @@ if os.name == 'nt':
           arch='amd64',
           vs_version='14'
       ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-arm-clang-3-6',
+          'Visual Studio 14 2015 ARM',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-21-arm-clang-3-6',
+          'Visual Studio 14 2015 ARM',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-x86-clang-3-6',
+          'Visual Studio 14 2015',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-arm-gcc-4-9',
+          'Visual Studio 14 2015 ARM',
+          arch='',
+          vs_version='14'
+      ),
   ]
 
 if platform.system().startswith('CYGWIN'):
