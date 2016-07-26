@@ -53,6 +53,8 @@ In this case targets can coexist simultaneously:
 
 *Note*: This is a core idea of the tagged builds in [hunter](https://github.com/ruslo/hunter#tagged-builds) package manager.
 
+[![Codewake](https://www.codewake.com/badges/codewake2.svg)](https://www.codewake.com/p/polly)
+
 ## New documentation
 
 * http://polly.readthedocs.io
