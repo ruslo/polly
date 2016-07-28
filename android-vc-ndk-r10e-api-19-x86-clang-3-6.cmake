@@ -11,13 +11,15 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
-set(ANDROID_NDK_VERSION "r10e") # default, variable not used
+set(ANDROID_NDK_VERSION "r10e") # default
 set(ANDROID_NATIVE_API_LEVEL "19")
-set(ANDROID_TOOLCHAIN_NAME "Clang_3_6")
+set(ANDROID_ABI "x86")
+set(CMAKE_VC_MDD_ANDROID_PLATFORM_TOOLSET "Clang_3_6")
 
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
-API ${ANDROID_NATIVE_API_LEVEL} / X86 / ${ANDROID_TOOLCHAIN_NAME} / \
+API ${ANDROID_NATIVE_API_LEVEL} / ${ANDROID_ABI} / \
+${CMAKE_VC_MDD_ANDROID_PLATFORM_TOOLSET} / \
 c++11 support"
     "Visual Studio 14 2015"
 )

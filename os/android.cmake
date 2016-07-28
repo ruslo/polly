@@ -25,7 +25,7 @@ if(_is_empty)
   polly_fatal_error("ANDROID_NATIVE_API_LEVEL is not defined")
 endif()
 
-set(ANDROID_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}") # Need for Api.cmake module
+set(ANDROID_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}") # Need for Apk.cmake module
 option(ANDROID_FORCE_COMPILERS "" OFF)
 include("${CMAKE_CURRENT_LIST_DIR}/android.toolchain.cmake")
 
