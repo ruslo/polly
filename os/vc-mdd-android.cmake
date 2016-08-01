@@ -152,6 +152,17 @@ set(
     "Path to ant"
 )
 
+set(
+    CMAKE_GDBSERVER
+    "${ANDROID_NDK}/prebuilt/android-${ANDROID_ARCH_NAME}/gdbserver/gdbserver"
+    CACHE
+    INTERNAL
+    "Path to 'gdbserver'"
+)
+if(NOT EXISTS "${CMAKE_GDBSERVER}")
+  polly_fatal_error("File not found: ${CMAKE_GDBSERVER}")
+endif()
+
 set(ANDROID_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}")
 
 # only search for libraries and includes in the ndk toolchain
