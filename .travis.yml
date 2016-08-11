@@ -335,4 +335,12 @@ install:
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
 
 script:
-  - python3 "${POLLY_SOURCE_DIR}/bin/build.py" --home examples/${EXAMPLE} --toolchain ${TOOLCHAIN} --config ${CONFIG} --verbose --clear --install --test
+  - >
+    python3 "${POLLY_SOURCE_DIR}/bin/build.py"
+    --home examples/${EXAMPLE}
+    --toolchain ${TOOLCHAIN}
+    --config ${CONFIG}
+    --verbose
+    --clear
+    --install
+    --test
