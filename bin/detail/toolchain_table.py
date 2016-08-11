@@ -148,6 +148,12 @@ if os.name == 'nt':
           xp=True
       ),
       Toolchain(
+          'vs-11-2012-win64',
+          'Visual Studio 11 2012 Win64',
+          arch='amd64',
+          vs_version='11'
+      ),
+      Toolchain(
           'vs-12-2013-win64',
           'Visual Studio 12 2013 Win64',
           arch='amd64',
@@ -157,6 +163,21 @@ if os.name == 'nt':
           'vs-14-2015-win64',
           'Visual Studio 14 2015 Win64',
           arch='amd64',
+          vs_version='14'
+      ),
+      Toolchain(
+          'vs-11-2012-arm',
+          'Visual Studio 11 2012 ARM',
+          vs_version='11'
+      ),
+      Toolchain(
+          'vs-12-2013-arm',
+          'Visual Studio 12 2013 ARM',
+          vs_version='12'
+      ),
+      Toolchain(
+          'vs-14-2015-arm',
+          'Visual Studio 14 2015 ARM',
           vs_version='14'
       ),
       Toolchain(
