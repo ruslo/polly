@@ -168,19 +168,16 @@ if os.name == 'nt':
       Toolchain(
           'vs-11-2012-arm',
           'Visual Studio 11 2012 ARM',
-          arch='arm',
           vs_version='11'
       ),
       Toolchain(
           'vs-12-2013-arm',
           'Visual Studio 12 2013 ARM',
-          arch='arm',
           vs_version='12'
       ),
       Toolchain(
           'vs-14-2015-arm',
           'Visual Studio 14 2015 ARM',
-          arch='arm',
           vs_version='14'
       ),
       Toolchain(
