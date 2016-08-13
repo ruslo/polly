@@ -14,7 +14,13 @@ def tee(infile, discard, log_file, console=None):
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode('utf-8', 'backslashreplace')
+      # Doesn't work on OSX Travis + crashpad + Python 3.4:
+      # * 'backslashreplace'
+      # Doesn't work on OSX 10.11.2 + crashpad + Python 3.5
+      # * 'surrogateescape'
+      # * 'surrogatepass'
+      # * 'xmlcharrefreplace'
+      s = line.decode('utf-8', 'replace')
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
