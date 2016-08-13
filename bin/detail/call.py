@@ -14,7 +14,7 @@ def tee(infile, discard, log_file, console=None):
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode('utf-8')
+      s = line.decode('utf-8', 'backslashreplace')
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
