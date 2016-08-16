@@ -180,6 +180,12 @@ parser.add_argument(
     help='Print last N lines if build failed'
 )
 
+parser.add_argument(
+    '--timeout',
+    type=PositiveInt,
+    help='Timeout for CTest'
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -401,7 +407,7 @@ if not args.nobuild:
   os.chdir(build_dir)
   if args.test or args.test_xml:
     timer.start('Test')
-    detail.test_command.run(build_dir, args.config, logging, args.test_xml, args.verbosity == 'full')
+    detail.test_command.run(build_dir, args.config, logging, args.test_xml, args.verbosity == 'full', args.timeout)
     timer.stop()
   if args.pack:
     timer.start('Pack')
