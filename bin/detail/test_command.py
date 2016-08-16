@@ -3,7 +3,7 @@
 
 import detail.call
 
-def run(build_dir, config, logging,test_xml):
+def run(build_dir, config, logging, test_xml):
   test_command = ['ctest']
   if test_xml:
     test_command.append('-T')
