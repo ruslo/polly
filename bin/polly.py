@@ -401,7 +401,7 @@ if not args.nobuild:
   os.chdir(build_dir)
   if args.test or args.test_xml:
     timer.start('Test')
-    detail.test_command.run(build_dir, args.config, logging, args.test_xml)
+    detail.test_command.run(build_dir, args.config, logging, args.test_xml, args.verbosity == 'full')
     timer.stop()
   if args.pack:
     timer.start('Pack')
