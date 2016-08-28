@@ -9,10 +9,18 @@ endif()
 
 include(polly_add_cache_flag)
 
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility=hidden")
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility-inlines-hidden") # only C++
+string(COMPARE EQUAL "${ANDROID_NDK_VERSION}" "" _not_android)
 
-polly_add_cache_flag(CMAKE_C_FLAGS "-fvisibility=hidden")
+# TODO: test other platfroms, CMAKE_CXX_FLAGS_INIT should work for all
+if(_not_android)
+  polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility=hidden")
+  polly_add_cache_flag(CMAKE_CXX_FLAGS "-fvisibility-inlines-hidden") # only C++
+  polly_add_cache_flag(CMAKE_C_FLAGS "-fvisibility=hidden")
+else()
+  polly_add_cache_flag(CMAKE_CXX_FLAGS_INIT "-fvisibility=hidden")
+  polly_add_cache_flag(CMAKE_CXX_FLAGS_INIT "-fvisibility-inlines-hidden") # only C++
+  polly_add_cache_flag(CMAKE_C_FLAGS_INIT "-fvisibility=hidden")
+endif()
 
 # There is no macro to detect this flags on toolchain calculation so we must
 # mark this toolchain explicitly.

@@ -20,34 +20,13 @@ if(NOT _is_empty)
   set(ANDROID_NDK "${_env_ndk}")
 endif()
 
-string(COMPARE EQUAL "${ANDROID_NATIVE_API_LEVEL}" "" _is_empty)
+string(COMPARE EQUAL "${CMAKE_SYSTEM_VERSION}" "" _is_empty)
 if(_is_empty)
-  polly_fatal_error("ANDROID_NATIVE_API_LEVEL is not defined")
+  polly_fatal_error("CMAKE_SYSTEM_VERSION is not defined")
 endif()
 
-set(ANDROID_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}") # Need for Apk.cmake module
-option(ANDROID_FORCE_COMPILERS "" OFF)
-include("${CMAKE_CURRENT_LIST_DIR}/android.toolchain.cmake")
+set(CMAKE_SYSTEM_NAME "Android")
 
-# Toolchain can "adjust" API level silently
-string(
-    COMPARE EQUAL "${ANDROID_API_LEVEL}" "${ANDROID_NATIVE_API_LEVEL}" _is_equal
-)
-if(NOT _is_equal)
-  polly_fatal_error(
-      "API level adjusted:"
-      "  ANDROID_API_LEVEL: ${ANDROID_API_LEVEL}"
-      "  ANDROID_NATIVE_API_LEVEL: ${ANDROID_NATIVE_API_LEVEL}"
-  )
-endif()
-
-# Support for Android-Apk: https://github.com/hunter-packages/android-apk
-set(
-    CMAKE_GDBSERVER
-    "${ANDROID_NDK}/prebuilt/android-${ANDROID_ARCH_NAME}/gdbserver/gdbserver"
-)
-if(NOT EXISTS "${CMAKE_GDBSERVER}")
-  polly_fatal_error(
-      "gdbserver not found. Expected location: ${CMAKE_GDBSERVER}"
-  )
+if(CMAKE_VERSION VERSION_LESS 3.7)
+  polly_fatal_error("Minimum CMake version for Android is 3.7")
 endif()
