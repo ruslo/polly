@@ -13,14 +13,14 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 set(ANDROID_NDK_VERSION "r10e")
-set(ANDROID_NATIVE_API_LEVEL "21")
-set(ANDROID_ABI "arm64-v8a")
-set(ANDROID_TOOLCHAIN_NAME "aarch64-linux-android-clang3.5")
+set(CMAKE_SYSTEM_VERSION "21")
+set(CMAKE_ANDROID_ARCH_ABI "arm64-v8a")
+set(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION "clang3.5")
 
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
-API ${ANDROID_NATIVE_API_LEVEL} / ${ANDROID_ABI} / \
-c++11 support"
+API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
+Clang 3.5 / c++11 support"
     "Unix Makefiles"
 )
 

@@ -13,14 +13,16 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 set(ANDROID_NDK_VERSION "r10e")
-set(ANDROID_NATIVE_API_LEVEL "16")
-set(ANDROID_ABI "armeabi-v7a with NEON")
-set(ANDROID_TOOLCHAIN_NAME "arm-linux-androideabi-clang3.5")
+set(CMAKE_SYSTEM_VERSION "16")
+set(CMAKE_ANDROID_ARCH_ABI "armeabi-v7a")
+set(CMAKE_ANDROID_ARM_NEON TRUE)
+set(CMAKE_ANDROID_ARM_MODE TRUE) # 32-bit ARM
+set(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION "clang3.5")
 
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
-API ${ANDROID_NATIVE_API_LEVEL} / ${ANDROID_ABI} / \
-c++11 support"
+API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
+NEON / 32-bit ARM / Clang 3.5 / c++11 support"
     "Unix Makefiles"
 )
 
@@ -29,5 +31,3 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake") # before toolchain!
 include("${CMAKE_CURRENT_LIST_DIR}/flags/hidden.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/android.cmake")
-
-
