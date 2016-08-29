@@ -298,6 +298,8 @@ if os.name == 'posix':
       Toolchain('analyze', 'Unix Makefiles'),
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
+      Toolchain('clang-pic', 'Unix Makefiles'),
+      Toolchain('clang-libc++-pic', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
       Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
