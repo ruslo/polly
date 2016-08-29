@@ -51,3 +51,8 @@ if(NOT EXISTS "${CMAKE_GDBSERVER}")
       "gdbserver not found. Expected location: ${CMAKE_GDBSERVER}"
   )
 endif()
+
+
+# There is no macro to detect this flags on toolchain calculation so we must
+# mark this toolchain explicitly.
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "${ANDROID_STL}")
