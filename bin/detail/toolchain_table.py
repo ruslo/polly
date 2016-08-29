@@ -91,6 +91,18 @@ toolchain_table = [
     Toolchain('android-ndk-r11c-api-21-x86-64-hid', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips64', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-arm64-v8a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a-neon-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-arm64-v8a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a-neon-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_shared-arm64-v8a', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
 
@@ -286,6 +298,8 @@ if os.name == 'posix':
       Toolchain('analyze', 'Unix Makefiles'),
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
+      Toolchain('clang-pic', 'Unix Makefiles'),
+      Toolchain('clang-libc++-pic', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
       Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
