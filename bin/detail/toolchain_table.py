@@ -48,7 +48,7 @@ class Toolchain:
       assert(self.vs_version)
 
 toolchain_table = [
-    Toolchain('default', ''),
+    Toolchain('default', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon-clang-35', 'Unix Makefiles'),
@@ -91,17 +91,36 @@ toolchain_table = [
     Toolchain('android-ndk-r11c-api-21-x86-64-hid', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips64', 'Unix Makefiles'),
+
+
     Toolchain('android-ndk-r11c-api-21-c++_shared-arm64-v8a', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_shared-arm64-v8a-clang-36', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-clang-36', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_shared-armeabi-v7a-neon-clang-36', 'Unix Makefiles'),
+
     Toolchain('android-ndk-r11c-api-21-c++_static-arm64-v8a', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_static-arm64-v8a-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-armeabi', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-clang-36', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a-clang-36', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-c++_static-armeabi-v7a-neon-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-mips-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-mips64-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-x86-clang-36', 'Unix Makefiles'),
+    Toolchain('android-ndk-r11c-api-21-c++_static-x86_64-clang-36', 'Unix Makefiles'),
+
+
     Toolchain('android-ndk-r12b-api-21-c++_static-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-armeabi', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-x86', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-x86-64', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-mips', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_static-mips64', 'Unix Makefiles'),
+
     Toolchain('android-ndk-r12b-api-21-c++_shared-arm64-v8a', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]

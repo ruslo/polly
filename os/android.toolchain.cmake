@@ -1514,6 +1514,14 @@ if( DEFINED ANDROID_EXCEPTIONS AND ANDROID_STL_FORCE_FEATURES )
  endif()
 endif()
 
+# https://code.google.com/p/android/issues/detail?id=68779
+# link atomic support, should be fixed after r10e
+if (NOT (ANDROID_NDK_RELEASE_NUM LESS 11000) AND (ANDROID_ABI MATCHES armeabi OR ANDROID_ABI MATCHES mips))
+ set( CMAKE_CXX_CREATE_SHARED_LIBRARY "${CMAKE_CXX_CREATE_SHARED_LIBRARY} -latomic" )
+ set( CMAKE_CXX_CREATE_SHARED_MODULE  "${CMAKE_CXX_CREATE_SHARED_MODULE} -latomic" )
+ set( CMAKE_CXX_LINK_EXECUTABLE "${CMAKE_CXX_LINK_EXECUTABLE} -latomic" )
+endif()
+
 # global includes and link directories
 include_directories( SYSTEM "${ANDROID_SYSROOT}/usr/include" ${ANDROID_STL_INCLUDE_DIRS} )
 get_filename_component(__android_install_path "${CMAKE_INSTALL_PREFIX}/libs/${ANDROID_NDK_ABI_NAME}" ABSOLUTE) # avoid CMP0015 policy warning

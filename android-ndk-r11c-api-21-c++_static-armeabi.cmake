@@ -1,20 +1,19 @@
 # Copyright (c) 2016, Michele Caini
 # All rights reserved.
 
-if(DEFINED POLLY_ANDROID_NDK_R12B_API_21_CPP_STATIC_ARM64_V8A_CMAKE_)
+if(DEFINED POLLY_ANDROID_NDK_R11C_API_21_CPP_STATIC_ARMEABI_CMAKE_)
   return()
 else()
-  set(POLLY_ANDROID_NDK_R12B_API_21_CPP_STATIC_ARM64_V8A_CMAKE_ 1)
+  set(POLLY_ANDROID_NDK_R11C_API_21_CPP_STATIC_ARMEABI_CLANG_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
-set(ANDROID_NDK_VERSION "r12b")
+set(ANDROID_NDK_VERSION "r11c")
 set(ANDROID_NATIVE_API_LEVEL "21")
-set(ANDROID_ABI "arm64-v8a")
-set(ANDROID_TOOLCHAIN_NAME "aarch64-linux-android-clang")
+set(ANDROID_ABI "armeabi")
 set(ANDROID_STL "c++_static")
 
 polly_init(
