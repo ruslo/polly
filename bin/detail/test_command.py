@@ -13,6 +13,8 @@ def run(build_dir, config, logging, test_xml, verbose, timeout):
     test_command.append(config)
   if verbose:
     test_command.append('-VV')
+  else:
+    test_command.append('-V')
   if timeout:
     test_command.append('--timeout')
     test_command.append(str(timeout))
