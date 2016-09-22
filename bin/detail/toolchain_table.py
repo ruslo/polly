@@ -139,6 +139,9 @@ if os.name == 'nt':
           'vs-14-2015', 'Visual Studio 14 2015', arch='x86', vs_version='14'
       ),
       Toolchain(
+          'vs-14-2015-sdk-8-1', 'Visual Studio 14 2015', arch='x86', vs_version='14'
+      ),
+      Toolchain(
           'vs-9-2008', 'Visual Studio 9 2008', arch='x86', vs_version='9'
       ),
       Toolchain(
@@ -165,6 +168,12 @@ if os.name == 'nt':
       ),
       Toolchain(
           'vs-14-2015-win64',
+          'Visual Studio 14 2015 Win64',
+          arch='amd64',
+          vs_version='14'
+      ),
+      Toolchain(
+          'vs-14-2015-win64-sdk-8-1',
           'Visual Studio 14 2015 Win64',
           arch='amd64',
           vs_version='14'
