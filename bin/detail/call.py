@@ -4,17 +4,36 @@
 # Adapted to python3 version of: http://stackoverflow.com/questions/4984428
 
 import os
+import platform
 import subprocess
 import sys
 import threading
 import time
+
+# Doesn't work on OSX Travis + crashpad + Python 3.4:
+# * 'backslashreplace'
+# Doesn't work on OSX 10.11.2 + crashpad + Python 3.5
+# * 'surrogateescape'
+# * 'surrogatepass'
+# * 'xmlcharrefreplace'
+# Doesn't work on Windows 10 + crashpad + Python 3.4.2 + cp1251
+# * 'backslashreplace'
+# * 'replace'
+# * 'surrogateescape'
+# * 'surrogatepass'
+# * 'xmlcharrefreplace'
+
+if platform.system() == 'Windows':
+  on_decode_error = 'ignore'
+else:
+  on_decode_error = 'replace'
 
 def tee(infile, discard, log_file, console=None):
   """Print `infile` to `files` in a separate thread."""
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode('utf-8')
+      s = line.decode('utf-8', on_decode_error)
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL

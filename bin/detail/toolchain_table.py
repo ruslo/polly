@@ -91,6 +91,7 @@ toolchain_table = [
     Toolchain('android-ndk-r11c-api-21-x86-64-hid', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips64', 'Unix Makefiles'),
+    Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
 
@@ -126,6 +127,9 @@ if os.name == 'nt':
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
       ),
       Toolchain(
+          'vs-12-2013-mt', 'Visual Studio 12 2013', arch='x86', vs_version='12'
+      ),
+      Toolchain(
           'vs-10-2010', 'Visual Studio 10 2010', arch='x86', vs_version='10'
       ),
       Toolchain(
@@ -133,6 +137,9 @@ if os.name == 'nt':
       ),
       Toolchain(
           'vs-14-2015', 'Visual Studio 14 2015', arch='x86', vs_version='14'
+      ),
+      Toolchain(
+          'vs-14-2015-sdk-8-1', 'Visual Studio 14 2015', arch='x86', vs_version='14'
       ),
       Toolchain(
           'vs-9-2008', 'Visual Studio 9 2008', arch='x86', vs_version='9'
@@ -148,6 +155,12 @@ if os.name == 'nt':
           xp=True
       ),
       Toolchain(
+          'vs-11-2012-win64',
+          'Visual Studio 11 2012 Win64',
+          arch='amd64',
+          vs_version='11'
+      ),
+      Toolchain(
           'vs-12-2013-win64',
           'Visual Studio 12 2013 Win64',
           arch='amd64',
@@ -157,6 +170,51 @@ if os.name == 'nt':
           'vs-14-2015-win64',
           'Visual Studio 14 2015 Win64',
           arch='amd64',
+          vs_version='14'
+      ),
+      Toolchain(
+          'vs-14-2015-win64-sdk-8-1',
+          'Visual Studio 14 2015 Win64',
+          arch='amd64',
+          vs_version='14'
+      ),
+      Toolchain(
+          'vs-11-2012-arm',
+          'Visual Studio 11 2012 ARM',
+          vs_version='11'
+      ),
+      Toolchain(
+          'vs-12-2013-arm',
+          'Visual Studio 12 2013 ARM',
+          vs_version='12'
+      ),
+      Toolchain(
+          'vs-14-2015-arm',
+          'Visual Studio 14 2015 ARM',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-arm-clang-3-6',
+          'Visual Studio 14 2015 ARM',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-21-arm-clang-3-6',
+          'Visual Studio 14 2015 ARM',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-x86-clang-3-6',
+          'Visual Studio 14 2015',
+          arch='',
+          vs_version='14'
+      ),
+      Toolchain(
+          'android-vc-ndk-r10e-api-19-arm-gcc-4-9',
+          'Visual Studio 14 2015 ARM',
+          arch='',
           vs_version='14'
       ),
   ]
