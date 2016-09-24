@@ -15,4 +15,4 @@ polly_add_cache_flag(CMAKE_C_FLAGS "-fdata-sections")
 
 # There is no macro to detect this flags on toolchain calculation so we must
 # mark this toolchain explicitly.
-list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "function-sections")
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "data-sections")
