@@ -17,7 +17,7 @@ set(POLLY_XCODE_COMPILER "clang")
 polly_init(
     "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
 ${POLLY_XCODE_COMPILER} / \
-No code sign / function-sections / data-sections \
+No code sign / function-sections / data-sections / hidden visibility / \
 c++11 support"
     "Xcode"
 )
