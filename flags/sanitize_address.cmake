@@ -74,8 +74,7 @@ if(XCODE)
 
   # Hunter copying rules {
   set_property(GLOBAL APPEND PROPERTY HUNTER_COPY_FILES "${_xcode_asan_lib}")
-  set_property(
-      SOURCE "${_xcode_asan_lib}" PROPERTY HUNTER_DST_RELATIVE_DIR "lib"
-  )
+  # Do not use SOURCE property because it's visible only for current directory
+  set_property(GLOBAL PROPERTY "HUNTER_DST_RELATIVE_DIR_${_xcode_asan_lib}" "lib")
   # }
 endif()
