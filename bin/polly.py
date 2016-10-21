@@ -247,12 +247,21 @@ print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-local_install = args.install or args.framework or args.framework_device or args.archive
+local_install = args.install or args.strip or args.framework or args.framework_device or args.archive
+
+if args.install and args.strip:
+  sys.exit('Both --install and --strip specified')
+
+if args.install:
+  install_target_name = 'install'
+elif args.strip:
+  install_target_name = 'install/strip'
+else:
+  install_target_name = '' # not used
 
 target = detail.target.Target()
 
-target.add(condition=local_install, name='install')
-target.add(condition=args.strip, name='install/strip')
+target.add(condition=local_install, name=install_target_name)
 target.add(condition=args.target, name=args.target)
 
 # After 'target.add'
