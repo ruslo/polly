@@ -14,8 +14,6 @@ You can find your Team ID by visiting this page:
 
 * https://developer.apple.com/account/#/membership
 
-Both ``Team ID`` and ``Team Name`` fits:
-
 .. image:: /screens/ios-team-id.png
   :align: center
 
@@ -25,13 +23,6 @@ Example:
 
   > grep POLLY_IOS_DEVELOPMENT_TEAM ~/.bashrc
   export POLLY_IOS_DEVELOPMENT_TEAM="KDKA6UJ6WT"
-
-or
-
-.. code-block:: none
-
-  > grep POLLY_IOS_DEVELOPMENT_TEAM ~/.bashrc
-  export POLLY_IOS_DEVELOPMENT_TEAM="Ruslan Baratov"
 
 .. admonition:: Stackoverflow
 
