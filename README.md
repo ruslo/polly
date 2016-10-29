@@ -55,7 +55,7 @@ In this case targets can coexist simultaneously:
 
 ## New documentation
 
-* http://polly.readthedocs.io
+* https://polly.readthedocs.io
 
 ## Toolchains
 
