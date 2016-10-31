@@ -27,10 +27,6 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include(polly_fatal_error)
 
-if (NOT DEFINED ENV{XCODE_ATTRIBUTE_DEVELOPMENT_TEAM}) 
-  polly_fatal_error("XCODE_ATTRIBUTE_DEVELOPMENT_TEAM variable must be set.")
-endif()
-
 # Fix try_compile
 set(MACOSX_BUNDLE_GUI_IDENTIFIER com.example)
 set(CMAKE_MACOSX_BUNDLE YES)
@@ -46,3 +42,4 @@ include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/hidden.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/function-sections.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/data-sections.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_ios_development_team.cmake")
