@@ -2,4 +2,11 @@
 
 set -x
 
-sphinx-build -W . _build
+mkdir -p _static
+
+sphinx-build -v . _build
+
+set +x
+
+echo "Done:"
+echo "`pwd`/_build/index.html"
