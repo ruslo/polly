@@ -247,21 +247,28 @@ print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-local_install = args.install or args.framework or args.framework_device or args.archive
+local_install = args.install or args.strip or args.framework or args.framework_device or args.archive
+
+if args.install and args.strip:
+  sys.exit('Both --install and --strip specified')
+
+if args.strip:
+  install_target_name = 'install/strip'
+elif local_install:
+  install_target_name = 'install'
+else:
+  install_target_name = '' # not used
 
 target = detail.target.Target()
 
-target.add(condition=local_install, name='install')
-target.add(condition=args.strip, name='install/strip')
+target.add(condition=local_install, name=install_target_name)
 target.add(condition=args.target, name=args.target)
 
 # After 'target.add'
 if args.strip and not toolchain_entry.is_make:
   sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
 
-add_install_prefix = local_install or args.strip
-
-if add_install_prefix:
+if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
 if (args.framework or args.framework_device) and platform.system() != 'Darwin':
@@ -324,7 +331,7 @@ if args.ios_multiarch:
 if args.ios_combined:
     generate_command.append('-DCMAKE_IOS_INSTALL_COMBINED=YES')
 
-if add_install_prefix:
+if local_install:
   generate_command.append(install_dir_option)
 
 if cpack_generator:
