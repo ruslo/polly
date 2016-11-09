@@ -16,9 +16,13 @@ endif()
 
 set(_env_ndk "$ENV{ANDROID_NDK_${ANDROID_NDK_VERSION}}")
 string(COMPARE EQUAL "${_env_ndk}" "" _is_empty)
-if(NOT _is_empty)
-  set(ANDROID_NDK "${_env_ndk}")
+if(_is_empty)
+  polly_fatal_error(
+      "Environment variable 'ANDROID_NDK_${ANDROID_NDK_VERSION}' not set"
+  )
 endif()
+
+set(ANDROID_NDK "${_env_ndk}")
 
 string(COMPARE EQUAL "${CMAKE_SYSTEM_VERSION}" "" _is_empty)
 if(_is_empty)
