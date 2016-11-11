@@ -140,20 +140,19 @@ def get_android_url():
 
 def get_cmake_url():
   if platform.system() == 'Darwin':
-    # Waiting for release of https://github.com/Kitware/CMake/commit/aff1e77f480f72b1a517ae9b7d54e56b30fab4b3
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.6.20160614-p1/cmake-3.6.20160614-Darwin-x86_64.tar.gz',
-        '77e94de8b97ae09d181e44c43529bbf2106c7739'
+        'https://github.com/ruslo/CMake/releases/download/v3.7.0-rc3/cmake-3.7.0-rc3-Darwin-x86_64.tar.gz',
+        '9193e4a5a73bf3334414d0fa61f5be160027f1c7'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.6.1/cmake-3.6.1-Linux-x86_64.tar.gz',
-        '10c7aa3d449667a092ae2c4220b8aa6d6c98a5b2'
+        'https://github.com/ruslo/CMake/releases/download/v3.7.0-rc3/cmake-3.7.0-rc3-Linux-x86_64.tar.gz',
+        'c850143b1a7510fa684bde7c4f59b3e0d4662bb7'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.6.1/cmake-3.6.1-win32-x86.zip',
-        '9d51c1f7040246aec825a39c0c66430f6b523851'
+        'https://github.com/ruslo/CMake/releases/download/v3.7.0-rc3/cmake-3.7.0-rc3-win64-x64.zip',
+        '80d2d619f631739226be87700a44842e74449fa3'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
