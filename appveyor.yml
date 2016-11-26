@@ -385,3 +385,7 @@ install:
 
 build_script:
   - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test
+
+branches:
+  except:
+    - /^pr\..*/

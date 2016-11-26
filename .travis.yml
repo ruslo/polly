@@ -338,3 +338,7 @@ script:
     --clear
     --install
     --test
+
+branches:
+  except:
+    - /^pr\..*/
