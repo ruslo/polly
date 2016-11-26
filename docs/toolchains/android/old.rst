@@ -1,6 +1,10 @@
 .. Copyright (c) 2016, Ruslan Baratov
 .. All rights reserved.
 
+.. spelling::
+
+  taka
+
 Old toolchains (taka-no-me based)
 ---------------------------------
 
