@@ -11,6 +11,7 @@ Android
 .. toctree::
    :maxdepth: 1
 
+   /toolchains/android/old
    /toolchains/android/developer-notes
 
 android-vc-*
