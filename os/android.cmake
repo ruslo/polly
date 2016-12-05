@@ -31,8 +31,8 @@ endif()
 
 set(CMAKE_SYSTEM_NAME "Android")
 
-if(CMAKE_VERSION VERSION_LESS 3.7)
-  polly_fatal_error("Minimum CMake version for Android is 3.7")
+if(CMAKE_VERSION VERSION_LESS 3.7.1)
+  polly_fatal_error("Minimum CMake version for Android is 3.7.1")
 endif()
 
 macro(find_host_program)
