@@ -5,14 +5,14 @@
 
   taka
 
-Old toolchains (taka-no-me based)
----------------------------------
+Migration to CMake 3.7.1+
+-------------------------
 
 Here is the table for migrating from toolchain based on `taka-no-me`_ project to
-CMake 3.7+:
+CMake 3.7.1+:
 
 +---------------------------------+----------------------------------------+
-| taka-no-me                      | CMake 3.7+                             |
+| taka-no-me                      | CMake 3.7.1+                           |
 +=================================+========================================+
 | ANDROID_NATIVE_API_LEVEL        | `CMAKE_SYSTEM_VERSION`_                |
 +---------------------------------+----------------------------------------+
@@ -37,7 +37,8 @@ CMake 3.7+:
 .. _CMAKE_ANDROID_ARCH_ABI: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARCH_ABI.html
 .. _CMAKE_ANDROID_ARCH: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARCH.html
 
-.. [1] Additionally `CMAKE_ANDROID_ARM_MODE`_ and `CMAKE_ANDROID_ARM_NEON`_ should be used for more details
+.. [1] Additionally `CMAKE_ANDROID_ARM_MODE`_ and `CMAKE_ANDROID_ARM_NEON`_
+  should be used for obtaining more accurate information about ABI
 
 .. _CMAKE_ANDROID_ARM_MODE: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARM_MODE.html
 .. _CMAKE_ANDROID_ARM_NEON: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARM_NEON.html
