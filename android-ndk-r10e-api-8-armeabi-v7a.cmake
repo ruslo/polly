@@ -12,13 +12,15 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 set(ANDROID_NDK_VERSION "r10e")
-set(ANDROID_NATIVE_API_LEVEL "8")
-set(ANDROID_ABI "armeabi-v7a")
+set(CMAKE_SYSTEM_VERSION "8")
+set(CMAKE_ANDROID_ARCH_ABI "armeabi-v7a")
+set(CMAKE_ANDROID_ARM_NEON FALSE)
+set(CMAKE_ANDROID_ARM_MODE TRUE) # 32-bit ARM
 
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
-API ${ANDROID_NATIVE_API_LEVEL} / ${ANDROID_ABI} / \
-c++11 support"
+API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
+32-bit ARM / c++11 support"
     "Unix Makefiles"
 )
 
