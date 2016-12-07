@@ -4,6 +4,8 @@
 .. spelling::
 
   vc
+  ndk
+  api
 
 Android
 -------
