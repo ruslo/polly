@@ -11,25 +11,25 @@ Migration to CMake 3.7.1+
 Here is the table for migrating from toolchain based on `taka-no-me`_ project to
 CMake 3.7.1+:
 
-+---------------------------------+----------------------------------------+
-| taka-no-me                      | CMake 3.7.1+                           |
-+=================================+========================================+
-| ANDROID_NATIVE_API_LEVEL        | `CMAKE_SYSTEM_VERSION`_                |
-+---------------------------------+----------------------------------------+
-| ANDROID_NDK                     | `CMAKE_ANDROID_NDK`_                   |
-+---------------------------------+----------------------------------------+
-| ANDROID_NDK_ABI_NAME            | `CMAKE_ANDROID_ARCH_ABI`_              |
-+---------------------------------+----------------------------------------+
-| ANDROID_ARCH_NAME               | `CMAKE_ANDROID_ARCH`_                  |
-+---------------------------------+----------------------------------------+
-| ANDROID_ABI                     | `CMAKE_ANDROID_ARCH_ABI`_ [1]_         |
-+---------------------------------+----------------------------------------+
-| ANDROID_TOOLCHAIN_MACHINE_NAME  | CMAKE_<LANG>_ANDROID_TOOLCHAIN_MACHINE |
-+---------------------------------+----------------------------------------+
-| ANDROID_COMPILER_VERSION        | CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION    |
-+---------------------------------+----------------------------------------+
-| ANDROID_NDK_HOST_SYSTEM_NAME    | CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG   |
-+---------------------------------+----------------------------------------+
++---------------------------------+-------------------------------------------+
+| taka-no-me                      | CMake 3.7.1+                              |
++=================================+===========================================+
+| ANDROID_NATIVE_API_LEVEL        | `CMAKE_SYSTEM_VERSION`_                   |
++---------------------------------+-------------------------------------------+
+| ANDROID_NDK                     | `CMAKE_ANDROID_NDK`_                      |
++---------------------------------+-------------------------------------------+
+| ANDROID_NDK_ABI_NAME            | `CMAKE_ANDROID_ARCH_ABI`_                 |
++---------------------------------+-------------------------------------------+
+| ANDROID_ARCH_NAME               | `CMAKE_ANDROID_ARCH`_                     |
++---------------------------------+-------------------------------------------+
+| ANDROID_ABI                     | `CMAKE_ANDROID_ARCH_ABI`_ [1]_            |
++---------------------------------+-------------------------------------------+
+| ANDROID_TOOLCHAIN_MACHINE_NAME  | `CMAKE_<LANG>_ANDROID_TOOLCHAIN_MACHINE`_ |
++---------------------------------+-------------------------------------------+
+| ANDROID_COMPILER_VERSION        | `CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION`_    |
++---------------------------------+-------------------------------------------+
+| ANDROID_NDK_HOST_SYSTEM_NAME    | `CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG`_   |
++---------------------------------+-------------------------------------------+
 
 .. _taka-no-me: https://github.com/taka-no-me/android-cmake
 .. _CMAKE_SYSTEM_VERSION: https://cmake.org/cmake/help/latest/variable/CMAKE_SYSTEM_VERSION.html
@@ -42,3 +42,7 @@ CMake 3.7.1+:
 
 .. _CMAKE_ANDROID_ARM_MODE: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARM_MODE.html
 .. _CMAKE_ANDROID_ARM_NEON: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_ARM_NEON.html
+
+.. _CMAKE_<LANG>_ANDROID_TOOLCHAIN_MACHINE: https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_ANDROID_TOOLCHAIN_MACHINE.html
+.. _CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION.html
+.. _CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG: https://cmake.org/cmake/help/latest/variable/CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG.html
