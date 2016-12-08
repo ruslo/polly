@@ -10,7 +10,7 @@ endif()
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
-    "gcc 4.8 / PIC / c++11 support / hidden / function-sections / data-sections "
+    "gcc 4.8 / PIC / c++11 support / hidden / function-sections / data-sections"
     "Unix Makefiles"
 )
 

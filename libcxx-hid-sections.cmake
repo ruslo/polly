@@ -1,5 +1,5 @@
 # Copyright (c) 2013, Ruslan Baratov
-# Copyright (c) 2016, David Hirvonenlib
+# Copyright (c) 2016, David Hirvonen
 # All rights reserved.
 
 if(DEFINED POLLY_CLANG_LIBCXX_CXX11_HID_SECTIONS_)

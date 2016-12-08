@@ -15,6 +15,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 set(IOS_SDK_VERSION 10.1)
 set(IOS_DEPLOYMENT_SDK_VERSION 8.0)
 set(POLLY_XCODE_COMPILER "clang")
+
 polly_init(
     "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
 Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / \

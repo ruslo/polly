@@ -15,7 +15,7 @@ set(POLLY_XCODE_COMPILER "clang")
 polly_init(
     "Xcode (OS X ${OSX_SDK_VERSION}) / \
 ${POLLY_XCODE_COMPILER} / \
-LLVM Standard C++ Library (libc++) / c++11 support / hidden / function-sections / data-sections "
+LLVM Standard C++ Library (libc++) / c++11 support / hidden / function-sections / data-sections"
     "Xcode"
 )
 
