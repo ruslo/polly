@@ -19,7 +19,7 @@ polly_init(
     "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
 Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / \
 ${POLLY_XCODE_COMPILER} / \
-c++11 support / data-sections / function-sections"
+c++11 support / hidden / data-sections / function-sections"
     "Xcode"
 )
 

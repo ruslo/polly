@@ -18,7 +18,7 @@ set(CMAKE_ANDROID_ARCH_ABI "x86_64")
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
 API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
-hidden visibility / \
+hidden visibility / function-sections / data-sections \
 c++11 support"
     "Unix Makefiles"
 )
