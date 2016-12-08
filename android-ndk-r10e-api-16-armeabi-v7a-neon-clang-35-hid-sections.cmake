@@ -22,7 +22,7 @@ set(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION "clang3.5")
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
 API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
-NEON / 32-bit ARM / Clang 3.5 / c++11 support / data-sections / function-sections \
+NEON / 32-bit ARM / Clang 3.5 / c++11 support / data-sections / function-sections"
     "Unix Makefiles"
 )
 
