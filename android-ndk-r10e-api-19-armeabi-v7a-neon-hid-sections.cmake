@@ -22,7 +22,7 @@ set(CMAKE_ANDROID_ARM_MODE TRUE) # 32-bit ARM
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
 API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
-NEON / 32-bit ARM / c++11 support"
+NEON / 32-bit ARM / c++11 support / hidden / function-sections / data-sections "
     "Unix Makefiles"
 )
 
