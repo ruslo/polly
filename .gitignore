@@ -1,6 +1,7 @@
 .DS_Store
 */.DS_Store
 */*/.DS_Store
+*.*~
 
 docs/_build
 docs/activate.sh
