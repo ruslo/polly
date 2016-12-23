@@ -312,6 +312,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-10-1-wo-armv7s', 'Xcode', ios_version='10.1', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
+      Toolchain('xcode-nocxx', 'Xcode'),
       Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('xcode-hid-sections', 'Xcode'),
       Toolchain('xcode-sections', 'Xcode'),
