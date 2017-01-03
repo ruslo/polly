@@ -96,6 +96,8 @@ toolchain_table = [
     Toolchain('android-ndk-r11c-api-21-x86-64-hid', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips', 'Unix Makefiles'),
     Toolchain('android-ndk-r11c-api-21-mips64', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-19-armeabi-v7a-neon', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-19-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
