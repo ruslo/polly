@@ -1,32 +1,9 @@
-# cmake
-CMakeCache.txt
-CMakeFiles
-Makefile
-cmake_install.cmake
-install_manifest.txt
-
-# macos
 .DS_Store
 */.DS_Store
 */*/.DS_Store
 
-# build directories
-_builds
-*/_builds
-*/*/_builds
+docs/_build
+docs/activate.sh
 
-# install directories
-*/*/Install
-*/*/_install
-
-# python temps
 bin/detail/__pycache__
 *.pyc
-
-# QtCreator
-*.files
-*.config
-*.creator
-*.creator.user
-*.files
-*.includes

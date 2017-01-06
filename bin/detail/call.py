@@ -4,17 +4,36 @@
 # Adapted to python3 version of: http://stackoverflow.com/questions/4984428
 
 import os
+import platform
 import subprocess
 import sys
 import threading
 import time
+
+# Doesn't work on OSX Travis + crashpad + Python 3.4:
+# * 'backslashreplace'
+# Doesn't work on OSX 10.11.2 + crashpad + Python 3.5
+# * 'surrogateescape'
+# * 'surrogatepass'
+# * 'xmlcharrefreplace'
+# Doesn't work on Windows 10 + crashpad + Python 3.4.2 + cp1251
+# * 'backslashreplace'
+# * 'replace'
+# * 'surrogateescape'
+# * 'surrogatepass'
+# * 'xmlcharrefreplace'
+
+if platform.system() == 'Windows':
+  on_decode_error = 'ignore'
+else:
+  on_decode_error = 'replace'
 
 def tee(infile, discard, log_file, console=None):
   """Print `infile` to `files` in a separate thread."""
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode('utf-8')
+      s = line.decode('utf-8', on_decode_error)
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
@@ -46,7 +65,7 @@ def teed_call(cmd_args, logging):
   )
   threads = []
 
-  if logging.verbose:
+  if logging.verbosity != 'silent':
     threads.append(tee(p.stdout, logging.discard, logging.log_file, sys.stdout))
     threads.append(tee(p.stderr, logging.discard, logging.log_file, sys.stderr))
   else:
@@ -71,7 +90,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   for i in call_args:
     oneline += ' "{}"'.format(i)
   oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
-  if logging.verbose:
+  if logging.verbosity != 'silent':
     print(oneline)
   logging.log_file.write(oneline)
 

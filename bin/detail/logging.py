@@ -5,8 +5,8 @@ import os
 import sys
 
 class Logging:
-  def __init__(self, cdir, verbose, discard, tail_N):
-    self.verbose = verbose
+  def __init__(self, cdir, verbosity, discard, tail_N):
+    self.verbosity = verbosity
     self.discard = discard
     self.tail_N = tail_N
 

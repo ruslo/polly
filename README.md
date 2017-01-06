@@ -1,5 +1,7 @@
 ### Polly
 
+[![Join the chat at https://gitter.im/polly-cmake/Lobby](https://badges.gitter.im/polly-cmake/Lobby.svg)](https://gitter.im/polly-cmake/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Collection of CMake toolchain files and scripts.
 
 | Linux/OSX                                       | Windows                                             |
@@ -52,6 +54,10 @@ In this case targets can coexist simultaneously:
 ```
 
 *Note*: This is a core idea of the tagged builds in [hunter](https://github.com/ruslo/hunter#tagged-builds) package manager.
+
+## New documentation
+
+* https://polly.readthedocs.io
 
 ## Toolchains
 
