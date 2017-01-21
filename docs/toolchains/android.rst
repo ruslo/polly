@@ -10,6 +10,10 @@
 Android
 -------
 
+.. seealso::
+
+  * `Android history by API level <https://en.wikipedia.org/wiki/Android_version_history#Version_history_by_API_level>`__
+
 android-ndk-X-api-Y-*
 =====================
 
