@@ -70,7 +70,7 @@ parser.add_argument(
 
 parser.add_argument(
     '--output',
-    help="Project build directory (directory with CMakeLists.txt)"
+    help="Project build directory (i.e., cmake --B)"
 )
 
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
