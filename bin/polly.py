@@ -68,6 +68,11 @@ parser.add_argument(
     help="Project home directory (directory with CMakeLists.txt)"
 )
 
+parser.add_argument(
+    '--output',
+    help="Project build directory (i.e., cmake -B)"
+)
+
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
 parser.add_argument('--test-xml', help="Save ctest output to xml")
 
@@ -235,33 +240,47 @@ if toolchain_entry.osx_version:
     print("Set environment DEVELOPER_DIR to {}".format(osx_dev_root))
     os.environ['DEVELOPER_DIR'] = osx_dev_root
 
-cdir = os.getcwd()
-
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 if not os.path.exists(toolchain_path):
   sys.exit("Toolchain file not found: {}".format(toolchain_path))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
+
+if args.output:
+  if not os.path.isdir(args.output):
+    sys.exit("Specified build directory does not exists: {}".format(args.output))
+  if not os.access(args.output, os.W_OK):
+    sys.exit("Specified build directory is not writeable: {}".format(args.output))
+  cdir = args.output
+else:
+  cdir = os.getcwd()
 
 build_dir = os.path.join(cdir, '_builds', build_tag)
 print("Build dir: {}".format(build_dir))
 build_dir_option = "-B{}".format(build_dir)
 
 install_dir = os.path.join(cdir, '_install', polly_toolchain)
-local_install = args.install or args.framework or args.framework_device or args.archive
+local_install = args.install or args.strip or args.framework or args.framework_device or args.archive
+
+if args.install and args.strip:
+  sys.exit('Both --install and --strip specified')
+
+if args.strip:
+  install_target_name = 'install/strip'
+elif local_install:
+  install_target_name = 'install'
+else:
+  install_target_name = '' # not used
 
 target = detail.target.Target()
 
-target.add(condition=local_install, name='install')
-target.add(condition=args.strip, name='install/strip')
+target.add(condition=local_install, name=install_target_name)
 target.add(condition=args.target, name=args.target)
 
 # After 'target.add'
 if args.strip and not toolchain_entry.is_make:
   sys.exit('CMake install/strip targets are only supported for the Unix Makefile generator')
 
-add_install_prefix = local_install or args.strip
-
-if add_install_prefix:
+if local_install:
   install_dir_option = "-DCMAKE_INSTALL_PREFIX={}".format(install_dir)
 
 if (args.framework or args.framework_device) and platform.system() != 'Darwin':
@@ -281,7 +300,9 @@ if args.verbose:
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(cdir, args.verbosity, args.discard, args.tail)
+logging = detail.logging.Logging(
+    cdir, args.verbosity, args.discard, args.tail, polly_toolchain
+)
 
 if os.name == 'nt':
   # Windows
@@ -324,7 +345,7 @@ if args.ios_multiarch:
 if args.ios_combined:
     generate_command.append('-DCMAKE_IOS_INSTALL_COMBINED=YES')
 
-if add_install_prefix:
+if local_install:
   generate_command.append(install_dir_option)
 
 if cpack_generator:

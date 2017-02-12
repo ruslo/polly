@@ -8,3 +8,4 @@ Toolchains
    :maxdepth: 1
 
    /toolchains/android
+   /toolchains/ios

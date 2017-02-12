@@ -1,16 +1,18 @@
-# Copyright (c) 2015, Ruslan Baratov
+# Copyright (c) 2015-2017, Ruslan Baratov
 # All rights reserved.
 
 import os
 import sys
 
 class Logging:
-  def __init__(self, cdir, verbosity, discard, tail_N):
+  def __init__(self, cdir, verbosity, discard, tail_N, polly_toolchain):
     self.verbosity = verbosity
     self.discard = discard
     self.tail_N = tail_N
 
-    log_dir = os.path.join(cdir, '_logs', 'polly')
+    # Add extra 'polly_toolchain' directory so we can run two builds on
+    # one directory with different toolchains in parallel
+    log_dir = os.path.join(cdir, '_logs', 'polly', polly_toolchain)
     if not os.path.exists(log_dir):
       os.makedirs(log_dir)
 
