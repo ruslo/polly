@@ -122,6 +122,18 @@ toolchain_table = [
     Toolchain('android-ndk-r12b-api-21-c++_static-mips64', 'Unix Makefiles'),
 
     Toolchain('android-ndk-r12b-api-21-c++_shared-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_shared-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r12b-api-21-c++_shared-armeabi', 'Unix Makefiles'),
+
+    # ndk-r13b
+    Toolchain('android-ndk-r13b-api-21-armeabi-v7a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-armeabi', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-arm64-v8a', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-mips', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-mips64', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-x86', 'Unix Makefiles'),
+    Toolchain('android-ndk-r13b-api-21-x86-64', 'Unix Makefiles'),
+
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles')
 ]
 
