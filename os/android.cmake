@@ -14,15 +14,18 @@ if(_is_empty)
   polly_fatal_error("ANDROID_NDK_VERSION is not defined")
 endif()
 
-set(_env_ndk "$ENV{ANDROID_NDK_${ANDROID_NDK_VERSION}}")
-string(COMPARE EQUAL "${_env_ndk}" "" _is_empty)
+
+if(DEFINED ENV{ANDROID_NDK_${ANDROID_NDK_VERSION}})
+    set(POLLY_ANDROID_NDK "$ENV{ANDROID_NDK_${ANDROID_NDK_VERSION}}" CACHE PATH "" FORCE)
+endif()
+string(COMPARE EQUAL "${POLLY_ANDROID_NDK}" "" _is_empty)
 if(_is_empty)
   polly_fatal_error(
       "Environment variable 'ANDROID_NDK_${ANDROID_NDK_VERSION}' not set"
   )
 endif()
 
-set(ANDROID_NDK "${_env_ndk}")
+set(ANDROID_NDK "${POLLY_ANDROID_NDK}")
 
 string(COMPARE EQUAL "${CMAKE_SYSTEM_VERSION}" "" _is_empty)
 if(_is_empty)

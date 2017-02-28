@@ -10,7 +10,11 @@ endif()
 include("${CMAKE_CURRENT_LIST_DIR}/polly_fatal_error.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/polly_status_debug.cmake")
 
-string(COMPARE EQUAL "$ENV{POLLY_IOS_DEVELOPMENT_TEAM}" "" _is_empty)
+
+if(DEFINED ENV{POLLY_IOS_DEVELOPMENT_TEAM})
+    set(POLLY_IOS_DEVELOPMENT_TEAM "$ENV{POLLY_IOS_DEVELOPMENT_TEAM}" CACHE STRING "" FORCE)
+endif()
+string(COMPARE EQUAL "${POLLY_IOS_DEVELOPMENT_TEAM}" "" _is_empty)
 if(_is_empty)
   polly_fatal_error(
       "Environment variable POLLY_IOS_DEVELOPMENT_TEAM is empty"
@@ -20,7 +24,7 @@ endif()
 
 set(
     CMAKE_XCODE_ATTRIBUTE_DEVELOPMENT_TEAM
-    "$ENV{POLLY_IOS_DEVELOPMENT_TEAM}"
+    "${POLLY_IOS_DEVELOPMENT_TEAM}"
 )
 
 polly_status_debug(
