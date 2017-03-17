@@ -9,5 +9,13 @@ endif()
 
 include(polly_add_cache_flag)
 
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-fPIC")
-polly_add_cache_flag(CMAKE_C_FLAGS "-fPIC")
+string(COMPARE EQUAL "${ANDROID_NDK_VERSION}" "" _not_android)
+
+# TODO: test other platfroms, CMAKE_CXX_FLAGS_INIT should work for all
+if(_not_android)
+  polly_add_cache_flag(CMAKE_CXX_FLAGS "-fPIC")
+  polly_add_cache_flag(CMAKE_C_FLAGS "-fPIC")
+else()
+  polly_add_cache_flag(CMAKE_CXX_FLAGS_INIT "-fPIC")
+  polly_add_cache_flag(CMAKE_C_FLAGS_INIT "-fPIC")
+endif()
