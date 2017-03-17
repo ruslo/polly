@@ -207,7 +207,7 @@ else:
   build_tag = polly_toolchain
 
 """Tune environment"""
-if toolchain_entry.name == 'mingw':
+if toolchain_entry.name == 'mingw' or toolchain_entry.name == 'mingw-c11':
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
