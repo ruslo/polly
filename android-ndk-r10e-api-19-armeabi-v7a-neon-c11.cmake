@@ -1,4 +1,4 @@
-# Copyright (c) 2015, Ruslan Baratov
+# Copyright (c) 2015-2017, Ruslan Baratov
 # Copyright (c) 2015, David Hirvonen
 # Copyright (c) 2015, Alexandre Pretyman
 # All rights reserved.
@@ -22,13 +22,14 @@ set(CMAKE_ANDROID_ARM_MODE TRUE) # 32-bit ARM
 polly_init(
     "Android NDK ${ANDROID_NDK_VERSION} / \
 API ${CMAKE_SYSTEM_VERSION} / ${CMAKE_ANDROID_ARCH_ABI} / \
-NEON / 32-bit ARM / c++11 support / C11"
+NEON / 32-bit ARM / c++11 / c11"
     "Unix Makefiles"
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake") # before toolchain!
-include("${CMAKE_CURRENT_LIST_DIR}/flags/c11.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/os/android.cmake")
+
+include("${CMAKE_CURRENT_LIST_DIR}/flags/c11.cmake")
