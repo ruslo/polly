@@ -69,10 +69,13 @@ matrix:
       env: EXAMPLE=01-executable TOOLCHAIN=sanitize-leak CONFIG=Release
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=sanitize-leak CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Debug
+
+    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
+    # - os: linux
+    #   env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Release
+    # - os: linux
+    #   env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Debug
+
     #   }
 
     #   02-library {
@@ -112,10 +115,13 @@ matrix:
       env: EXAMPLE=02-library TOOLCHAIN=sanitize-leak CONFIG=Release
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=sanitize-leak CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Debug
+
+    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
+    # - os: linux
+    #   env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Release
+    # - os: linux
+    #   env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Debug
+
     #   }
 
     #   03-shared-link {
@@ -155,10 +161,13 @@ matrix:
       env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-leak CONFIG=Release
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-leak CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Debug
+
+    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
+    # - os: linux
+    #   env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Release
+    # - os: linux
+    #   env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Debug
+
     #   }
     # }
 
