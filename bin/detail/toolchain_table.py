@@ -359,6 +359,7 @@ if os.name == 'posix':
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
+      Toolchain('gcc-32bit', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
       Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
       Toolchain('gcc-gold', 'Unix Makefiles'),
