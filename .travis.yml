@@ -8,26 +8,8 @@ language:
 sudo:
   - false
 
-# Install packages differs for container-based infrastructure
-# * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
-# * http://stackoverflow.com/a/30925448/2288008
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-
-    packages:
-      - python3
-
-      # python3-pip package is not available, use 'easy_install3':
-      # * https://github.com/travis-ci/apt-package-whitelist/issues/768
-      - python3-setuptools # easy_install3
-
-      # https://github.com/travis-ci-tester/travis-test-clang-cxx-11
-      - libstdc++-4.8-dev
-
-      # https://github.com/travis-ci-tester/travis-test-gcc-cxx-11
-      - g++-4.8
+dist:
+  - trusty
 
 matrix:
   include:
@@ -42,13 +24,13 @@ matrix:
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8 CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-pic CONFIG=Release
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-pic CONFIG=Debug
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: linux
@@ -88,13 +70,13 @@ matrix:
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8 CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-pic CONFIG=Release
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=gcc-pic CONFIG=Debug
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: linux
@@ -134,13 +116,13 @@ matrix:
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8 CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-pic CONFIG=Release
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-4-8-pic CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-pic CONFIG=Debug
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: linux
@@ -324,9 +306,7 @@ install:
   # Install Python package 'requests'
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
-
-  # https://github.com/travis-ci/travis-ci/issues/6446#issuecomment-238906632
-  - if [[ "`uname`" == "Linux" ]]; then travis_retry easy_install3 --user requests==2.10.0; fi
+  - if [[ "`uname`" == "Linux" ]]; then travis_retry pip3 install --user requests; fi
 
   # Install dependencies (CMake, Android NDK)
   - POLLY_SOURCE_DIR="`pwd`"
