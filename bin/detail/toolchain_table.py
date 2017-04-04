@@ -157,6 +157,9 @@ if os.name == 'nt':
           'vs-14-2015', 'Visual Studio 14 2015', arch='x86', vs_version='14'
       ),
       Toolchain(
+          'vs-15-2017', 'Visual Studio 15 2017', arch='x86', vs_version='15'
+      ),
+      Toolchain(
           'vs-14-2015-sdk-8-1', 'Visual Studio 14 2015', arch='x86', vs_version='14'
       ),
       Toolchain(
