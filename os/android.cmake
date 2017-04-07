@@ -38,6 +38,23 @@ if(CMAKE_VERSION VERSION_LESS 3.7.1)
   )
 endif()
 
+<<<<<<< HEAD
+# Support for Android-Apk: https://github.com/hunter-packages/android-apk
+set(
+    CMAKE_GDBSERVER
+    "${ANDROID_NDK}/prebuilt/android-${ANDROID_ARCH_NAME}/gdbserver/gdbserver"
+)
+if(NOT EXISTS "${CMAKE_GDBSERVER}")
+  polly_fatal_error(
+      "gdbserver not found. Expected location: ${CMAKE_GDBSERVER}"
+  )
+endif()
+
+
+# There is no macro to detect this flags on toolchain calculation so we must
+# mark this toolchain explicitly.
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "${ANDROID_STL}")
+=======
 macro(find_host_program)
  set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
  set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
@@ -62,3 +79,4 @@ endmacro()
 # some packages like OpenCV
 # (https://gitlab.kitware.com/cmake/cmake/merge_requests/62)
 add_definitions("-DANDROID")
+>>>>>>> ruslo/master
