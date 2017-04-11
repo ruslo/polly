@@ -375,6 +375,7 @@ if os.name == 'posix':
       Toolchain('gcc-4-8-pic-hid-sections', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
+      Toolchain('libcxx-no-sdk', 'Unix Makefiles'),
       Toolchain('libcxx-hid', 'Unix Makefiles'),
       Toolchain('libcxx-hid-fpic', 'Unix Makefiles'),
       Toolchain('libcxx-fpic-hid-sections', 'Unix Makefiles'),
