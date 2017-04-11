@@ -49,6 +49,7 @@ class Toolchain:
 
 toolchain_table = [
     Toolchain('default', ''),
+    Toolchain('cxx11', ''),
     Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon-clang-35', 'Unix Makefiles'),
