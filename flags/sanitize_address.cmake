@@ -67,10 +67,11 @@ if(XCODE)
   polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "${_xcode_asan_lib}")
   polly_add_cache_flag(CMAKE_SHARED_LINKER_FLAGS "${_xcode_asan_lib}")
 
-  # FIXME: http://www.mail-archive.com/cmake-developers@cmake.org/msg17290.html {
-  polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "-Wl,-rpath,${_xcode_asan_lib_dir}")
-  polly_add_cache_flag(CMAKE_SHARED_LINKER_FLAGS "-Wl,-rpath,${_xcode_asan_lib_dir}")
-  # }
+  if(CMAKE_VERSION VERSION_LESS 3.8.0)
+    polly_fatal_error("At least CMake 3.8.0 required (BUILD_RPATH feature)")
+  endif()
+
+  set(CMAKE_BUILD_RPATH "${_xcode_asan_lib_dir}")
 
   # Hunter copying rules {
   set_property(GLOBAL APPEND PROPERTY HUNTER_COPY_FILES "${_xcode_asan_lib}")
