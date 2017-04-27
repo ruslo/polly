@@ -1,6 +1,10 @@
 .. Copyright (c) 2017, Ruslan Baratov
 .. All rights reserved.
 
+.. spelling::
+
+  xxx
+
 Signing for "xxx" requires a development team
 ---------------------------------------------
 
