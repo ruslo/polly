@@ -123,6 +123,11 @@ parser.add_argument(
     help="Create framework for device (exclude simulator architectures)"
 )
 parser.add_argument(
+    '--framework-lib',
+    default='*',
+    help="Regular expression for the source library used for --frameworky"
+)
+parser.add_argument(
     '--strip', action='store_true', help="Run strip/install cmake targets"
 )
 parser.add_argument(
@@ -420,7 +425,8 @@ if not args.nobuild:
         args.framework_device,
         logging,
         args.plist,
-        args.identity
+        args.identity,
+        args.framework_lib
     )
     timer.stop()
 

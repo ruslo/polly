@@ -24,9 +24,9 @@ def get_libname_soversion(libs):
       return x
   sys.exit('Unexpected version/soversion format: {}'.format(libs))
 
-def run(install_dir, framework_dir, ios, polly_root, device, logging, plist=None, identity=None):
+def run(install_dir, framework_dir, ios, polly_root, device, logging, plist=None, identity=None, lib_regex='*'):
   libs_path = os.path.join(install_dir, 'lib')
-  libs = glob.glob(os.path.join(libs_path, '*'))
+  libs = glob.glob(os.path.join(libs_path, lib_regex))
   try:
     libs.remove(os.path.join(libs_path, 'cmake'))
   except ValueError:
