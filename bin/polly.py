@@ -125,7 +125,7 @@ parser.add_argument(
 parser.add_argument(
     '--framework-lib',
     default='*',
-    help="Regular expression for the source library used for --frameworky"
+    help="Regular expression for the source library used for --framework"
 )
 parser.add_argument(
     '--strip', action='store_true', help="Run strip/install cmake targets"
