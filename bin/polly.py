@@ -196,6 +196,11 @@ parser.add_argument(
     help='Timeout for CTest'
 )
 
+parser.add_argument(
+    '--cmake',
+    help="CMake binary (cmake or cmake3)"
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -309,19 +314,28 @@ logging = detail.logging.Logging(
     cdir, args.verbosity, args.discard, args.tail, polly_toolchain
 )
 
-if os.name == 'nt':
-  # Windows
-  detail.call.call(['where', 'cmake'], logging)
+if args.cmake:
+  cmake_bin = args.cmake
 else:
-  detail.call.call(['which', 'cmake'], logging)
-detail.call.call(['cmake', '--version'], logging)
+  cmake_bin = 'cmake'
+
+if os.path.isabs(cmake_bin):
+  if not os.path.exists(cmake_bin):
+    sys.exit("CMake binary not found: {}".format(cmake_bin))
+else:
+  if os.name == 'nt':
+    # Windows
+    detail.call.call(['where', cmake_bin], logging)
+  else:
+    detail.call.call(['which', cmake_bin], logging)
+detail.call.call([cmake_bin, '--version'], logging)
 
 home = '.'
 if args.home:
   home = args.home
 
 generate_command = [
-    'cmake',
+    cmake_bin,
     '-H{}'.format(home),
     build_dir_option
 ]
@@ -369,7 +383,7 @@ detail.generate_command.run(
 timer.stop()
 
 build_command = [
-    'cmake',
+    cmake_bin,
     '--build',
     build_dir
 ]
