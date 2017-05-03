@@ -366,6 +366,7 @@ if os.name == 'posix':
       Toolchain('gcc', 'Unix Makefiles'),
       Toolchain('gcc-static', 'Unix Makefiles'),
       Toolchain('gcc-static-std', 'Unix Makefiles'),
+      Toolchain('gcc-musl', 'Unix Makefiles'),
       Toolchain('gcc-32bit', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
       Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
