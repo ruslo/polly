@@ -29,7 +29,7 @@ class Logging:
             'Please clean-up your logs in directory: {}'.format(log_dir)
         )
 
-    self.log_file = open(self.log_path, 'w')
+    self.log_file = open(self.log_path, 'w+b')
 
   def print_last_lines(self):
     if self.tail_N is None:

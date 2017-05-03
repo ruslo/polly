@@ -38,7 +38,7 @@ def tee(infile, discard, log_file, console=None):
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
       s += '\n' # append stripped EOL back
-      log_file.write(s)
+      log_file.write(s.encode('utf8'))
       if console is None:
         continue
       if discard is None:
@@ -83,7 +83,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
     pretty += '  `{}`\n'.format(i)
   pretty += ']\n'
   print(pretty)
-  logging.log_file.write(pretty)
+  logging.log_file.write(pretty.encode('utf8'))
 
   # print one line version
   oneline = ''
@@ -92,7 +92,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
   if logging.verbosity != 'silent':
     print(oneline)
-  logging.log_file.write(oneline)
+  logging.log_file.write(oneline.encode('utf8'))
 
   x = teed_call(call_args, logging)
   if x == 0 or ignore:
