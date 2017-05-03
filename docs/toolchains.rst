@@ -9,3 +9,4 @@ Toolchains
 
    /toolchains/android
    /toolchains/ios
+   /toolchains/gcc-musl
