@@ -201,6 +201,16 @@ parser.add_argument(
     help="CMake binary (cmake or cmake3)"
 )
 
+parser.add_argument(
+    '--cpack',
+    help="CPack binary (cpack or cpack3)"
+)
+
+parser.add_argument(
+    '--ctest',
+    help="CTest binary (ctest or ctest3)"
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -448,11 +458,31 @@ if not args.nobuild:
   os.chdir(build_dir)
   if args.test or args.test_xml:
     timer.start('Test')
-    detail.test_command.run(build_dir, args.config, logging, args.test_xml, args.verbosity == 'full', args.timeout)
+
+    if args.ctest:
+      ctest_bin = args.ctest
+    else:
+      ctest_bin = 'ctest'
+
+    if os.path.isabs(ctest_bin):
+      if not os.path.exists(ctest_bin):
+        sys.exit("Ctest binary not found: {}".format(ctest_bin))
+
+    detail.test_command.run(build_dir, args.config, logging, args.test_xml, args.verbosity == 'full', args.timeout, ctest_bin)
     timer.stop()
   if args.pack:
     timer.start('Pack')
-    detail.pack_command.run(args.config, logging, cpack_generator)
+
+    if args.cpack:
+      cpack_bin = args.cpack
+    else:
+      cpack_bin = 'cpack'
+
+    if os.path.isabs(cpack_bin):
+      if not os.path.exists(cpack_bin):
+        sys.exit("CPack binary not found: {}".format(cpack_bin))
+
+    detail.pack_command.run(args.config, logging, cpack_generator, cpack_bin, cmake_bin)
     timer.stop()
 
 if args.open:
