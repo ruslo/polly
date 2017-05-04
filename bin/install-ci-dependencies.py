@@ -141,18 +141,18 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.0/cmake-3.8.0-Darwin-x86_64.tar.gz',
-        '36b2d3a10ff10ece72e3e5c50662871e0884522f'
+        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-Darwin-x86_64.tar.gz',
+        '7c61f3fdf5ff7aa65c025d2af9b7d62db23f17d4'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.0/cmake-3.8.0-Linux-x86_64.tar.gz',
-        '658659622cb743b6982d22452c668f063fe30928'
+        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-Linux-x86_64.tar.gz',
+        'd6038defc8ac595fdc1e88b85daa8fc2ef92689a'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.0/cmake-3.8.0-win64-x64.zip',
-        'cf883ec577200b5562ee271390576065fbe042cb'
+        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-win64-x64.zip',
+        '5c3060df759c0f29c0427ca955e638ddf2a2db65'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
