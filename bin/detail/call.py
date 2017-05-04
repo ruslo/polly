@@ -21,7 +21,11 @@ def tee(infile, discard, logging, console=None):
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode(sys.stdout.encoding) # use the same encoding as stdout/stderr
+      # use the same encoding as stdout/stderr
+      s = line.decode(
+          encoding=sys.stdout.encoding,
+          errors='replace'
+      )
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
