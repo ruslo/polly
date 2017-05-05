@@ -347,6 +347,7 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-11', 'Xcode', osx_version='10.11'),
       Toolchain('osx-10-11-hid-sections', 'Xcode', osx_version='10.11'),
       Toolchain('osx-10-12', 'Xcode', osx_version='10.12'),
+      Toolchain('osx-10-12-lto', 'Xcode', osx_version='10.12'),
       Toolchain('osx-10-12-cxx98', 'Xcode', osx_version='10.12'),
       Toolchain('osx-10-10-dep-10-7', 'Xcode', osx_version='10.10'),
       Toolchain('osx-10-10-dep-10-9-make', 'Unix Makefiles'),
