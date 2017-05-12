@@ -266,6 +266,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-10-1-armv7', 'Xcode', ios_version='10.1'),
       Toolchain('ios-10-1-dep-8-0-hid-sections', 'Xcode', ios_version='10.1'),
       Toolchain('ios-10-1-dep-8-0-libcxx-hid-sections', 'Xcode', ios_version='10.1'),
+      Toolchain('ios-10-1-dep-8-0-libcxx-hid-sections-lto', 'Xcode', ios_version='10.1'),
       Toolchain('ios-10-1-wo-armv7s', 'Xcode', ios_version='10.1'),
       Toolchain('ios-10-0', 'Xcode', ios_version='10.0'),
       Toolchain('ios-10-0-arm64', 'Xcode', ios_version='10.0'),
