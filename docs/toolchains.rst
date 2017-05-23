@@ -10,3 +10,4 @@ Toolchains
    /toolchains/android
    /toolchains/ios
    /toolchains/gcc-musl
+   /toolchains/clang-omp
