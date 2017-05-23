@@ -397,7 +397,6 @@ if os.name == 'posix':
       Toolchain('libcxx-hid-fpic', 'Unix Makefiles'),
       Toolchain('libcxx-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('libcxx-hid-sections', 'Unix Makefiles'),
-      Toolchain('libcxx-omp', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
   ]
 
