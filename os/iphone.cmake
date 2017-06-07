@@ -147,3 +147,9 @@ set(CMAKE_XCODE_ATTRIBUTE_VALID_ARCHS[sdk=iphonesimulator*] "${archs}")
 
 # Introduced in iOS 9.0
 set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE NO)
+
+# This will set CMAKE_CROSSCOMPILING to TRUE.
+# CMAKE_CROSSCOMPILING needed for try_run:
+# * https://cmake.org/cmake/help/latest/command/try_run.html#behavior-when-cross-compiling
+# (used in CURL)
+set(CMAKE_SYSTEM_NAME "Darwin")
