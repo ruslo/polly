@@ -1,4 +1,4 @@
-# Copyright (c) 2016, Ruslan Baratov
+# Copyright (c) 2017, Ruslan Baratov
 # All rights reserved.
 
 if(DEFINED POLLY_IOS_10_3_DEP_8_0_BITCODE_CMAKE_)
@@ -38,8 +38,6 @@ set(IPHONESIMULATOR_ARCHS i386;x86_64)
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/bitcode.cmake")
-
-set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE YES)
+include("${CMAKE_CURRENT_LIST_DIR}/flags/bitcode.cmake") # after os/iphone.cmake
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_ios_development_team.cmake")
