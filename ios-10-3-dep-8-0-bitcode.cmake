@@ -38,6 +38,7 @@ set(IPHONESIMULATOR_ARCHS i386;x86_64)
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/flags/bitcode.cmake")
 
 set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE YES)
 
