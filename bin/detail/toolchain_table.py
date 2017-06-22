@@ -251,6 +251,7 @@ if platform.system() == 'Linux':
       Toolchain('sanitize-leak', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
       Toolchain('sanitize-thread', 'Unix Makefiles'),
+      Toolchain('linux-mingw-w64', 'Unix Makefiles'),
   ]
 
 if platform.system() == 'Darwin':
