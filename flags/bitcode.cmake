@@ -7,6 +7,12 @@ else()
   set(POLLY_FLAGS_BITCODE_ 1)
 endif()
 
-set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE YES)
+include(polly_add_cache_flag)
 
-list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "bitcode")
+polly_add_cache_flag(CMAKE_CXX_FLAGS "-fembed-bitcode")
+
+# We can't use 'ENABLE_BITCODE' because
+# it only adds '-fembed-bitcode-marker':
+# * https://stackoverflow.com/a/31346742
+
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "bitcode.2")
