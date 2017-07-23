@@ -1,6 +1,10 @@
 .. Copyright (c) 2017, Ruslan Baratov
 .. All rights reserved.
 
+.. spelling::
+
+  Raspbian
+
 Raspberry Pi
 ------------
 
@@ -63,6 +67,29 @@ Save paths in environment variables:
   > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH=/.../raspberrypi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
   > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-linux-gnueabihf
   > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/.../raspberrypi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/arm-linux-gnueabihf/libc
+
+Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
+
+.. code-block:: none
+
+  > polly.py --toolchain raspberrypi3-cxx11 --verbose --config Release
+
+OSX
+~~~
+
+Download tools:
+
+.. code-block:: none
+
+  > git clone https://github.com/pretyman/raspberrypi2-mac-crosscompiler raspberrypi-tools
+
+Save paths in environment variables:
+
+.. code-block:: none
+
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH=/.../raspberrypi-tools/x-tools/arm-unknown-linux-gnueabihf/bin/
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-unknown-linux-gnueabihf
+  > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/raspberrypi-tools/x-tools/arm-unknown-linux-gnueabihf/arm-unknown-linux-gnueabihf/sysroot
 
 Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
 
