@@ -12,6 +12,9 @@ Raspberry Pi
   * `Download Software <https://www.raspberrypi.org/downloads/noobs/>`__
   * `What password to use to log in after the first boot? <https://raspberrypi.stackexchange.com/q/660/70510>`__
 
+Raspbian (native)
+=================
+
 Instructions for `Raspbian <https://www.raspberrypi.org/downloads/raspbian/>`__:
 
 .. code-block:: none
@@ -36,3 +39,33 @@ Use ``gcc`` toolchain, e.g.:
 .. code-block:: none
 
   > polly.py --toolchain gcc --verbose --config Release
+
+Cross-compiling
+===============
+
+Ubuntu
+~~~~~~
+
+.. seealso::
+
+  * `Kernel building <https://www.raspberrypi.org/documentation/linux/kernel/building.md>`__
+
+Download tools:
+
+.. code-block:: none
+
+  > git clone https://github.com/raspberrypi/tools raspberrypi-tools
+
+Save paths in environment variables:
+
+.. code-block:: none
+
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH=/.../raspberrypi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-linux-gnueabihf
+  > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/.../raspberrypi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/arm-linux-gnueabihf/libc
+
+Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
+
+.. code-block:: none
+
+  > polly.py --toolchain raspberrypi3-cxx11 --verbose --config Release
