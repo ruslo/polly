@@ -8,6 +8,25 @@ else()
 endif()
 
 include(polly_fatal_error)
+include(polly_status_print)
+
+# Detect Raspberry Pi host
+set(_proc_cpuinfo "/proc/cpuinfo")
+if(EXISTS "${_proc_cpuinfo}")
+  # https://en.wikipedia.org/wiki/Raspberry_Pi#Specifications
+  file(
+      STRINGS
+      "${_proc_cpuinfo}"
+      _proc_cpuinfo_strings
+      REGEX
+      "^Hardware[\t ]*:[\t ]*BCM283(5|6|7)$"
+  )
+  string(COMPARE EQUAL "${_proc_cpuinfo_strings}" "" _is_empty)
+  if(NOT _is_empty)
+    polly_status_print("Raspberry Pi host")
+    return() # We are not cross-compiling, exit now.
+  endif()
+endif()
 
 set(_rpi_error_msg) #if empty, then no errors!
 string(COMPARE EQUAL
