@@ -38,11 +38,15 @@ Instructions for `Raspbian <https://www.raspberrypi.org/downloads/raspbian/>`__:
   > sudo apt-get install g++
   > sudo apt-get install cmake
 
-Use ``gcc`` toolchain, e.g.:
+Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
 
 .. code-block:: none
+  :emphasize-lines: 3
 
-  > polly.py --toolchain gcc --verbose --config Release
+  > polly.py --toolchain raspberrypi3-cxx11 --verbose --config Release
+  ...
+  -- [polly] Raspberry Pi host
+  ...
 
 Cross-compiling
 ===============
@@ -89,7 +93,7 @@ Save paths in environment variables:
 
   > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH=/.../raspberrypi-tools/x-tools/arm-unknown-linux-gnueabihf/bin/
   > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-unknown-linux-gnueabihf
-  > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/raspberrypi-tools/x-tools/arm-unknown-linux-gnueabihf/arm-unknown-linux-gnueabihf/sysroot
+  > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/.../raspberrypi-tools/x-tools/arm-unknown-linux-gnueabihf/arm-unknown-linux-gnueabihf/sysroot
 
 Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
 
