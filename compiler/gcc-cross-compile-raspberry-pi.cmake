@@ -24,6 +24,11 @@ if(EXISTS "${_proc_cpuinfo}")
   string(COMPARE EQUAL "${_proc_cpuinfo_strings}" "" _is_empty)
   if(NOT _is_empty)
     polly_status_print("Raspberry Pi host")
+    set(_usr_bin_cpp "/usr/bin/cpp")
+    if(EXISTS "${_usr_bin_cpp}")
+      # Needed for 'url_sha1_autotools' Hunter build scheme
+      set(CMAKE_C_PREPROCESSOR "${_usr_bin_cpp}" CACHE PATH "Preprocessor")
+    endif()
     return() # We are not cross-compiling, exit now.
   endif()
 endif()
