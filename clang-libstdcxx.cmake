@@ -21,5 +21,3 @@ include("${CMAKE_CURRENT_LIST_DIR}/library/std/libstdcxx.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 
 include("${CMAKE_CURRENT_LIST_DIR}/os/osx.cmake")
-
-include("${CMAKE_CURRENT_LIST_DIR}/compiler/gfortran.cmake")
