@@ -19,6 +19,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 # need to set system name for cross compiling from linux to windows
 set(CMAKE_SYSTEM_NAME Windows)
 set(CROSS_COMPILE_TOOLCHAIN_PREFIX "x86_64-w64-mingw32")
+set(CMAKE_CROSSCOMPILING_EMULATOR wine64) # used for try_run calls
 
 include(
     "${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile-simple-layout.cmake"
