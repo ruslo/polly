@@ -153,3 +153,13 @@ set(CMAKE_XCODE_ATTRIBUTE_ENABLE_BITCODE NO)
 # * https://cmake.org/cmake/help/latest/command/try_run.html#behavior-when-cross-compiling
 # (used in CURL)
 set(CMAKE_SYSTEM_NAME "Darwin")
+
+# Set CMAKE_SYSTEM_PROCESSOR for one-arch toolchain
+# (needed for OpenCV 3.3)
+set(_all_archs ${IPHONESIMULATOR_ARCHS} ${IPHONEOS_ARCHS})
+list(LENGTH _all_archs _all_archs_len)
+if(_all_archs_len EQUAL 1)
+  set(CMAKE_SYSTEM_PROCESSOR ${_all_archs})
+else()
+  set(CMAKE_SYSTEM_PROCESSOR "")
+endif()
