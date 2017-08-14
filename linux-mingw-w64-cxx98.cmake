@@ -1,16 +1,16 @@
 # Copyright (c) 2017, NeroBurner
 # All rights reserved.
 
-if(DEFINED POLLY_LINUX_MINGW_W64_)
+if(DEFINED POLLY_LINUX_MINGW_W64_CXX98_)
   return()
 else()
-  set(POLLY_LINUX_MINGW_W64_ 1)
+  set(POLLY_LINUX_MINGW_W64_CXX98_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
-    "Windows / mingw-w64 / x86_64 / c++11 support / static"
+    "Windows / mingw-w64 / x86_64 / c++98 support / static"
     "Unix Makefiles"
 )
 
@@ -24,6 +24,5 @@ set(CMAKE_CROSSCOMPILING_EMULATOR wine64) # used for try_run calls
 include(
     "${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile-simple-layout.cmake"
 )
-include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/static.cmake")
 
+include("${CMAKE_CURRENT_LIST_DIR}/flags/static.cmake")
