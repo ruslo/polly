@@ -72,6 +72,15 @@ Save paths in environment variables:
   > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-linux-gnueabihf
   > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/.../raspberrypi-tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/arm-linux-gnueabihf/libc
 
+
+GCC 4.9 configuration:
+
+.. code-block:: none
+
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PATH=/.../raspberrypi-tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/
+  > export RASPBERRYPI_CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-linux-gnueabihf
+  > export RASPBERRYPI_CROSS_COMPILE_SYSROOT=/.../raspberrypi-tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot
+
 Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
 
 .. code-block:: none
