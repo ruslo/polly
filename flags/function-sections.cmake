@@ -10,8 +10,16 @@ endif()
 
 include(polly_add_cache_flag)
 
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-ffunction-sections")
-polly_add_cache_flag(CMAKE_C_FLAGS "-ffunction-sections")
+string(COMPARE EQUAL "${ANDROID_NDK_VERSION}" "" _not_android)
+
+# TODO: test other platfroms, CMAKE_CXX_FLAGS_INIT should work for all
+if(_not_android)
+  polly_add_cache_flag(CMAKE_CXX_FLAGS "-ffunction-sections")
+  polly_add_cache_flag(CMAKE_C_FLAGS "-ffunction-sections")
+else()
+  polly_add_cache_flag(CMAKE_CXX_FLAGS_INIT "-ffunction-sections")
+  polly_add_cache_flag(CMAKE_C_FLAGS_INIT "-ffunction-sections")
+endif()
 
 # There is no macro to detect this flags on toolchain calculation so we must
 # mark this toolchain explicitly.

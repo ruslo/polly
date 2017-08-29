@@ -16,38 +16,49 @@ endif()
 
 set(_env_ndk "$ENV{ANDROID_NDK_${ANDROID_NDK_VERSION}}")
 string(COMPARE EQUAL "${_env_ndk}" "" _is_empty)
-if(NOT _is_empty)
-  set(ANDROID_NDK "${_env_ndk}")
-endif()
-
-string(COMPARE EQUAL "${ANDROID_NATIVE_API_LEVEL}" "" _is_empty)
 if(_is_empty)
-  polly_fatal_error("ANDROID_NATIVE_API_LEVEL is not defined")
-endif()
-
-set(ANDROID_API_LEVEL "${ANDROID_NATIVE_API_LEVEL}") # Need for Apk.cmake module
-option(ANDROID_FORCE_COMPILERS "" OFF)
-include("${CMAKE_CURRENT_LIST_DIR}/android.toolchain.cmake")
-
-# Toolchain can "adjust" API level silently
-string(
-    COMPARE EQUAL "${ANDROID_API_LEVEL}" "${ANDROID_NATIVE_API_LEVEL}" _is_equal
-)
-if(NOT _is_equal)
   polly_fatal_error(
-      "API level adjusted:"
-      "  ANDROID_API_LEVEL: ${ANDROID_API_LEVEL}"
-      "  ANDROID_NATIVE_API_LEVEL: ${ANDROID_NATIVE_API_LEVEL}"
+      "Environment variable 'ANDROID_NDK_${ANDROID_NDK_VERSION}' not set"
   )
 endif()
 
-# Support for Android-Apk: https://github.com/hunter-packages/android-apk
-set(
-    CMAKE_GDBSERVER
-    "${ANDROID_NDK}/prebuilt/android-${ANDROID_ARCH_NAME}/gdbserver/gdbserver"
-)
-if(NOT EXISTS "${CMAKE_GDBSERVER}")
+set(ANDROID_NDK "${_env_ndk}")
+
+string(COMPARE EQUAL "${CMAKE_SYSTEM_VERSION}" "" _is_empty)
+if(_is_empty)
+  polly_fatal_error("CMAKE_SYSTEM_VERSION is not defined")
+endif()
+
+set(CMAKE_SYSTEM_NAME "Android")
+
+if(CMAKE_VERSION VERSION_LESS 3.7.1)
   polly_fatal_error(
-      "gdbserver not found. Expected location: ${CMAKE_GDBSERVER}"
+      "Minimum CMake version for Android is 3.7.1:"
+      "* http://polly.readthedocs.io/en/latest/toolchains/android.html#android-ndk-x-api-y"
   )
 endif()
+
+macro(find_host_program)
+ set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER)
+ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER)
+ if(CMAKE_HOST_WIN32)
+  set(WIN32 1)
+  set(UNIX)
+ elseif(CMAKE_HOST_APPLE)
+  set(APPLE 1)
+  set(UNIX)
+ endif()
+ find_program(${ARGN})
+ set(WIN32)
+ set(APPLE)
+ set(UNIX 1)
+ set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY)
+ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+endmacro()
+
+# ANDROID macro is not defined by CMake 3.7+, however it is used by
+# some packages like OpenCV
+# (https://gitlab.kitware.com/cmake/cmake/merge_requests/62)
+add_definitions("-DANDROID")
