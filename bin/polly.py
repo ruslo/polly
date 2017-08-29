@@ -68,6 +68,11 @@ parser.add_argument(
     help="Project home directory (directory with CMakeLists.txt)"
 )
 
+parser.add_argument(
+    '--output',
+    help="Project build directory (i.e., cmake -B)"
+)
+
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
 parser.add_argument('--test-xml', help="Save ctest output to xml")
 
@@ -235,12 +240,19 @@ if toolchain_entry.osx_version:
     print("Set environment DEVELOPER_DIR to {}".format(osx_dev_root))
     os.environ['DEVELOPER_DIR'] = osx_dev_root
 
-cdir = os.getcwd()
-
 toolchain_path = os.path.join(polly_root, "{}.cmake".format(polly_toolchain))
 if not os.path.exists(toolchain_path):
   sys.exit("Toolchain file not found: {}".format(toolchain_path))
 toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
+
+if args.output:
+  if not os.path.isdir(args.output):
+    sys.exit("Specified build directory does not exists: {}".format(args.output))
+  if not os.access(args.output, os.W_OK):
+    sys.exit("Specified build directory is not writeable: {}".format(args.output))
+  cdir = args.output
+else:
+  cdir = os.getcwd()
 
 build_dir = os.path.join(cdir, '_builds', build_tag)
 print("Build dir: {}".format(build_dir))
@@ -288,7 +300,9 @@ if args.verbose:
 polly_temp_dir = os.path.join(build_dir, '_3rdParty', 'polly')
 if not os.path.exists(polly_temp_dir):
   os.makedirs(polly_temp_dir)
-logging = detail.logging.Logging(cdir, args.verbosity, args.discard, args.tail)
+logging = detail.logging.Logging(
+    cdir, args.verbosity, args.discard, args.tail, polly_toolchain
+)
 
 if os.name == 'nt':
   # Windows
