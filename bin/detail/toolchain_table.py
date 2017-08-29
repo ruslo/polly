@@ -263,6 +263,7 @@ if platform.system() == 'Linux':
       Toolchain('linux-gcc-armhf', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf-neon', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf-neon-vfpv4', 'Unix Makefiles'),
+      Toolchain('linux-gcc-jetson-tk1', 'Unix Makefiles'),
   ]
 
 if platform.system() == 'Darwin':
