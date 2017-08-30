@@ -267,6 +267,10 @@ if platform.system() == 'Linux':
       Toolchain('sanitize-thread', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
+      Toolchain('linux-gcc-armhf', 'Unix Makefiles'),
+      Toolchain('linux-gcc-armhf-neon', 'Unix Makefiles'),
+      Toolchain('linux-gcc-armhf-neon-vfpv4', 'Unix Makefiles'),
+      Toolchain('linux-gcc-jetson-tk1', 'Unix Makefiles'),
   ]
 
 if platform.system() == 'Darwin':
