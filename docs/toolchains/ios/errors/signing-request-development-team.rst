@@ -21,8 +21,8 @@ is set. Second (if it doesn't help) try
 `next steps <https://github.com/ruslo/polly/issues/102#issuecomment-264078385>`__:
 
 * use Xcode to create a simple project for iOS
-* set the bundle id to ``com.example``
+* set the bundle id to ``com.example.polly``
 * check the auto option
-* Xcode automatically will download the provisioning profiles
+* Xcode will automatically download the provisioning profiles
 * compile the project
 * close Xcode

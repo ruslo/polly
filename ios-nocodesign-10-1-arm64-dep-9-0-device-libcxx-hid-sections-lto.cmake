@@ -30,7 +30,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 include(polly_fatal_error)
 
 # Fix try_compile
-set(MACOSX_BUNDLE_GUI_IDENTIFIER com.example)
+set(MACOSX_BUNDLE_GUI_IDENTIFIER com.example.polly)
 set(CMAKE_MACOSX_BUNDLE YES)
 
 # Verify XCODE_XCCONFIG_FILE
