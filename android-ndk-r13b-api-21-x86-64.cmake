@@ -1,10 +1,10 @@
 # Copyright (c) 2016, Michele Caini
 # All rights reserved.
 
-if(DEFINED POLLY_ANDROID_NDK_R13B_API_19_X86_64_CMAKE_)
+if(DEFINED POLLY_ANDROID_NDK_R13B_API_21_X86_64_CMAKE_)
   return()
 else()
-  set(POLLY_ANDROID_NDK_R13B_API_19_X86_64_CMAKE_ 1)
+  set(POLLY_ANDROID_NDK_R13B_API_21_X86_64_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
@@ -12,7 +12,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.c
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 set(ANDROID_NDK_VERSION "r13b")
-set(CMAKE_SYSTEM_VERSION "19")
+set(CMAKE_SYSTEM_VERSION "21")
 set(CMAKE_ANDROID_ARCH_ABI "x86_64")
 
 polly_init(
