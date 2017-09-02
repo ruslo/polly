@@ -36,9 +36,9 @@ matrix:
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
     - os: linux
@@ -82,9 +82,9 @@ matrix:
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
     - os: linux
@@ -128,9 +128,9 @@ matrix:
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
     - os: linux
@@ -192,9 +192,9 @@ matrix:
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
     - os: osx
@@ -239,9 +239,9 @@ matrix:
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
     - os: osx
@@ -286,9 +286,9 @@ matrix:
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Debug
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
     - os: osx
@@ -318,6 +318,7 @@ install:
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
+  - export ANDROID_NDK_r15c="`pwd`/_ci/android-ndk-r15c"
 
 script:
   - >
