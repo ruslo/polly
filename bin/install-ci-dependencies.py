@@ -121,6 +121,11 @@ def get_android_full_version_url():
       return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+  if toolchain.startswith('android-ndk-r15c-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r15c-darwin-x86_64.zip', 'ea4b5d76475db84745aa8828000d009625fc1f98',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip', '0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2',
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
