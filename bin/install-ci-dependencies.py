@@ -144,6 +144,8 @@ def get_android_url():
   if toolchain == 'android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx':
     if platform.system() == 'Linux':
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Linux.tar.gz', '952403abedc3960b6d6eee35aeed940d935baaea'
+    if platform.system() == 'Darwin':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Darwin.tar.gz', '978ef8b724dc3691a128d8f48a8440172478d82b'
   return get_android_full_version_url()
 
 def get_cmake_url():
