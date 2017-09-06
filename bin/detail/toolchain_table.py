@@ -68,6 +68,7 @@ toolchain_table = [
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a-neon-hid-sections', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a-neon-clang-35', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r10e-api-21-armeabi-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-armeabi', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-arm64-v8a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-21-arm64-v8a-gcc-49', 'Unix Makefiles'),
