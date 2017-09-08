@@ -367,6 +367,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-10-1-dep-9-0-device-libcxx-hid-sections-lto', 'Xcode', ios_version='10.1', nocodesign=True),
       Toolchain('ios-nocodesign-10-2', 'Xcode', ios_version='10.2', nocodesign=True),
       Toolchain('ios-nocodesign-10-3', 'Xcode', ios_version='10.3', nocodesign=True),
+      Toolchain('ios-nocodesign-10-3-dep-9-0-bitcode', 'Xcode', ios_version='10.3', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
       Toolchain('xcode-nocxx', 'Xcode'),
