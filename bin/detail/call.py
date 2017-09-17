@@ -35,9 +35,11 @@ def tee(infile, discard, logging, console=None):
         continue
       if discard is None:
         console.write(s)
+        console.flush()
         continue
       if discard_counter == 0:
         console.write(s)
+        console.flush()
       discard_counter += 1
       if discard_counter == discard:
         discard_counter = 0
