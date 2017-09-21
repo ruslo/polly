@@ -20,7 +20,7 @@ polly_init(
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-# set system name, this sets the variable CMAKE_CROSS_COMPILING
+# set system name, this sets the variable CMAKE_CROSSCOMPILING
 set(CMAKE_SYSTEM_NAME Linux)
 set(CROSS_COMPILE_TOOLCHAIN_PREFIX "arm-linux-gnueabihf")
 set(CMAKE_CROSSCOMPILING_EMULATOR qemu-arm) # used for try_run calls
