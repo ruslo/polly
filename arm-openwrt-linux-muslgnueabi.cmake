@@ -42,3 +42,5 @@ include(
 )
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/openwrt.cmake")
+
+set(OPENWRT 1 CACHE INTERNAL "")
