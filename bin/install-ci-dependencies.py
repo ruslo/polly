@@ -219,8 +219,8 @@ if is_android:
 
 if is_ninja:
   ninja = FileToDownload(
-      'https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-win.zip',
-      '2c35df2a60d16138d289a54522aca23048ac2ff4',
+      'https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip',
+      '637cc6e144f5cc7c6388a30f3c32ad81b2e0442e',
       ninja_archive_local,
       ci_dir
   )
