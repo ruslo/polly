@@ -7,6 +7,8 @@ else()
   set(POLLY_OS_IPHONE_CMAKE 1)
 endif()
 
+include("${CMAKE_CURRENT_LIST_DIR}/../utilities/polly_status_debug.cmake")
+
 set(CMAKE_OSX_SYSROOT "iphoneos" CACHE STRING "System root for iOS" FORCE)
 set(CMAKE_XCODE_EFFECTIVE_PLATFORMS "-iphoneos;-iphonesimulator")
 
