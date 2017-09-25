@@ -9,11 +9,17 @@ endif()
 
 include(polly_status_debug)
 
-string(COMPARE EQUAL "$ENV{POLLY_IOS_BUNDLE_IDENTIFIER}" "" _is_empty)  
-if(_is_empty)
-  set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.example") 
+# POLLY_IOS_BUNDLE_IDENTIFIER can be set either through an environment variable 
+# or through a regular cmake variable
+if (NOT POLLY_IOS_BUNDLE_IDENTIFIER)
+  string(COMPARE EQUAL "$ENV{POLLY_IOS_BUNDLE_IDENTIFIER}" "" _is_empty)  
+  if(_is_empty)
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.example") 
+  else()
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER $ENV{POLLY_IOS_BUNDLE_IDENTIFIER})
+  endif()
 else()
-  set(MACOSX_BUNDLE_GUI_IDENTIFIER $ENV{POLLY_IOS_BUNDLE_IDENTIFIER})
+  set(MACOSX_BUNDLE_GUI_IDENTIFIER ${POLLY_IOS_BUNDLE_IDENTIFIER})
 endif()
 
 polly_status_debug(
