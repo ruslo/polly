@@ -284,9 +284,7 @@ if platform.system() == 'Linux':
 
 if platform.system() == 'Darwin':
   toolchain_table += [
-      Toolchain('ios', 'Xcode', ios_version='11.0'), # the ios.cmake toolchain is supposed to be compatible 
-      Toolchain('ios', 'Xcode', ios_version='10.3'), # with all sdks, so we test it with 
-      Toolchain('ios', 'Xcode', ios_version='8.1'),  # 8.1, 10.3 and 11.0
+      Toolchain('ios', 'Xcode'),
       Toolchain('ios-11-0', 'Xcode', ios_version='11.0'),
       Toolchain('ios-10-3', 'Xcode', ios_version='10.3'),
       Toolchain('ios-10-3-dep-8-0-bitcode', 'Xcode', ios_version='10.3'),
@@ -347,9 +345,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-8-0', 'Xcode', ios_version='8.0'),
       Toolchain('ios-7-1', 'Xcode', ios_version='7.1'),
       Toolchain('ios-7-0', 'Xcode', ios_version='7.0'),
-      Toolchain('ios-nocodesign', 'Xcode', ios_version='11.0'), # the ios-nocodesign.cmake toolchain is supposed to be compatible 
-      Toolchain('ios-nocodesign', 'Xcode', ios_version='10.3'), # with all sdks, so we test it with 
-      Toolchain('ios-nocodesign', 'Xcode', ios_version='8.1'), # 8.1, 10.3 and 11.0
+      Toolchain('ios-nocodesign', 'Xcode'),
       Toolchain('ios-nocodesign-arm64', 'Xcode', ios_version='8.1', nocodesign=True),
       Toolchain('ios-nocodesign-armv7', 'Xcode', ios_version='8.1', nocodesign=True),
       Toolchain('ios-nocodesign-hid-sections', 'Xcode', ios_version='8.1', nocodesign=True),
