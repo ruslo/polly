@@ -41,6 +41,10 @@ endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx14.cmake")
+if(IOS_SDK_VERSION VERSION_LESS "11.0")
+  include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
+else()
+  include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx14.cmake")
+endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_ios_development_team.cmake")
+include(polly_ios_development_team)
