@@ -20,6 +20,7 @@ set(
     -mfloat-abi=soft
     -fno-caller-saves
     -fno-plt
+    "-DNEED_PRINTF=1" # http://www.dd-wrt.com/phpBB2/viewtopic.php?p=552124
 )
 
 foreach(_openwrt_flag ${_openwrt_flags})
