@@ -7,8 +7,9 @@ else()
   set(POLLY_IOS_CMAKE_ 1)
 endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_module_path.cmake")
+include(polly_clear_environment_variables)
+include(polly_init)
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone-default-sdk.cmake") # -> IOS_SDK_VERSION
 
 set(POLLY_XCODE_COMPILER "clang")
@@ -19,8 +20,7 @@ c++14 support"
   "Xcode"
 )
 
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
-
+include(polly_common)
 include(polly_fatal_error)
 
 # # Fix try_compile
