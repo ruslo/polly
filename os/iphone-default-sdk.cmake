@@ -5,9 +5,9 @@
 # XCODE_DEVELOPER_ROOT
 
 if(DEFINED POLLY_IPHONE_DEFAULT_SDK_CMAKE)
-return()
+  return()
 else()
-set(POLLY_IPHONE_DEFAULT_SDK_CMAKE 1)
+  set(POLLY_IPHONE_DEFAULT_SDK_CMAKE 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/../utilities/polly_status_debug.cmake")
@@ -50,15 +50,16 @@ macro (polly_find_iphone_sdk_version)
     DefaultDeploymentTarget
     RESULT_VARIABLE _POLLY_PROCESS_RESULT
     OUTPUT_VARIABLE IOS_SDK_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_STRIP_TRAILING_WHITESPACE
   )
-  if(NOT "${_POLLY_PROCESS_RESULT}" EQUAL 0)
+  if(NOT "${_POLLY_PROCESS_RESULT}" EQUAL "0")
     polly_fatal_error("Could not read the iPhoneSDK version ().
       The command
       defaults read ${IPHONEOS_SDK_ROOT}/SDKSettings.plist DefaultDeploymentTarget
       failed with the following status : ${_POLLY_PROCESS_RESULT}
       ")
   endif()
-  STRING(REPLACE "\n" "" IOS_SDK_VERSION ${IOS_SDK_VERSION})
   polly_status_debug("IOS_SDK_VERSION=${IOS_SDK_VERSION}")
 endmacro()
 
