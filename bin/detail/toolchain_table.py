@@ -409,6 +409,7 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-12-sanitize-address', 'Xcode', osx_version='10.12'),
       Toolchain('osx-10-12-sanitize-address-hid-sections', 'Xcode', osx_version='10.12'),
       Toolchain('osx-10-13', 'Xcode', osx_version='10.13'),
+      Toolchain('osx-10-13-dep-10-10', 'Xcode', osx_version='10.13'),
       Toolchain('linux-gcc-x64', 'Unix Makefiles'),
   ]
 
