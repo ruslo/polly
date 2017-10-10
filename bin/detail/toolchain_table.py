@@ -274,6 +274,7 @@ if platform.system() == 'Linux':
       Toolchain('sanitize-leak', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
       Toolchain('sanitize-thread', 'Unix Makefiles'),
+      Toolchain('linux-mingw-w32', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf', 'Unix Makefiles'),
