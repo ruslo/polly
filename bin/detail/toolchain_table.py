@@ -128,6 +128,7 @@ toolchain_table = [
     Toolchain('android-ndk-r15c-api-21-mips-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-x86-clang-libcxx', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
+    Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi3-gcc-pic-hid-sections', 'Unix Makefiles'),
