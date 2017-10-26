@@ -428,6 +428,8 @@ if os.name == 'posix':
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('clang-omp', 'Unix Makefiles'),
+      Toolchain('clang-fpic', 'Unix Makefiles'),
+      Toolchain('clang-fpic-static-std', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
       Toolchain('gcc-static', 'Unix Makefiles'),
       Toolchain('gcc-static-std', 'Unix Makefiles'),
