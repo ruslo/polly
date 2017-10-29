@@ -78,6 +78,11 @@ parser.add_argument(
     help="Project build directory (i.e., cmake -B)"
 )
 
+parser.add_argument(
+    '--cache',
+    help="CMake -C <initial-cache> = Pre-load a script to populate the cache."
+)
+
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
 parser.add_argument('--test-xml', help="Save ctest output to xml")
 
@@ -278,7 +283,7 @@ toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
 if args.output:
   if not os.path.isdir(args.output):
-    sys.exit("Specified build directory does not exists: {}".format(args.output))
+    sys.exit("Specified build directory does not exist: {}".format(args.output))
   if not os.access(args.output, os.W_OK):
     sys.exit("Specified build directory is not writeable: {}".format(args.output))
   cdir = args.output
@@ -360,6 +365,13 @@ generate_command = [
     '-H{}'.format(home),
     build_dir_option
 ]
+
+if args.cache:
+  if not os.path.isfile(args.cache):
+    sys.exit("Specified cache file does not exist: {}".format(args.cache))
+  if not os.access(args.cache, os.R_OK):
+    sys.exit("Specified cache file is not readable: {}".format(args.cache))
+  generate_command.append("-C{}".format(args.cache))
 
 if (args.config and not toolchain_entry.multiconfig) or args.config_all:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
