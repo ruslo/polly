@@ -64,6 +64,11 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    '--config-all',
+    help="CMake build type for project and hunter packages: --config <type> --fwd HUNTER_CONFIGURATION_TYPES=<type>",
+)
+
+parser.add_argument(
     '--home',
     help="Project home directory (directory with CMakeLists.txt)"
 )
@@ -225,6 +230,12 @@ cpack_generator = args.pack
 polly_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
 polly_root = os.path.realpath(polly_root)
 
+if args.config and args.config_all:
+  sys.exit('Must specify --config or --config-all but not both')
+
+if args.config_all:
+  args.config = args.config_all
+
 """Build directory tag"""
 if args.config and not toolchain_entry.multiconfig:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
@@ -362,7 +373,7 @@ if args.cache:
     sys.exit("Specified cache file is not readable: {}".format(args.cache))
   generate_command.append("-C{}".format(args.cache))
 
-if args.config and not toolchain_entry.multiconfig:
+if (args.config and not toolchain_entry.multiconfig) or args.config_all:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
 
 if toolchain_entry.generator:
@@ -396,6 +407,9 @@ if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
 
+if args.config_all:
+  generate_command.append("-DHUNTER_CONFIGURATION_TYPES={}".format(args.config_all))
+    
 timer = detail.timer.Timer()
 
 timer.start('Generate')
