@@ -291,6 +291,8 @@ if platform.system() == 'Linux':
 if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios', 'Xcode'),
+      Toolchain('ios-11-1-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.1'),
+      Toolchain('ios-11-1-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.1'),
       Toolchain('ios-11-0-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.0'),
       Toolchain('ios-11-0-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.0'),
       Toolchain('ios-11-0', 'Xcode', ios_version='11.0'),
