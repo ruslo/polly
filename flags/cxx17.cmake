@@ -11,8 +11,6 @@ include(polly_add_cache_flag)
 
 string(COMPARE EQUAL "${ANDROID_NDK_VERSION}" "" _not_android)
 
-
-# TODO: test other platfroms, CMAKE_CXX_FLAGS_INIT should work for all
 if(HUNTER_CMAKE_GENERATOR MATCHES "^Visual Studio.*$")
   polly_add_cache_flag(CMAKE_CXX_FLAGS_INIT "/std:c++17")
 elseif(_not_android)
