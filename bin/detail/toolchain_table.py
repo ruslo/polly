@@ -463,6 +463,7 @@ if os.name == 'posix':
       Toolchain('libcxx-hid-sections', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
+      Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
   ]
 
 def get_by_name(name):
