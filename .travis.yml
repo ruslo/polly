@@ -180,21 +180,21 @@ matrix:
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Release
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11 CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11 CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Release
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Debug
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Release
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Release
     - os: osx
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
@@ -227,21 +227,21 @@ matrix:
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Release
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11 CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=osx-10-12 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11 CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=osx-10-12 CONFIG=Release
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Debug
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Release
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Release
     - os: osx
       env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
@@ -274,21 +274,21 @@ matrix:
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Release
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11 CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-12 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11 CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-12 CONFIG=Release
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Debug
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-12-sanitize-address CONFIG=Release
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
+      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Debug
     - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
+      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-10-3 CONFIG=Release
     - os: osx
       env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
     - os: osx
