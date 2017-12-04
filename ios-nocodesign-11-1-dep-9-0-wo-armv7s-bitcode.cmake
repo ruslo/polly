@@ -20,7 +20,7 @@ polly_init(
 ${POLLY_XCODE_COMPILER} / \
 No code sign / \
 bitcode / \
-c++11 support"
+c++14 support"
     "Xcode"
 )
 
@@ -40,5 +40,5 @@ set(IPHONESIMULATOR_ARCHS i386;x86_64)
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx14.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/bitcode.cmake") # after os/iphone.cmake
