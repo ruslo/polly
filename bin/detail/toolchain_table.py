@@ -1,5 +1,6 @@
 # Copyright (c) 2014, Ruslan Baratov & Luca Martini
 # Copyright (c) 2014, Michele Caini
+# Copyright (c) 2017, Robert Nitsch
 # All rights reserved.
 
 import os
@@ -123,10 +124,14 @@ toolchain_table = [
     Toolchain('android-ndk-r15c-api-16-armeabi-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-16-mips-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-16-x86-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r15c-api-21-arm64-v8a-neon-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-armeabi-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-mips-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-x86-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r16b-api-21-arm64-v8a-neon-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r16b-api-21-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r16b-api-21-x86-clang-libcxx', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic-static-std', 'Unix Makefiles'),
