@@ -1,4 +1,5 @@
 # Copyright (c) 2015, Ruslan Baratov
+# Copyright (c) 2017, Robert Nitsch
 # All rights reserved.
 
 if(DEFINED POLLY_ANDROID_NDK_R15C_API_21_ARM64_V8A_NEON_CLANG_LIBCXX_CMAKE_)
