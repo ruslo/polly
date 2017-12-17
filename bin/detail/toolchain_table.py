@@ -450,6 +450,7 @@ if platform.system() == 'Darwin':
 if os.name == 'posix':
   toolchain_table += [
       Toolchain('analyze', 'Unix Makefiles'),
+      Toolchain('clang-5', 'Unix Makefiles'),
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('clang-omp', 'Unix Makefiles'),
