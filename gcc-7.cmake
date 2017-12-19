@@ -17,5 +17,5 @@ polly_init(
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
-include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-5.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-7.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx11.cmake")
