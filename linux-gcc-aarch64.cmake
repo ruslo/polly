@@ -39,9 +39,8 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 set(CMAKE_CROSSCOMPILING_EMULATOR qemu-aarch64) # used for try_run calls
 
 include(
-    # "${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile-simple-layout.cmake"
     "${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile.cmake"
 )
+
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx17.cmake")
-# include("${CMAKE_CURRENT_LIST_DIR}/flags/hardfloat.cmake")
 

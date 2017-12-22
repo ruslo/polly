@@ -40,16 +40,6 @@ if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set.")
 endif()
 
-# string(COMPARE EQUAL
-#     "${CROSS_COMPILE_TOOLCHAIN_SUFFIX}"
-#     ""
-#     _is_empty
-# )
-# if(_is_empty)
-#   message("No suffix for toolchain")
-#   set(CROSS_COMPILE_TOOLCHAIN_SUFFIX "")
-# endif()
-
 
 string(COMPARE EQUAL
     "${CROSS_COMPILE_SYSROOT}"
