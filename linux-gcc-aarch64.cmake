@@ -14,7 +14,9 @@ endif()
 
 # set system name, this sets the variable CMAKE_CROSSCOMPILING
 set(CMAKE_SYSTEM_NAME Linux)
+set(SYSTEM_PROCESSOR aarch64)
 set(CMAKE_SYSTEM_PROCESSOR aarch64)
+
 set(CROSS_COMPILE_TOOLCHAIN_PREFIX aarch64-linux-gnu)
 set(CROSS_COMPILE_TOOLCHAIN_SUFFIX -6)
 set(CROSS_COMPILE_TOOLCHAIN_PATH /usr/bin)
