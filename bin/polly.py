@@ -64,6 +64,12 @@ parser.add_argument(
 )
 
 parser.add_argument(
+  '--keep-going',
+  action='store_true',
+  help="Continue  as  much as  possible after an error. see make -k"
+)
+
+parser.add_argument(
     '--config-all',
     help="CMake build type for project and hunter packages: --config <type> --fwd HUNTER_CONFIGURATION_TYPES=<type>",
 )
@@ -449,6 +455,10 @@ if args.jobs:
   elif toolchain_entry.is_msvc and (int(toolchain_entry.vs_version) >= 12):
     build_command.append('/maxcpucount:{}'.format(args.jobs))
 
+if args.keep_going:
+  if toolchain_entry.is_make:
+    build_command.append('-k') ## keep going
+    
 if not args.nobuild:
   timer.start('Build')
   detail.call.call(build_command, logging, sleep=1)
