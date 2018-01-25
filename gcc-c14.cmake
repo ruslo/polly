@@ -10,7 +10,7 @@ endif()
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
 polly_init(
-    "gcc / c++14 support / C14"
+    "gcc / c++14 support / C11"
     "Unix Makefiles"
 )
 
