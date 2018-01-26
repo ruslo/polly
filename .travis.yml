@@ -35,6 +35,9 @@ matrix:
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
 
+    - os: linux
+      env: EXAMPLE=04-cxx14 TOOLCHAIN=gcc-cxx14-c11 CONFIG=Release
+
     # }
 
     # osx {
