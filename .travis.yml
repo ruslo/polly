@@ -13,6 +13,9 @@ sudo:
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
+
     packages:
       - python3-pip
 
