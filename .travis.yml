@@ -16,6 +16,10 @@ addons:
     packages:
       - python3-pip
 
+      - g++-5
+      - gcc-5 
+      - make
+
 dist:
   - trusty
 
