@@ -38,6 +38,12 @@ matrix:
     - os: linux
       env: EXAMPLE=04-cxx14 TOOLCHAIN=gcc-cxx14-c11 CONFIG=Release
 
+    - os: linux
+      env: EXAMPLE=04-cxx14 TOOLCHAIN=gcc-5-cxx14-c11 CONFIG=Release
+
+    - os: linux
+      env: EXAMPLE=04-cxx14 TOOLCHAIN=clang-5-cxx14 CONFIG=Release
+
     # }
 
     # osx {
