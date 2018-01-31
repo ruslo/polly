@@ -15,12 +15,13 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
+      - llvm-toolchain-trusty-3.9
     packages:
       - python3-pip
 
       - g++-5
       - gcc-5 
-      - clang
+      - clang-3.9
 
 dist:
   - trusty
