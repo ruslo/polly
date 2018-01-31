@@ -81,6 +81,8 @@ install:
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
 
   - /bin/echo ${PATH}
+  
+  - ls -l /usr/local/clang-5.0.0/bin
 
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
