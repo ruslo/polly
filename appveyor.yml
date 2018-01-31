@@ -3,7 +3,7 @@
 environment:
   matrix:
     - TOOLCHAIN: "vs-15-2017-cxx17"
-      EXAMPLE: 04-executable
+      EXAMPLE: 04-cxx14
       CONFIG: Release
 
     - TOOLCHAIN: "ninja-vs-12-2013-win64"
