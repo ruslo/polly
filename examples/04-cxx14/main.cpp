@@ -1,5 +1,5 @@
 /* 
- * Stolen from: https://stackoverflow.com/a/30940639/51789 
+ * Source C++ test from: https://stackoverflow.com/a/30940639/51789 
  */ 
 #include <iostream>
 #include <tuple>
