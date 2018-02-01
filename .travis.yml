@@ -84,6 +84,7 @@ install:
   - which clang++
   - clang++ --version
   
+  - ls -l /usr/bin/clang*
   - ls -l /usr/local/clang-5.0.0/bin
 
   # Installed if toolchain is Android (otherwise directory doesn't exist)
