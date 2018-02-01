@@ -21,7 +21,6 @@ addons:
 
       - g++-5
       - gcc-5 
-      - clang-3.9
 
 dist:
   - trusty
@@ -80,13 +79,9 @@ install:
   # Tune locations
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
 
-  - /bin/echo ${PATH}
-  - which clang++
-  - clang++ --version
+  # fix broken clang link on Travis-CI
+  - ln -s /usr/local/clang-5.0.0/bin/clang++ /usr/bin/clang++-5.0
   
-  - ls -l /usr/bin/clang*
-  - ls -l /usr/local/clang-5.0.0/bin
-
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
