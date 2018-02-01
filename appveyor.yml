@@ -2,7 +2,8 @@
 
 environment:
   matrix:
-    - TOOLCHAIN: "vs-15-2017-cxx17"
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      TOOLCHAIN: "vs-15-2017-cxx17"
       EXAMPLE: 04-cxx14
       CONFIG: Release
 
