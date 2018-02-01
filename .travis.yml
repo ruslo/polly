@@ -81,6 +81,8 @@ install:
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
 
   - /bin/echo ${PATH}
+  - which clang++
+  - clang++ --version
   
   - ls -l /usr/local/clang-5.0.0/bin
 
