@@ -15,7 +15,6 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-3.9
     packages:
       - python3-pip
 
@@ -80,7 +79,6 @@ install:
 
   # Tune locations
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
-  
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
