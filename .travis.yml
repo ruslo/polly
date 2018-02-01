@@ -71,6 +71,8 @@ install:
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
   - if [[ "`uname`" == "Linux" ]]; then travis_retry pip3 install --user requests; fi
+  # fix broken clang link on Travis-CI
+  - sudo ln -s /usr/local/clang-5.0.0/bin/clang++ /usr/bin/clang++-5.0
 
   # Install dependencies (CMake, Android NDK)
   - POLLY_SOURCE_DIR="`pwd`"
@@ -78,9 +80,6 @@ install:
 
   # Tune locations
   - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
-
-  # fix broken clang link on Travis-CI
-  - ln -s /usr/local/clang-5.0.0/bin/clang++ /usr/bin/clang++-5.0
   
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
