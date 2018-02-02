@@ -4,7 +4,7 @@ environment:
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       TOOLCHAIN: "vs-15-2017-cxx17"
-      EXAMPLE: 04-cxx14
+      EXAMPLE: 01-executable
       CONFIG: Release
 
     - TOOLCHAIN: "ninja-vs-12-2013-win64"
