@@ -13,8 +13,13 @@ sudo:
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
       - python3-pip
+
+      - g++-5
+      - gcc-5 
 
 dist:
   - trusty
@@ -28,6 +33,12 @@ matrix:
 
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
+
+    - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-5-cxx14-c11 CONFIG=Release
+
+    - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx14 CONFIG=Release
 
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
@@ -55,14 +66,16 @@ install:
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
   - if [[ "`uname`" == "Linux" ]]; then travis_retry pip3 install --user requests; fi
+  # fix broken clang link on Travis-CI
+  - if [[ "`uname`" == "Linux" ]]; then  mkdir clang-bin; ln -s /usr/local/clang-5.0.0/bin/clang++ clang-bin/clang++-5.0; fi
+  - if [[ "`uname`" == "Darwin" ]]; then mkdir clang-bin; ln -s /usr/bin/clang++ clang-bin/clang++-5.0; fi
 
   # Install dependencies (CMake, Android NDK)
   - POLLY_SOURCE_DIR="`pwd`"
   - python3 "${POLLY_SOURCE_DIR}/bin/install-ci-dependencies.py"
 
   # Tune locations
-  - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
-
+  - export PATH="`pwd`/_ci/cmake/bin:`pwd`/clang-bin:${PATH}"
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"

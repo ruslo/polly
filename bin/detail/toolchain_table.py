@@ -460,6 +460,7 @@ if os.name == 'posix':
   toolchain_table += [
       Toolchain('analyze', 'Unix Makefiles'),
       Toolchain('clang-5', 'Unix Makefiles'),
+      Toolchain('clang-5-cxx14', 'Unix Makefiles'),
       Toolchain('clang-lto', 'Unix Makefiles'),
       Toolchain('clang-libstdcxx', 'Unix Makefiles'),
       Toolchain('clang-omp', 'Unix Makefiles'),
@@ -484,6 +485,7 @@ if os.name == 'posix':
       Toolchain('gcc-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-5-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-5', 'Unix Makefiles'),
+      Toolchain('gcc-5-cxx14-c11', 'Unix Makefiles'),
       Toolchain('gcc-7', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('gcc-lto', 'Unix Makefiles'),
