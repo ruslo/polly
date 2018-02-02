@@ -32,10 +32,8 @@ int main() {
     int a, b;
     std::tie(a, b) = f();
     std::cout << "C++14: " << a << " " << b << "\n";
-    return EXIT_SUCCESS; 
-#else
-    return EXIT_SUCCESS;
 #endif 
+  return EXIT_SUCCESS; 
 }
 
 
