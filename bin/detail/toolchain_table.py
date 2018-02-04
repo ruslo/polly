@@ -490,6 +490,7 @@ if os.name == 'posix':
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('gcc-lto', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
+      Toolchain('libcxx14', 'Unix Makefiles'),
       Toolchain('libcxx-no-sdk', 'Unix Makefiles'),
       Toolchain('libcxx-hid', 'Unix Makefiles'),
       Toolchain('libcxx-hid-fpic', 'Unix Makefiles'),
