@@ -1,10 +1,10 @@
-# Copyright (c) 2015, Tomas Zemaitis
+# Copyright (c) 2018, Tomas Zemaitis
 # All rights reserved.
 
-if(DEFINED POLLY_IOS_9_3_BITCODE_CMAKE_)
+if(DEFINED POLLY_IOS_9_3_ARM64_BITCODE_CMAKE_)
   return()
 else()
-  set(POLLY_IOS_9_3_BITCODE_CMAKE_ 1)
+  set(POLLY_IOS_9_3_ARM64_BITCODE_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
