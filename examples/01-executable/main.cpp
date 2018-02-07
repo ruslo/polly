@@ -3,7 +3,7 @@
 
 #if     __cplusplus >= 201703L
 #  include <string>
-#elif __cplusplus >= 201402L && __cplusplus < 201703L
+#elif __cplusplus >= 201402L 
 #  include <tuple>
 #  include <functional>
 
@@ -26,7 +26,7 @@ int main() {
     std::cout << "C++17: "; 
     for ( auto a : x1 ) {  std::cout << a << " "; }
     std::cout << std::endl;
-#elif __cplusplus >= 201402L && __cplusplus < 201703L
+#elif __cplusplus >= 201402L
     // heterogeneous tuple construction
     int n = 1;
     auto t = std::make_tuple(10, "Test", 3.14, std::ref(n), n);
