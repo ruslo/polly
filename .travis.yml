@@ -20,8 +20,6 @@ addons:
 
       - g++-5
       - gcc-5 
-      - g++-7
-      - gcc-7
 
 dist:
   - trusty
@@ -41,10 +39,17 @@ matrix:
 
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=gcc-7-cxx17 CONFIG=Release
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - gcc-7
 
+    # Clang5 included in Travis CI trusty image
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx14 CONFIG=Release
-
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx17 CONFIG=Release
 
