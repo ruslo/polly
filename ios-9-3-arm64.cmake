@@ -14,9 +14,8 @@ include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 set(IOS_SDK_VERSION 9.3)
 set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "iOS ${IOS_SDK_VERSION} / \
+    "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
 ${POLLY_XCODE_COMPILER} / \
-arm64 / \
 c++11 support"
     "Xcode"
 )
@@ -31,7 +30,7 @@ set(CMAKE_MACOSX_BUNDLE YES)
 set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
 
 set(IPHONEOS_ARCHS arm64)
-set(IPHONESIMULATOR_ARCHS "")
+set(IPHONESIMULATOR_ARCHS x86_64)
 
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
