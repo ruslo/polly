@@ -126,6 +126,11 @@ def get_android_full_version_url():
       return 'https://dl.google.com/android/repository/android-ndk-r15c-darwin-x86_64.zip', 'ea4b5d76475db84745aa8828000d009625fc1f98',
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip', '0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2',
+  if toolchain.startswith('android-ndk-r16b-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r16b-darwin-x86_64.zip', 'e51e615449b98c716cf912057e2682e75d55e2de',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip', '42aa43aae89a50d1c66c3f9fdecd676936da6128',
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
@@ -146,23 +151,26 @@ def get_android_url():
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Linux.tar.gz', '952403abedc3960b6d6eee35aeed940d935baaea'
     if platform.system() == 'Darwin':
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Darwin.tar.gz', '978ef8b724dc3691a128d8f48a8440172478d82b'
+  if toolchain == 'android-ndk-r16b-api-24-armeabi-v7a-neon-clang-libcxx':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r16b-arm-linux-androideabi-4.9-llvm-libc.-android-24-arch-arm-Linux.tar.gz', 'b9ee32e31376fd5fe090172169f14faf50af6b68'
   return get_android_full_version_url()
 
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.1/cmake-3.10.1-Darwin-x86_64.tar.gz',
-        'eca6744cb7c835c54ab9465a8a550af6e7c9c9a4'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Darwin-x86_64.tar.gz',
+        '38afb83e94444629f8b870127e517e2d192040c0'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.1/cmake-3.10.1-Linux-x86_64.tar.gz',
-        'e5b693b84b9a6e1c6a97376342ee1fcd585e4f74'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Linux-x86_64.tar.gz',
+        '1df497e3278ba2f316110c66817eb40e17c6d207'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.1/cmake-3.10.1-win64-x64.zip',
-        '310bf184951f4bb3f78d0d89e1d9990a1d335b83'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-win64-x64.zip',
+        'ab9a62f475a7007a077022de679a631ba30ec55e'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
