@@ -159,18 +159,18 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Darwin-x86_64.tar.gz',
-        'f25b70bb1ea5e83223cc0fceb499113ba5f19d5c'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Darwin-x86_64.tar.gz',
+        '38afb83e94444629f8b870127e517e2d192040c0'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Linux-x86_64.tar.gz',
-        '3bdedf32c5780a0aa3e06d08df3b7236b17fa243'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Linux-x86_64.tar.gz',
+        '1df497e3278ba2f316110c66817eb40e17c6d207'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-win64-x64.zip',
-        'd9008462a011f1379416855f78f9a5935262d5c6'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-win64-x64.zip',
+        'ab9a62f475a7007a077022de679a631ba30ec55e'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
