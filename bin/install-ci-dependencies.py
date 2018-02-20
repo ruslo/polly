@@ -94,7 +94,8 @@ class FileToDownload:
     elif self.url.endswith('.zip'):
       # Can't use ZipFile module because permissions will be lost, see bug:
       # * https://bugs.python.org/issue15795
-      subprocess.check_call(['unzip', self.local_path])
+      w = tempfile.NamedTemporaryFile()
+      subprocess.check_call(['unzip', self.local_path], stdout=w, stderr=w, bufsize=0)
     elif self.url.endswith('.bin'):
       os.chmod(self.local_path, os.stat(self.local_path).st_mode | stat.S_IEXEC)
       devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
