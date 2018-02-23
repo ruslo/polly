@@ -23,14 +23,6 @@ environment:
       EXAMPLE: 01-executable
       CONFIG: Release
 
-    - TOOLCHAIN: "mingw"
-      EXAMPLE: 01-executable
-      CONFIG: Release
-
-    - TOOLCHAIN: "msys"
-      EXAMPLE: 01-executable
-      CONFIG: Release
-
     - TOOLCHAIN: "vs-14-2015"
       EXAMPLE: 02-library
       CONFIG: Release
@@ -38,6 +30,35 @@ environment:
     - TOOLCHAIN: "vs-14-2015"
       EXAMPLE: 03-shared-link
       CONFIG: Release
+
+    - TOOLCHAIN: "mingw-cxx14"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+      CMAKE_MAKE_PROGRAM: mingw32-make.exe
+      MINGW_PATH: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+      ADD_TO_PATH: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin 
+
+    - TOOLCHAIN: "mingw-cxx17"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+      CMAKE_MAKE_PROGRAM: mingw32-make.exe
+      MINGW_PATH: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
+      ADD_TO_PATH: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin 
+
+    #- TOOLCHAIN: "msys-cxx14"
+    #  EXAMPLE: 01-executable
+    #  CONFIG: Release
+    #  CMAKE_MAKE_PROGRAM: mingw32-make.exe
+    #  MSYS_PATH: C:\msys64\mingw64\bin
+    #  ADD_TO_PATH: C:\msys64\mingw64\bin
+
+    #- TOOLCHAIN: "msys-cxx17"
+    #  EXAMPLE: 01-executable
+    #  CONFIG: Release
+    #  CMAKE_MAKE_PROGRAM: mingw32-make.exe
+    #  MSYS_PATH: C:\msys64\mingw64\bin
+    #  ADD_TO_PATH: C:\msys64\mingw64\bin
+
 
 install:
   # Python 3
@@ -53,6 +74,7 @@ install:
   # Tune locations
   - cmd: set PATH=%cd%\_ci\cmake\bin;%PATH%
   - cmd: set PATH=%cd%\_ci\ninja;%PATH%
+  - cmd: set PATH=%PATH%;%ADD_TO_PATH%
 
   # Remove entry with sh.exe from PATH to fix error with MinGW toolchain
   # (For MinGW make to work correctly sh.exe must NOT be in your path)
@@ -61,10 +83,10 @@ install:
 
   # Use MinGW from Qt tools because version is higher
   # * http://www.appveyor.com/docs/installed-software#qt
-  - cmd: set MINGW_PATH=C:\Qt\Tools\mingw492_32\bin
+  - cmd: set MINGW_PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
 
   # MSYS2 location
-  - cmd: set MSYS_PATH=C:\msys64\usr\bin
+  - cmd: set MSYS_PATH=C:\msys64\mingw64\bin
 
 build_script:
   - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test
