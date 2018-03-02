@@ -1,4 +1,4 @@
-.. Copyright (c) 2016, Ruslan Baratov
+.. Copyright (c) 2016-2017, Ruslan Baratov
 .. All rights reserved.
 
 iOS
@@ -12,6 +12,23 @@ iOS
 
 ios-X-Y-*
 =========
+
+.. toctree::
+  :hidden:
+
+  ios/bundle-id
+
+.. warning::
+
+  Please check before you start:
+
+  * Xcode version >= 5.0
+  * CMake version >= 3.5
+  * Since ``iOS 10.0`` you have to define ``POLLY_IOS_DEVELOPMENT_TEAM``
+    variable. See
+    :doc:`POLLY_IOS_DEVELOPMENT_TEAM </toolchains/ios/errors/polly_ios_development_team>`
+    for details
+  * Check :doc:`code signing works <ios/bundle-id>`
 
 * Name: ``iOS X.Y Universal (iphoneos + iphonesimulator) / c++11 support``
 * Add ``CMAKE_CXX_FLAGS``: ``-std=c++11``
@@ -29,14 +46,6 @@ ios-X-Y-*
   ``/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer``)
 * Set ``IPHONESIMULATOR_SDK_ROOT``/``IPHONEOS_SDK_ROOT`` using ``IPHONE*_ROOT`` and ``IOS_SDK_VERSION``
   (e.g. ``/.../Xcode.app/.../iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/``)
-
-.. note::
-
-  * Xcode only (since Xcode 5.0.0)
-
-.. note::
-
-  * CMake minimum version required is 3.5
 
 .. note::
 
@@ -63,13 +72,6 @@ ios-X-Y-*
 
       export IOS_7_1_DEVELOPER_DIR=/Applications/xcode/5.1.1/Xcode.app/Contents/Developer
       export IOS_7_0_DEVELOPER_DIR=/Applications/xcode/5.0.2/Xcode.app/Contents/Developer
-
-.. warning::
-
-  * Since ``iOS 10.0`` you have to define ``POLLY_IOS_DEVELOPMENT_TEAM``
-    variable. See
-    :doc:`POLLY_IOS_DEVELOPMENT_TEAM </toolchains/ios/errors/polly_ios_development_team>`
-    for details
 
 Xcode SDK installed by default:
 
@@ -107,6 +109,12 @@ Xcode SDK installed by default:
 | 8.2   | 10.12|       |10.2 |
 +-------+------+-------+-----+
 | 8.3.1 | 10.12|       |10.3 |
++-------+------+-------+-----+
+| 9.0   | 10.13|       |11.0 |
++-------+------+-------+-----+
+| 9.1   | 10.13|       |11.1 |
++-------+------+-------+-----+
+| 9.2   | 10.13|       |11.2 |
 +-------+------+-------+-----+
 
 ios-X-Y-<arch1>-<arch2>

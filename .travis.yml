@@ -1,12 +1,25 @@
 # OSX/Linux (https://github.com/travis-ci-tester/toolchain-table)
 
+# Workaround for https://github.com/travis-ci/travis-ci/issues/8363
 language:
-  - cpp
+  - minimal
 
 # Container-based infrastructure (Linux)
 # * https://docs.travis-ci.com/user/migrating-from-legacy/#How-can-I-use-container-based-infrastructure%3F
 sudo:
   - false
+
+# Install packages differs for container-based infrastructure
+# * https://docs.travis-ci.com/user/migrating-from-legacy/#How-do-I-install-APT-sources-and-packages%3F
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - python3-pip
+
+      - g++-5
+      - gcc-5 
 
 dist:
   - trusty
@@ -14,286 +27,32 @@ dist:
 matrix:
   include:
     # Linux {
-    #   01-executable {
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+
     - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-pic CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc-pic CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-address CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-address CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-leak CONFIG=Release
-    - os: linux
-      env: EXAMPLE=01-executable TOOLCHAIN=sanitize-leak CONFIG=Debug
 
-    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
-    # - os: linux
-    #   env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Release
-    # - os: linux
-    #   env: EXAMPLE=01-executable TOOLCHAIN=sanitize-thread CONFIG=Debug
+    - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx CONFIG=Release
 
-    #   }
+    - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-5-cxx14-c11 CONFIG=Release
 
-    #   02-library {
     - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=default CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=default CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+      env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx14 CONFIG=Release
+
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-pic CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=gcc-pic CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-address CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-address CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-leak CONFIG=Release
-    - os: linux
-      env: EXAMPLE=02-library TOOLCHAIN=sanitize-leak CONFIG=Debug
 
-    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
-    # - os: linux
-    #   env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Release
-    # - os: linux
-    #   env: EXAMPLE=02-library TOOLCHAIN=sanitize-thread CONFIG=Debug
-
-    #   }
-
-    #   03-shared-link {
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Debug
     - os: linux
       env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-pic CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc-pic CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-address CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-address CONFIG=Debug
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-leak CONFIG=Release
-    - os: linux
-      env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-leak CONFIG=Debug
 
-    # FIXME: https://github.com/ruslo/hunter/issues/718#issuecomment-290610583
-    # - os: linux
-    #   env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Release
-    # - os: linux
-    #   env: EXAMPLE=03-shared-link TOOLCHAIN=sanitize-thread CONFIG=Debug
-
-    #   }
     # }
 
     # osx {
-    #   01-executable {
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=default CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=libcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=libcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=clang-libstdcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=xcode CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=gcc CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Release
-    - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=analyze CONFIG=Debug
-    #   }
 
-    #   02-library {
     - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=default CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=default CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=libcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=libcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=clang-libstdcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=xcode CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Release
-    - os: osx
-      env: EXAMPLE=02-library TOOLCHAIN=analyze CONFIG=Debug
-    #   }
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Release
 
-    #   03-shared-link {
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=default CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=libcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=libcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=clang-libstdcxx CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=xcode CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=osx-10-11-sanitize-address CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=gcc CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=ios-nocodesign-9-3 CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r10e-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=android-ndk-r11c-api-19-armeabi-v7a-neon CONFIG=Debug
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Release
-    - os: osx
-      env: EXAMPLE=03-shared-link TOOLCHAIN=analyze CONFIG=Debug
-    #   }
     # }
 
 install:
@@ -307,17 +66,20 @@ install:
   # 'easy_install3' is not installed by 'brew install python3' on OS X 10.9 Maverick
   - if [[ "`uname`" == "Darwin" ]]; then pip3 install requests; fi
   - if [[ "`uname`" == "Linux" ]]; then travis_retry pip3 install --user requests; fi
+  # fix broken clang link on Travis-CI
+  - if [[ "`uname`" == "Linux" ]]; then  mkdir clang-bin; ln -s /usr/local/clang-5.0.0/bin/clang++ clang-bin/clang++-5.0; fi
+  - if [[ "`uname`" == "Darwin" ]]; then mkdir clang-bin; ln -s /usr/bin/clang++ clang-bin/clang++-5.0; fi
 
   # Install dependencies (CMake, Android NDK)
   - POLLY_SOURCE_DIR="`pwd`"
   - python3 "${POLLY_SOURCE_DIR}/bin/install-ci-dependencies.py"
 
   # Tune locations
-  - export PATH="`pwd`/_ci/cmake/bin:${PATH}"
-
+  - export PATH="`pwd`/_ci/cmake/bin:`pwd`/clang-bin:${PATH}"
   # Installed if toolchain is Android (otherwise directory doesn't exist)
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
+  - export ANDROID_NDK_r15c="`pwd`/_ci/android-ndk-r15c"
 
 script:
   - >

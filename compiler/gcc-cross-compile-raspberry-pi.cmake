@@ -8,6 +8,30 @@ else()
 endif()
 
 include(polly_fatal_error)
+include(polly_status_print)
+
+# Detect Raspberry Pi host
+set(_proc_cpuinfo "/proc/cpuinfo")
+if(EXISTS "${_proc_cpuinfo}")
+  # https://en.wikipedia.org/wiki/Raspberry_Pi#Specifications
+  file(
+      STRINGS
+      "${_proc_cpuinfo}"
+      _proc_cpuinfo_strings
+      REGEX
+      "^Hardware[\t ]*:[\t ]*BCM283(5|6|7)$"
+  )
+  string(COMPARE EQUAL "${_proc_cpuinfo_strings}" "" _is_empty)
+  if(NOT _is_empty)
+    polly_status_print("Raspberry Pi host")
+    set(_usr_bin_cpp "/usr/bin/cpp")
+    if(EXISTS "${_usr_bin_cpp}")
+      # Needed for 'url_sha1_autotools' Hunter build scheme
+      set(CMAKE_C_PREPROCESSOR "${_usr_bin_cpp}" CACHE PATH "Preprocessor")
+    endif()
+    return() # We are not cross-compiling, exit now.
+  endif()
+endif()
 
 set(_rpi_error_msg) #if empty, then no errors!
 string(COMPARE EQUAL

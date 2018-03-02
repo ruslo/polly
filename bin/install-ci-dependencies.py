@@ -121,6 +121,16 @@ def get_android_full_version_url():
       return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+  if toolchain.startswith('android-ndk-r15c-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r15c-darwin-x86_64.zip', 'ea4b5d76475db84745aa8828000d009625fc1f98',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip', '0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2',
+  if toolchain.startswith('android-ndk-r16b-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r16b-darwin-x86_64.zip', 'e51e615449b98c716cf912057e2682e75d55e2de',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip', '42aa43aae89a50d1c66c3f9fdecd676936da6128',
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
@@ -136,23 +146,31 @@ def get_android_url():
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Linux.tar.gz', '2e0da01961e0031bfd7d8db6ce4a15372bd8c3e8'
     if platform.system() == 'Darwin':
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r11c-arm-linux-androideabi-4.9-gnu-libstdc.-4.9-armeabi-v7a-android-19-arch-arm-Darwin.tar.gz', '664b3c8104142de2af16f887c19d1b2e618725cb'
+  if toolchain == 'android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Linux.tar.gz', '952403abedc3960b6d6eee35aeed940d935baaea'
+    if platform.system() == 'Darwin':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r15c-arm-linux-androideabi-4.9-llvm-libc.-android-21-arch-arm-Darwin.tar.gz', '978ef8b724dc3691a128d8f48a8440172478d82b'
+  if toolchain == 'android-ndk-r16b-api-24-armeabi-v7a-neon-clang-libcxx':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r16b-arm-linux-androideabi-4.9-llvm-libc.-android-24-arch-arm-Linux.tar.gz', 'b9ee32e31376fd5fe090172169f14faf50af6b68'
   return get_android_full_version_url()
 
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-Darwin-x86_64.tar.gz',
-        '7c61f3fdf5ff7aa65c025d2af9b7d62db23f17d4'
+        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Darwin-x86_64.tar.gz',
+        'f25b70bb1ea5e83223cc0fceb499113ba5f19d5c'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-Linux-x86_64.tar.gz',
-        'd6038defc8ac595fdc1e88b85daa8fc2ef92689a'
+        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Linux-x86_64.tar.gz',
+        '3bdedf32c5780a0aa3e06d08df3b7236b17fa243'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.8.20170503-g7de4b/cmake-3.8.20170503-g7de4b-win64-x64.zip',
-        '5c3060df759c0f29c0427ca955e638ddf2a2db65'
+        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-win64-x64.zip',
+        'd9008462a011f1379416855f78f9a5935262d5c6'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
@@ -209,8 +227,8 @@ if is_android:
 
 if is_ninja:
   ninja = FileToDownload(
-      'https://github.com/ninja-build/ninja/releases/download/v1.7.2/ninja-win.zip',
-      '2c35df2a60d16138d289a54522aca23048ac2ff4',
+      'https://github.com/ninja-build/ninja/releases/download/v1.8.2/ninja-win.zip',
+      '637cc6e144f5cc7c6388a30f3c32ad81b2e0442e',
       ninja_archive_local,
       ci_dir
   )

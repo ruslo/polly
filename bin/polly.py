@@ -64,6 +64,17 @@ parser.add_argument(
 )
 
 parser.add_argument(
+  '--keep-going',
+  action='store_true',
+  help="Continue  as  much as  possible after an error. see make -k"
+)
+
+parser.add_argument(
+    '--config-all',
+    help="CMake build type for project and hunter packages: --config <type> --fwd HUNTER_CONFIGURATION_TYPES=<type>",
+)
+
+parser.add_argument(
     '--home',
     help="Project home directory (directory with CMakeLists.txt)"
 )
@@ -71,6 +82,11 @@ parser.add_argument(
 parser.add_argument(
     '--output',
     help="Project build directory (i.e., cmake -B)"
+)
+
+parser.add_argument(
+    '--cache',
+    help="CMake -C <initial-cache> = Pre-load a script to populate the cache."
 )
 
 parser.add_argument('--test', action='store_true', help="Run ctest after build")
@@ -220,6 +236,12 @@ cpack_generator = args.pack
 polly_root = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..')
 polly_root = os.path.realpath(polly_root)
 
+if args.config and args.config_all:
+  sys.exit('Must specify --config or --config-all but not both')
+
+if args.config_all:
+  args.config = args.config_all
+
 """Build directory tag"""
 if args.config and not toolchain_entry.multiconfig:
   build_tag = "{}-{}".format(polly_toolchain, args.config)
@@ -267,7 +289,7 @@ toolchain_option = "-DCMAKE_TOOLCHAIN_FILE={}".format(toolchain_path)
 
 if args.output:
   if not os.path.isdir(args.output):
-    sys.exit("Specified build directory does not exists: {}".format(args.output))
+    sys.exit("Specified build directory does not exist: {}".format(args.output))
   if not os.access(args.output, os.W_OK):
     sys.exit("Specified build directory is not writeable: {}".format(args.output))
   cdir = args.output
@@ -350,7 +372,14 @@ generate_command = [
     build_dir_option
 ]
 
-if args.config and not toolchain_entry.multiconfig:
+if args.cache:
+  if not os.path.isfile(args.cache):
+    sys.exit("Specified cache file does not exist: {}".format(args.cache))
+  if not os.access(args.cache, os.R_OK):
+    sys.exit("Specified cache file is not readable: {}".format(args.cache))
+  generate_command.append("-C{}".format(args.cache))
+
+if (args.config and not toolchain_entry.multiconfig) or args.config_all:
   generate_command.append("-DCMAKE_BUILD_TYPE={}".format(args.config))
 
 if toolchain_entry.generator:
@@ -384,6 +413,9 @@ if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
 
+if args.config_all:
+  generate_command.append("-DHUNTER_CONFIGURATION_TYPES={}".format(args.config_all))
+    
 timer = detail.timer.Timer()
 
 timer.start('Generate')
@@ -423,6 +455,10 @@ if args.jobs:
   elif toolchain_entry.is_msvc and (int(toolchain_entry.vs_version) >= 12):
     build_command.append('/maxcpucount:{}'.format(args.jobs))
 
+if args.keep_going:
+  if toolchain_entry.is_make:
+    build_command.append('-k') ## keep going
+    
 if not args.nobuild:
   timer.start('Build')
   detail.call.call(build_command, logging, sleep=1)
