@@ -53,21 +53,6 @@ environment:
       EXAMPLE: 01-executable
       CONFIG: Release
 
-    #- TOOLCHAIN: "msys-cxx14"
-    #  EXAMPLE: 01-executable
-    #  CONFIG: Release
-    #  CMAKE_MAKE_PROGRAM: mingw32-make.exe
-    #  MSYS_PATH: C:\msys64\mingw64\bin
-    #  ADD_TO_PATH: C:\msys64\mingw64\bin
-
-    #- TOOLCHAIN: "msys-cxx17"
-    #  EXAMPLE: 01-executable
-    #  CONFIG: Release
-    #  CMAKE_MAKE_PROGRAM: mingw32-make.exe
-    #  MSYS_PATH: C:\msys64\mingw64\bin
-    #  ADD_TO_PATH: C:\msys64\mingw64\bin
-
-
 install:
   # Python 3
   - cmd: set PATH=C:\Python34-x64;C:\Python34-x64\Scripts;%PATH%
@@ -94,12 +79,10 @@ install:
   - cmd: set MINGW_PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
 
   # MSYS2 location
-  - cmd: set MSYS_PATH=C:\msys64\mingw64\bin
-  - cmd: copy %MSYS_PATH%\mingw32-make.exe %MSYS_PATH%\make.exe
-  - cmd: dir %MSYS_PATH% 
+  - cmd: set MSYS_PATH=C:\msys64\usr\bin
 
 build_script:
-  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test
+  - cmd: python %POLLY_SOURCE_DIR%\bin\build.py --home examples/%EXAMPLE% --toolchain %TOOLCHAIN% --config %CONFIG% --verbose --clear --install --test 
 
 branches:
   except:
