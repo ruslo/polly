@@ -29,7 +29,13 @@ class Logging:
             'Please clean-up your logs in directory: {}'.format(log_dir)
         )
 
-    self.log_file = open(self.log_path, 'w')
+    # https://docs.python.org/3.2/library/functions.html#open
+    # 'b' - we will be writing byte objects to this file (see 'write' method)
+    self.log_file = open(self.log_path, 'wb')
+
+  # receive string 's' in various encoding and convert it to UTF-8
+  def write(self, s):
+    self.log_file.write(s.encode('utf-8'))
 
   def print_last_lines(self):
     if self.tail_N is None:

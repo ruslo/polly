@@ -3,8 +3,8 @@
 
 import detail.call
 
-def run(build_dir, config, logging, test_xml, verbose, timeout):
-  test_command = ['ctest']
+def run(build_dir, config, logging, test_xml, verbose, timeout, ctest_bin):
+  test_command = [ctest_bin]
   if test_xml:
     test_command.append('-T')
     test_command.append(test_xml)

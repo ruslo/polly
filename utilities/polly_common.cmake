@@ -11,8 +11,7 @@ option(POLLY_STATUS_PRINT "Print process messages" ON)
 option(POLLY_STATUS_DEBUG "Print all process messages" OFF)
 
 # Add extra cmake modules
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../find")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
+include("${CMAKE_CURRENT_LIST_DIR}/polly_module_path.cmake")
 
 include(polly_fatal_error)
 include(polly_status_debug)

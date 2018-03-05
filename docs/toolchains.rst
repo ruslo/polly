@@ -9,3 +9,7 @@ Toolchains
 
    /toolchains/android
    /toolchains/ios
+   /toolchains/gcc-musl
+   /toolchains/clang-omp
+   /toolchains/linux-mingw-w64
+   /toolchains/raspberry-pi

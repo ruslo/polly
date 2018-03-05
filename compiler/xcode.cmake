@@ -11,7 +11,7 @@ include(polly_fatal_error)
 
 string(COMPARE EQUAL "${POLLY_XCODE_COMPILER}" "" _is_empty)
 if(_is_empty)
-  polly_fatal_error("Please set POLLY_CODE_COMPILER")
+  polly_fatal_error("Please set POLLY_XCODE_COMPILER")
 endif()
 
 set(_cmd xcrun --find "${POLLY_XCODE_COMPILER}")

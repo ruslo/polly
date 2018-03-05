@@ -10,42 +10,36 @@ import sys
 import threading
 import time
 
-# Doesn't work on OSX Travis + crashpad + Python 3.4:
-# * 'backslashreplace'
-# Doesn't work on OSX 10.11.2 + crashpad + Python 3.5
-# * 'surrogateescape'
-# * 'surrogatepass'
-# * 'xmlcharrefreplace'
-# Doesn't work on Windows 10 + crashpad + Python 3.4.2 + cp1251
-# * 'backslashreplace'
-# * 'replace'
-# * 'surrogateescape'
-# * 'surrogatepass'
-# * 'xmlcharrefreplace'
+# Tests:
+#
+# Windows:
+# * Control Panel -> Region -> Administrative -> Current languange for non-Unicode programs: "Russian (Russia)"
+# * cd to directory with name like 'привет' and run 'polly.py --verbose'
 
-if platform.system() == 'Windows':
-  on_decode_error = 'ignore'
-else:
-  on_decode_error = 'replace'
-
-def tee(infile, discard, log_file, console=None):
+def tee(infile, discard, logging, console=None):
   """Print `infile` to `files` in a separate thread."""
   def fanout():
     discard_counter = 0
     for line in iter(infile.readline, b''):
-      s = line.decode('utf-8', on_decode_error)
+      # use the same encoding as stdout/stderr
+      s = line.decode(
+          encoding=sys.stdout.encoding,
+          errors='replace'
+      )
       s = s.replace('\r', '')
       s = s.replace('\t', '  ')
       s = s.rstrip() # strip spaces and EOL
       s += '\n' # append stripped EOL back
-      log_file.write(s)
+      logging.write(s)
       if console is None:
         continue
       if discard is None:
         console.write(s)
+        console.flush()
         continue
       if discard_counter == 0:
         console.write(s)
+        console.flush()
       discard_counter += 1
       if discard_counter == discard:
         discard_counter = 0
@@ -66,11 +60,11 @@ def teed_call(cmd_args, logging):
   threads = []
 
   if logging.verbosity != 'silent':
-    threads.append(tee(p.stdout, logging.discard, logging.log_file, sys.stdout))
-    threads.append(tee(p.stderr, logging.discard, logging.log_file, sys.stderr))
+    threads.append(tee(p.stdout, logging.discard, logging, sys.stdout))
+    threads.append(tee(p.stderr, logging.discard, logging, sys.stderr))
   else:
-    threads.append(tee(p.stdout, logging.discard, logging.log_file))
-    threads.append(tee(p.stderr, logging.discard, logging.log_file))
+    threads.append(tee(p.stdout, logging.discard, logging))
+    threads.append(tee(p.stderr, logging.discard, logging))
 
   for t in threads:
     t.join() # wait for IO completion
@@ -83,7 +77,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
     pretty += '  `{}`\n'.format(i)
   pretty += ']\n'
   print(pretty)
-  logging.log_file.write(pretty)
+  logging.write(pretty)
 
   # print one line version
   oneline = ''
@@ -92,7 +86,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
   oneline = "[{}]>{}\n".format(os.getcwd(), oneline)
   if logging.verbosity != 'silent':
     print(oneline)
-  logging.log_file.write(oneline)
+  logging.write(oneline)
 
   x = teed_call(call_args, logging)
   if x == 0 or ignore:

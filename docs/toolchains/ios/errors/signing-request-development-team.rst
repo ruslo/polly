@@ -1,6 +1,10 @@
 .. Copyright (c) 2017, Ruslan Baratov
 .. All rights reserved.
 
+.. spelling::
+
+  xxx
+
 Signing for "xxx" requires a development team
 ---------------------------------------------
 
@@ -13,12 +17,5 @@ If configure step fails with the error similar to:
 
 First check that variable
 :doc:`POLLY_IOS_DEVELOPMENT_TEAM </toolchains/ios/errors/polly_ios_development_team>`
-is set. Second (if it doesn't help) try
-`next steps <https://github.com/ruslo/polly/issues/102#issuecomment-264078385>`__:
-
-* use Xcode to create a simple project for iOS
-* set the bundle id to ``com.example``
-* check the auto option
-* Xcode automatically will download the provisioning profiles
-* compile the project
-* close Xcode
+is set. Second verify that ``com.example`` can be used as a
+:doc:`bundle ID </toolchains/ios/bundle-id>`.

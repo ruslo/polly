@@ -8,3 +8,4 @@ docs/activate.sh
 
 bin/detail/__pycache__
 *.pyc
+/.vs
