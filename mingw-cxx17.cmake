@@ -4,7 +4,7 @@
 if(DEFINED POLLY_MINGW_CXX17_CMAKE_)
   return()
 else()
-  set(POLLY_MINGW__CXX17CMAKE_ 1)
+  set(POLLY_MINGW_CXX17_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
