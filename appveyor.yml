@@ -7,11 +7,37 @@ environment:
       EXAMPLE: 01-executable
       CONFIG: Release
 
+    - TOOLCHAIN: "ninja-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "nmake-vs-12-2013-win64"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
     - TOOLCHAIN: "mingw-cxx17"
       EXAMPLE: 01-executable
       CONFIG: Release
-      CMAKE_MAKE_PROGRAM: mingw32-make.exe
-      ADD_TO_PATH: C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin 
+
+    - TOOLCHAIN: "msys"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 02-library
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-14-2015"
+      EXAMPLE: 03-shared-link
+      CONFIG: Release
 
 install:
   # Python 3
@@ -27,7 +53,6 @@ install:
   # Tune locations
   - cmd: set PATH=%cd%\_ci\cmake\bin;%PATH%
   - cmd: set PATH=%cd%\_ci\ninja;%PATH%
-  - cmd: set PATH=%PATH%;%ADD_TO_PATH%
 
   # Remove entry with sh.exe from PATH to fix error with MinGW toolchain
   # (For MinGW make to work correctly sh.exe must NOT be in your path)
