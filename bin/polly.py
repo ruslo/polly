@@ -249,12 +249,12 @@ else:
   build_tag = polly_toolchain
 
 """Tune environment"""
-if toolchain_entry.name == 'mingw' or toolchain_entry.name == 'mingw-c11' or toolchain_entry.name == 'mingw-cxx14' or toolchain_entry.name == 'mingw-cxx17':
+if toolchain_entry.name.startswith('mingw'):  
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
-if toolchain_entry.name == 'msys' or toolchain_entry.name == 'msys-cxx14' or toolchain_entry.name == 'msys-cxx17':
+if toolchain_entry.name.startswith('msys'): 
   msys_path = os.getenv("MSYS_PATH")
   detail.verify_msys_path.verify(msys_path)
   os.environ['PATH'] = "{};{}".format(msys_path, os.getenv('PATH'))
