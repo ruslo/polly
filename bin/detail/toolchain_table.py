@@ -176,6 +176,12 @@ if os.name == 'nt':
           vs_version='12'
       ),
       Toolchain(
+          'nmake-vs-15-2017-win64',
+          'NMake Makefiles',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
           'ninja-vs-12-2013-win64',
           'Ninja',
           arch='amd64',
@@ -186,6 +192,12 @@ if os.name == 'nt':
           'Ninja',
           arch='amd64',
           vs_version='14'
+      ),
+      Toolchain(
+          'ninja-vs-15-2017-win64',
+          'Ninja',
+          arch='amd64',
+          vs_version='15'
       ),
       Toolchain(
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
