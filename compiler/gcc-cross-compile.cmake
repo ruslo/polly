@@ -40,6 +40,7 @@ if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_TOOLCHAIN_PREFIX not set.")
 endif()
 
+
 string(COMPARE EQUAL
     "${CROSS_COMPILE_SYSROOT}"
     ""
@@ -48,6 +49,8 @@ string(COMPARE EQUAL
 if(_is_empty)
   polly_fatal_error("CROSS_COMPILE_SYSROOT not set.")
 endif()
+
+
 
 if(POLLY_SKIP_SYSROOT)
   # Do not modify CMAKE_{C,CXX}_FLAGS
@@ -67,10 +70,11 @@ endif()
 
 # The (...)_PREFIX variable name refers to the Cross Compiler Triplet
 set(TOOLCHAIN_PATH_AND_PREFIX ${CROSS_COMPILE_TOOLCHAIN_PATH}/${CROSS_COMPILE_TOOLCHAIN_PREFIX})
-set(CMAKE_C_COMPILER     "${TOOLCHAIN_PATH_AND_PREFIX}-gcc"     CACHE PATH "C compiler" )
-set(CMAKE_CXX_COMPILER   "${TOOLCHAIN_PATH_AND_PREFIX}-g++"     CACHE PATH "C++ compiler" )
+
+set(CMAKE_C_COMPILER     "${TOOLCHAIN_PATH_AND_PREFIX}-gcc${CROSS_COMPILE_TOOLCHAIN_SUFFIX}"     CACHE PATH "C compiler" )
+set(CMAKE_CXX_COMPILER   "${TOOLCHAIN_PATH_AND_PREFIX}-g++${CROSS_COMPILE_TOOLCHAIN_SUFFIX}"     CACHE PATH "C++ compiler" )
+set(CMAKE_C_PREPROCESSOR "${TOOLCHAIN_PATH_AND_PREFIX}-cpp${CROSS_COMPILE_TOOLCHAIN_SUFFIX}"     CACHE PATH "Preprocessor" )
 set(CMAKE_ASM_COMPILER   "${TOOLCHAIN_PATH_AND_PREFIX}-as"      CACHE PATH "Assembler" )
-set(CMAKE_C_PREPROCESSOR "${TOOLCHAIN_PATH_AND_PREFIX}-cpp"     CACHE PATH "Preprocessor" )
 set(CMAKE_STRIP          "${TOOLCHAIN_PATH_AND_PREFIX}-strip"   CACHE PATH "strip" )
 if( EXISTS "${TOOLCHAIN_PATH_AND_PREFIX}-gcc-ar" )
   # Prefer gcc-ar over binutils ar: https://gcc.gnu.org/wiki/LinkTimeOptimizationFAQ
