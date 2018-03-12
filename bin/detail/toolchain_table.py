@@ -533,6 +533,7 @@ if os.name == 'posix':
       Toolchain('libcxx-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('libcxx-hid-sections', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
+      Toolchain('sanitize-address-cxx17', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
       Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
   ]
