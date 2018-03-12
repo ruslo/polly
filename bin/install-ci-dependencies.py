@@ -13,6 +13,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import tempfile
 import time
 import zipfile
 
@@ -94,7 +95,8 @@ class FileToDownload:
     elif self.url.endswith('.zip'):
       # Can't use ZipFile module because permissions will be lost, see bug:
       # * https://bugs.python.org/issue15795
-      subprocess.check_call(['unzip', self.local_path])
+      w = tempfile.NamedTemporaryFile()
+      subprocess.check_call(['unzip', self.local_path], stdout=w, stderr=w, bufsize=0)
     elif self.url.endswith('.bin'):
       os.chmod(self.local_path, os.stat(self.local_path).st_mode | stat.S_IEXEC)
       devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
@@ -159,18 +161,18 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Darwin-x86_64.tar.gz',
-        '38afb83e94444629f8b870127e517e2d192040c0'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc3/cmake-3.11.0-rc3-Darwin-x86_64.tar.gz',
+        'c0e6d34898645609a0e0cc895ed0c460455bbb65'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-Linux-x86_64.tar.gz',
-        '1df497e3278ba2f316110c66817eb40e17c6d207'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc3/cmake-3.11.0-rc3-Linux-x86_64.tar.gz',
+        '4ef27ab8e0f2deba790c5545a2d8fb33f933a1da'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc1/cmake-3.11.0-rc1-win64-x64.zip',
-        'ab9a62f475a7007a077022de679a631ba30ec55e'
+        'https://github.com/ruslo/CMake/releases/download/v3.11.0-rc3/cmake-3.11.0-rc3-win64-x64.zip',
+        '4ee9967cfa80484072f2d380547889ec5be9f998'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
