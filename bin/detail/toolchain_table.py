@@ -321,8 +321,10 @@ if platform.system().startswith('CYGWIN'):
 if platform.system() == 'Linux':
   toolchain_table += [
       Toolchain('sanitize-leak', 'Unix Makefiles'),
+      Toolchain('sanitize-leak-cxx17', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
       Toolchain('sanitize-thread', 'Unix Makefiles'),
+      Toolchain('sanitize-thread-cxx17', 'Unix Makefiles'),
       Toolchain('linux-mingw-w32', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
