@@ -15,4 +15,4 @@ polly_init(
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx17.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/flags/vs-cxx17.cmake")
