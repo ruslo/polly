@@ -184,6 +184,12 @@ if os.name == 'nt':
           vs_version='15'
       ),
       Toolchain(
+          'nmake-vs-15-2017-win64-cxx17',
+          'NMake Makefiles',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
           'ninja-vs-12-2013-win64',
           'Ninja',
           arch='amd64',
