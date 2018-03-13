@@ -208,6 +208,12 @@ if os.name == 'nt':
           vs_version='15'
       ),
       Toolchain(
+          'ninja-vs-15-2017-win64-cxx17',
+          'Ninja',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
           'vs-12-2013', 'Visual Studio 12 2013', arch='x86', vs_version='12'
       ),
       Toolchain(
