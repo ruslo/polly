@@ -41,7 +41,8 @@ else()
       _polly_wrong_xcconfig_path
   )
   if(_polly_wrong_xcconfig_path)
-    polly_fatal_error(
+    message(
+        WARNING
         "Unexpected XCODE_XCCONFIG_FILE value: "
         "    ${_polly_xcode_xcconfig_file_path_env}"
         "expected: "
