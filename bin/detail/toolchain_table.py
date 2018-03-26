@@ -539,6 +539,7 @@ if os.name == 'posix':
       Toolchain('gcc-static-std', 'Unix Makefiles'),
       Toolchain('gcc-musl', 'Unix Makefiles'),
       Toolchain('gcc-32bit', 'Unix Makefiles'),
+      Toolchain('gcc-32bit-pic', 'Unix Makefiles'),
       Toolchain('gcc-hid', 'Unix Makefiles'),
       Toolchain('gcc-hid-fpic', 'Unix Makefiles'),
       Toolchain('gcc-gold', 'Unix Makefiles'),
