@@ -317,6 +317,12 @@ if os.name == 'nt':
           vs_version='15'
       ),
       Toolchain(
+          'vs-15-2017-win64-store-10-cxx17',
+          'Visual Studio 15 2017 Win64',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
           'android-vc-ndk-r10e-api-19-arm-clang-3-6',
           'Visual Studio 14 2015 ARM',
           arch='',
