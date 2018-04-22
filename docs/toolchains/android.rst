@@ -13,6 +13,7 @@ Android
 .. seealso::
 
   * `Android history by API level <https://en.wikipedia.org/wiki/Android_version_history#Version_history_by_API_level>`__
+  * `Android ABI management <https://developer.android.com/ndk/guides/abis.html>`__
 
 android-ndk-X-api-Y-*
 =====================
