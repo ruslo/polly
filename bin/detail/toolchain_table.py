@@ -373,6 +373,7 @@ if platform.system() == 'Linux':
 if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios', 'Xcode'),
+      Toolchain('ios-11-3-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.3'),
       Toolchain('ios-11-2-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.2'),
       Toolchain('ios-11-2-dep-9-3-arm64-armv7', 'Xcode', ios_version='11.2'),
       Toolchain('ios-11-3-dep-9-3-arm64-armv7', 'Xcode', ios_version='11.3'),
@@ -497,6 +498,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-11-3-dep-9-3', 'Xcode', ios_version='11.3', nocodesign=True),
       Toolchain('ios-nocodesign-11-3-dep-9-3-armv7', 'Xcode', ios_version='11.3', nocodesign=True),
       Toolchain('ios-nocodesign-11-3-dep-9-3-arm64', 'Xcode', ios_version='11.3', nocodesign=True),
+      Toolchain('ios-nocodesign-11-3-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.3', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
       Toolchain('xcode-nocxx', 'Xcode'),
