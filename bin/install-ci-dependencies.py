@@ -170,6 +170,11 @@ def get_android_url():
   if toolchain == 'android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14':
     if platform.system() == 'Linux':
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r16b-aarch64-linux-android-4.9-llvm-libc.-android-24-arch-arm64-Linux.tar.gz', 'b897dcb942df95ffb5903e181d5a2e27706c41f3'
+
+  if toolchain == 'android-ndk-r17-api-24-arm64-v8a-clang-libcxx14':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.2/android-ndk-r17-aarch64-linux-android-4.9-llvm-libc.-android-24-arch-arm64-Linux.tar.gz', 'ebc3a849efcd056d8e8362b9cc2e46b5efd78df6'
+
   return get_android_full_version_url()
 
 def get_cmake_url():
