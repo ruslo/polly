@@ -118,21 +118,31 @@ def get_android_full_version_url():
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
+
   if toolchain.startswith('android-ndk-r11c-'):
     if platform.system() == 'Darwin':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+
   if toolchain.startswith('android-ndk-r15c-'):
     if platform.system() == 'Darwin':
       return 'https://dl.google.com/android/repository/android-ndk-r15c-darwin-x86_64.zip', 'ea4b5d76475db84745aa8828000d009625fc1f98',
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip', '0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2',
+
   if toolchain.startswith('android-ndk-r16b-'):
     if platform.system() == 'Darwin':
       return 'https://dl.google.com/android/repository/android-ndk-r16b-darwin-x86_64.zip', 'e51e615449b98c716cf912057e2682e75d55e2de',
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip', '42aa43aae89a50d1c66c3f9fdecd676936da6128',
+
+  if toolchain.startswith('android-ndk-r17-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r17-darwin-x86_64.zip', '08015290bf88ba8fb348d7f5380929c2106524b3',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r17-linux-x86_64.zip', '1d886a64483adf3f3a3e3aaf7ac5084184006ac7',
+
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
