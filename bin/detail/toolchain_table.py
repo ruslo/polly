@@ -366,6 +366,7 @@ if platform.system() == 'Linux':
       Toolchain('linux-mingw-w32', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
+      Toolchain('linux-mingw-w64-gnuxx11', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf-neon', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf-neon-vfpv4', 'Unix Makefiles'),
