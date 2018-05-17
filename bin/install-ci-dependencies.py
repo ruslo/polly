@@ -27,6 +27,12 @@ parser = argparse.ArgumentParser(
     description='Install dependencies for CI testing'
 )
 
+parser.add_argument(
+    '--prune-archives',
+    action='store_true',
+    help="Remove downloaded archives after unpack finished"
+)
+
 args = parser.parse_args()
 
 class FileToDownload:
@@ -104,6 +110,9 @@ class FileToDownload:
     else:
       sys.exit('Unknown archive format')
     os.chdir(last_cwd)
+    if args.prune_archives:
+      print('Removing {}'.format(self.local_path))
+      os.remove(self.local_path)
 
 ### Parse toolchain name
 
