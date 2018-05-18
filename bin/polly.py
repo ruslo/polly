@@ -409,6 +409,9 @@ if local_install:
 if cpack_generator:
   generate_command.append('-DCPACK_GENERATOR={}'.format(cpack_generator))
 
+if args.jobs:
+  generate_command.append('-DHUNTER_JOBS_NUMBER={}'.format(args.jobs))
+
 if args.fwd != None:
   for x in args.fwd:
     generate_command.append("-D{}".format(x))
