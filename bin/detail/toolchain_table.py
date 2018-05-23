@@ -580,6 +580,7 @@ if os.name == 'posix':
       Toolchain('gcc-pic-hid-sections', 'Unix Makefiles'),
       Toolchain('gcc-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-5-pic-hid-sections-lto', 'Unix Makefiles'),
+      Toolchain('gcc-5-pic-hid-sections', 'Unix Makefiles'),
       Toolchain('gcc-5', 'Unix Makefiles'),
       Toolchain('gcc-5-cxx14-c11', 'Unix Makefiles'),
       Toolchain('gcc-6-32bit-cxx14', 'Unix Makefiles'),
