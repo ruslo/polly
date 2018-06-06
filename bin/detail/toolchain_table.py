@@ -157,6 +157,7 @@ toolchain_table = [
     Toolchain('android-ndk-r17-api-16-x86-clang-libcxx14', 'Unix Makefiles'),
     Toolchain('android-ndk-r17-api-21-x86-64-clang-libcxx14', 'Unix Makefiles'),
     Toolchain('android-ndk-r17-api-19-armeabi-v7a-neon-hid-sections', 'Unix Makefiles'),
+    Toolchain('android-ndk-r17-api-19-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic-static-std', 'Unix Makefiles'),
