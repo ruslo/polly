@@ -17,7 +17,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/os/iphone-default-sdk.cmake") # -> IOS_SDK_VE
 set(IOS_DEPLOYMENT_SDK_VERSION 9.0)
 set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-  "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
+  "iOS ${IOS_SDK_VERSION} / Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / Universal (iphoneos + iphonesimulator) / \
 ${POLLY_XCODE_COMPILER} / \
 c++14 support"
   "Xcode"
