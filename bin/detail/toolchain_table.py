@@ -12,6 +12,7 @@ class Toolchain:
       self,
       name,
       generator,
+      toolset='',
       arch='',
       vs_version='',
       ios_version='',
@@ -21,6 +22,7 @@ class Toolchain:
   ):
     self.name = name
     self.generator = generator
+    self.toolset = toolset
     self.arch = arch
     self.vs_version = vs_version
     self.ios_version = ios_version
@@ -304,6 +306,13 @@ if os.name == 'nt':
       Toolchain(
           'vs-15-2017-win64-cxx17',
           'Visual Studio 15 2017 Win64',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
+          'vs-15-2017-win64-llvm',
+          'Visual Studio 15 2017 Win64',
+          toolset='LLVM-vs2014',
           arch='amd64',
           vs_version='15'
       ),
