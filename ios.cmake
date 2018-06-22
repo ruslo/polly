@@ -29,19 +29,19 @@ set(CMAKE_MACOSX_BUNDLE YES)
 
 set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
 
-# 32 bits support was dropped from iPhoneSdk11.0
-if(IOS_SDK_VERSION VERSION_LESS "11.0")
-  set(IPHONEOS_ARCHS armv7;armv7s;arm64)
-  set(IPHONESIMULATOR_ARCHS i386;x86_64)
-else()
-  polly_status_debug("iPhone11.0+ SDK detected, forcing 64 bits builds.")
-  set(IPHONEOS_ARCHS arm64)
-  set(IPHONESIMULATOR_ARCHS x86_64)
-endif()
-
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/xcode.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx14.cmake")
+
+# 32 bits support was dropped from iOS 11.0
+if(IOS_DEPLOYMENT_SDK_VERSION VERSION_LESS "11.0")
+  set(IPHONEOS_ARCHS armv7;armv7s;arm64)
+  set(IPHONESIMULATOR_ARCHS i386;x86_64)
+else()
+  polly_status_debug("iOS 11 is the deployment target, forcing 64 bits builds.")
+  set(IPHONEOS_ARCHS arm64)
+  set(IPHONESIMULATOR_ARCHS x86_64)
+endif()
 
 if(NOT IOS_SDK_VERSION VERSION_LESS 10.0)
   include(polly_ios_development_team)
