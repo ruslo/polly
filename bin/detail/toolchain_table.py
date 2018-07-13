@@ -585,6 +585,7 @@ if os.name == 'posix':
       Toolchain('clang-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('clang-fpic-static-std', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
+      Toolchain('gcc-ninja', 'Ninja'),
       Toolchain('gcc-static', 'Unix Makefiles'),
       Toolchain('gcc-static-std', 'Unix Makefiles'),
       Toolchain('gcc-musl', 'Unix Makefiles'),
