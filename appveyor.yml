@@ -2,6 +2,11 @@
 
 environment:
   matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      TOOLCHAIN: "vs-15-2017-cxx17"
+      EXAMPLE: 01-executable
+      CONFIG: Release
+
     - TOOLCHAIN: "ninja-vs-12-2013-win64"
       EXAMPLE: 01-executable
       CONFIG: Release
@@ -18,11 +23,11 @@ environment:
       EXAMPLE: 01-executable
       CONFIG: Release
 
-    - TOOLCHAIN: "mingw"
+    - TOOLCHAIN: "mingw-cxx17"
       EXAMPLE: 01-executable
       CONFIG: Release
 
-    - TOOLCHAIN: "msys"
+    - TOOLCHAIN: "msys-cxx14"
       EXAMPLE: 01-executable
       CONFIG: Release
 
@@ -54,9 +59,7 @@ install:
   # * http://stackoverflow.com/a/3870338/2288008
   - cmd: set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
 
-  # Use MinGW from Qt tools because version is higher
-  # * http://www.appveyor.com/docs/installed-software#qt
-  - cmd: set MINGW_PATH=C:\Qt\Tools\mingw492_32\bin
+  - cmd: set MINGW_PATH=C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin
 
   # MSYS2 location
   - cmd: set MSYS_PATH=C:\msys64\usr\bin
