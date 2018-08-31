@@ -464,6 +464,18 @@ if args.keep_going:
 
 if not args.nobuild:
   timer.start('Build')
+
+  if toolchain_entry.is_xcode:
+    # Workaround for https://gitlab.kitware.com/cmake/cmake/issues/17851
+    zero_check_command = [
+        cmake_bin,
+        '--build',
+        build_dir,
+        '--target',
+        'ZERO_CHECK'
+    ]
+    detail.call.call(zero_check_command, logging, sleep=1)
+
   detail.call.call(build_command, logging, sleep=1)
   timer.stop()
 
