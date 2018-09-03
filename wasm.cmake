@@ -19,7 +19,7 @@ cmake_minimum_required(VERSION 3.0.0)
 # After that, build the generated Makefile with the command 'make'. On Windows, you may download and use 'mingw32-make' instead.
 
 # The following variable describes the target OS we are building to.
-set(CMAKE_SYSTEM_NAME Emscripten)
+set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
 
 set(CMAKE_CROSSCOMPILING TRUE)
