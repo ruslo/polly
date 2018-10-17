@@ -387,7 +387,7 @@ if toolchain_entry.generator:
 
 if toolchain_entry.toolset:
   generate_command.append('-T{}'.format(toolchain_entry.toolset))
-  
+
 if toolchain_entry.xp:
   toolset = 'v{}0_xp'.format(toolchain_entry.vs_version)
   generate_command.append('-T{}'.format(toolset))
