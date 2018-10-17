@@ -249,12 +249,12 @@ else:
   build_tag = polly_toolchain
 
 """Tune environment"""
-if toolchain_entry.name.startswith('mingw'):  
+if toolchain_entry.name.startswith('mingw'):
   mingw_path = os.getenv("MINGW_PATH")
   detail.verify_mingw_path.verify(mingw_path)
   os.environ['PATH'] = "{};{}".format(mingw_path, os.getenv('PATH'))
 
-if toolchain_entry.name.startswith('msys'): 
+if toolchain_entry.name.startswith('msys'):
   msys_path = os.getenv("MSYS_PATH")
   detail.verify_msys_path.verify(msys_path)
   os.environ['PATH'] = "{};{}".format(msys_path, os.getenv('PATH'))
@@ -387,7 +387,6 @@ if toolchain_entry.generator:
 
 if toolchain_entry.toolset:
   generate_command.append('-T{}'.format(toolchain_entry.toolset))
-  
 if toolchain_entry.xp:
   toolset = 'v{}0_xp'.format(toolchain_entry.vs_version)
   generate_command.append('-T{}'.format(toolset))
@@ -418,7 +417,7 @@ if args.fwd != None:
 
 if args.config_all:
   generate_command.append("-DHUNTER_CONFIGURATION_TYPES={}".format(args.config_all))
-    
+
 timer = detail.timer.Timer()
 
 timer.start('Generate')
@@ -461,9 +460,21 @@ if args.jobs:
 if args.keep_going:
   if toolchain_entry.is_make:
     build_command.append('-k') ## keep going
-    
+
 if not args.nobuild:
   timer.start('Build')
+
+  if toolchain_entry.is_xcode:
+    # Workaround for https://gitlab.kitware.com/cmake/cmake/issues/17851
+    zero_check_command = [
+        cmake_bin,
+        '--build',
+        build_dir,
+        '--target',
+        'ZERO_CHECK'
+    ]
+    detail.call.call(zero_check_command, logging, sleep=1)
+
   detail.call.call(build_command, logging, sleep=1)
   timer.stop()
 

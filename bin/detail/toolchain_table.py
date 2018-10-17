@@ -2,6 +2,7 @@
 # Copyright (c) 2014, Michele Caini
 # Copyright (c) 2017, Robert Nitsch
 # Copyright (c) 2018, David Hirvonen
+# Copyright (c) 2018, Richard Hodges
 # All rights reserved.
 
 import os
@@ -54,6 +55,7 @@ class Toolchain:
 toolchain_table = [
     Toolchain('default', ''),
     Toolchain('cxx11', ''),
+    Toolchain('cxx17', ''),
     Toolchain('android-ndk-r10e-api-8-armeabi-v7a', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon', 'Unix Makefiles'),
     Toolchain('android-ndk-r10e-api-16-armeabi-v7a-neon-clang-35', 'Unix Makefiles'),
@@ -163,6 +165,7 @@ toolchain_table = [
     Toolchain('android-ndk-r17-api-21-x86-64-clang-libcxx14', 'Unix Makefiles'),
     Toolchain('android-ndk-r17-api-19-armeabi-v7a-neon-hid-sections', 'Unix Makefiles'),
     Toolchain('android-ndk-r17-api-19-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r18-api-24-arm64-v8a-clang-libcxx14', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic-static-std', 'Unix Makefiles'),
@@ -391,8 +394,6 @@ if platform.system() == 'Linux':
       Toolchain('sanitize-leak', 'Unix Makefiles'),
       Toolchain('sanitize-leak-cxx17', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
-      Toolchain('sanitize-thread', 'Unix Makefiles'),
-      Toolchain('sanitize-thread-cxx17', 'Unix Makefiles'),
       Toolchain('linux-mingw-w32', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
@@ -406,10 +407,25 @@ if platform.system() == 'Linux':
 if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios', 'Xcode'),
+      Toolchain('ios-12-0-dep-11-0-arm64', 'Xcode', ios_version='12.0'),
+      Toolchain('ios-11-4-dep-9-3-arm64', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-9-3-armv7', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-9-3-arm64-armv7', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-9-3', 'Xcode', ios_version='11.4'),
       Toolchain('ios-11-4-dep-9-4-arm64', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-9-3-arm64-hid-sections-lto-cxx11', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-8-0-arm64-armv7-hid-sections-lto-cxx11', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-4-dep-8-0-arm64-hid-sections-lto-cxx11', 'Xcode', ios_version='11.4'),
       Toolchain('ios-11-3-dep-9-0-arm64', 'Xcode', ios_version='11.3'),
+      Toolchain('ios-11-4-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-12-0-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='12.0'),
+      Toolchain('ios-11-4-dep-9-0-device-bitcode-nocxx', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-11-3-dep-9-0-device-bitcode', 'Xcode', ios_version='11.3'),
+      Toolchain('ios-11-3-dep-9-0-device-bitcode-nocxx', 'Xcode', ios_version='11.3'),
       Toolchain('ios-11-3-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.3'),
+      Toolchain('ios-11-3-dep-9-0-device-bitcode-cxx17', 'Xcode', ios_version='11.3'),
       Toolchain('ios-11-2-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.2'),
+      Toolchain('ios-11-2-dep-9-0-device-bitcode-nocxx', 'Xcode', ios_version='11.2'),
       Toolchain('ios-11-2-dep-9-3-arm64-armv7', 'Xcode', ios_version='11.2'),
       Toolchain('ios-11-3-dep-9-3-arm64-armv7', 'Xcode', ios_version='11.3'),
       Toolchain('ios-11-1-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.1'),
@@ -534,6 +550,11 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-11-3-dep-9-3-armv7', 'Xcode', ios_version='11.3', nocodesign=True),
       Toolchain('ios-nocodesign-11-3-dep-9-3-arm64', 'Xcode', ios_version='11.3', nocodesign=True),
       Toolchain('ios-nocodesign-11-3-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.3', nocodesign=True),
+      Toolchain('ios-nocodesign-11-4-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='11.4', nocodesign=True),
+      Toolchain('ios-nocodesign-12-0-dep-9-0-bitcode-cxx11', 'Xcode', ios_version='12.0', nocodesign=True),
+      Toolchain('ios-nocodesign-11-4-dep-9-3', 'Xcode', ios_version='11.4', nocodesign=True),
+      Toolchain('ios-nocodesign-11-4-dep-9-3-arm64', 'Xcode', ios_version='11.4', nocodesign=True),
+      Toolchain('ios-nocodesign-11-4-dep-9-3-armv7', 'Xcode', ios_version='11.4', nocodesign=True),
       Toolchain('ios-nocodesign-dep-9-0-cxx14', 'Xcode', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
@@ -568,6 +589,7 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-13-make-cxx14', 'Unix Makefiles'),
       Toolchain('osx-10-13-cxx14', 'Xcode', osx_version='10.13'),
       Toolchain('osx-10-13-i386-cxx14', 'Xcode', osx_version='10.13'),
+      Toolchain('osx-10-14', 'Xcode', osx_version='10.14'),
       Toolchain('linux-gcc-x64', 'Unix Makefiles'),
   ]
 
@@ -587,7 +609,10 @@ if os.name == 'posix':
       Toolchain('clang-fpic', 'Unix Makefiles'),
       Toolchain('clang-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('clang-fpic-static-std', 'Unix Makefiles'),
+      Toolchain('clang-tidy', 'Unix Makefiles'),
+      Toolchain('clang-tidy-libcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
+      Toolchain('gcc-ninja', 'Ninja'),
       Toolchain('gcc-static', 'Unix Makefiles'),
       Toolchain('gcc-static-std', 'Unix Makefiles'),
       Toolchain('gcc-musl', 'Unix Makefiles'),
@@ -627,6 +652,8 @@ if os.name == 'posix':
       Toolchain('libcxx-hid-sections', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
       Toolchain('sanitize-address-cxx17', 'Unix Makefiles'),
+      Toolchain('sanitize-thread', 'Unix Makefiles'),
+      Toolchain('sanitize-thread-cxx17', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
       Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
   ]

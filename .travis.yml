@@ -19,7 +19,7 @@ addons:
       - python3-pip
 
       - g++-5
-      - gcc-5 
+      - gcc-5
       - g++-7
       - gcc-7
 
@@ -59,7 +59,8 @@ matrix:
     # osx {
 
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Release
+      osx_image: xcode9.4
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-13 CONFIG=Release
 
     # }
 
