@@ -1,7 +1,9 @@
 #include <cstdlib> // EXIT_SUCCESS
 #include <iostream> // std::cout
 
-#if __cplusplus >= 201402L
+#if     __cplusplus >= 201703L
+#  include <string>
+#elif __cplusplus >= 201402L 
 #  include <tuple>
 #  include <functional>
 
@@ -18,7 +20,13 @@ auto f() // this function returns multiple values
 int main() {
   std::cout << "Hello!" << std::endl;
 
-#if __cplusplus >= 201402L
+#if     __cplusplus >= 201703L
+    // C++ 17
+    auto x1 = { 1, 2 };
+    std::cout << "C++17: "; 
+    for ( auto a : x1 ) {  std::cout << a << " "; }
+    std::cout << std::endl;
+#elif __cplusplus >= 201402L
     // heterogeneous tuple construction
     int n = 1;
     auto t = std::make_tuple(10, "Test", 3.14, std::ref(n), n);

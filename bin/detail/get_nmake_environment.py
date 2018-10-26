@@ -15,7 +15,12 @@ def get(arch, vs_version):
             vs_path_env, vs_version
         )
     )
-  vcvarsall_dir = os.path.join(vs_path, '..', '..', 'VC')
+
+  if vs_version == '15':
+    vcvarsall_dir = os.path.join(vs_path, '..', '..', 'VC', 'Auxiliary', 'Build')
+  else:
+    vcvarsall_dir = os.path.join(vs_path, '..', '..', 'VC')
+
   if not os.path.isdir(vcvarsall_dir):
     sys.exit(
         'Directory `{}` not exists '
