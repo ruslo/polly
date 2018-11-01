@@ -31,7 +31,7 @@ def run(generate_command, build_dir, polly_temp_dir, reconfig, logging):
         " You have two options to fix it:\n"
         "  * Remove build directory completely"
         " by adding '--clear' (works 100%)\n"
-        "  * Run configure again by adding '--reconfigure'"
+        "  * Run configure again by adding '--reconfig'"
         " (you must understand how CMake cache variables works/updated)\n\n"
         "{}".format("\n".join(difflib.ndiff([expected], [generate_command_oneline])))
     )

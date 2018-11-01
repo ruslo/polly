@@ -13,6 +13,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import tempfile
 import time
 import zipfile
 
@@ -24,6 +25,12 @@ print(
 
 parser = argparse.ArgumentParser(
     description='Install dependencies for CI testing'
+)
+
+parser.add_argument(
+    '--prune-archives',
+    action='store_true',
+    help="Remove downloaded archives after unpack finished"
 )
 
 args = parser.parse_args()
@@ -94,7 +101,8 @@ class FileToDownload:
     elif self.url.endswith('.zip'):
       # Can't use ZipFile module because permissions will be lost, see bug:
       # * https://bugs.python.org/issue15795
-      subprocess.check_call(['unzip', self.local_path])
+      w = tempfile.NamedTemporaryFile()
+      subprocess.check_call(['unzip', self.local_path], stdout=w, stderr=w, bufsize=0)
     elif self.url.endswith('.bin'):
       os.chmod(self.local_path, os.stat(self.local_path).st_mode | stat.S_IEXEC)
       devnull = open(os.devnull, 'w') # subprocess.DEVNULL is not available for Python 3.2
@@ -102,6 +110,9 @@ class FileToDownload:
     else:
       sys.exit('Unknown archive format')
     os.chdir(last_cwd)
+    if args.prune_archives:
+      print('Removing {}'.format(self.local_path))
+      os.remove(self.local_path)
 
 ### Parse toolchain name
 
@@ -116,21 +127,31 @@ def get_android_full_version_url():
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin', 'b57c2b9213251180dcab794352bfc9a241bf2557',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin', 'c685e5f106f8daa9b5449d0a4f21ee8c0afcb2f6',
+
   if toolchain.startswith('android-ndk-r11c-'):
     if platform.system() == 'Darwin':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip', '4ce8e7ed8dfe08c5fe58aedf7f46be2a97564696',
     if platform.system() == 'Linux':
       return 'http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip', 'de5ce9bddeee16fb6af2b9117e9566352aa7e279',
+
   if toolchain.startswith('android-ndk-r15c-'):
     if platform.system() == 'Darwin':
       return 'https://dl.google.com/android/repository/android-ndk-r15c-darwin-x86_64.zip', 'ea4b5d76475db84745aa8828000d009625fc1f98',
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r15c-linux-x86_64.zip', '0bf02d4e8b85fd770fd7b9b2cdec57f9441f27a2',
+
   if toolchain.startswith('android-ndk-r16b-'):
     if platform.system() == 'Darwin':
       return 'https://dl.google.com/android/repository/android-ndk-r16b-darwin-x86_64.zip', 'e51e615449b98c716cf912057e2682e75d55e2de',
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip', '42aa43aae89a50d1c66c3f9fdecd676936da6128',
+
+  if toolchain.startswith('android-ndk-r17-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r17-darwin-x86_64.zip', '08015290bf88ba8fb348d7f5380929c2106524b3',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r17-linux-x86_64.zip', '1d886a64483adf3f3a3e3aaf7ac5084184006ac7',
+
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
@@ -154,23 +175,32 @@ def get_android_url():
   if toolchain == 'android-ndk-r16b-api-24-armeabi-v7a-neon-clang-libcxx':
     if platform.system() == 'Linux':
       return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r16b-arm-linux-androideabi-4.9-llvm-libc.-android-24-arch-arm-Linux.tar.gz', 'b9ee32e31376fd5fe090172169f14faf50af6b68'
+
+  if toolchain == 'android-ndk-r16b-api-24-arm64-v8a-clang-libcxx14':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.1/android-ndk-r16b-aarch64-linux-android-4.9-llvm-libc.-android-24-arch-arm64-Linux.tar.gz', 'b897dcb942df95ffb5903e181d5a2e27706c41f3'
+
+  if toolchain == 'android-ndk-r17-api-24-arm64-v8a-clang-libcxx14':
+    if platform.system() == 'Linux':
+      return 'https://github.com/hunter-packages/android-ndk/releases/download/v1.0.2/android-ndk-r17-aarch64-linux-android-4.9-llvm-libc.-android-24-arch-arm64-Linux.tar.gz', 'ebc3a849efcd056d8e8362b9cc2e46b5efd78df6'
+
   return get_android_full_version_url()
 
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Darwin-x86_64.tar.gz',
-        'f25b70bb1ea5e83223cc0fceb499113ba5f19d5c'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-Darwin-x86_64.tar.gz',
+        '1522c6aba682b3259f77b6b5f19b4780f72ec9b6'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-Linux-x86_64.tar.gz',
-        '3bdedf32c5780a0aa3e06d08df3b7236b17fa243'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-Linux-x86_64.tar.gz',
+        '29243eec22552fd0a9cd2033224accba746811ed'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.10.2/cmake-3.10.2-win64-x64.zip',
-        'd9008462a011f1379416855f78f9a5935262d5c6'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-win64-x64.zip',
+        '565ec0e8ee93ec966f7db711aa0e468d46ede1f4'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))

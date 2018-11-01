@@ -12,12 +12,20 @@ set(
     _polly_xcode_xcconfig_file_path
     "${CMAKE_CURRENT_LIST_DIR}/../scripts/NoCodeSign.xcconfig"
 )
+
 get_filename_component(
     _polly_xcode_xcconfig_file_path
     "${_polly_xcode_xcconfig_file_path}"
     ABSOLUTE
 )
-if(NOT EXISTS "$ENV{XCODE_XCCONFIG_FILE}")
+
+get_filename_component(
+    _polly_xcode_xcconfig_file_path_env
+    "$ENV{XCODE_XCCONFIG_FILE}"
+  ABSOLUTE
+)
+
+if(NOT EXISTS "${_polly_xcode_xcconfig_file_path_env}")
   polly_fatal_error(
       "Path specified by XCODE_XCCONFIG_FILE environment variable not found"
       "($ENV{XCODE_XCCONFIG_FILE})"
@@ -28,14 +36,15 @@ else()
   string(
       COMPARE
       NOTEQUAL
-      "$ENV{XCODE_XCCONFIG_FILE}"
+      "${_polly_xcode_xcconfig_file_path_env}"
       "${_polly_xcode_xcconfig_file_path}"
       _polly_wrong_xcconfig_path
   )
   if(_polly_wrong_xcconfig_path)
-    polly_fatal_error(
+    message(
+        WARNING
         "Unexpected XCODE_XCCONFIG_FILE value: "
-        "    $ENV{XCODE_XCCONFIG_FILE}"
+        "    ${_polly_xcode_xcconfig_file_path_env}"
         "expected: "
         "    ${_polly_xcode_xcconfig_file_path}"
     )

@@ -19,7 +19,9 @@ addons:
       - python3-pip
 
       - g++-5
-      - gcc-5 
+      - gcc-5
+      - g++-7
+      - gcc-7
 
 dist:
   - trusty
@@ -38,7 +40,13 @@ matrix:
       env: EXAMPLE=01-executable TOOLCHAIN=gcc-5-cxx14-c11 CONFIG=Release
 
     - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=gcc-7-cxx17 CONFIG=Release
+
+    # Clang5 included in Travis CI trusty image
+    - os: linux
       env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx14 CONFIG=Release
+    - os: linux
+      env: EXAMPLE=01-executable TOOLCHAIN=clang-5-cxx17 CONFIG=Release
 
     - os: linux
       env: EXAMPLE=02-library TOOLCHAIN=gcc CONFIG=Release
@@ -51,13 +59,16 @@ matrix:
     # osx {
 
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Release
+      osx_image: xcode9.4
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-13 CONFIG=Release
 
     # }
 
 install:
   # Info about OS
   - uname -a
+
+  - export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Install Python 3
   - if [[ "`uname`" == "Darwin" ]]; then travis_retry brew install python3; fi
@@ -80,6 +91,7 @@ install:
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
   - export ANDROID_NDK_r15c="`pwd`/_ci/android-ndk-r15c"
+  - export ANDROID_NDK_r17="`pwd`/_ci/android-ndk-r17"
 
 script:
   - >
