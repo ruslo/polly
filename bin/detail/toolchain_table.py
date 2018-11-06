@@ -641,6 +641,7 @@ if os.name == 'posix':
       Toolchain('gcc-7-cxx14', 'Unix Makefiles'),
       Toolchain('gcc-7-cxx14-pic', 'Unix Makefiles'),
       Toolchain('gcc-7-cxx17', 'Unix Makefiles'),
+      Toolchain('gcc-7-cxx17-pic', 'Unix Makefiles'),
       Toolchain('gcc-7-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('gcc-lto', 'Unix Makefiles'),
