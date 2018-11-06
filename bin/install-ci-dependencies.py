@@ -189,18 +189,18 @@ def get_android_url():
 def get_cmake_url():
   if platform.system() == 'Darwin':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-Darwin-x86_64.tar.gz',
-        '1522c6aba682b3259f77b6b5f19b4780f72ec9b6'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.4/cmake-3.12.4-Darwin-x86_64.tar.gz',
+        '605472d6e065487379d481a1127edea6010a9264'
     )
   elif platform.system() == 'Linux':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-Linux-x86_64.tar.gz',
-        '29243eec22552fd0a9cd2033224accba746811ed'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.4/cmake-3.12.4-Linux-x86_64.tar.gz',
+        'ee09ac162e1eeff4d14cdfdb9365543f57bc8484'
     )
   elif platform.system() == 'Windows':
     return (
-        'https://github.com/ruslo/CMake/releases/download/v3.12.3/cmake-3.12.3-win64-x64.zip',
-        '565ec0e8ee93ec966f7db711aa0e468d46ede1f4'
+        'https://github.com/ruslo/CMake/releases/download/v3.12.4/cmake-3.12.4-win64-x64.zip',
+        'c490278ccd4824f76d9e7518538b9f4fb78bb917'
     )
   else:
     sys.exit('Unknown system: {}'.format(platform.system()))
