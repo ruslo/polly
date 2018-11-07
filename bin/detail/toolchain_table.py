@@ -393,6 +393,7 @@ if platform.system() == 'Linux':
   toolchain_table += [
       Toolchain('sanitize-leak', 'Unix Makefiles'),
       Toolchain('sanitize-leak-cxx17', 'Unix Makefiles'),
+      Toolchain('sanitize-leak-cxx17-pic', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
       Toolchain('linux-mingw-w32', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
@@ -655,8 +656,10 @@ if os.name == 'posix':
       Toolchain('libcxx-hid-sections', 'Unix Makefiles'),
       Toolchain('sanitize-address', 'Unix Makefiles'),
       Toolchain('sanitize-address-cxx17', 'Unix Makefiles'),
+      Toolchain('sanitize-address-cxx17-pic', 'Unix Makefiles'),
       Toolchain('sanitize-thread', 'Unix Makefiles'),
       Toolchain('sanitize-thread-cxx17', 'Unix Makefiles'),
+      Toolchain('sanitize-thread-cxx17-pic', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
       Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
   ]
