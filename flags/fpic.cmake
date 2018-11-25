@@ -21,3 +21,12 @@ else()
   polly_add_cache_flag(CMAKE_C_FLAGS_INIT "-fPIC")
   polly_add_cache_flag(CMAKE_Fortran_FLAGS_INIT "-fPIC")
 endif()
+
+set(
+    CMAKE_POSITION_INDEPENDENT_CODE
+    TRUE
+    CACHE
+    BOOL
+    "Position independent code"
+    FORCE
+)
