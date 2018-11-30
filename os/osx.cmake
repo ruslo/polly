@@ -52,12 +52,6 @@ if(_is_empty)
   endif()
 endif()
 
-if(XCODE_DEVELOPER_ROOT MATCHES ".*CommandLineTools.*")
-    set(SDK_RELATIVE_PATH "SDKs")
-else()
-    set(SDK_RELATIVE_PATH "Platforms/MacOSX.platform/Developer/SDKs")
-endif()
-
 set(
     CMAKE_OSX_SYSROOT
     "${XCODE_DEVELOPER_ROOT}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
