@@ -52,13 +52,6 @@ if(_is_empty)
   endif()
 endif()
 
-# With a full Xcode install, typically `xcode-select -print-path` is something like:
-#     /Applications/Xcode.app/Contents/Developer
-#
-# But with just Xcode command line tools installed, the path is:
-#     /Library/Developer/CommandLineTools
-#
-# In the CommandLineTools case, the SDKs folder is at a different relative path.
 if(XCODE_DEVELOPER_ROOT MATCHES ".*CommandLineTools.*")
     set(SDK_RELATIVE_PATH "SDKs")
 else()
@@ -67,9 +60,24 @@ endif()
 
 set(
     CMAKE_OSX_SYSROOT
-    "${XCODE_DEVELOPER_ROOT}/${SDK_RELATIVE_PATH}/MacOSX${OSX_SDK_VERSION}.sdk"
+    "${XCODE_DEVELOPER_ROOT}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
     CACHE STRING "System root for OSX" FORCE
 )
+
+# With a full Xcode install, typically `xcode-select -print-path` is something like:
+#     /Applications/Xcode.app/Contents/Developer
+#
+# But with just Xcode command line tools installed, the path is:
+#     /Library/Developer/CommandLineTools
+#
+# In the CommandLineTools case, the SDKs folder is at a different relative path.
+if(NOT EXISTS "${CMAKE_OSX_SYSROOT}")
+  set(
+      CMAKE_OSX_SYSROOT
+      "${XCODE_DEVELOPER_ROOT}/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
+      CACHE STRING "System root for OSX" FORCE
+  )
+endif()
 
 if(NOT EXISTS "${CMAKE_OSX_SYSROOT}")
   polly_fatal_error("${CMAKE_OSX_SYSROOT} not exists")
