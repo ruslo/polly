@@ -428,6 +428,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-11-4-dep-8-0-arm64-hid-sections-lto-cxx11', 'Xcode', ios_version='11.4'),
       Toolchain('ios-11-3-dep-9-0-arm64', 'Xcode', ios_version='11.3'),
       Toolchain('ios-11-4-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='11.4'),
+      Toolchain('ios-12-1-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='12.1'),
       Toolchain('ios-12-0-dep-9-0-device-bitcode-cxx11', 'Xcode', ios_version='12.0'),
       Toolchain('ios-11-4-dep-9-0-device-bitcode-nocxx', 'Xcode', ios_version='11.4'),
       Toolchain('ios-11-3-dep-9-0-device-bitcode', 'Xcode', ios_version='11.3'),
