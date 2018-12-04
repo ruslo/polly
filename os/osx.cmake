@@ -53,9 +53,8 @@ if(_is_empty)
 endif()
 
 set(
-    CMAKE_OSX_SYSROOT
+    __osx_sysroot_suggestion_1
     "${XCODE_DEVELOPER_ROOT}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
-    CACHE STRING "System root for OSX" FORCE
 )
 
 # With a full Xcode install, typically `xcode-select -print-path` is something like:
@@ -65,14 +64,21 @@ set(
 #     /Library/Developer/CommandLineTools
 #
 # In the CommandLineTools case, the SDKs folder is at a different relative path.
-if(NOT EXISTS "${CMAKE_OSX_SYSROOT}")
-  set(
-      CMAKE_OSX_SYSROOT
-      "${XCODE_DEVELOPER_ROOT}/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
-      CACHE STRING "System root for OSX" FORCE
-  )
+set(
+    __osx_sysroot_suggestion_2
+    "${XCODE_DEVELOPER_ROOT}/SDKs/MacOSX${OSX_SDK_VERSION}.sdk"
+)
+
+if(EXISTS "${__osx_sysroot_suggestion_1}")
+  set(__osx_sysroot "${__osx_sysroot_suggestion_1}")
+elseif(EXISTS "${__osx_sysroot_suggestion_2}")
+  set(__osx_sysroot "${__osx_sysroot_suggestion_2}")
+else()
+  polly_fatal_error("OS X SDK does not exist at ${__osx_sysroot_suggestion_1} or ${__osx_sysroot_suggestion_2}")
 endif()
 
-if(NOT EXISTS "${CMAKE_OSX_SYSROOT}")
-  polly_fatal_error("${CMAKE_OSX_SYSROOT} not exists")
-endif()
+set(
+    CMAKE_OSX_SYSROOT
+    "${__osx_sysroot}"
+    CACHE STRING "System root for OSX" FORCE
+)
