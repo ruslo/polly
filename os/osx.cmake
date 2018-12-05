@@ -92,7 +92,7 @@ else()
   if(EXISTS "${__osx_sysroot_suggestion_3}")
     set(__osx_sysroot "${__osx_sysroot_suggestion_3}")
   else()
-      polly_fatal_error("OS X SDK does not exist at ${__osx_sysroot_suggestion_1} or ${__osx_sysroot_suggestion_2} or ${__osx_sysroot_suggestion_3}")
+    polly_fatal_error("OS X SDK does not exist at ${__osx_sysroot_suggestion_1} or ${__osx_sysroot_suggestion_2} or ${__osx_sysroot_suggestion_3}")
   endif()
 endif()
 
