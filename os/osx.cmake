@@ -74,7 +74,26 @@ if(EXISTS "${__osx_sysroot_suggestion_1}")
 elseif(EXISTS "${__osx_sysroot_suggestion_2}")
   set(__osx_sysroot "${__osx_sysroot_suggestion_2}")
 else()
-  polly_fatal_error("OS X SDK does not exist at ${__osx_sysroot_suggestion_1} or ${__osx_sysroot_suggestion_2}")
+  # If OSX_SDK_VERSION is not set, the SDK version is computed using
+  # xcrun. However, it is possible for the version reported by xcrun to not
+  # be present in the SDKs folder. In that case, xcrun can also give the
+  # full path to a valid SDK.
+  execute_process(
+      COMMAND xcrun --show-sdk-path
+      RESULT_VARIABLE _result
+      OUTPUT_VARIABLE __osx_sysroot_suggestion_3
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+  )
+
+  if(NOT _result EQUAL 0)
+    polly_fatal_error("'xcrun --show-sdk-path' failed")
+  endif()
+
+  if(EXISTS "${__osx_sysroot_suggestion_3}")
+    set(__osx_sysroot "${__osx_sysroot_suggestion_3}")
+  else()
+      polly_fatal_error("OS X SDK does not exist at ${__osx_sysroot_suggestion_1} or ${__osx_sysroot_suggestion_2} or ${__osx_sysroot_suggestion_3}")
+  endif()
 endif()
 
 set(
