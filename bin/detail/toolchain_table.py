@@ -135,6 +135,7 @@ toolchain_table = [
     Toolchain('android-ndk-r15c-api-16-x86-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-arm64-v8a-neon-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-arm64-v8a-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r15c-api-21-armeabi-v7a-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-armeabi-v7a-neon-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-armeabi-clang-libcxx', 'Unix Makefiles'),
     Toolchain('android-ndk-r15c-api-21-mips-clang-libcxx', 'Unix Makefiles'),
