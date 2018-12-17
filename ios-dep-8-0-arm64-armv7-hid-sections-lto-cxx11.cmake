@@ -15,13 +15,11 @@ include("${CMAKE_CURRENT_LIST_DIR}/os/iphone-default-sdk.cmake") # -> IOS_SDK_VE
 set(IOS_DEPLOYMENT_SDK_VERSION 8.0)
 set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "iOS ${IOS_SDK_VERSION} / Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / Universal (arm64 armv7) / \
+  "iOS ${IOS_SDK_VERSION} / Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / Universal (arm64 armv7) / \
 ${POLLY_XCODE_COMPILER} / \
 c++11 support / hidden / data-sections / function-sections / LTO"
-    "Xcode"
+  "Xcode"
 )
-
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
 
 include(polly_common)
 include(polly_fatal_error)
@@ -42,4 +40,6 @@ include("${CMAKE_CURRENT_LIST_DIR}/flags/hidden.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/function-sections.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/data-sections.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/lto.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_ios_development_team.cmake")
+if(NOT IOS_SDK_VERSION VERSION_LESS 10.0) 
+  include(polly_ios_development_team) 
+endif()
