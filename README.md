@@ -70,21 +70,21 @@ In this case targets can coexist simultaneously:
 * [osx-*](https://github.com/ruslo/polly/wiki/Toolchain-list#osx-a-b)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
 * [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc-4-8)
-* Android
+#### Android
  * [android-ndk-*](https://github.com/ruslo/polly/wiki/Toolchain-list#android-ndk-xxx)
-* iOS
+#### iOS
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
  * [ios-nocodesign](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-nocodesign)
-* Raspberry Pi
+#### Raspberry Pi
  * [raspberrypi2-cxx11](https://github.com/ruslo/polly/wiki/Toolchain-list#raspberrypi2-cxx11)
-* Clang tools
+#### Clang tools
  * [analyze](https://github.com/ruslo/polly/wiki/Toolchain-list#analyze)
  * [sanitize-address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-address)
  * [sanitize-leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-leak)
  * [sanitize-memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-memory)
  * [sanitize-thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-thread)
-* Windows
+#### Windows
  * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
  * [vs-12-2013-xp](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-xp)
@@ -93,7 +93,7 @@ In this case targets can coexist simultaneously:
  * [msys](https://github.com/ruslo/polly/wiki/Toolchain-list#msys)
  * [nmake-vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013-win64)
  * [nmake-vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013)
-* Cross compiling
+#### Cross compiling
  * [linux-gcc-x64](https://github.com/ruslo/polly/wiki/Toolchain-list#linux-gcc-x64)
 
 ## Usage
