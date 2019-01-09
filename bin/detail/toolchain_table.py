@@ -169,6 +169,7 @@ toolchain_table = [
     Toolchain('android-ndk-r18-api-24-arm64-v8a-clang-libcxx14', 'Unix Makefiles'),
     Toolchain('android-ndk-r18b-api-24-arm64-v8a-clang-libcxx11', 'Unix Makefiles'),
     Toolchain('android-ndk-r18b-api-16-armeabi-v7a-clang-libcxx', 'Unix Makefiles'),
+    Toolchain('android-ndk-r18b-api-21-arm64-v8a-clang-libcxx', 'Unix Makefiles'),
     Toolchain('emscripten-cxx11', 'Unix Makefiles'),
     Toolchain('emscripten-cxx14', 'Unix Makefiles'),
     Toolchain('emscripten-cxx17', 'Unix Makefiles'),
