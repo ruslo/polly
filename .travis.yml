@@ -107,6 +107,8 @@ script:
     --home examples/${EXAMPLE}
     --toolchain ${TOOLCHAIN}
     --config ${CONFIG}
+    --ios-multiarch
+    --ios-combined
     --verbose
     --clear
     --install
