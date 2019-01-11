@@ -1,10 +1,10 @@
 # Copyright (c) 2017-2018, Ruslan Baratov
 # All rights reserved.
 
-if(DEFINED POLLY_IOS_12_1_DEP_12_0_ARM64_CMAKE_)
+if(DEFINED POLLY_IOS_12_1_DEP_12_0_ARM64_CXX17_CMAKE_)
   return()
 else()
-  set(POLLY_IOS_12_1_DEP_12_0_ARM64_CMAKE_ 1)
+  set(POLLY_IOS_12_1_DEP_12_0_ARM64_CXX17_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_clear_environment_variables.cmake")
