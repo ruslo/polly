@@ -30,3 +30,15 @@ set(
     "Position independent code"
     FORCE
 )
+
+# Linux, GCC 7.3.0 same results with and without '-fPIC' flag for code:
+#
+#  #include <iostream>
+#  int main() {
+#  #if defined(__PIC__)
+#    std::cout << "PIC: " << __PIC__ << std::endl;
+#  #else
+#    std::cout << "PIC not defined" << std::endl;
+#  #endif
+#  }
+list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "pic")
