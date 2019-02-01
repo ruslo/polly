@@ -16,10 +16,7 @@ polly_init(
 )
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_common.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/library/std/libcxx.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/compiler/clang-7.cmake")
 
-include(polly_add_cache_flag)
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-stdlib=libc++")
-polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "-stdlib=libc++")
-polly_add_cache_flag(CMAKE_SHARED_LINKER_FLAGS "-stdlib=libc++")
 include_directories(SYSTEM /usr/lib/llvm-7/include/c++/v1)
