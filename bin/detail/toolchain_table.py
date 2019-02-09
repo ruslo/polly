@@ -582,6 +582,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-dep-9-0-cxx14', 'Xcode', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
+      Toolchain('xcode-cxx17', 'Xcode'),
       Toolchain('xcode-nocxx', 'Xcode'),
       Toolchain('xcode-gcc', 'Xcode'),
       Toolchain('xcode-hid-sections', 'Xcode'),
