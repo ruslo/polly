@@ -644,6 +644,7 @@ if os.name == 'posix':
       Toolchain('clang-cxx17', 'Unix Makefiles'),
       Toolchain('clang-cxx14', 'Unix Makefiles'),
       Toolchain('clang-cxx14-pic', 'Unix Makefiles'),
+      Toolchain('clang-cxx11', 'Unix Makefiles'),
       Toolchain('clang-libcxx', 'Unix Makefiles'),
       Toolchain('clang-libcxx-fpic', 'Unix Makefiles'),
       Toolchain('clang-libcxx14', 'Unix Makefiles'),
