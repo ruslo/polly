@@ -19,7 +19,7 @@ addons:
       - python3-pip
 
       - g++-5
-      - gcc-5 
+      - gcc-5
       - g++-7
       - gcc-7
 
@@ -59,7 +59,20 @@ matrix:
     # osx {
 
     - os: osx
-      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-12 CONFIG=Release
+      osx_image: xcode9.4
+      env: EXAMPLE=01-executable TOOLCHAIN=osx-10-13 CONFIG=Release
+
+    - os: osx
+      osx_image: xcode9.4
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-11-4-dep-9-3-armv7 CONFIG=Release
+
+    - os: osx
+      osx_image: xcode10.1
+      env: EXAMPLE=01-executable TOOLCHAIN=ios-nocodesign-12-1-dep-9-3-armv7 CONFIG=Release
+
+    - os: osx
+      osx_image: xcode9.4
+      env: EXAMPLE=04-framework TOOLCHAIN=ios-nocodesign-11-4-dep-9-3 CONFIG=Release
 
     # }
 
@@ -90,6 +103,7 @@ install:
   - export ANDROID_NDK_r10e="`pwd`/_ci/android-ndk-r10e"
   - export ANDROID_NDK_r11c="`pwd`/_ci/android-ndk-r11c"
   - export ANDROID_NDK_r15c="`pwd`/_ci/android-ndk-r15c"
+  - export ANDROID_NDK_r17="`pwd`/_ci/android-ndk-r17"
 
 script:
   - >
@@ -97,6 +111,8 @@ script:
     --home examples/${EXAMPLE}
     --toolchain ${TOOLCHAIN}
     --config ${CONFIG}
+    --ios-multiarch
+    --ios-combined
     --verbose
     --clear
     --install

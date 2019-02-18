@@ -70,21 +70,21 @@ In this case targets can coexist simultaneously:
 * [osx-*](https://github.com/ruslo/polly/wiki/Toolchain-list#osx-a-b)
 * [gcc](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc)
 * [gcc-4-8](https://github.com/ruslo/polly/wiki/Toolchain-list#gcc-4-8)
-* Android
+#### Android
  * [android-ndk-*](https://github.com/ruslo/polly/wiki/Toolchain-list#android-ndk-xxx)
-* iOS
+#### iOS
  * [ios](https://github.com/ruslo/polly/wiki/Toolchain-list#ios)
  * [ios-i386-armv7](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-i386-armv7)
  * [ios-nocodesign](https://github.com/ruslo/polly/wiki/Toolchain-list#ios-nocodesign)
-* Raspberry Pi
+#### Raspberry Pi
  * [raspberrypi2-cxx11](https://github.com/ruslo/polly/wiki/Toolchain-list#raspberrypi2-cxx11)
-* Clang tools
+#### Clang tools
  * [analyze](https://github.com/ruslo/polly/wiki/Toolchain-list#analyze)
  * [sanitize-address](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-address)
  * [sanitize-leak](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-leak)
  * [sanitize-memory](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-memory)
  * [sanitize-thread](https://github.com/ruslo/polly/wiki/Toolchain-list#sanitize-thread)
-* Windows
+#### Windows
  * [vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-win64)
  * [vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013)
  * [vs-12-2013-xp](https://github.com/ruslo/polly/wiki/Toolchain-list#vs-12-2013-xp)
@@ -93,7 +93,7 @@ In this case targets can coexist simultaneously:
  * [msys](https://github.com/ruslo/polly/wiki/Toolchain-list#msys)
  * [nmake-vs-12-2013-win64](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013-win64)
  * [nmake-vs-12-2013](https://github.com/ruslo/polly/wiki/Toolchain-list#nmake-vs-12-2013)
-* Cross compiling
+#### Cross compiling
  * [linux-gcc-x64](https://github.com/ruslo/polly/wiki/Toolchain-list#linux-gcc-x64)
 
 ## Usage
@@ -118,7 +118,7 @@ Take a look at make output, you must [see][6] `-stdlib=libstdc++` string:
 /usr/bin/c++ -std=c++11 -stdlib=libstdc++ -o CMakeFiles/.../main.cpp.o -c /.../main.cpp
 ```
 
-## build.py
+## polly.py
 
 This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that wrap cmake for you and automatically set:
 * build directory for your toolchain. E.g. `_builds/xcode`, `_builds/libcxx-Debug`, `_builds/nmake-Release`
@@ -128,13 +128,13 @@ This is a python [script](https://github.com/ruslo/polly/tree/master/bin) that w
 * run `cpack` after the build done if option `--pack` passed
 * create `OS X`/`iOS` framework if option `--framework` passed (can be used for broken iOS framework creation on CMake)
 
-Example of usage (also see `build.py --help`):
+Example of usage (also see `polly.py --help`):
 * build Debug Xcode project:
-  * `build.py --toolchain xcode --config Debug` (`_builds/xcode`)
+  * `polly.py --toolchain xcode --config Debug` (`_builds/xcode`)
 * build and test Release Makefile project with `libcxx`:
-  * `build.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
+  * `polly.py --toolchain libcxx --config Release --test` (`_builds/libcxx-Release`)
 * install Debug Xcode project:
-  * `build.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
+  * `polly.py --toolchain xcode --config Debug --install` (`_builds/xcode`, `_install/xcode`)
 
 ## Examples
 See [examples](https://github.com/ruslo/polly/tree/master/examples).
@@ -165,4 +165,4 @@ See [CONTRIBUTING.md](https://github.com/ruslo/polly/blob/master/CONTRIBUTING.md
 [5]: https://github.com/ruslo/configs
 [6]: https://travis-ci.org/ruslo/polly/jobs/14486268#L939
 [7]: https://github.com/ruslo/polly/wiki/Travis-CI-AppVeyor-support-table
-[8]: https://github.com/ruslo/polly/blob/master/bin/build.py
+[8]: https://github.com/ruslo/polly/blob/master/bin/polly.py
