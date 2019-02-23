@@ -109,3 +109,31 @@ Use ``raspberrypi*-cxx11`` toolchain, e.g. ``raspberrypi3-cxx11``:
 .. code-block:: none
 
   > polly.py --toolchain raspberrypi3-cxx11 --verbose --config Release
+
+Clang
+~~~~~
+
+Download and unpack ``rpi-sysroot.tar.xz`` archive:
+
+.. code-block:: none
+
+  > wget https://sourceforge.net/projects/avbuild/files/raspberry-pi/rpi-sysroot.tar.xz
+  > tar xf rpi-sysroot.tar.xz
+  > export RPI_SYSROOT=`pwd`/sysroot
+
+Verify:
+
+.. code-block:: none
+
+  > ls -d $RPI_SYSROOT/usr/include
+  /.../sysroot/usr/include/
+
+Use ``raspberry3-clang-cxx11`` toolchain:
+
+.. code-block:: none
+
+  > polly.py --toolchain raspberrypi3-clang-cxx11 --verbose --config Release
+
+.. seealso::
+
+  - `Raspberry Pi: Cross-compiling with Clang <https://github.com/wang-bin/avbuild/wiki/Raspberry-Pi-Cross-Build#clang>`__
