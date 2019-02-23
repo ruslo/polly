@@ -4,6 +4,7 @@
 .. spelling::
 
   omp
+  Runtime
 
 clang-omp
 ---------
