@@ -11,3 +11,4 @@ include(polly_add_cache_flag)
 
 polly_add_cache_flag(CMAKE_CXX_FLAGS "--target=arm-linux-gnueabihf")
 polly_add_cache_flag(CMAKE_C_FLAGS "--target=arm-linux-gnueabihf")
+polly_add_cache_flag(CMAKE_ASM_FLAGS "--target=arm-linux-gnueabihf")

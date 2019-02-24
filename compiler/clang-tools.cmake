@@ -21,4 +21,7 @@ set(CMAKE_NM "${__llvm_dir}/llvm-nm" CACHE FILEPATH "nm" FORCE)
 set(CMAKE_OBJDUMP "${__llvm_dir}/llvm-objdump" CACHE FILEPATH "objdump" FORCE)
 set(CMAKE_RANLIB "${__llvm_dir}/llvm-ranlib" CACHE FILEPATH "ranlib" FORCE)
 
+# "${__llvm_dir}/llvm-as" is not working
+set(CMAKE_ASM_COMPILER "${CMAKE_C_COMPILER}" CACHE FILEPATH "Assembler")
+
 unset(__llvm_dir)
