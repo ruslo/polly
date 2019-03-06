@@ -428,7 +428,7 @@ timer = detail.timer.Timer()
 
 timer.start('Generate')
 detail.generate_command.run(
-    generate_command, build_dir, polly_temp_dir, args.reconfig, logging
+    generate_command, build_dir, polly_temp_dir, args.reconfig, logging, args.output_filter
 )
 timer.stop()
 
