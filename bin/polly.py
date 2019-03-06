@@ -207,6 +207,11 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    '--output_filter',
+    help="Output filter"
+)
+
+parser.add_argument(
     '--timeout',
     type=PositiveInt,
     help='Timeout for CTest'
@@ -476,7 +481,7 @@ if not args.nobuild:
     ]
     detail.call.call(zero_check_command, logging, sleep=1)
 
-  detail.call.call(build_command, logging, sleep=1)
+  detail.call.call(build_command, logging, sleep=1, output_filter=args.output_filter)
   timer.stop()
 
   if args.archive:
