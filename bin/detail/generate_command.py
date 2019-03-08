@@ -7,7 +7,7 @@ import sys
 
 import detail.call
 
-def run(generate_command, build_dir, polly_temp_dir, reconfig, logging):
+def run(generate_command, build_dir, polly_temp_dir, reconfig, logging, output_filter=None):
   if not os.path.exists(polly_temp_dir):
     os.makedirs(polly_temp_dir)
   saved_arguments_path = os.path.join(polly_temp_dir, 'saved-arguments')
@@ -18,7 +18,7 @@ def run(generate_command, build_dir, polly_temp_dir, reconfig, logging):
   )
 
   if reconfig or not os.path.exists(saved_arguments_path):
-    detail.call.call(generate_command, logging, cache_file=cache_file, sleep=1)
+    detail.call.call(generate_command, logging, cache_file=cache_file, sleep=1, output_filter=output_filter)
     open(saved_arguments_path, 'w').write(generate_command_oneline)
     return
 

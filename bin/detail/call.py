@@ -49,7 +49,7 @@ def tee(infile, discard, logging, console=None):
   t.start()
   return t
 
-def teed_call(cmd_args, logging):
+def teed_call(cmd_args, logging, output_filter=None):
   p = subprocess.Popen(
       cmd_args,
       stdout=subprocess.PIPE,
@@ -59,11 +59,26 @@ def teed_call(cmd_args, logging):
   )
   threads = []
 
+  output_pipe = p.stdout
+
+  if output_filter:
+    filter_p = subprocess.Popen(
+      output_filter,
+      stdin=output_pipe,
+      stdout=subprocess.PIPE,
+      stderr=subprocess.PIPE,
+      env=os.environ,
+      bufsize=0
+    )
+    # also pipe filter error to stderr and log
+    threads.append(tee(filter_p.stderr, logging.discard, logging, sys.stderr))
+    output_pipe = filter_p.stdout
+
   if logging.verbosity != 'silent':
-    threads.append(tee(p.stdout, logging.discard, logging, sys.stdout))
+    threads.append(tee(output_pipe, logging.discard, logging, sys.stdout))
     threads.append(tee(p.stderr, logging.discard, logging, sys.stderr))
   else:
-    threads.append(tee(p.stdout, logging.discard, logging))
+    threads.append(tee(output_pipe, logging.discard, logging))
     threads.append(tee(p.stderr, logging.discard, logging))
 
   for t in threads:
@@ -71,7 +86,7 @@ def teed_call(cmd_args, logging):
 
   return p.wait()
 
-def call(call_args, logging, cache_file='', ignore=False, sleep=0):
+def call(call_args, logging, cache_file='', ignore=False, sleep=0, output_filter=None):
   pretty = 'Execute command: [\n'
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
@@ -88,7 +103,7 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0):
     print(oneline)
   logging.write(oneline)
 
-  x = teed_call(call_args, logging)
+  x = teed_call(call_args, logging, output_filter)
   if x == 0 or ignore:
     time.sleep(sleep)
     return
