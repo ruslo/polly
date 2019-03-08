@@ -378,7 +378,7 @@ if os.name == 'nt':
       Toolchain(
           'vs-16-2019',
           'Visual Studio 16 2019',
-          arch='amd64',
+          arch='x86',
           vs_version='16'
       ),
       Toolchain(
