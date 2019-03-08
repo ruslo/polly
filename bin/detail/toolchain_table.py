@@ -382,6 +382,12 @@ if os.name == 'nt':
           vs_version='16'
       ),
       Toolchain(
+          'vs-16-2019-win64',
+          'Visual Studio 16 2019',
+          arch='amd64',
+          vs_version='16'
+      ),
+      Toolchain(
           'android-vc-ndk-r10e-api-19-arm-clang-3-6',
           'Visual Studio 14 2015 ARM',
           arch='',
