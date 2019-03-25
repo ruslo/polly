@@ -220,6 +220,12 @@ if os.name == 'nt':
           vs_version='15'
       ),
       Toolchain(
+          'nmake-vs-15-2017-win64-cxx17-nonpermissive',
+          'NMake Makefiles',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
           'ninja-vs-12-2013-win64',
           'Ninja',
           arch='amd64',
@@ -239,6 +245,12 @@ if os.name == 'nt':
       ),
       Toolchain(
           'ninja-vs-15-2017-win64-cxx17',
+          'Ninja',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
+          'ninja-vs-15-2017-win64-cxx17-nonpermissive',
           'Ninja',
           arch='amd64',
           vs_version='15'
@@ -333,6 +345,12 @@ if os.name == 'nt':
       ),
       Toolchain(
           'vs-15-2017-win64-cxx17',
+          'Visual Studio 15 2017 Win64',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
+          'vs-15-2017-win64-cxx17-nonpermissive',
           'Visual Studio 15 2017 Win64',
           arch='amd64',
           vs_version='15'
