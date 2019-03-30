@@ -394,6 +394,13 @@ if os.name == 'nt':
           vs_version='15'
       ),
       Toolchain(
+          'vs-15-2017-win64-version-14-11',
+          'Visual Studio 15 2017 Win64',
+          arch='amd64',
+          vs_version='15',
+          toolset='version=14.11'
+      ),
+      Toolchain(
           'vs-16-2019',
           'Visual Studio 16 2019',
           arch='x86',
