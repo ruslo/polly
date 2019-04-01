@@ -732,11 +732,13 @@ if os.name == 'posix':
       Toolchain('gcc-7-cxx17', 'Unix Makefiles'),
       Toolchain('gcc-7-cxx17-gnu', 'Unix Makefiles'),
       Toolchain('gcc-7-cxx17-pic', 'Unix Makefiles'),
+      Toolchain('gcc-7-cxx17-concepts', 'Unix Makefiles'),
       Toolchain('gcc-7-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-8-cxx14', 'Unix Makefiles'),
       Toolchain('gcc-8-cxx14-fpic', 'Unix Makefiles'),
       Toolchain('gcc-8-cxx17', 'Unix Makefiles'),
       Toolchain('gcc-8-cxx17-fpic', 'Unix Makefiles'),
+      Toolchain('gcc-8-cxx17-concepts', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('gcc-lto', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
@@ -754,6 +756,8 @@ if os.name == 'posix':
       Toolchain('sanitize-thread-cxx17-pic', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
       Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
+      Toolchain('ninja-gcc-7-cxx17-concepts', 'Ninja'),
+      Toolchain('ninja-gcc-8-cxx17-concepts', 'Ninja'),
   ]
 
 def get_by_name(name):
