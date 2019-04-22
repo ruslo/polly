@@ -152,6 +152,13 @@ def get_android_full_version_url():
     if platform.system() == 'Linux':
       return 'https://dl.google.com/android/repository/android-ndk-r17-linux-x86_64.zip', '1d886a64483adf3f3a3e3aaf7ac5084184006ac7',
 
+  if toolchain.startswith('android-ndk-r18b-'):
+    if platform.system() == 'Darwin':
+      return 'https://dl.google.com/android/repository/android-ndk-r18b-darwin-x86_64.zip', '98cb9909aa8c2dab32db188bbdc3ac6207e09440',
+    if platform.system() == 'Linux':
+      return 'https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip', '500679655da3a86aecf67007e8ab230ea9b4dd7b',
+
+
   sys.exit('Android supported only for Linux and OSX')
 
 def get_android_url():
