@@ -1,8 +1,8 @@
-# Copyright (c) 2014, Ruslan Baratov & Luca Martini
-# Copyright (c) 2014, Michele Caini
-# Copyright (c) 2017, Robert Nitsch
-# Copyright (c) 2018, David Hirvonen
-# Copyright (c) 2018, Richard Hodges
+# Copyright (c) 2014-2019, Ruslan Baratov & Luca Martini
+# Copyright (c) 2014-2019, Michele Caini
+# Copyright (c) 2017-2019, Robert Nitsch
+# Copyright (c) 2018-2019, David Hirvonen
+# Copyright (c) 2018-2019, Richard Hodges
 # All rights reserved.
 
 import os
@@ -745,6 +745,7 @@ if os.name == 'posix':
       Toolchain('gcc-4-8-c11', 'Unix Makefiles'),
       Toolchain('gcc-4-8-pic', 'Unix Makefiles'),
       Toolchain('gcc-4-8-pic-hid-sections', 'Unix Makefiles'),
+      Toolchain('gcc-4-8-pic-hid-sections-cxx11-c11', 'Unix Makefiles'),
       Toolchain('gcc-pic-hid-sections', 'Unix Makefiles'),
       Toolchain('gcc-pic-hid-sections-lto', 'Unix Makefiles'),
       Toolchain('gcc-5-pic-hid-sections-lto', 'Unix Makefiles'),
