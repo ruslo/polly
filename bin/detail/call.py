@@ -86,7 +86,7 @@ def teed_call(cmd_args, logging, output_filter=None):
 
   return p.wait()
 
-def call(call_args, logging, cache_file='', ignore=False, sleep=0, output_filter=None):
+def call(call_args, logging, cache_file='', ignore=False, sleep=0, output_filter=None, dry_run=False):
   pretty = 'Execute command: [\n'
   for i in call_args:
     pretty += '  `{}`\n'.format(i)
@@ -102,6 +102,9 @@ def call(call_args, logging, cache_file='', ignore=False, sleep=0, output_filter
   if logging.verbosity != 'silent':
     print(oneline)
   logging.write(oneline)
+
+  if dry_run:
+      sys.exit(0)
 
   x = teed_call(call_args, logging, output_filter)
   if x == 0 or ignore:
