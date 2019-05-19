@@ -232,6 +232,12 @@ parser.add_argument(
     help="CTest binary (ctest or ctest3)"
 )
 
+parser.add_argument(
+    '--dry-run',
+    action='store_true',
+    help="Print the corresponding CMake command and quit"
+)
+
 args = parser.parse_args()
 
 polly_toolchain = detail.toolchain_name.get(args.toolchain)
@@ -428,7 +434,7 @@ timer = detail.timer.Timer()
 
 timer.start('Generate')
 detail.generate_command.run(
-    generate_command, build_dir, polly_temp_dir, args.reconfig, logging, args.output_filter
+    generate_command, build_dir, polly_temp_dir, args.reconfig, logging, args.output_filter, args.dry_run
 )
 timer.stop()
 
