@@ -179,6 +179,7 @@ toolchain_table = [
     Toolchain('emscripten-cxx17', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic-static-std', 'Unix Makefiles'),
+    Toolchain('raspberrypi1-cxx14-pic-static-std', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi3-clang-cxx11', 'Unix Makefiles'),
