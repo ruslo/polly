@@ -741,6 +741,7 @@ if os.name == 'posix':
       Toolchain('clang-fpic', 'Unix Makefiles'),
       Toolchain('clang-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('clang-fpic-static-std', 'Unix Makefiles'),
+      Toolchain('clang-fpic-static-std-cxx14', 'Unix Makefiles'),
       Toolchain('clang-tidy', 'Unix Makefiles'),
       Toolchain('clang-tidy-libcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
