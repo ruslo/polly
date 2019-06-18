@@ -179,6 +179,7 @@ toolchain_table = [
     Toolchain('emscripten-cxx17', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi1-cxx11-pic-static-std', 'Unix Makefiles'),
+    Toolchain('raspberrypi1-cxx14-pic-static-std', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi3-clang-cxx11', 'Unix Makefiles'),
@@ -277,6 +278,9 @@ if os.name == 'nt':
           'vs-15-2017-mt', 'Visual Studio 15 2017', arch='x86', vs_version='15'
       ),
       Toolchain(
+          'vs-15-2017-cxx14-mt', 'Visual Studio 15 2017', arch='x86', vs_version='15'
+      ),
+      Toolchain(
           'vs-15-2017-cxx17', 'Visual Studio 15 2017', arch='x86', vs_version='15'
       ),
       Toolchain(
@@ -342,6 +346,12 @@ if os.name == 'nt':
       ),
       Toolchain(
           'vs-15-2017-win64-mt',
+          'Visual Studio 15 2017 Win64',
+          arch='amd64',
+          vs_version='15'
+      ),
+      Toolchain(
+          'vs-15-2017-win64-cxx14-mt',
           'Visual Studio 15 2017 Win64',
           arch='amd64',
           vs_version='15'
@@ -483,7 +493,9 @@ if platform.system() == 'Linux':
       Toolchain('sanitize-leak-cxx17-pic', 'Unix Makefiles'),
       Toolchain('sanitize-memory', 'Unix Makefiles'),
       Toolchain('linux-mingw-w32', 'Unix Makefiles'),
+      Toolchain('linux-mingw-w32-cxx14', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64', 'Unix Makefiles'),
+      Toolchain('linux-mingw-w64-cxx14', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-cxx98', 'Unix Makefiles'),
       Toolchain('linux-mingw-w64-gnuxx11', 'Unix Makefiles'),
       Toolchain('linux-gcc-armhf', 'Unix Makefiles'),
@@ -740,6 +752,7 @@ if os.name == 'posix':
       Toolchain('clang-fpic', 'Unix Makefiles'),
       Toolchain('clang-fpic-hid-sections', 'Unix Makefiles'),
       Toolchain('clang-fpic-static-std', 'Unix Makefiles'),
+      Toolchain('clang-fpic-static-std-cxx14', 'Unix Makefiles'),
       Toolchain('clang-tidy', 'Unix Makefiles'),
       Toolchain('clang-tidy-libcxx', 'Unix Makefiles'),
       Toolchain('gcc', 'Unix Makefiles'),
@@ -798,6 +811,7 @@ if os.name == 'posix':
       Toolchain('sanitize-thread-cxx17', 'Unix Makefiles'),
       Toolchain('sanitize-thread-cxx17-pic', 'Unix Makefiles'),
       Toolchain('arm-openwrt-linux-muslgnueabi', 'Unix Makefiles'),
+      Toolchain('arm-openwrt-linux-muslgnueabi-cxx14', 'Unix Makefiles'),
       Toolchain('openbsd-egcc-cxx11-static-std', 'Unix Makefiles'),
       Toolchain('ninja-gcc-7-cxx17-concepts', 'Ninja'),
       Toolchain('ninja-gcc-8-cxx17-concepts', 'Ninja'),
