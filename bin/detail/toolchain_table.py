@@ -514,6 +514,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-12-0-dep-11-0-arm64', 'Xcode', ios_version='12.0'),
       Toolchain('ios-12-1-dep-11-0-arm64', 'Xcode', ios_version='12.1'),
       Toolchain('ios-12-1-dep-12-0-arm64-cxx17', 'Xcode', ios_version='12.1'),
+      Toolchain('ios-12-1-dep-9-3-arm64-bitcode', 'Xcode', ios_version='12.1'),
       Toolchain('ios-12-1-dep-9-3-arm64', 'Xcode', ios_version='12.1'),
       Toolchain('ios-12-1-dep-9-3-armv7', 'Xcode', ios_version='12.1'),
       Toolchain('ios-12-1-dep-9-3', 'Xcode', ios_version='12.1'),
