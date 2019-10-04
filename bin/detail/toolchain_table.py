@@ -509,6 +509,8 @@ if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios', 'Xcode'),
       Toolchain('ios-bitcode', 'Xcode'),
+      Toolchain('ios-13-0-dep-9-3-arm64', 'Xcode', ios_version='13.0'),
+      Toolchain('ios-13-0-dep-9-3-arm64-bitcode', 'Xcode', ios_version='13.0'),
       Toolchain('ios-12-3-dep-9-3-arm64', 'Xcode', ios_version='12.3'),
       Toolchain('ios-12-2-dep-9-3-arm64', 'Xcode', ios_version='12.2'),
       Toolchain('ios-12-1-dep-9-0-device-bitcode-cxx14', 'Xcode', ios_version='12.1'),
