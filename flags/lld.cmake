@@ -11,3 +11,4 @@ include(polly_add_cache_flag)
 
 polly_add_cache_flag(CMAKE_EXE_LINKER_FLAGS "-fuse-ld=lld")
 polly_add_cache_flag(CMAKE_SHARED_LINKER_FLAGS "-fuse-ld=lld")
+polly_add_cache_flag(CMAKE_MODULE_LINKER_FLAGS "-fuse-ld=lld")
