@@ -184,6 +184,7 @@ toolchain_table = [
     Toolchain('raspberrypi2-cxx11', 'Unix Makefiles'),
     Toolchain('raspberrypi2-cxx11-pic', 'Unix Makefiles'),
     Toolchain('raspberrypi3-clang-cxx11', 'Unix Makefiles'),
+    Toolchain('raspberrypi3-clang-cxx14', 'Unix Makefiles'),
     Toolchain('raspberrypi3-gcc-pic-hid-sections', 'Unix Makefiles'),
     Toolchain('raspberrypi3-cxx14', 'Unix Makefiles'),
     Toolchain('raspberrypi3-cxx11', 'Unix Makefiles')
