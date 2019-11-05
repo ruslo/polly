@@ -16,7 +16,7 @@ set(IOS_DEPLOYMENT_SDK_VERSION 11.0)
 
 set(POLLY_XCODE_COMPILER "clang")
 polly_init(
-    "iOS ${IOS_SDK_VERSION} / Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / Universal (arm64) / \
+    "iOS ${IOS_SDK_VERSION} / Deployment ${IOS_DEPLOYMENT_SDK_VERSION} / arm64 / \
 ${POLLY_XCODE_COMPILER} / \
 bitcode / \
 c++17 support"
