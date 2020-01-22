@@ -516,6 +516,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-bitcode', 'Xcode'),
       Toolchain('ios-13-2-dep-10-0-arm64-bitcode-cxx17', 'Xcode', ios_version='13.2'),
       Toolchain('ios-13-2-dep-9-3-arm64-bitcode', 'Xcode', ios_version='13.2'),
+      Toolchain('ios-13-2-dep-9-3-device-bitcode-cxx14', 'Xcode', ios_version='13.2'),
       Toolchain('ios-13-0-dep-9-3-arm64', 'Xcode', ios_version='13.0'),
       Toolchain('ios-13-0-dep-9-3-arm64-bitcode', 'Xcode', ios_version='13.0'),
       Toolchain('ios-13-0-dep-11-0-arm64-bitcode-cxx17', 'Xcode', ios_version='13.0'),
