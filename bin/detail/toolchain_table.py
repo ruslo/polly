@@ -513,6 +513,7 @@ if platform.system() == 'Linux':
 if platform.system() == 'Darwin':
   toolchain_table += [
       Toolchain('ios', 'Xcode'),
+      Toolchain('ios-cxx17', 'Xcode'),
       Toolchain('ios-bitcode', 'Xcode'),
       Toolchain('ios-13-2-dep-10-0-arm64-bitcode-cxx17', 'Xcode', ios_version='13.2'),
       Toolchain('ios-13-2-dep-9-3-arm64-bitcode', 'Xcode', ios_version='13.2'),
@@ -745,6 +746,7 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-14-cxx14', 'Xcode', osx_version='10.14'),
       Toolchain('osx-10-14-cxx17', 'Xcode', osx_version='10.14'),
       Toolchain('osx-10-15', 'Xcode', osx_version='10.15'),
+      Toolchain('osx-10-15-cxx17', 'Xcode', osx_version='10.15'),
       Toolchain('osx-10-15-dep-10-10', 'Xcode', osx_version='10.15'),
       Toolchain('osx-10-15-dep-10-10-cxx14', 'Xcode', osx_version='10.15'),
       Toolchain('osx-10-15-dep-10-10-cxx17', 'Xcode', osx_version='10.15'),
