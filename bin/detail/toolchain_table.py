@@ -444,6 +444,13 @@ if os.name == 'nt':
           vs_version='16'
       ),
       Toolchain(
+          'vs-16-2019-llvm-cxx17',
+          'Visual Studio 16 2019',
+          toolset='clangcl',
+          arch='x86',
+          vs_version='16'
+      ),
+      Toolchain(
           'vs-16-2019-win64',
           'Visual Studio 16 2019',
           arch='amd64',
@@ -458,6 +465,13 @@ if os.name == 'nt':
       Toolchain(
           'vs-16-2019-win64-cxx17',
           'Visual Studio 16 2019',
+          arch='amd64',
+          vs_version='16'
+      ),
+      Toolchain(
+          'vs-16-2019-win64-llvm-cxx17',
+          'Visual Studio 16 2019',
+          toolset='clangcl',
           arch='amd64',
           vs_version='16'
       ),
