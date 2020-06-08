@@ -3,6 +3,7 @@
 # Copyright (c) 2017-2019, Robert Nitsch
 # Copyright (c) 2018-2019, David Hirvonen
 # Copyright (c) 2018-2019, Richard Hodges
+# Copyright (c) 2020, Clemens Arth
 # All rights reserved.
 
 import os
@@ -529,6 +530,11 @@ if platform.system() == 'Darwin':
       Toolchain('ios', 'Xcode'),
       Toolchain('ios-cxx17', 'Xcode'),
       Toolchain('ios-bitcode', 'Xcode'),
+      Toolchain('ios-13-5-dep-9-3-arm64', 'Xcode', ios_version='13.5'),
+      Toolchain('ios-13-5-dep-9-3-armv7', 'Xcode', ios_version='13.5'),
+      Toolchain('ios-13-5-dep-9-3-armv7s', 'Xcode', ios_version='13.5'),
+      Toolchain('ios-13-5-dep-9-3-device-cxx14', 'Xcode', ios_version='13.5'),
+      Toolchain('ios-13-5-dep-9-3-device-bitcode-cxx14', 'Xcode', ios_version='13.5'),
       Toolchain('ios-13-4-dep-9-3-arm64', 'Xcode', ios_version='13.4'),
       Toolchain('ios-13-4-dep-9-3-armv7', 'Xcode', ios_version='13.4'),
       Toolchain('ios-13-4-dep-9-3-armv7s', 'Xcode', ios_version='13.4'),
