@@ -370,3 +370,13 @@ endif()
 # Force ABI for Hunter to work
 set (CMAKE_C_ABI_COMPILED emcc)
 set (CMAKE_CXX_ABI_COMPILED emcxx)
+
+if (CMAKE_HOST_APPLE)
+  # Needed for boost to actually build  
+  execute_process (
+    COMMAND bash -c "xcrun --sdk macosx --show-sdk-path"
+    OUTPUT_VARIABLE SDKROOT_PATH
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+  set(ENV{SDKROOT} "${SDKROOT_PATH}")
+  set(CMAKE_SYSROOT "${SDKROOT_PATH}" CACHE PATH "")
+endif()
