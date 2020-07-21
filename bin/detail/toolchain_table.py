@@ -806,6 +806,9 @@ if platform.system() == 'Darwin':
       Toolchain('osx-10-15-dep-10-10-cxx14', 'Xcode', osx_version='10.15'),
       Toolchain('osx-10-15-dep-10-10-cxx17', 'Xcode', osx_version='10.15'),
       Toolchain('osx-10-15-dep-10-12-cxx17', 'Xcode', osx_version='10.15'),
+      Toolchain('osx-10-16', 'Xcode', osx_version='10.16'),
+      Toolchain('osx-10-16-cxx17', 'Xcode', osx_version='10.16'),
+      Toolchain('osx-10-16-dep-10-10-cxx17', 'Xcode', osx_version='10.16'),
       Toolchain('linux-gcc-x64', 'Unix Makefiles'),
   ]
 
