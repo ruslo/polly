@@ -782,7 +782,7 @@ if platform.system() == 'Darwin':
       Toolchain('ios-nocodesign-14-3-dep-10-0-armv7s', 'Xcode', ios_version='14.3', nocodesign=True),
       Toolchain('ios-nocodesign-14-3-dep-10-0', 'Xcode', ios_version='14.3', nocodesign=True),
       Toolchain('ios-nocodesign-14-3-dep-10-0-device-cxx11', 'Xcode', ios_version='14.3', nocodesign=True),
-      Toolchain('ios-nocodesign-14-3-dep-10-0-device', 'Xcode', ios_version='14.3', nocodesign=True),      
+      Toolchain('ios-nocodesign-14-3-dep-10-0-device', 'Xcode', ios_version='14.3', nocodesign=True),
       Toolchain('ios-nocodesign-dep-9-0-cxx14', 'Xcode', nocodesign=True),
       Toolchain('xcode', 'Xcode'),
       Toolchain('xcode-cxx98', 'Xcode'),
@@ -844,6 +844,8 @@ if platform.system() == 'Darwin':
       Toolchain('osx-11-0', 'Xcode', osx_version='11.0'),
       Toolchain('osx-11-0-cxx17', 'Xcode', osx_version='11.0'),
       Toolchain('osx-11-0-dep-10-10-cxx17', 'Xcode', osx_version='11.0'),
+      Toolchain('osx-11-1', 'Xcode', osx_version='11.1'),
+      Toolchain('osx-11-1-cxx17', 'Xcode', osx_version='11.1'),
       Toolchain('osx-11-1-dep-10-10-cxx17', 'Xcode', osx_version='11.1'),
       Toolchain('linux-gcc-x64', 'Unix Makefiles'),
   ]
