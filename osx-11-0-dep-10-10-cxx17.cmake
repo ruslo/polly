@@ -1,15 +1,15 @@
 # Copyright (c) 2016, Ruslan Baratov
 # All rights reserved.
 
-if(DEFINED POLLY_OSX_10_16_DEP_10_10_CXX17_CMAKE_)
+if(DEFINED POLLY_OSX_11_0_DEP_10_10_CXX17_CMAKE_)
   return()
 else()
-  set(POLLY_OSX_10_16_DEP_10_10_CXX17_CMAKE_ 1)
+  set(POLLY_OSX_11_0_DEP_10_10_CXX17_CMAKE_ 1)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/utilities/polly_init.cmake")
 
-set(OSX_SDK_VERSION "10.16")
+set(OSX_SDK_VERSION "11.0")
 set(POLLY_XCODE_COMPILER "clang")
 polly_init(
     "Xcode (OS X ${OSX_SDK_VERSION} | Deployment 10.10) / \
