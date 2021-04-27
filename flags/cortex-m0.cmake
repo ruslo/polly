@@ -15,10 +15,6 @@ set(
     -march=armv6-m
     -mcpu=cortex-m0
     -mtune=cortex-m0
-    -mfloat-abi=hard
-    -fno-caller-saves
-    -fno-plt
-    "-DNEED_PRINTF=1" # http://www.dd-wrt.com/phpBB2/viewtopic.php?p=552124
 )
 
 foreach(_cortexm0_flag ${_cortexm0_flags})
