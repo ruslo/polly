@@ -935,6 +935,8 @@ if os.name == 'posix':
       Toolchain('gcc-8-cxx17-concepts', 'Unix Makefiles'),
       Toolchain('gcc-cxx98', 'Unix Makefiles'),
       Toolchain('gcc-lto', 'Unix Makefiles'),
+      Toolchain('gcc-armhf-m0-cxx14', 'Unix Makefiles'),
+      Toolchain('gcc-armhf-neon-vfpv4', 'Unix Makefiles'),
       Toolchain('libcxx', 'Unix Makefiles'),
       Toolchain('libcxx14', 'Unix Makefiles'),
       Toolchain('libcxx-no-sdk', 'Unix Makefiles'),
