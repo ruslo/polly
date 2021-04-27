@@ -9,7 +9,22 @@ endif()
 
 include(polly_add_cache_flag)
 
+set(
+    _cortexm0_flags
+    -pipe
+    -march=armv6-m
+    -mcpu=cortex-m0
+    -mtune=cortex-m0
+    -mfloat-abi=hard
+    -fno-caller-saves
+    -fno-plt
+    "-DNEED_PRINTF=1" # http://www.dd-wrt.com/phpBB2/viewtopic.php?p=552124
+)
+
+foreach(_cortexm0_flag ${_cortexm0_flags})
+  polly_add_cache_flag(CMAKE_C_FLAGS "${_cortexm0_flag}")
+  polly_add_cache_flag(CMAKE_CXX_FLAGS "${_cortexm0_flag}")
+endforeach()
+
 # generate code that works best on the specified hardware
 list(APPEND HUNTER_TOOLCHAIN_UNDETECTABLE_ID "cortex-m0")
-polly_add_cache_flag(CMAKE_CXX_FLAGS "-mcpu=cortex-m0")
-polly_add_cache_flag(CMAKE_C_FLAGS "-mcpu=cortex-m0")

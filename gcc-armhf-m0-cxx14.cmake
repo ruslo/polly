@@ -31,5 +31,4 @@ include(
     "${CMAKE_CURRENT_LIST_DIR}/compiler/gcc-cross-compile-simple-layout.cmake"
 )
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cxx14.cmake")
-include("${CMAKE_CURRENT_LIST_DIR}/flags/hardfloat.cmake")
 include("${CMAKE_CURRENT_LIST_DIR}/flags/cortex-m0.cmake")
