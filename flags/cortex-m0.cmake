@@ -15,6 +15,9 @@ set(
     -march=armv6-m
     -mcpu=cortex-m0
     -mtune=cortex-m0
+    -mthumb
+    -msoft-float
+    -mfloat-abi=soft
 )
 
 foreach(_cortexm0_flag ${_cortexm0_flags})
